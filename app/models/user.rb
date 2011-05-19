@@ -2,7 +2,7 @@ require 'facebook'
 
 class User < ActiveRecord::Base
   
-  attr_accessible :login, :email, :password, :password_confirmation
+  attr_accessible :login, :email, :password, :password_confirmation, :admin
   
   has_one :authorization, :dependent => :destroy
   
@@ -92,6 +92,5 @@ class User < ActiveRecord::Base
     end
     @twitter_user
 end
-  
   
 end

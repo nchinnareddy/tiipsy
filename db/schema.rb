@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110414091520) do
+ActiveRecord::Schema.define(:version => 20110519085232) do
 
   create_table "authorizations", :force => true do |t|
     t.integer  "user_id"
@@ -53,6 +53,22 @@ ActiveRecord::Schema.define(:version => 20110414091520) do
     t.datetime "updated_at"
   end
 
+  create_table "servicelistings", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "location"
+    t.date     "availability"
+    t.string   "price"
+    t.integer  "no_of_guests"
+    t.boolean  "status",             :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+  end
+
   create_table "twitter_followers", :force => true do |t|
     t.integer  "user_id",                                    :null => false
     t.decimal  "twitter_id",  :precision => 30, :scale => 0, :null => false
@@ -85,6 +101,7 @@ ActiveRecord::Schema.define(:version => 20110414091520) do
     t.string   "last_login_ip"
     t.boolean  "active",             :default => false, :null => false
     t.boolean  "social_login",       :default => false
+    t.boolean  "admin",              :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

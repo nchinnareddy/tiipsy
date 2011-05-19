@@ -52,7 +52,7 @@ Socialstock::Application.configure do
 
 end
 
-WEB_SITE = "empty-leaf-572"
+WEB_SITE = "173.255.195.108"
 
 TWITTER_CONSUMER_KEY = "4LNa1EYXgxu3ea2UYn0tw"
 TWITTER_CONSUMER_SECRET = "uGWA8D3pipHkN3opHdbDVtT5H6L5SEy4gZRD5lRmjc"

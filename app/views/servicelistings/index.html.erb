@@ -1,0 +1,39 @@
+<h1>Servicelistings</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Location</th>
+    <th>Availability</th>
+    <th>Price</th>
+    <th>No of guests</th>
+    <th>Status</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @servicelistings.each do |servicelisting| %>
+  <tr>
+    <td><%= servicelisting.title %></td>
+    <td><%= servicelisting.description %></td>
+    <td><%= servicelisting.location %></td>
+    <td><%= servicelisting.availability %></td>
+    <td><%= servicelisting.price %></td>
+    <td><%= servicelisting.no_of_guests %></td>
+    <td><%= servicelisting.status %></td>
+    <td><%= link_to 'Show', servicelisting %></td>
+	<% if isadmin? %>
+    <td><%= link_to 'Edit', edit_servicelisting_path(servicelisting) %></td>
+    <td><%= link_to 'Destroy', servicelisting, :confirm => 'Are you sure?', :method => :delete %></td>
+	<%end%>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<% if isadmin? %>
+<%= link_to 'New Servicelisting', new_servicelisting_path %>
+<%end%>

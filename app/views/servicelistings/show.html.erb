@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @servicelisting.title %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @servicelisting.description %>
+</p>
+
+<p>
+  <b>Location:</b>
+  <%= @servicelisting.location %>
+</p>
+
+<p>
+  <b>Availability:</b>
+  <%= @servicelisting.availability %>
+</p>
+
+<p>
+  <b>Price:</b>
+  <%= @servicelisting.price %>
+</p>
+
+<p>
+  <b>No of guests:</b>
+  <%= @servicelisting.no_of_guests %>
+</p>
+
+<p>
+  <b>photo:</b>
+  <%= image_tag @servicelisting.photo.url(:small) %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= @servicelisting.status %>
+</p>
+
+
+<%= link_to 'Edit', edit_servicelisting_path(@servicelisting) %> |
+<%= link_to 'Back', servicelistings_path %>

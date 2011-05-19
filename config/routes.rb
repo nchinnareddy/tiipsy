@@ -10,6 +10,8 @@ Socialstock::Application.routes.draw do
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
   # This route can be invoked with purchase_url(:id => product.id)
   match '/activate_account/:activation_code' => 'activations#create', :as => :activate
+  match 'admin' => "admin#index"
+  #match 'admin/delete' => "user/delete", :as => :remove
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
@@ -23,6 +25,8 @@ Socialstock::Application.routes.draw do
     end
   end
   resources :password_resets, :only => [:new, :create, :edit, :update]
+  
+  resources :servicelistings
   
   resources :friends do 
     collection do
@@ -75,7 +79,7 @@ Socialstock::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   # root :to => "welcome#index"
-  root :to => "user_sessions#new"
+  root :to => "servicelistings#index"
 
   # See how all your routes lay out with "rake routes"
 

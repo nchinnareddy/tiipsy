@@ -5,7 +5,8 @@ gem 'rails', '3.0.5'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3-ruby', :require => 'sqlite3'
+#gem 'sqlite3-ruby', :require => 'sqlite3'
+gem 'mysql2', '0.2.7'
 
 #For authentication 
 gem 'authlogic'
@@ -13,6 +14,8 @@ gem 'omniauth'
 gem 'fb_graph'
 gem 'twitter'
 gem 'contacts'
+
+gem 'paperclip'
 
 gem 'hpricot'
 
@@ -26,7 +29,7 @@ gem "mail", "2.2.15"
 # gem 'unicorn'
 
 # Deploy with Capistrano
-# gem 'capistrano'
+ gem 'capistrano'
 
 # To use debugger (ruby-debug for Ruby 1.8.7+, ruby-debug19 for Ruby 1.9.2+)
 # gem 'ruby-debug'

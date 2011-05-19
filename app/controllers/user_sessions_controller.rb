@@ -11,8 +11,12 @@ class UserSessionsController < ApplicationController
   def create
     @user_session = UserSession.new(params[:user_session])    
     if @user_session.save      
-      flash[:notice] = "Login successful!"      
-      redirect_back_or_default user_path(current_user)
+      flash[:notice] = "Login successful!"
+        if isadmin?
+          redirect_to :controller => :admin, :action => :index
+        else
+        redirect_back_or_default user_path(current_user)
+        end
     else
       render :action => :new
     end
