@@ -33,6 +33,12 @@ GEM
     authlogic (2.1.6)
       activesupport
     builder (2.1.2)
+    capistrano (2.6.0)
+      highline
+      net-scp (>= 1.0.0)
+      net-sftp (>= 2.0.0)
+      net-ssh (>= 2.0.14)
+      net-ssh-gateway (>= 1.1.0)
     contacts (1.2.4)
       gdata (= 1.1.1)
       json (>= 0.4.1)
@@ -51,6 +57,7 @@ GEM
       restclient_with_cert
     gdata (1.1.1)
     hashie (1.0.0)
+    highline (1.6.1)
     hpricot (0.8.4)
     i18n (0.5.0)
     json (1.5.1)
@@ -65,6 +72,13 @@ GEM
     multipart-post (1.1.0)
     mysql2 (0.2.7)
     net-ldap (0.1.1)
+    net-scp (1.0.4)
+      net-ssh (>= 1.99.1)
+    net-sftp (2.0.5)
+      net-ssh (>= 2.0.9)
+    net-ssh (2.1.4)
+    net-ssh-gateway (1.1.0)
+      net-ssh (>= 1.99.1)
     nifty-generators (0.4.6)
     nokogiri (1.4.4)
     nokogiri (1.4.4-x86-mingw32)
@@ -163,6 +177,7 @@ PLATFORMS
 
 DEPENDENCIES
   authlogic
+  capistrano
   contacts
   fb_graph
   hpricot
