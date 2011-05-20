@@ -17,12 +17,12 @@
 
 <p>
   <b>Availability:</b>
-  <%= @servicelisting.availability %>
+  <%= @servicelisting.availability.to_formatted_s(:long) %>
 </p>
 
 <p>
   <b>Price:</b>
-  <%= @servicelisting.price %>
+  $<%= @servicelisting.price %>
 </p>
 
 <p>
@@ -32,12 +32,16 @@
 
 <p>
   <b>photo:</b>
-  <%= image_tag @servicelisting.photo.url(:small) %>
+  <%= image_tag @servicelisting.photo.url %>
 </p>
 
 <p>
   <b>Status:</b>
-  <%= @servicelisting.status %>
+  <% if @servicelisting.status  %>
+  Active
+  <% else %>
+  Inactive
+  <% end%>
 </p>
 
 

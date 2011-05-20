@@ -8,7 +8,9 @@
     <th>Availability</th>
     <th>Price</th>
     <th>No of guests</th>
+	<% if isadmin? %>
     <th>Status</th>
+	<% end%>
     <th></th>
     <th></th>
     <th></th>
@@ -22,7 +24,14 @@
     <td><%= servicelisting.availability %></td>
     <td><%= servicelisting.price %></td>
     <td><%= servicelisting.no_of_guests %></td>
-    <td><%= servicelisting.status %></td>
+	    <% if isadmin? %>
+	    <% if servicelisting.status  %>
+    <td>Active</td>
+        <% else %>
+    <td>Inactive</td>
+        <% end%>	    
+	    <% end%>
+		
     <td><%= link_to 'Show', servicelisting %></td>
 	<% if isadmin? %>
     <td><%= link_to 'Edit', edit_servicelisting_path(servicelisting) %></td>

@@ -25,7 +25,7 @@
   </div>
   <div class="field">
     <%= f.label :availability %><br />
-    <%= f.date_select :availability %>
+    <%= f.date_select :availability, :order => [:month, :day, :year ] %>
   </div>
   <div class="field">
     <%= f.label :price %><br />
@@ -39,9 +39,13 @@
     <%= f.label :photo %><br />
     <%= f.file_field :photo %>
   </div>
+  
   <div class="field">
-    <%= f.label :status %><br />
-    <%= f.check_box :status %>
+    <%= f.label :status %><br />	
+	<%= f.radio_button :status, "true" %>
+	<%= f.label "Active" %><br />
+	<%= f.radio_button :status, "false" %>
+	<%= f.label "Inactive" %><br />
   </div>
   <div class="actions">
     <%= f.submit %>
