@@ -18,6 +18,8 @@
 
 <% @servicelistings.each do |servicelisting| %>
   <tr>
+  	<% if servicelisting.status || isadmin? %>
+	
     <td><%= servicelisting.title %></td>
     <td><%= servicelisting.description %></td>
     <td><%= servicelisting.location %></td>
@@ -33,9 +35,14 @@
 	    <% end%>
 		
     <td><%= link_to 'Show', servicelisting %></td>
+	
+	<td><%= submit_tag "Bid", :type => 'button', :onclick => 'alert("Need to implement")' %></td>
+	<td><%= submit_tag "Buy now", :type => 'button', :onclick => 'alert("Need to implement")' %></td> 
+	
 	<% if isadmin? %>
     <td><%= link_to 'Edit', edit_servicelisting_path(servicelisting) %></td>
     <td><%= link_to 'Destroy', servicelisting, :confirm => 'Are you sure?', :method => :delete %></td>
+	<%end%>
 	<%end%>
   </tr>
 <% end %>

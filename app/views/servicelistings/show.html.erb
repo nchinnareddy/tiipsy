@@ -32,7 +32,7 @@
 
 <p>
   <b>photo:</b>
-  <%= image_tag @servicelisting.photo.url %>
+  <%= image_tag @servicelisting.photo.url, :size => "200x200" %>
 </p>
 
 <p>
@@ -44,6 +44,7 @@
   <% end%>
 </p>
 
-
+<% if isadmin? %>
 <%= link_to 'Edit', edit_servicelisting_path(@servicelisting) %> |
+<%end%>
 <%= link_to 'Back', servicelistings_path %>

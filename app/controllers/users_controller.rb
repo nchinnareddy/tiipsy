@@ -30,16 +30,16 @@ class UsersController < ApplicationController
   end
   
   def show
-    @user = @current_user  
+    @user = User.find(params[:id])  
   end
 
   def edit
-    @user = @current_user
+    @user = User.find(params[:id])
     @authorizations = current_user.authorization if current_user
   end
   
   def update
-    @user = @current_user
+    @user = User.find(params[:id])
     if !@user.social_login
       if @user.update_attributes(params[:user])
         flash[:notice] = "User details updated!"

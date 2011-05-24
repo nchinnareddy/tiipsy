@@ -1,0 +1,20 @@
+<div id="header">  		
+	<div id="header-logo">
+		<a href="/">Tiipsy</a>
+		<div style="font-size:11px;margin-left: 60px;">Get your bottle service now</div>	
+	</div>
+	<div id="navigation-links">
+		<%= link_to "Home", root_path %> |
+		<% if !current_user %>
+			<%= link_to "Sign Up", new_user_path %> |
+			<%= link_to "Sign In", new_user_session_path %>
+		<% else %>
+			<%= link_to "My Account", user_path(current_user) %> |
+			<% if auth_provider.nil? %>
+				<%= link_to "Change Password", change_password_users_path %> |				
+			<% end%>				
+			<%= link_to "Sign out", user_session_path(current_user), :method => :delete, :confirm => "Are you sure you want to signout?" %>
+		<% end %>	
+	</div>	
+	<div class="clear"></div>
+</div>

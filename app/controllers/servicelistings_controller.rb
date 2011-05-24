@@ -1,8 +1,13 @@
 class ServicelistingsController < ApplicationController
+ before_filter :require_admin, :except => [:index, :show]
   
-  before_filter :require_admin, :except => [:index, :show]
+  def require_admin
+   unless isadmin?
+        redirect_to root_path   
+    end
+  end
   
-    # GET /servicelistings
+  # GET /servicelistings
   # GET /servicelistings.xml
   def index
     @servicelistings = Servicelisting.all
