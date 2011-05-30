@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base  
   protect_from_forgery
   helper :all
-  helper_method :current_user_session, :current_user, :auth_provider, :isadmin?
+  helper_method :current_user_session, :current_user, :auth_provider, :isadmin?, :require_paypal_user
   
   private
   
@@ -19,7 +19,6 @@ class ApplicationController < ActionController::Base
     unless current_user
        return false
     end
-    
     current_user.admin
   end
   
@@ -42,6 +41,10 @@ class ApplicationController < ActionController::Base
       flash[:notice] = "You must be logged out to access this page"
       redirect_to root_path
     end
+  end
+  
+  def require_paypal_user
+  # render :text => "please authorize your paypal account to bid"  
   end
     
   def store_location

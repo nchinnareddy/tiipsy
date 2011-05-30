@@ -10,8 +10,8 @@ class ServicelistingsController < ApplicationController
   # GET /servicelistings
   # GET /servicelistings.xml
   def index
-    @servicelistings = Servicelisting.all
-
+    @servicelistings = Servicelisting.all  
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @servicelistings }

@@ -36,14 +36,20 @@
 		
     <td><%= link_to 'Show', servicelisting %></td>
 	
-	<td><%= submit_tag "Bid", :type => 'button', :onclick => 'alert("Need to implement")' %></td>
-	<td><%= submit_tag "Buy now", :type => 'button', :onclick => 'alert("Need to implement")' %></td> 
 	
 	<% if isadmin? %>
     <td><%= link_to 'Edit', edit_servicelisting_path(servicelisting) %></td>
-    <td><%= link_to 'Destroy', servicelisting, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Destroy', servicelisting, :confirm => 'Are you sure?', :method => :delete %></td>              
 	<%end%>
+	<% @servicelisting = servicelisting%>
+	<td><b> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  HighestBid:</b><%= @servicelisting.highestbid %></td>
+	
+	<td><b>&nbsp; </b><%= link_to 'Bid', new_servicelisting_bid_path(@servicelisting) %></td>
+	
+	<td><b>&nbsp; </b><%= submit_tag "Buy now", :type => 'button', :onclick => 'alert("Need to implement")' %></td> 
+	
 	<%end%>
+		
   </tr>
 <% end %>
 </table>

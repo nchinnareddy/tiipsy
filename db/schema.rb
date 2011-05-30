@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110519085232) do
+ActiveRecord::Schema.define(:version => 20110525052756) do
 
   create_table "authorizations", :force => true do |t|
     t.integer  "user_id"
@@ -18,6 +18,14 @@ ActiveRecord::Schema.define(:version => 20110519085232) do
     t.string   "uid"
     t.string   "token"
     t.string   "secret"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "bids", :force => true do |t|
+    t.integer  "bidprice"
+    t.integer  "user_id"
+    t.integer  "servicelisting_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -60,6 +68,7 @@ ActiveRecord::Schema.define(:version => 20110519085232) do
     t.date     "availability"
     t.string   "price"
     t.integer  "no_of_guests"
+    t.integer  "highestbid",         :default => 0
     t.boolean  "status",             :default => false
     t.datetime "created_at"
     t.datetime "updated_at"

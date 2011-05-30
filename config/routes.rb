@@ -17,6 +17,7 @@ Socialstock::Application.routes.draw do
   #   resources :products
   resources :user_sessions
   resources :users do
+    resources :bids
     collection do 
       get 'change_password'
       post 'password_update'
@@ -26,8 +27,9 @@ Socialstock::Application.routes.draw do
   end
   resources :password_resets, :only => [:new, :create, :edit, :update]
   
-  resources :servicelistings
-  
+  resources :servicelistings do
+  resources :bids
+  end
   resources :friends do 
     collection do
       get 'get_facebook_friends'

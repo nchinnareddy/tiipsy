@@ -7,6 +7,7 @@ class CreateServicelistings < ActiveRecord::Migration
   t.date    :availability
   t.string  :price
   t.integer :no_of_guests
+  t.integer :highestbid, :default => 0
   t.boolean :status, :default => false
 
   t.timestamps
