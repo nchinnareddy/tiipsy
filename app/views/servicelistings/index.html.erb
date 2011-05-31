@@ -47,6 +47,30 @@
 	<td><b>&nbsp; </b><%= link_to 'Bid', new_servicelisting_bid_path(@servicelisting) %></td>
 	
 	<td><b>&nbsp; </b><%= submit_tag "Buy now", :type => 'button', :onclick => 'alert("Need to implement")' %></td> 
+
+	
+	
+	<% if current_user %>
+	<% service_user_high_bid = nil %>
+	 <% current_user.bids.each do |bid|%>		 
+	   <%   if bid.servicelisting.id == @servicelisting.id %>
+	    <%  if service_user_high_bid == nil && bid != nil%>
+		<%  service_user_high_bid = bid %>
+		  <% end %>
+		 <% if service_user_high_bid.bidprice < bid.bidprice %>
+		  <%   service_user_high_bid = bid %>
+		  <% end %>
+		  <% end %>
+		  <% end %>
+     <% if service_user_high_bid != nil %> 	
+     <% if service_user_high_bid.bidprice == @servicelisting.highestbid %>
+	    <td>"You are the highest bidder"</td>
+		<% else%>
+		<td> You are outbid by <%= @servicelisting.highestbid - service_user_high_bid.bidprice %> </td>
+	   <%end %>
+	   <%end %>
+		
+	<% end %>
 	
 	<%end%>
 		

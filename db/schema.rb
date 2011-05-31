@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110525052756) do
+ActiveRecord::Schema.define(:version => 20110530122911) do
 
   create_table "authorizations", :force => true do |t|
     t.integer  "user_id"
@@ -76,6 +76,13 @@ ActiveRecord::Schema.define(:version => 20110525052756) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
+  end
+
+  create_table "transactions", :force => true do |t|
+    t.float    "amount"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "twitter_followers", :force => true do |t|

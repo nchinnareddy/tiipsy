@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base  
   protect_from_forgery
   helper :all
-  helper_method :current_user_session, :current_user, :auth_provider, :isadmin?, :require_paypal_user
+  helper_method :current_user_session, :current_user, :auth_provider, :isadmin?, :require_user_balance
   
   private
   
@@ -43,7 +43,9 @@ class ApplicationController < ActionController::Base
     end
   end
   
-  def require_paypal_user
+  def require_user_balance
+    # if user has enough balance to bid please check here
+  #   render "checkout.html.erb"
   # render :text => "please authorize your paypal account to bid"  
   end
     

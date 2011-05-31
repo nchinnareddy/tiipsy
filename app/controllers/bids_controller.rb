@@ -1,7 +1,7 @@
 class BidsController < ApplicationController
   
   before_filter :require_user
-  before_filter :require_paypal_user
+  before_filter :require_user_balance
   
   # GET /bids
   # GET /bids.xml
@@ -53,6 +53,7 @@ class BidsController < ApplicationController
     @bid = @servicelisting.bids.new(params[:bid])
     if @bid.bidprice > @servicelisting.highestbid
       @bid.save
+      current_user.bids << @bid
       @servicelisting.highestbid = @bid.bidprice
       @servicelisting.save
     else
