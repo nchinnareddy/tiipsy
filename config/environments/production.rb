@@ -49,6 +49,11 @@ Socialstock::Application.configure do
   config.active_support.deprecation = :notify
   
   config.action_mailer.default_url_options = { :host => '173.255.195.108', :port => 8083  }
+  
+  
+  config.after_initialize do
+     ActiveMerchant::Billing::Base.mode = :test  
+  end
 
 end
 
