@@ -1,7 +1,7 @@
 class CreateBids < ActiveRecord::Migration
   def self.up
     create_table :bids do |t|
-      t.integer :bidprice
+      t.float :bidprice
       t.references :user
       t.references :servicelisting
 

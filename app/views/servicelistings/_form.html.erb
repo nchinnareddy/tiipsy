@@ -25,12 +25,18 @@
   </div>
   <div class="field">
     <%= f.label :availability %><br />
-    <%= f.date_select :availability, :order => [:month, :day, :year ] %>
+    <%= f.datetime_select :availability, :order => [:month, :day, :year ] %>
   </div>
   <div class="field">
     <%= f.label :price %><br />
     <%= f.text_field :price %>
   </div>
+  
+   <div class="field">
+    <%= f.label :buynow_price %><br />
+    <%= f.text_field :buynow_price %>
+  </div>
+  
   <div class="field">
     <%= f.label :no_of_guests %><br />
     <%= f.text_field :no_of_guests %>

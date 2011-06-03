@@ -24,7 +24,13 @@ Socialstock::Application.configure do
   config.action_dispatch.best_standards_support = :builtin 
   
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
-    
+  
+  
+  
+  config.after_initialize do
+     ActiveMerchant::Billing::Base.mode = :test  
+  end
+ 
 end
 
 WEB_SITE = "localhost:3000"
@@ -37,3 +43,4 @@ FACEBOOK_APP_SECRET = "d0b9733bbd3e85e9344216c3667cbae7"
 
 LINKEDIN_API_KEY = "QVPHV28j1zTT5-pq3-G5lUkIJzT3CBcJoKLa0f7Vs19tgglvvyn6OjmaVPL1es2D"
 LINKEDIN_SECRET_KEY = "KgeqVUL0Ov4iGxiYUX5QSH-mgjC7lGxzW1_UkGzE5X2gfvfM8FVssoIFzj4XH0h4"
+

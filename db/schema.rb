@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(:version => 20110530122911) do
   end
 
   create_table "bids", :force => true do |t|
-    t.integer  "bidprice"
+    t.float    "bidprice"
     t.integer  "user_id"
     t.integer  "servicelisting_id"
     t.datetime "created_at"
@@ -65,10 +65,11 @@ ActiveRecord::Schema.define(:version => 20110530122911) do
     t.string   "title"
     t.text     "description"
     t.string   "location"
-    t.date     "availability"
-    t.string   "price"
+    t.datetime "availability"
+    t.float    "price"
+    t.float    "buynow_price"
     t.integer  "no_of_guests"
-    t.integer  "highestbid",         :default => 0
+    t.float    "highestbid",         :default => 0.0
     t.boolean  "status",             :default => false
     t.datetime "created_at"
     t.datetime "updated_at"

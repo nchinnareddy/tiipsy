@@ -1,4 +1,14 @@
 Socialstock::Application.routes.draw do
+  get "payments/index"
+  get "payments/buynow"
+
+  get "payments/confirm"
+
+  post "payments/complete"
+  
+  get "payments/checkout"
+  
+
   resources :transactions
 
   # The priority is based upon order of creation:
@@ -30,8 +40,11 @@ Socialstock::Application.routes.draw do
   resources :password_resets, :only => [:new, :create, :edit, :update]
   
   resources :servicelistings do
-  resources :bids
-  end
+    get 'buynow'   
+  resources :bids, :new => { :express => :get }
+end
+
+
   resources :friends do 
     collection do
       get 'get_facebook_friends'

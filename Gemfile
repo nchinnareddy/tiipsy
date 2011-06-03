@@ -16,6 +16,7 @@ gem 'twitter'
 gem 'contacts'
 
 gem 'paperclip'
+gem 'activemerchant'
 
 gem 'hpricot'
 

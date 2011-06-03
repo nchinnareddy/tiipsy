@@ -1,3 +1,6 @@
+
+<% javascript('jqTimer')%>
+
 <h1>Servicelistings</h1>
 
 <table>
@@ -42,14 +45,12 @@
     <td><%= link_to 'Destroy', servicelisting, :confirm => 'Are you sure?', :method => :delete %></td>              
 	<%end%>
 	<% @servicelisting = servicelisting%>
-	<td><b> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  HighestBid:</b><%= @servicelisting.highestbid %></td>
+	<td><b> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  HighestBid:</b>$<%= @servicelisting.highestbid %></td>
 	
 	<td><b>&nbsp; </b><%= link_to 'Bid', new_servicelisting_bid_path(@servicelisting) %></td>
 	
-	<td><b>&nbsp; </b><%= submit_tag "Buy now", :type => 'button', :onclick => 'alert("Need to implement")' %></td> 
+	<td><b>&nbsp; </b><%= link_to 'Buy now', servicelisting_buynow_path(@servicelisting) %></td> 
 
-	
-	
 	<% if current_user %>
 	<% service_user_high_bid = nil %>
 	 <% current_user.bids.each do |bid|%>		 
@@ -66,7 +67,7 @@
      <% if service_user_high_bid.bidprice == @servicelisting.highestbid %>
 	    <td>"You are the highest bidder"</td>
 		<% else%>
-		<td> You are outbid by <%= @servicelisting.highestbid - service_user_high_bid.bidprice %> </td>
+		<td> You are outbid by <%= @servicelisting.highestbid - service_user_high_bid.bidprice %>$ </td>
 	   <%end %>
 	   <%end %>
 		
@@ -83,3 +84,11 @@
 <% if isadmin? %>
 <%= link_to 'New Servicelisting', new_servicelisting_path %>
 <%end%>
+
+<p class="jdt" start="12182400" style="color:red;font-size:24px;"> </p>
+
+<script type="text/javascript">
+	$('.jdt').jqTimer(function(ele,stime){
+		$(ele).html(stime);
+	});
+</script>

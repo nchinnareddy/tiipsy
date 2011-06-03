@@ -3,6 +3,7 @@ class BidsController < ApplicationController
   before_filter :require_user
   before_filter :require_user_balance
   
+    
   # GET /bids
   # GET /bids.xml
   def index

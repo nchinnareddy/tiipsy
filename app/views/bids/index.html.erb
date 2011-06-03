@@ -10,7 +10,7 @@
 
 <% @bids.each do |bid| %>
   <tr>
-    <td><%= bid.bidprice %></td>
+    <td>$<%= bid.bidprice %></td>
     <td><%= link_to 'Show', bid %></td>
     <td><%= link_to 'Edit', edit_bid_path(bid) %></td>
     <td><%= link_to 'Destroy', bid, :confirm => 'Are you sure?', :method => :delete %></td>
