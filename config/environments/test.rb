@@ -32,4 +32,18 @@ Socialstock::Application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
+  
+  config.after_initialize do
+     ActiveMerchant::Billing::Base.mode = :test
+     OrderTransaction.gateway = ActiveMerchant::Billing::BogusGateway.new
+  end
 end
+
+TWITTER_CONSUMER_KEY = "OlXjMoxkWUj2Fw5R5pjGDw"
+TWITTER_CONSUMER_SECRET = "wc5uB2RO2OhV5hL5viCFfloLvpfr0zYwU7Ny9SaBhQ"
+
+FACEBOOK_APP_ID = "175065049218161"
+FACEBOOK_APP_SECRET = "d0b9733bbd3e85e9344216c3667cbae7"
+
+LINKEDIN_API_KEY = "QVPHV28j1zTT5-pq3-G5lUkIJzT3CBcJoKLa0f7Vs19tgglvvyn6OjmaVPL1es2D"
+LINKEDIN_SECRET_KEY = "KgeqVUL0Ov4iGxiYUX5QSH-mgjC7lGxzW1_UkGzE5X2gfvfM8FVssoIFzj4XH0h4"

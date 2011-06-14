@@ -2,7 +2,8 @@ class PaymentsController < ApplicationController
   include ActiveMerchant::Billing
   
   def index
-end
+  end
+
  def buynow
    
  end
@@ -10,7 +11,7 @@ end
   def confirm
     redirect_to :action => 'index' unless params[:token]
   
-    details_response = gateway.details_for(params[:token])
+    details_response = mygateway.details_for(params[:token])
   
      if !details_response.success?
       @message = details_response.message
@@ -22,7 +23,7 @@ end
   end
 
   def complete
-  purchase = gateway.purchase(5000,
+  purchase = mygateway.purchase(5000,
     :ip       => request.remote_ip,
     :payer_id => params[:payer_id],
     :token    => params[:token]
@@ -37,7 +38,7 @@ end
 
 
 def checkout
-   setup_response = gateway.setup_purchase(5000,
+   setup_response = mygateway.setup_purchase(5000,
    :ip                => request.remote_ip,
    :return_url        => url_for(:action => 'confirm', :only_path => false),
    :cancel_return_url => url_for(:action => 'index', :only_path => false)
@@ -47,8 +48,8 @@ end
 
 
 private
-def gateway
-  @gateway ||= PaypalExpressGateway.new(
+def mygateway
+  @paygateway ||= PaypalExpressGateway.new(
     :login => 'nchinn_1307094132_biz_api1.gmail.com',
     :password => '1307094143',
     :signature => 'A3tSrUJhWQkOjSs.LnbMRFOlOFN3AdRRcOCmTIWXkXK8x5Pn4e93CiVB'

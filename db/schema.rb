@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110530122911) do
+ActiveRecord::Schema.define(:version => 20110610082650) do
 
   create_table "authorizations", :force => true do |t|
     t.integer  "user_id"
@@ -57,6 +57,27 @@ ActiveRecord::Schema.define(:version => 20110530122911) do
     t.string   "source"
     t.string   "status_type"
     t.boolean  "deteled",            :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "order_transactions", :force => true do |t|
+    t.integer  "amount"
+    t.boolean  "success"
+    t.string   "reference"
+    t.string   "message"
+    t.string   "action"
+    t.text     "params"
+    t.boolean  "test"
+    t.integer  "order_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "orders", :force => true do |t|
+    t.string   "description"
+    t.integer  "amount"
+    t.string   "state"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

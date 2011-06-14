@@ -24,13 +24,19 @@ Socialstock::Application.configure do
   config.action_dispatch.best_standards_support = :builtin 
   
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
-  
-  
-  
+   
   config.after_initialize do
      ActiveMerchant::Billing::Base.mode = :test  
   end
  
+  config.to_prepare do
+  OrderTransaction.gateway =  ActiveMerchant::Billing::PaypalExpressGateway.new( 
+    :login => 'nchinn_1307094132_biz_api1.gmail.com',
+    :password => '1307094143',
+    :signature => 'A3tSrUJhWQkOjSs.LnbMRFOlOFN3AdRRcOCmTIWXkXK8x5Pn4e93CiVB' )
+    
+  end
+
 end
 
 WEB_SITE = "localhost:3000"

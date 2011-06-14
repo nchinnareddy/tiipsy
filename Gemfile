@@ -17,6 +17,7 @@ gem 'contacts'
 
 gem 'paperclip'
 gem 'activemerchant'
+gem 'aasm'
 
 gem 'hpricot'
 
