@@ -1,5 +1,11 @@
-l
-<% javascript('jqTimer')%>
+<% javascript('jquery.countdown')%>
+<% stylesheet('jquery.countdown')%>
+
+<style type="text/css">
+	.countdown_amount {
+		font-size: 12px;
+	}
+</style>
 
 <h1>Servicelistings</h1>
 
@@ -49,8 +55,10 @@ l
 	
 	<td><b>&nbsp; </b><%= link_to 'Bid', new_servicelisting_bid_path(@servicelisting) %></td>
 	
-	<td><b>&nbsp; </b><%= link_to 'Buy now', servicelisting_buynow_path(@servicelisting) %></td> 
-
+	<td><b>&nbsp; </b><%= link_to 'Buy now', servicelisting_buynow_path(@servicelisting) %></td>
+	
+	<td width="10%"> <div class="jdt" start="1000000"> </div></td>
+		
 	<% if current_user %>
 	<% service_user_high_bid = nil %>
 	 <% current_user.bids.each do |bid|%>		 
@@ -69,7 +77,7 @@ l
 		<% else%>
 		<td> You are outbid by <%= @servicelisting.highestbid - service_user_high_bid.bidprice %>$ </td>
 	   <%end %>
-	   <%end %>
+	   <%end %>	
 		
 	<% end %>
 	
@@ -85,10 +93,25 @@ l
 <%= link_to 'New Servicelisting', new_servicelisting_path %>
 <%end%>
 
-<p class="jdt" start="12182400" style="color:red;font-size:24px;"> </p>
+
+<!-- <div class="jdt" start="12182400" product_id="aaaaaa"></div>
+
+<div class="jdt" start="22222222"></div>
+
+<div class="jdt" start="111111"></div>   -->
+<!--
+ <script type="text/javascript">
+  $('.jdt').jqTimer(function(ele,stime){
+    $(ele).html(stime);
+	});
+</script>   -->
 
 <script type="text/javascript">
-	$('.jdt').jqTimer(function(ele,stime){
-		$(ele).html(stime);
-	});
+	$('.jdt').countdown({
+		until:$('.jdt').attr('start'),
+		format:'DHMS',
+		compact: true
+	});	
 </script>
+
+

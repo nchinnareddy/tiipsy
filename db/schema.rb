@@ -78,6 +78,8 @@ ActiveRecord::Schema.define(:version => 20110610082650) do
     t.string   "description"
     t.integer  "amount"
     t.string   "state"
+    t.string   "express_token"
+    t.string   "express_payer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -127,6 +129,7 @@ ActiveRecord::Schema.define(:version => 20110610082650) do
   create_table "users", :force => true do |t|
     t.string   "login"
     t.string   "email"
+    t.float    "topay"
     t.string   "crypted_password"
     t.string   "password_salt"
     t.string   "persistence_token"

@@ -1,14 +1,21 @@
 Socialstock::Application.routes.draw do
   get "payments/index"
   get "payments/buynow"
-
+  
+  get "orders/create"
+  
   get "payments/confirm"
 
   post "payments/complete"
   
   get "payments/checkout"
   
-
+  resources :orders do
+    collection do
+    get 'express'
+    end
+  end
+  
   resources :transactions
 
   # The priority is based upon order of creation:

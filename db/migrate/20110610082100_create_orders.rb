@@ -4,6 +4,8 @@ class CreateOrders < ActiveRecord::Migration
       t.string :description
       t.integer :amount
       t.string :state
+      t.string :express_token
+      t.string :express_payer_id
 
       t.timestamps
     end

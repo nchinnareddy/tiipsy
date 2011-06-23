@@ -16,6 +16,8 @@ class User < ActiveRecord::Base
   
   has_many :bids
   
+  has_many :orders
+  
   has_many :transactions
   
   acts_as_authentic do |c|
@@ -96,5 +98,9 @@ class User < ActiveRecord::Base
     end
     @twitter_user
 end
-  
+
+  def pendingpay
+    @pp = topay
+  end
+    
 end

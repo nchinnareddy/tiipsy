@@ -2,6 +2,7 @@ class OrderTransaction < ActiveRecord::Base
   belongs_to :order
   serialize :params
   cattr_accessor :gateway
+  cattr_accessor :xpressgateway
   
   class << self
     
@@ -17,14 +18,32 @@ class OrderTransaction < ActiveRecord::Base
     end
   end
 
+ def purchase(amount_in_cents, credit_card, options = { })
+    process('purchase', amount_in_cents) do |gw|
+      gw.purchase(amount_in_cents, credit_card, options)
+    end
+ end
+ 
+ def xpresspurchase(amount_in_cents, options= { })
+   process('purchase', amount_in_cents, true) do |gw|
+     gw.purchase(amount_in_cents, options)
+   end
+ end
     
-  def process(action, amount = nil)
+private
+
+  def process(action, amount = nil, xpress= false)
     result = OrderTransaction.new
     result.amount = amount
     result.action = action
 
    begin
-      response = yield gateway
+       if xpress
+        response = yield xpressgateway
+       else
+        response = yield gateway   
+       end
+      
       result.success = response.success?
       result.reference = response.authorization
       result.message  = response.message
