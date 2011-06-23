@@ -118,7 +118,7 @@ def capture_payment(options = {})
 end
   
   def price_in_cents
-    (amount*100).round
+    (amount * 100).round
   end
   
   
