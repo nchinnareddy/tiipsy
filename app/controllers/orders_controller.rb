@@ -29,7 +29,10 @@ def express
   response = EXPRESS_GATEWAY.setup_purchase(20000,
     :ip                => request.remote_ip,
     :return_url        => new_order_url,
-    :cancel_return_url => servicelistings_url
+    :cancel_return_url => servicelistings_url,
+    :customer         => current_user.login,
+    :merchant         => "Tiipsy",
+    :description      => "This is tiipsy order"
   )
   redirect_to EXPRESS_GATEWAY.redirect_url_for(response.token)
 end

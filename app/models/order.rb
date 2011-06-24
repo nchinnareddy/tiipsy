@@ -54,7 +54,6 @@ def purchase(options= {})
       false
      end 
     end
-
 end
 
 def express_token=(token)

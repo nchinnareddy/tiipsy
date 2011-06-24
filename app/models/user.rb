@@ -2,7 +2,7 @@ require 'facebook'
 
 class User < ActiveRecord::Base
   
-  attr_accessible :login, :email, :password, :password_confirmation, :admin
+  attr_accessible :login, :email, :password, :password_confirmation, :admin, :topay
   
   has_one :authorization, :dependent => :destroy
   
