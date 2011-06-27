@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
 def create
   
   @order = current_user.orders.create(params[:order])
-  @order.amount = current_user.pendingpay
+  @order.amount = params[:order][:amount]
   if @order.express_token.blank?
         options = standard_purchase_options
    else 
@@ -23,35 +23,6 @@ def create
   else
     render :action => 'new'
   end
-end
-
-def express
-  response = EXPRESS_GATEWAY.setup_purchase(20000,
-    :ip                => request.remote_ip,
-    :return_url        => new_order_url,
-    :cancel_return_url => servicelistings_url,
-    :customer         => current_user.login,
-    :merchant         => "Tiipsy",
-    :description      => "This is tiipsy order"
-  )
-  redirect_to EXPRESS_GATEWAY.redirect_url_for(response.token)
-end
-
-def new
-  @order = current_user.orders.new(:express_token => params[:token])
-  
-  details_response = OrderTransaction.xpressgateway.details_for(params[:token])
-  
-     if !details_response.success?
-      @message = details_response.message
-      render :text => 'error'
-      return
-     end
-    
-    @address = details_response.address
-  #  @amount = 111
-    @amount = current_user.pendingpay
-  
 end
 
 

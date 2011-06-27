@@ -1,5 +1,6 @@
 class UsersController < ApplicationController  
   before_filter :require_user, :only => [:show, :edit, :update] 
+  skip_before_filter :require_user_with_mailid, :only => [:edit, :update]
   
   def index
     @users = User.all

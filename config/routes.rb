@@ -49,6 +49,8 @@ Socialstock::Application.routes.draw do
   resources :buynow do
      collection do
        get 'buynow'
+       get 'complete'
+       get 'express'
      end
   end
  

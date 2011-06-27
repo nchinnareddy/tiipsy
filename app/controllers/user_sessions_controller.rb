@@ -1,5 +1,6 @@
 class UserSessionsController < ApplicationController
   before_filter :require_user, :only => :destroy
+  skip_before_filter :require_user_with_mailid
   
   def new
     @user_session = UserSession.new

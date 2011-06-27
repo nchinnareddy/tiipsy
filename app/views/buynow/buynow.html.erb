@@ -1,9 +1,12 @@
 
 <p>Please proceed to check out to finish your payment</p>
+<p> Service:<%= @sl.title%></p> </br> 
 <p>Price: $<%= @sl.buynow_price%> </p>
-
+<%amount = @sl.buynow_price %>
+<% amount = (amount.to_i) * 100%>
  <p>
-  <%= link_to image_tag('https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif'), :action => 'express', :controller => 'orders' %>
+  <%= link_to image_tag('https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif'), 
+    :action => 'express', :controller => 'buynow', :id => @sl %>
 </p>
 
 </form>

@@ -1,8 +1,8 @@
 class ApplicationController < ActionController::Base  
   protect_from_forgery
   helper :all
-  helper_method :current_user_session, :current_user, :auth_provider, :isadmin?, :require_user_balance
-  
+  helper_method :current_user_session, :current_user, :auth_provider, :isadmin?, :require_user_balance, :require_user_with_mailid
+  before_filter :require_user_with_mailid
   private
   
   def current_user_session
@@ -56,5 +56,12 @@ class ApplicationController < ActionController::Base
   def redirect_back_or_default(default)
     redirect_to(session[:return_to] || default)
     session[:return_to] = nil
+  end
+  
+  def require_user_with_mailid    
+    if current_user && current_user.email.nil?      
+      flash[:error] = "You must update your email to access this page"
+      redirect_to edit_user_path(current_user)
+    end
   end
 end
