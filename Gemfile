@@ -18,6 +18,7 @@ gem 'contacts'
 gem 'paperclip'
 gem 'activemerchant'
 gem 'aasm'
+gem 'whenever', :require => false
 
 gem 'hpricot'
 

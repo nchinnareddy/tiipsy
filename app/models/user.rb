@@ -14,8 +14,6 @@ class User < ActiveRecord::Base
   
   has_many :contacts
   
-  has_many :bids
-  
   has_many :orders
   
   has_many :transactions

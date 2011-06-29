@@ -52,9 +52,9 @@ class BidsController < ApplicationController
     
     @servicelisting = Servicelisting.find(params[:servicelisting_id])
     @bid = @servicelisting.bids.new(params[:bid])
+    @bid.user_id = current_user.id
     if @bid.bidprice > @servicelisting.highestbid
       @bid.save
-      current_user.bids << @bid
       @servicelisting.highestbid = @bid.bidprice
       @servicelisting.save
     else

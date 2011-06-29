@@ -36,11 +36,7 @@
     <td><%= servicelisting.price %></td>
     <td><%= servicelisting.no_of_guests %></td>
 	    <% if isadmin? %>
-	    <% if servicelisting.status  %>
-    <td>Active</td>
-        <% else %>
-    <td>Inactive</td>
-        <% end%>	    
+	<td><%= servicelisting.status %></td>
 	    <% end%>
 		
     <td><%= link_to 'Show', servicelisting %></td>
@@ -55,34 +51,37 @@
 	
 	<td><b>&nbsp; </b><%= link_to 'Bid', new_servicelisting_bid_path(@servicelisting) %></td>
 	
-	<td><b>&nbsp; </b><%= link_to 'Buy now',  buynow_buynow_index_path(:id => @servicelisting) %></td>
+	<td><b>&nbsp; </b><%= link_to 'Buynow',  buynow_buynow_index_path(:id => @servicelisting) %></td>
 	
 	<td width="10%"> <div class="jdt" start="1000000"> </div></td>
-		
-	<% if current_user %>
-	<% service_user_high_bid = nil %>
-	 <% current_user.bids.each do |bid|%>		 
-	   <%   if bid.servicelisting.id == @servicelisting.id %>
-	    <%  if service_user_high_bid == nil && bid != nil%>
-		<%  service_user_high_bid = bid %>
-		  <% end %>
-		 <% if service_user_high_bid.bidprice < bid.bidprice %>
-		  <%   service_user_high_bid = bid %>
-		  <% end %>
-		  <% end %>
-		  <% end %>
-     <% if service_user_high_bid != nil %> 	
-     <% if service_user_high_bid.bidprice == @servicelisting.highestbid %>
-	    <td>"You are the highest bidder"</td>
-		<% else%>
-		<td> You are outbid by <%= @servicelisting.highestbid - service_user_high_bid.bidprice %>$ </td>
-	   <%end %>
-	   <%end %>	
-		
-	<% end %>
 	
-	<%end%>
+	<% if current_user %>				
+        <% @userhighbid = nil %> 
+        <% @servicelisting.bids.each do |bid| %>
+		 <% if bid.user_id == current_user.id %>
+	         <% if @userhighbid.nil? %>
+	          <% @userhighbid = bid.bidprice %>
+	           <% next %>
+	         <% end %>
+	            <% if bid.user_id == current_user.id %> 
+	               <% if @userhighbid < bid.bidprice %> 
+	                <% @userhighbid = bid.bidprice %>
+	               <%end %>
+	            <%end %> 
+		 <%end%> 
+                                  <%end%>		 
+      <% if !@userhighbid.nil? %> 	
+       <% if @userhighbid == @servicelisting.highestbid %>
+	     <td>"You are the highest bidder"</td>
+		 <% else%>
+		    <td> You are outbid by <%= @servicelisting.highestbid - @userhighbid %>$ </td>
+	     <%end %>
+	   <%else %>
+	    <td>"You have not bid on this service"</td>
+	  <%end%>	
 		
+   <% end %>
+<%end %>	
   </tr>
 <% end %>
 </table>

@@ -20,4 +20,9 @@ class Notifier < ActionMailer::Base
     mail(:to => user.email,
          :subject => "Password Reset Instructions") 
   end
+  
+  def bid_expired_email(user)
+    mail(:to => user.email,
+         :subject => "Bidding for service closed")
+  end
 end

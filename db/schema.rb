@@ -93,7 +93,7 @@ ActiveRecord::Schema.define(:version => 20110610082650) do
     t.float    "buynow_price"
     t.integer  "no_of_guests"
     t.float    "highestbid",         :default => 0.0
-    t.boolean  "status",             :default => false
+    t.string   "status",             :default => "inactive"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "photo_file_name"

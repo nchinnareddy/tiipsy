@@ -9,7 +9,7 @@ class CreateServicelistings < ActiveRecord::Migration
   t.float     :buynow_price  
   t.integer   :no_of_guests
   t.float     :highestbid, :default => 0.0
-  t.boolean   :status, :default => false
+  t.string    :status, :default => "inactive"
 
   t.timestamps
     end

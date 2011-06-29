@@ -10,9 +10,4 @@
   <%= @user.email %>
 </p>
 
-<b>Bidding history:</b><br/>
-<% @user.bids.each do |bid| %>
-Bid price:<%= bid.bidprice %> |
-<% end %>
-
 <%= link_to 'Edit', edit_user_path %>
