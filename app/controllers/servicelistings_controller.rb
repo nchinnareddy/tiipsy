@@ -58,7 +58,6 @@ class ServicelistingsController < ApplicationController
 
     respond_to do |format|
       if @servicelisting.save        
-        
         format.html { redirect_to(@servicelisting, :notice => 'Servicelisting was successfully created.') }
         format.xml  { render :xml => @servicelisting, :status => :created, :location => @servicelisting }
       else
