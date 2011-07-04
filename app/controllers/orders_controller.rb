@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
   
 def create
   
-  @order = current_user.orders.create(params[:order])
+  @order = Order.create(params[:order])
   @order.amount = params[:order][:amount]
   if @order.express_token.blank?
         options = standard_purchase_options
@@ -39,12 +39,12 @@ def standard_purchase_options
   {
     :ip => request.remote_ip,
     :billing_address => {
-      :name     => "Ryan Bates",
-      :address1 => "123 Main St.",
-      :city     => "New York",
-      :state    => "NY",
+      :name     => "Test User",
+      :address1 => "1 Main St",
+      :city     => "San Jose",
+      :state    => "CA",
       :country  => "US",
-      :zip      => "10001"
+      :zip      => "95131"
     }
   }
 end
@@ -62,7 +62,7 @@ end
     {
       :ip => request.remote_ip,
       :billing_address => {
-        :name     => "Chinna reddy",
+        :name     => "Test User",
         :address1 => "1st Main St.",
         :city     => "san jose",
         :state    => "CA",

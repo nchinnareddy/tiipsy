@@ -51,6 +51,7 @@ Socialstock::Application.routes.draw do
        get 'buynow'
        get 'complete'
        get 'express'
+       get 'checkoutcc'
      end
   end
  

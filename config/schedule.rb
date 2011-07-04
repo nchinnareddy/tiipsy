@@ -5,7 +5,9 @@
 
 # Example:
 #
+ if ENV['RAILS_ENV'] == 'development'
  set :output, "/home/startup/APPS/tiipsy/cron_log.log"
+ end
 #
 # every 2.hours do
 #   command "/usr/bin/some_great_command"
@@ -16,7 +18,7 @@
 # every 4.days do
 #   runner "AnotherModel.prune_old_records"
 # end
-set :environment, :development
+set :environment, :ENV['RAILS_ENV']
 every 2.minutes do 
    runner "Servicelisting.checkexpirations"
 end

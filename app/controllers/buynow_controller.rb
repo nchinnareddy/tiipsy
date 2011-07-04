@@ -53,5 +53,14 @@ def complete
   #raise @order.to_yaml
   
 end
+
+def checkoutcc
+  @service = Servicelisting.find(params[:id])
+  @amount = @service.buynow_price
     
+  @order = Order.new
+  render 'orders/checkoutcc'
+ 
+end
+  
 end

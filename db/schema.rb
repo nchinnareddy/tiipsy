@@ -80,6 +80,12 @@ ActiveRecord::Schema.define(:version => 20110610082650) do
     t.string   "state"
     t.string   "express_token"
     t.string   "express_payer_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "card_type"
+    t.string   "card_number"
+    t.string   "card_verification"
+    t.date     "card_expires_on"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -100,13 +106,6 @@ ActiveRecord::Schema.define(:version => 20110610082650) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
-  end
-
-  create_table "transactions", :force => true do |t|
-    t.float    "amount"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "twitter_followers", :force => true do |t|
