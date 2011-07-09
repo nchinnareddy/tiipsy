@@ -1,7 +1,6 @@
 class BuynowController < ApplicationController
   
   before_filter :require_user
-  before_filter :require_user_balance
   
   def buynow   
     @sl = Servicelisting.find(params[:id])

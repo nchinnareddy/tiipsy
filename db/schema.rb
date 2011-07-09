@@ -142,6 +142,7 @@ ActiveRecord::Schema.define(:version => 20110610082650) do
     t.boolean  "active",             :default => false, :null => false
     t.boolean  "social_login",       :default => false
     t.boolean  "admin",              :default => false
+    t.boolean  "bid_authorized",     :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

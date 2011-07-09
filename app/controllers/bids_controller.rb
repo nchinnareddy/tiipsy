@@ -1,7 +1,7 @@
 class BidsController < ApplicationController
   
   before_filter :require_user
-  before_filter :require_user_balance
+  before_filter :require_bid_authorized
   
     
   # GET /bids

@@ -46,6 +46,12 @@ Socialstock::Application.routes.draw do
   end
   resources :password_resets, :only => [:new, :create, :edit, :update]
   
+  resources :bid_auths do
+    collection do
+      get 'authorize'
+    end
+  end
+  
   resources :buynow do
      collection do
        get 'buynow'
