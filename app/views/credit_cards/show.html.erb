@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>First name:</b>
+  <%= @credit_card.first_name %>
+</p>
+
+<p>
+  <b>Last name:</b>
+  <%= @credit_card.last_name %>
+</p>
+
+<p>
+  <b>Card type:</b>
+  <%= @credit_card.card_type %>
+</p>
+
+<p>
+  <b>Card number:</b>
+  <%= @credit_card.card_number %>
+</p>
+
+<p>
+  <b>Card verification:</b>
+  <%= @credit_card.card_verification %>
+</p>
+
+<p>
+  <b>Card expires on:</b>
+  <%= @credit_card.card_expires_on %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @credit_card.user %>
+</p>
+
+
+<%= link_to 'Edit', edit_credit_card_path(@credit_card) %> |
+<%= link_to 'Back', credit_cards_path %>

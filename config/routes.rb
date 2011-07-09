@@ -1,4 +1,6 @@
 Socialstock::Application.routes.draw do
+  resources :credit_cards
+
   get "payments/index"
   get "payments/buynow"
   

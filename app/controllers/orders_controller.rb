@@ -5,7 +5,7 @@ def create
   
   @order = Order.create(params[:order])
   @order.amount = params[:order][:amount]
-  cuser = current_user
+ # cuser = current_user
   if @order.express_token.blank?
         options = standard_purchase_options
    else 
@@ -16,8 +16,8 @@ def create
        render :text => "card is not valid"
     else
       if @order.purchase(options )
-        cuser.bid_authorized = true
-        cuser.save
+        current_user.bid_authorized = true
+        current_user.save
         render :action => "success"
      else
       render :action => "failure"
