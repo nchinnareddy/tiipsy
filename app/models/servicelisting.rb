@@ -1,3 +1,4 @@
+require "socket"
 class Servicelisting < ActiveRecord::Base
   
   has_many :bids, :dependent => :destroy
@@ -8,6 +9,7 @@ class Servicelisting < ActiveRecord::Base
   def self.checkexpirations
       logger.debug "entering checkexpirations"
       currenttime = DateTime.now
+      users = []
       logger.debug " #{currenttime}"
       list = self.find(:all)
         
@@ -25,14 +27,17 @@ class Servicelisting < ActiveRecord::Base
                  item.bids.each do |bid|
                    if highestbid == nil
                      highestbid = bid
+                     next
                    end
                    if bid.bidprice > highestbid.bidprice
                       highestbid = bid
                    end
-                 user = User.find_by_id(bid.user_id)
-                 Notifier.bid_expired_email(user).deliver  
-             end
-             capturemoney(highestbid)
+#                 user = User.find_by_id(bid.user_id)
+#                 users.add(user)
+#                 Notifier.bid_expired_email(user).deliver  
+                end
+              logger.debug "before calling capturemoney"
+              self.capturemoney(highestbid, item.id)
             end
           end
          end
@@ -40,10 +45,13 @@ class Servicelisting < ActiveRecord::Base
   
   end
 
-def capturemoney(highestbid)
+def self.capturemoney(highestbid, id)
+  logger.debug "entering capturemoney"
   user = User.find_by_id(highestbid.user_id)
+  service = self.find_by_id(id)
   ccard = user.credit_card
-  @order = Order.create(:amount => highestbid.bidprice,                        
+  
+  serviceorder = Order.create(:amount => highestbid.bidprice,                        
                         :first_name => ccard.first_name,
                         :last_name => ccard.last_name,
                         :card_type => ccard.card_type,
@@ -56,21 +64,23 @@ def capturemoney(highestbid)
                         :country => ccard.country,
                         :zip => ccard.zip
                        )
-  
-end
+                       
+  serviceorder.something
+  local_ip = UDPSocket.open {|s| s.connect("64.233.187.99", 1); s.addr.last}
+  result = serviceorder.purchase({ :ip => local_ip,
+                          :billing_address => {
+                          :name     => serviceorder.first_name + serviceorder.last_name,
+                          :address1 => serviceorder.address,
+                          :city     => serviceorder.city,
+                          :state    => serviceorder.state_name,
+                          :country  => serviceorder.country,
+                          :zip      => serviceorder.zip
+                          }
+                         }
+                        )
+  service.status = "bought"
+  service.save
 
-def standard_purchase_options
-    {
-        :ip => request.remote_ip,
-        :billing_address => {
-        :name     => @order.first_name + @order.last_name,
-        :address1 => @order.address,
-        :city     => @order.city,
-        :state    => @order.state_name,
-        :country  => @order.country,
-        :zip      => @order.zip
-       }
-     }
 end
 
 

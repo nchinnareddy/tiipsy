@@ -37,7 +37,7 @@ class Order < ActiveRecord::Base
 
 
 def purchase(options= {})
-  
+  logger.debug "PURCHASE IS INVOKED IN ORDER MODEL"
   transaction do
        
        if express_token.blank?
@@ -54,6 +54,10 @@ def purchase(options= {})
       false
      end 
     end
+end
+
+def something
+  logger.debug "SOMETHING IS INVOKED IN ORDER MODEL"
 end
 
 def express_token=(token)
