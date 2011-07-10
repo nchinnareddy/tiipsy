@@ -25,6 +25,30 @@
     <%= f.label :card_expires_on %><br />
     <%= f.date_select :card_expires_on, :discard_day => true, :start_year => Date.today.year, :end_year => (Date.today.year+10), :add_month_numbers => true %>
   </p>
+  
+   <p>
+    <%= f.label :address %><br />
+    <%= f.text_field :address %>
+  </p>
+  
+  <p>
+    <%= f.label :city %><br />
+    <%= f.text_field :city %>
+  </p>
+   <p>
+    <%= f.label :state_name %><br />
+    <%= f.text_field :state_name %>
+  </p>
+    <p>
+    <%= f.label :country %><br />
+    <%= f.text_field :country %>
+  </p>
+  <p>
+    <%= f.label :zip %><br />
+    <%= f.text_field :zip %>
+  </p>
+
+  
   <p><%= f.submit "Submit" %></p>
 <% end %>
 

@@ -132,7 +132,5 @@ def credit_card
     (amount * 100).round
   end
   
-  
-  
-      
+        
 end

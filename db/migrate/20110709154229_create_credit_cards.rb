@@ -6,7 +6,12 @@ class CreateCreditCards < ActiveRecord::Migration
       t.string :card_type
       t.string :card_number
       t.string :card_verification
-      t.date :card_expires_on
+      t.date   :card_expires_on
+      t.string :address
+      t.string :city
+      t.string :state_name
+      t.string :country
+      t.string :zip
       t.references :user
 
       t.timestamps

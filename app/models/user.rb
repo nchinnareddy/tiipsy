@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   has_one :twitter_status
   
   has_many :contacts
+  has_one :credit_card
   
     
   acts_as_authentic do |c|
