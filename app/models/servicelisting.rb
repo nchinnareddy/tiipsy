@@ -6,7 +6,7 @@ class Servicelisting < ActiveRecord::Base
   
   has_attached_file :photo  
     
-  def self.checkexpirations
+def self.checkexpirations
       logger.debug "entering checkexpirations"
       currenttime = DateTime.now
       users = []
@@ -15,43 +15,57 @@ class Servicelisting < ActiveRecord::Base
         
        list.each do |item|
          if item.status == "active"
-           if item.availability.to_date <= currenttime.to_date
-              if item.availability.to_time.hour <= currenttime.to_time.hour
-                 if (item.availability.to_time.hour == currenttime.to_time.hour) && \
-                     (item.availability.to_time.min > currenttime.to_time.min)
-                      next                                          
-                  end
+           logger.debug "ITEM IS ACTIVE"
+           if item.availability.to_date < currenttime.to_date
+              logger.debug "DATE IS EXPIRED"  
+              item.status = "expired"
+              item.save
+           elsif (item.availability.to_date == currenttime.to_date) && (item.availability.to_time.hour < currenttime.to_time.hour)
+                 logger.debug "HOUR IS EXPIRED"
                  item.status = "expired"
                  item.save
-                 highestbid = nil
-                 item.bids.each do |bid|
-                   if highestbid == nil
-                     highestbid = bid
-                     next
-                   end
-                   if bid.bidprice > highestbid.bidprice
-                      highestbid = bid
-                   end
+           elsif (item.availability.to_date == currenttime.to_date) && (item.availability.to_time.hour == currenttime.to_time.hour) && \
+                 (item.availability.to_time.min > currenttime.to_time.min)
+                  item.status = "expired"
+                  item.save
+           else
+              next
+              end
+            
+           if item.status == "expired"
+              highestbid = nil
+              item.bids.each do |bid|
+               if highestbid == nil
+                  highestbid = bid
+                  next
+                  end
+               if bid.bidprice > highestbid.bidprice
+                  highestbid = bid
+                  end
 #                 user = User.find_by_id(bid.user_id)
 #                 users.add(user)
 #                 Notifier.bid_expired_email(user).deliver  
-                end
+                 end # do end
               logger.debug "before calling capturemoney"
-              self.capturemoney(highestbid, item.id)
-            end
+              result = self.capturemoney(highestbid, item.id)
+              logger.debug "after calling capturemoney"
+              logger.debug "result value is: #{result}"
+              if result == true
+                 item.status = "bought"
+                 item.save
+               end
+             end
           end
-         end
-       end
-  
-  end
+        end  
+end
 
 def self.capturemoney(highestbid, id)
   logger.debug "entering capturemoney"
   user = User.find_by_id(highestbid.user_id)
-  service = self.find_by_id(id)
+ # service = self.find_by_id(id)
   ccard = user.credit_card
   
-  serviceorder = Order.create(:amount => highestbid.bidprice,                        
+  exp_bid_order = Order.create(:amount => highestbid.bidprice,                        
                         :first_name => ccard.first_name,
                         :last_name => ccard.last_name,
                         :card_type => ccard.card_type,
@@ -65,23 +79,19 @@ def self.capturemoney(highestbid, id)
                         :zip => ccard.zip
                        )
                        
-  serviceorder.something
   local_ip = UDPSocket.open {|s| s.connect("64.233.187.99", 1); s.addr.last}
-  result = serviceorder.purchase({ :ip => local_ip,
+  result = exp_bid_order.purchase({ :ip => local_ip,
                           :billing_address => {
-                          :name     => serviceorder.first_name + serviceorder.last_name,
-                          :address1 => serviceorder.address,
-                          :city     => serviceorder.city,
-                          :state    => serviceorder.state_name,
-                          :country  => serviceorder.country,
-                          :zip      => serviceorder.zip
+                          :name     => exp_bid_order.first_name + exp_bid_order.last_name,
+                          :address1 => exp_bid_order.address,
+                          :city     => exp_bid_order.city,
+                          :state    => exp_bid_order.state_name,
+                          :country  => exp_bid_order.country,
+                          :zip      => exp_bid_order.zip
                           }
                          }
                         )
-  service.status = "bought"
-  service.save
-
-end
+ end
 
 
 end

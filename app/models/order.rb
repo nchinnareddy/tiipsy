@@ -56,10 +56,6 @@ def purchase(options= {})
     end
 end
 
-def something
-  logger.debug "SOMETHING IS INVOKED IN ORDER MODEL"
-end
-
 def express_token=(token)
   write_attribute(:express_token, token)
   if new_record? && !token.blank?
