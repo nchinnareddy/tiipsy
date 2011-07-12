@@ -14,6 +14,8 @@ class User < ActiveRecord::Base
   
   has_many :contacts
   has_one :credit_card
+  has_many :orders
+  
   
     
   acts_as_authentic do |c|
