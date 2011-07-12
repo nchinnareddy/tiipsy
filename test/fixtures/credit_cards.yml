@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  first_name: MyString
+  last_name: MyString
+  card_type: MyString
+  card_number: MyString
+  card_verification: MyString
+  card_expires_on: 2011-07-09
+  user: 
+
+two:
+  first_name: MyString
+  last_name: MyString
+  card_type: MyString
+  card_number: MyString
+  card_verification: MyString
+  card_expires_on: 2011-07-09
+  user: 

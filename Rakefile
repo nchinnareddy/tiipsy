@@ -2,17 +2,18 @@
 # for example lib/tasks/capistrano.rake, and they will automatically be available to Rake.
 
 require File.expand_path('../config/application', __FILE__)
-require 'rake/dsl_definition'
+require 'rake/dsl_definition' 
 require 'rake'
 
+#Use correct application name that matches for you
 module ::Socialstock
- class Application
-   include Rake::DSL
- end
+  class Application
+    include Rake::DSL
+  end
 end
 
 module ::RakeFileUtils
- extend Rake::FileUtilsExt
+  extend Rake::FileUtilsExt
 end
 
 Socialstock::Application.load_tasks

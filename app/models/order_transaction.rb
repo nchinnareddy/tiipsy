@@ -39,9 +39,9 @@ private
 
    begin
        if xpress
-        response = yield xpressgateway
-       else
-        response = yield gateway   
+         response = yield xpressgateway
+      else
+         response = yield gateway   
        end
       
       result.success = response.success?

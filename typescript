@@ -1,0 +1,77 @@
+Script started on Tuesday 28 June 2011 04:04:01 PM IST
+]0;startup@startup-desktop: ~/APPS/tiipsystartup@startup-desktop:~/APPS/tiipsy$ script /[K[K[K/[Kt/rails
+bash: script/rails: Permission denied
+]0;startup@startup-desktop: ~/APPS/tiipsystartup@startup-desktop:~/APPS/tiipsy$ ls
+[0m[01;34mapp[0m      config.ru     [01;34mdoc[0m           [01;34mlib[0m     Rakefile  [01;34mtest[0m        [01;34mvendor[0m
+Capfile  cron_log.log  Gemfile       [01;34mlog[0m     README    [01;34mtmp[0m
+[01;34mconfig[0m   [01;34mdb[0m            Gemfile.lock  [01;34mpublic[0m  [01;34mscript[0m    typescript
+[m]0;startup@startup-desktop: ~/APPS/tiipsystartup@startup-desktop:~/APPS/tiipsy$ cd script/
+]0;startup@startup-desktop: ~/APPS/tiipsy/scriptstartup@startup-desktop:~/APPS/tiipsy/script$ ls
+rails
+]0;startup@startup-desktop: ~/APPS/tiipsy/scriptstartup@startup-desktop:~/APPS/tiipsy/script$ cd rail[K[K[K[K[K[K[Kcat rails
+#!/usr/bin/env ruby.exe
+# This command will automatically be run when you run "rails" with Rails 3 gems installed from the root of your application.
+
+APP_PATH = File.expand_path('../../config/application',  __FILE__)
+require File.expand_path('../../config/boot',  __FILE__)
+require 'rails/commands'
+]0;startup@startup-desktop: ~/APPS/tiipsy/scriptstartup@startup-desktop:~/APPS/tiipsy/script$ ls
+rails
+]0;startup@startup-desktop: ~/APPS/tiipsy/scriptstartup@startup-desktop:~/APPS/tiipsy/script$ ls -l
+total 4
+-rw-r--r-- 1 startup startup 299 2011-05-18 11:00 rails
+]0;startup@startup-desktop: ~/APPS/tiipsy/scriptstartup@startup-desktop:~/APPS/tiipsy/script$ a[Kchmod a+rwq[K rails
+]0;startup@startup-desktop: ~/APPS/tiipsy/scriptstartup@startup-desktop:~/APPS/tiipsy/script$ ls -l
+total 4
+-rw-rw-rw- 1 startup startup 299 2011-05-18 11:00 rails
+]0;startup@startup-desktop: ~/APPS/tiipsy/scriptstartup@startup-desktop:~/APPS/tiipsy/script$ chmod 777 rails
+]0;startup@startup-desktop: ~/APPS/tiipsy/scriptstartup@startup-desktop:~/APPS/tiipsy/script$ ls
+[0m[01;32mrails[0m
+[m]0;startup@startup-desktop: ~/APPS/tiipsy/scriptstartup@startup-desktop:~/APPS/tiipsy/script$ ls -l
+total 4
+-rwxrwxrwx 1 startup startup 299 2011-05-18 11:00 [0m[01;32mrails[0m
+[m]0;startup@startup-desktop: ~/APPS/tiipsy/scriptstartup@startup-desktop:~/APPS/tiipsy/script$ ls
+[0m[01;32mrails[0m
+[m]0;startup@startup-desktop: ~/APPS/tiipsy/scriptstartup@startup-desktop:~/APPS/tiipsy/script$ cat rails
+#!/usr/bin/env ruby.exe
+# This command will automatically be run when you run "rails" with Rails 3 gems installed from the root of your application.
+
+APP_PATH = File.expand_path('../../config/application',  __FILE__)
+require File.expand_path('../../config/boot',  __FILE__)
+require 'rails/commands'
+]0;startup@startup-desktop: ~/APPS/tiipsy/scriptstartup@startup-desktop:~/APPS/tiipsy/script$ ls
+[0m[01;32mrails[0m
+[m]0;startup@startup-desktop: ~/APPS/tiipsy/scriptstartup@startup-desktop:~/APPS/tiipsy/script$ chmod [K[K[K[K[K[Ka[Kchmod a+rw rails
+]0;startup@startup-desktop: ~/APPS/tiipsy/scriptstartup@startup-desktop:~/APPS/tiipsy/script$ ls
+[0m[01;32mrails[0m
+[m]0;startup@startup-desktop: ~/APPS/tiipsy/scriptstartup@startup-desktop:~/APPS/tiipsy/script$ ls -l
+total 4
+-rwxrwxrwx 1 startup startup 299 2011-05-18 11:00 [0m[01;32mrails[0m
+[m]0;startup@startup-desktop: ~/APPS/tiipsy/scriptstartup@startup-desktop:~/APPS/tiipsy/script$ chomd[K[K[Kmod 0 rails
+]0;startup@startup-desktop: ~/APPS/tiipsy/scriptstartup@startup-desktop:~/APPS/tiipsy/script$ ls
+rails
+]0;startup@startup-desktop: ~/APPS/tiipsy/scriptstartup@startup-desktop:~/APPS/tiipsy/script$ ls -l
+total 4
+---------- 1 startup startup 299 2011-05-18 11:00 rails
+]0;startup@startup-desktop: ~/APPS/tiipsy/scriptstartup@startup-desktop:~/APPS/tiipsy/script$ chmod a+rw rails
+]0;startup@startup-desktop: ~/APPS/tiipsy/scriptstartup@startup-desktop:~/APPS/tiipsy/script$ ls -l
+total 4
+-rw-rw-rw- 1 startup startup 299 2011-05-18 11:00 rails
+]0;startup@startup-desktop: ~/APPS/tiipsy/scriptstartup@startup-desktop:~/APPS/tiipsy/script$ ls
+rails
+]0;startup@startup-desktop: ~/APPS/tiipsy/scriptstartup@startup-desktop:~/APPS/tiipsy/script$ cat rails
+#!/usr/bin/env ruby.exe
+# This command will automatically be run when you run "rails" with Rails 3 gems installed from the root of your application.
+
+APP_PATH = File.expand_path('../../config/application',  __FILE__)
+require File.expand_path('../../config/boot',  __FILE__)
+require 'rails/commands'
+]0;startup@startup-desktop: ~/APPS/tiipsy/scriptstartup@startup-desktop:~/APPS/tiipsy/script$ chomd[K[K[Kmod a+rw [K[K[K[K[K[K[K[K[K[K[Kcmo[K[Khomd[K[K[Kmod 777 rails
+]0;startup@startup-desktop: ~/APPS/tiipsy/scriptstartup@startup-desktop:~/APPS/tiipsy/script$ ls
+[0m[01;32mrails[0m
+[m]0;startup@startup-desktop: ~/APPS/tiipsy/scriptstartup@startup-desktop:~/APPS/tiipsy/script$ pwd
+/home/startup/APPS/tiipsy/script
+]0;startup@startup-desktop: ~/APPS/tiipsy/scriptstartup@startup-desktop:~/APPS/tiipsy/script$ exit
+exit
+
+Script done on Tuesday 28 June 2011 07:54:19 PM IST

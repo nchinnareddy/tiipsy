@@ -43,7 +43,12 @@ class ApplicationController < ActionController::Base
     end
   end
   
-  def require_user_balance
+  def require_bid_authorized
+    if current_user
+       if current_user.bid_authorized == false
+         redirect_to :controller => 'bid_auths', :action => 'authorize'
+       end
+    end
     # if user has enough balance to bid please check here
   #   render "checkout.html.erb"
   # render :text => "please authorize your paypal account to bid"  

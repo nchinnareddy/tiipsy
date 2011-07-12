@@ -10,8 +10,9 @@ class ServicelistingsController < ApplicationController
   # GET /servicelistings
   # GET /servicelistings.xml
   def index
-    @servicelistings = Servicelisting.all  
-    
+    @servicelistings = Servicelisting.all
+  
+          
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @servicelistings }
@@ -56,7 +57,7 @@ class ServicelistingsController < ApplicationController
     @servicelisting = Servicelisting.new(params[:servicelisting])
 
     respond_to do |format|
-      if @servicelisting.save
+      if @servicelisting.save        
         format.html { redirect_to(@servicelisting, :notice => 'Servicelisting was successfully created.') }
         format.xml  { render :xml => @servicelisting, :status => :created, :location => @servicelisting }
       else

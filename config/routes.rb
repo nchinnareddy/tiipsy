@@ -14,6 +14,8 @@ Socialstock::Application.routes.draw do
 
   get "auth_linkedin/callback"
 
+  resources :credit_cards
+
   get "payments/index"
   get "payments/buynow"
   
@@ -66,12 +68,19 @@ Socialstock::Application.routes.draw do
     end
   end
   resources :password_resets, :only => [:new, :create, :edit, :update]
+
+  resources :bid_auths do
+    collection do
+      get 'authorize'
+    end
+  end
   
   resources :buynow do
      collection do
        get 'buynow'
        get 'complete'
        get 'express'
+       get 'checkoutcc'
      end
   end
  

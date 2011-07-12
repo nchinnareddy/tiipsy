@@ -25,3 +25,12 @@ role :db,  domain, :primary => true # This is where Rails migrations will run
      run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
    end
  end
+ 
+ 
+after "deploy:symlink", "deploy:update_crontab"  
+namespace :deploy do  
+desc "Update the crontab file"  
+task :update_crontab, :roles => :db do  
+run "cd #{release_path} && whenever --update-crontab #{application}"  
+end  
+end  

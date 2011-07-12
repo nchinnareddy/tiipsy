@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110709042330) do
+ActiveRecord::Schema.define(:version => 20110709154229) do
 
   create_table "authorizations", :force => true do |t|
     t.integer  "user_id"
@@ -30,29 +30,28 @@ ActiveRecord::Schema.define(:version => 20110709042330) do
     t.datetime "updated_at"
   end
 
-  create_table "ckeditor_assets", :force => true do |t|
-    t.string   "data_file_name",                                 :null => false
-    t.string   "data_content_type"
-    t.integer  "data_file_size"
-    t.integer  "assetable_id"
-    t.string   "assetable_type",    :limit => 30
-    t.string   "type",              :limit => 25
-    t.string   "guid",              :limit => 10
-    t.integer  "locale",            :limit => 1,  :default => 0
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "ckeditor_assets", ["assetable_type", "assetable_id"], :name => "fk_assetable"
-  add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], :name => "idx_assetable_type"
-  add_index "ckeditor_assets", ["user_id"], :name => "fk_user"
-
   create_table "contacts", :force => true do |t|
     t.integer  "user_id",    :null => false
     t.string   "source"
     t.string   "username"
     t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "credit_cards", :force => true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "card_type"
+    t.string   "card_number"
+    t.string   "card_verification"
+    t.date     "card_expires_on"
+    t.string   "address"
+    t.string   "city"
+    t.string   "state_name"
+    t.string   "country"
+    t.string   "zip"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -79,15 +78,6 @@ ActiveRecord::Schema.define(:version => 20110709042330) do
     t.datetime "updated_at"
   end
 
-  create_table "locations", :force => true do |t|
-    t.string   "name"
-    t.string   "address"
-    t.float    "longitude"
-    t.float    "latitude"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "order_transactions", :force => true do |t|
     t.integer  "amount"
     t.boolean  "success"
@@ -102,11 +92,23 @@ ActiveRecord::Schema.define(:version => 20110709042330) do
   end
 
   create_table "orders", :force => true do |t|
+    t.integer  "user_id"
     t.string   "description"
     t.integer  "amount"
     t.string   "state"
     t.string   "express_token"
     t.string   "express_payer_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "card_type"
+    t.string   "card_number"
+    t.string   "card_verification"
+    t.date     "card_expires_on"
+    t.string   "address"
+    t.string   "city"
+    t.string   "state_name"
+    t.string   "country"
+    t.string   "zip"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -120,20 +122,13 @@ ActiveRecord::Schema.define(:version => 20110709042330) do
     t.float    "buynow_price"
     t.integer  "no_of_guests"
     t.float    "highestbid",         :default => 0.0
-    t.boolean  "status",             :default => false
+    t.string   "status",             :default => "inactive"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
-  end
-
-  create_table "transactions", :force => true do |t|
-    t.float    "amount"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "twitter_followers", :force => true do |t|
@@ -170,6 +165,7 @@ ActiveRecord::Schema.define(:version => 20110709042330) do
     t.boolean  "active",             :default => false, :null => false
     t.boolean  "social_login",       :default => false
     t.boolean  "admin",              :default => false
+    t.boolean  "bid_authorized",     :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
