@@ -25,7 +25,7 @@ def self.checkexpirations
                  item.status = "expired"
                  item.save
            elsif (item.availability.to_date == currenttime.to_date) && (item.availability.to_time.hour == currenttime.to_time.hour) && \
-                 (item.availability.to_time.min > currenttime.to_time.min)
+                 (item.availability.to_time.min < currenttime.to_time.min)
                   item.status = "expired"
                   item.save
            else
