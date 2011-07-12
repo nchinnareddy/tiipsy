@@ -48,147 +48,39 @@
 		<p class="bid"><%= link_to 'Bid', new_servicelisting_bid_path(servicelisting), :class=>"links"  %></p>
 		<p class="buy"><%= link_to 'Buy',  buynow_buynow_index_path(:id => servicelisting), :class=>"links"  %></p>
 		<p class="higher">
-			<% if current_user %>
-				<% service_user_high_bid = nil %>
-	 			<% current_user.bids.each do |bid|%>		 
-	   				<%   if bid.servicelisting.id == servicelisting.id %>
-	    				<%  if service_user_high_bid == nil && bid != nil%>
-							<%  service_user_high_bid = bid %>
-		  				<% end %>
-		 				<% if service_user_high_bid.bidprice < bid.bidprice %>
-		  					<%   service_user_high_bid = bid %>
-		  				<% end %>
-		  			<% end %>
-		  		<% end %>
-     			<% if service_user_high_bid != nil %> 	
-     				<% if service_user_high_bid.bidprice == servicelisting.highestbid %>
-	    				<%= image_tag "auth/flashstar (1).gif", :size => "15x15" %><font color="#009900">You are the highest bidder</font>
-					<% else%>
-						<font color="#FF0000"> You are outbid by <%= @servicelisting.highestbid - service_user_high_bid.bidprice %>$ </font>
-	   				<%end %>		
-	   			<%end %>	
-			<% end %>	
-		</p>
-		
+			<%@servicelisting = servicelisting %>
+			<% if current_user %>  	
+	        <% @userhighbid = nil %> 
+     		 <% @servicelisting.bids.each do |bid| %>
+	     		<% if bid.user_id == current_user.id %>
+		    	 <% if @userhighbid.nil? %>
+			     <% @userhighbid = bid.bidprice %>
+			     <% next %>
+			   <% end %>
+			 <% if bid.user_id == current_user.id %> 
+			 <% if @userhighbid < bid.bidprice %> 
+			 <% @userhighbid = bid.bidprice %>
+			    <%end %>
+			    <%end %> 
+			    <%end%> 
+			    <%end%>     
+			 <% if !@userhighbid.nil? %>   
+			  <% if @userhighbid == @servicelisting.highestbid %>
+			   <%= image_tag "auth/flashstar (1).gif", :size => "15x15" %><font color="#009900">You are the highest bidder</font>
+			   <% else%>
+			  <font color="#FF0000"> You are outbid by <%= @servicelisting.highestbid - @userhighbid %>$ </font>
+			  <%end %>
+			  <%else %>
+			   <font color="#FF0000"> You have not bid on this service </font>
+			   <%end%>  
+			   <% end %>
+		</p>	
+			
 	</div>
 	</br>	
 	<% end %>
-</div>
+</div>		
 
-
-<!--
-<table>
-<tr>
-<td>
-<% @servicelistings.each do |servicelisting| %>	
-
-<table style="border:1px #993333 solid">
-	
-<% tt = 0 %>
-<% availability_date = DateTime.parse(servicelisting.availability.to_s)%>
-<% time_now = DateTime.parse(DateTime.now.to_s)%>
-<% time_until = availability_date - time_now %>
-<% t = time_until.to_f %>
-<% tt = t*(86400) %>
-
-  <tr>
-    <th  width="25%"><font style="font-size:17px; color:#333333; font-family:Arial, Helvetica, sans-serif"><%= servicelisting.title %></font></th>
-    <th align="center" width="20%"></th>
-    <td  width="8%"><div id="heading_style" class=round><font style="font-size:17px; color:#000000; font-family:Lucida Calligraphy"><%= link_to 'MAP', locations_path(:description => servicelisting.description, :address => servicelisting.location, :title => servicelisting.title) %></font></div>
-	</td>
-	<% @servicelisting = servicelisting%>
-    <th><b>Current Value:</b><font color="#FF0000">$<%= @servicelisting.highestbid %></font></th>
-	<% if isadmin? %>
-	<th>
-		Price<font color="#CC6600"><b>$<%= servicelisting.price %></b></font>
-	</th>
-    <th></th>
-	<% end%>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-
-  <tr>
-  	<% if servicelisting.status || isadmin? %>
-  	
-    <td  width="25%"><%= image_tag servicelisting.photo.url, :size => "100x100" %></td>
-    <td align="justify" width="20%">
-    	<h3>Address:</h3>
-    	<font style="font-size:12px; color:#333333; font-family:Arial, Helvetica, sans-serif">
-    		<%= servicelisting.location %>
-    	</font>
-    </td>
-    <td width="8%"><div id="heading_style" class=round><font style="font-size:17px; color:#000000; font-family:Lucida Calligraphy"><%= link_to 'More', servicelisting %></font></div></td>
-    <td width="25%"> 
-    	<div class="jdt" start="<%= tt %>" ></div>
-    </td>
-	    <% if isadmin? %>
-	    <td>
-	    	Status:
-	    	<% if servicelisting.status  %>
-				Active
-        	<% else %>
-        		Inactive
-        	<% end%>
-        </td>		    
-	    <% end%>
-		
-    
-	
-	
-	<% if isadmin? %>
-    <td><%= link_to 'Edit', edit_servicelisting_path(servicelisting) %></td>
-    <td><%= link_to 'Destroy', servicelisting, :confirm => 'Are you sure?', :method => :delete %></td>              
-	<%end%>
-	
-	<td></td>
-	
-	<td>
-		<%= link_to 'Bid', new_servicelisting_bid_path(@servicelisting), :class=>"links"  %>
-		<%= link_to 'Buy',  buynow_buynow_index_path(:id => @servicelisting), :class=>"links"  %>
-	
-	
-	
-		
-	<% if current_user %>
-	<% service_user_high_bid = nil %>
-	 <% current_user.bids.each do |bid|%>		 
-	   <%   if bid.servicelisting.id == @servicelisting.id %>
-	    <%  if service_user_high_bid == nil && bid != nil%>
-		<%  service_user_high_bid = bid %>
-		  <% end %>
-		 <% if service_user_high_bid.bidprice < bid.bidprice %>
-		  <%   service_user_high_bid = bid %>
-		  <% end %>
-		  <% end %>
-		  <% end %>
-     <% if service_user_high_bid != nil %> 	
-     <% if service_user_high_bid.bidprice == @servicelisting.highestbid %>
-	    <%= image_tag "auth/flashstar (1).gif", :size => "15x15" %><font color="#009900">You are the highest bidder</font>
-		<% else%>
-		<font color="#FF0000"> You are outbid by <%= @servicelisting.highestbid - service_user_high_bid.bidprice %>$ </font>
-	   <%end %>
-	   <%end %>	
-		
-	<% end %>
-	
-	<%end%>
-	
-	</td>
-		
-  </tr>
-  
-</table>
-<tr>
-    <td height="16px;">|</td>
-</tr>      
-<% end %>
-</td>
-</tr>
-</table>
--->
 <br />
 
 <% if isadmin? %>
