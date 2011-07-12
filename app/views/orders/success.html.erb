@@ -1,0 +1,9 @@
+<font color="#009900">Your Order is Complited. "Get ready to party" </font></br>
+Send invitation to your friend's
+<% ["facebook"].each do |provider| %>
+  <%= link_to image_tag("auth/#{provider}_64.png"), "/auth/#{provider}" %>
+<% end %>
+<!--
+<%= link_to image_tag("auth/linked_in_64.png"), :controller =>'auth_linkedin', :action => 'index' %>
+-->
+<%= link_to image_tag("auth/google_64.png"), :controller =>'contacts', :action => 'new' %>

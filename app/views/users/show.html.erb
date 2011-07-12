@@ -1,5 +1,63 @@
 <% title "#{@user.login}'s profile"%>
 
+
+<% if params[:provider] == 'facebook' -%>
+  
+        <div id="fb-root"></div>
+                 <script>
+                   window.fbAsyncInit = function() {
+                     FB.init({
+                       appId  : '175065049218161',
+                       status : true, // check login status
+                       cookie : true, // enable cookies to allow the server to access the session
+                       xfbml  : true  // parse XFBML
+                     });
+                   };
+
+                  (function() {
+                    var e = document.createElement('script');
+                    e.src ='http://connect.facebook.net/en_US/all.js';
+                    e.async = false;
+                    document.getElementById('fb-root').appendChild(e);
+                  }());
+                </script>
+        
+           <fb:serverFbml>
+    <script type="text/fbml">
+        <fb:fbml>
+            <fb:request-form
+                action="http://www.facebook.com/pages/ClaimVille/111548608930967?ref=ts"
+                target="_top"
+                method="GET"
+                invite="true"
+                type="Get your bottle service now"
+                content="Invitation! &lt;fb:req-choice url=&quot;http://www.facebook.com/pages/ClaimVille/111548608930967?ref=ts&quot; label=&quot;Let me check my friends&quot; /&gt;"
+            >
+                <fb:multi-friend-selector showborder="false" actiontext="Invite your friends CLICK ON PICTURE TO SELECT"  rows="5" cols="5"  bypass="cancel" target="_top"  />
+            </fb:request-form>
+        </fb:fbml>
+    </script>
+</fb:serverFbml>
+        
+<% end -%>
+
+
+
+<% if params[:provider] == "twitter" -%>
+
+   <h3> What’s happening?</h3><a href="http://twitter.com/share" class="twitter-share-button" data-count="vertical">Tweet</a>
+    <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+    
+     </br>
+     </br>
+
+
+
+<% end -%>
+
+
+
+
 <p>
   <b>Login:</b>
   <%= @user.login %>
@@ -9,10 +67,5 @@
   <b>Email:</b>
   <%= @user.email %>
 </p>
-
-<b>Bidding history:</b><br/>
-<% @user.bids.each do |bid| %>
-Bid price:<%= bid.bidprice %> |
-<% end %>
 
 <%= link_to 'Edit', edit_user_path %>

@@ -20,7 +20,7 @@ class ServicelistingsController < ApplicationController
 
   def buynow
    @servicelisting = Servicelisting.find(params[:servicelisting_id])
-    
+      
   end
 
   # GET /servicelistings/1

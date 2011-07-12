@@ -7,6 +7,7 @@ gem 'rails', '3.0.5'
 
 #gem 'sqlite3-ruby', :require => 'sqlite3'
 gem 'mysql2', '0.2.7'
+gem 'rake', '0.9.2'
 
 #For authentication 
 gem 'authlogic'
@@ -32,6 +33,10 @@ gem "mail", "2.2.15"
 
 # Deploy with Capistrano
  gem 'capistrano'
+ gem "linkedin", "~> 0.2.2"
+ gem "gmaps4rails", "~> 0.7.7"
+ #gem "crack", "~> 0.1.8"
+
 
 # To use debugger (ruby-debug for Ruby 1.8.7+, ruby-debug19 for Ruby 1.9.2+)
 # gem 'ruby-debug'

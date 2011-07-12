@@ -1,59 +1,84 @@
+<% javascript('jquery.countdown')%>
+<% stylesheet('jquery.countdown')%>
+<!--
+<style type="text/css">
+	.countdown_amount {
+		font-size: 15px;
+		color: red;
+	}
+</style>
+-->
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Title:</b>
-  <%= @servicelisting.title %>
-</p>
+<% availability_date = DateTime.parse(@servicelisting.availability.to_s)%></br>
+<% time_now = DateTime.parse(DateTime.now.to_s)%>
+<% time_until = availability_date - time_now %>
+<% t = time_until.to_f %>
+<% tt = t*(86400) %>
 
-<p>
-  <b>Description:</b>
-  <%= @servicelisting.description %>
-</p>
+<div id="servicelisting" >
+	<p class="title"><%= @servicelisting.title %></p>
+	<p class="picture"><%= image_tag @servicelisting.photo.url, :size => "320x320" %></p>
+	<p class="address">Address:</p>
+	<p class="address_fet"><%= @servicelisting.location %></p>
+	<p class="description"><%= @servicelisting.description %></p>
+	<p class="bid"><%= link_to 'Bid', new_servicelisting_bid_path(@servicelisting), :class=>"links"  %></p>
+	<p class="buy"><%= link_to 'Buy',  buynow_buynow_index_path(:id => @servicelisting), :class=>"links"  %></p>
+	<p class="current_value">Current Value:</p>
+	<p class="current_value_fet">$<%= @servicelisting.highestbid %></p>
+	<p class="time_left">Time left to Bid</p>
+	<table width="100px"><tr><td><div class="jdt" start="<%= tt %>" ></div></td></tr></table>
+	<p class="total_active_bidders">Total Active Bidders:</p>
+	<p class="total_active_bidders_fet"><%= @servicelisting.no_of_guests %></p>
+</div>
 
-<p>
-  <b>Location:</b>
-  <%= @servicelisting.location %>
-</p>
+<!--
+<table width="800" border="0" style="border:1px #993300 solid "  align="center">
+  <tr>
+    <td height="36" colspan="3">
+    	<font style="font-size:30px; color:#000000; font-family:Lucida Calligraphy"><%= @servicelisting.title %></font>    </td>
+    <td width="214">
+    	<%= link_to 'Bid', new_servicelisting_bid_path(@servicelisting), :class=>"links"  %>
+    	<%= link_to 'Buy now',  buynow_buynow_index_path(:id => @servicelisting), :class=>"links"  %>    </td>
+  </tr>
+  <tr>
+    <td width="193" rowspan="3">
+    	<p>
+  			<b>Address:</b>
+  			<%= @servicelisting.location %></p>
+    	<p style="font-size:15px">
+  			<%= @servicelisting.description %>		</p>	</td>
+    <td colspan="2" rowspan="3">
+    	<%= image_tag @servicelisting.photo.url, :size => "300x300" %>    </td>
+    <td>	
+    	<div class="jdt" start="<%= tt %>" ></div>	
+    </td>
+  </tr>
+  
+  <tr>
+    <td height="79">
+    	<p style="font-size:17px">
+  			No of guests:
+  			<font style="font-size:14px; color:#FF0000"><%= @servicelisting.no_of_guests %></font>	</p>	</td>
+  </tr>
+  <tr>
+    <td height="74">
+    	<font style="font-size:17px;">HighestBid:</font></b><font style="font-size:14px; color:#FF0000">$<%= @servicelisting.highestbid %></font>
+    </td>
+  </tr>
+</table>
+-->
 
-<p>
-  <b>Availability:</b>
-  <%= @servicelisting.availability.to_formatted_s(:long) %>
-</p>
 
-<p>
-  <b>Price:</b>
-  $<%= @servicelisting.price %>
-</p>
-
-<p>
-  <b>Buynow Price:</b>
-  $<%= @servicelisting.buynow_price %>
-</p>
-
-<p>
-  <b>No of guests:</b>
-  <%= @servicelisting.no_of_guests %>
-</p>
-
-<p>
-  <b>photo:</b>
-  <%= image_tag @servicelisting.photo.url, :size => "200x200" %>
-</p>
-
-<p>
-  <b>Status:</b>
-  <% if @servicelisting.status  %>
-  Active
-  <% else %>
-  Inactive
-  <% end%>
-</p>
-<b>Bidding history:</b><br/>
-<% @servicelisting.bids.each do |bid| %>
-Bid price:<%= bid.bidprice %> |
-<% end %>
-<br/>
+<%= link_to 'Back', servicelistings_path , :class=>"links" %>
 <% if isadmin? %>
-<%= link_to 'Edit', edit_servicelisting_path(@servicelisting) %> |
-<%end%>
-<%= link_to 'Back', servicelistings_path %>
+<%= link_to 'Create Address Location on Siipod Map', new_location_path , :class=>"links" %>
+<% end %>
+
+<script type="text/javascript">
+	$('.jdt').countdown({
+		until:$('.jdt').attr('start'),
+		format:'DHMS',
+		compact: true
+	});	
+</script>

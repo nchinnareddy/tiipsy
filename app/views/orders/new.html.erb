@@ -1,0 +1,12 @@
+<% form_for @order do |f| %>
+  <%= f.error_messages %>
+  <% if @order.express_token.blank? %>
+    ...
+  <% else %>
+	  <%= f.hidden_field :express_token %>
+	  <b>Your order details</b></br>	 
+	  <p>Service: <%= @service.title %></p></br>  
+	  <p>Amount: $<%= @service.buynow_price %></p></br>  
+  <% end %>
+      <p><%= f.submit "Complete Order" %></p>
+<% end %>

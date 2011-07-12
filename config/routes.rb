@@ -1,14 +1,42 @@
 Socialstock::Application.routes.draw do
+  
+  resources :locations
+
+  resources :contacts
+  
+  get "contacts/mail"
+  
+  get "contacts/send_mail"
+  
+  match "/contacts/:id" => "contacts#mail"
+
+  get "auth_linkedin/index"
+
+  get "auth_linkedin/callback"
+
   get "payments/index"
   get "payments/buynow"
-
+  
+  get "orders/create"
+  
   get "payments/confirm"
 
   post "payments/complete"
   
   get "payments/checkout"
   
-
+  resources :orders do
+    collection do
+    get 'express'
+    end
+  end
+  
+  resources :orders do
+    collection do
+    get 'success'
+    end
+  end
+  
   resources :transactions
 
   # The priority is based upon order of creation:
@@ -39,8 +67,16 @@ Socialstock::Application.routes.draw do
   end
   resources :password_resets, :only => [:new, :create, :edit, :update]
   
-  resources :servicelistings do
-    get 'buynow'   
+  resources :buynow do
+     collection do
+       get 'buynow'
+       get 'complete'
+       get 'express'
+     end
+  end
+ 
+  
+  resources :servicelistings do      
   resources :bids, :new => { :express => :get }
 end
 

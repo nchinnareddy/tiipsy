@@ -29,13 +29,19 @@ Socialstock::Application.configure do
      ActiveMerchant::Billing::Base.mode = :test  
   end
  
-  config.to_prepare do
-  OrderTransaction.gateway =  ActiveMerchant::Billing::PaypalExpressGateway.new( 
-    :login => 'nchinn_1307094132_biz_api1.gmail.com',
-    :password => '1307094143',
-    :signature => 'A3tSrUJhWQkOjSs.LnbMRFOlOFN3AdRRcOCmTIWXkXK8x5Pn4e93CiVB' )
-    
-  end
+   config.to_prepare do
+   OrderTransaction.gateway =  ActiveMerchant::Billing::PaypalGateway.new(
+   :login => 'nchinn_1309774589_biz_api1.gmail.com',
+   :password => '1309774643',
+   :signature => 'A4ZmaZtYP56ugAWbYNAcjqstyYtgAoBxWlcZnfA.iqDK4CgHeuwWpm12' )
+
+ OrderTransaction.xpressgateway =
+ ActiveMerchant::Billing::PaypalExpressGateway.new(
+   :login => 'nchinn_1307094132_biz_api1.gmail.com',
+   :password => '1307094143',
+   :signature => 'A3tSrUJhWQkOjSs.LnbMRFOlOFN3AdRRcOCmTIWXkXK8x5Pn4e93CiVB' )
+   ::EXPRESS_GATEWAY = OrderTransaction.xpressgateway
+ end
 
 end
 

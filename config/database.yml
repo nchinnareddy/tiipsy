@@ -5,7 +5,7 @@ development:
   database: tiipsy_development
   pool: 5
   username: root
-  password: startup
+  password: 
   socket: /var/run/mysqld/mysqld.sock
 
 test:
@@ -15,7 +15,7 @@ test:
   database: tiipsy_test
   pool: 5
   username: root
-  password: startup
+  password: 
   socket: /var/run/mysqld/mysqld.sock
 
 production:

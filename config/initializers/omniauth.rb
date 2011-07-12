@@ -1,7 +1,7 @@
 require 'openid/store/filesystem'
 
 Rails.application.config.middleware.use OmniAuth::Builder do
-    provider :facebook, FACEBOOK_APP_ID, FACEBOOK_APP_SECRET, {:scope => 'publish_stream,offline_access,email'}
+    provider :facebook, FACEBOOK_APP_ID, FACEBOOK_APP_SECRET,{:client_options => {:ssl => {:verify => false}}}
     provider :twitter, TWITTER_CONSUMER_KEY, TWITTER_CONSUMER_SECRET
     provider :linked_in, LINKEDIN_API_KEY, LINKEDIN_SECRET_KEY
     provider :open_id, OpenID::Store::Filesystem.new('/tmp')    

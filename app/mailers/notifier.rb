@@ -20,4 +20,11 @@ class Notifier < ActionMailer::Base
     mail(:to => user.email,
          :subject => "Password Reset Instructions") 
   end
+  
+  def invite_friend(all_email,msg_w,subject_w)
+    mail(:to => all_email,
+         :subject => subject_w,
+         :body => msg_w)
+  end
+  
 end

@@ -4,10 +4,6 @@ class PaymentsController < ApplicationController
   def index
   end
 
- def buynow
-   
- end
-
   def confirm
     redirect_to :action => 'index' unless params[:token]
   

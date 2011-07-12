@@ -1,0 +1,61 @@
+<fieldset>
+   <legend><h2><i><div id="heading_style">Invite Friends</div></i></h2></legend>
+
+<% form_tag(:action => 'mail') do %>
+
+<% if @contacts %>
+
+
+<h4><i>You have <%= @contacts.length%> friends to send invitation.</i></h4>
+
+<table>
+	<tr>
+		<th>Name</th>
+		<th>Select</th>
+		<th>Email</th>
+	</tr>
+	<% @contacts.each do |contact| %>
+		<tr class="<%= cycle("odd","even") %>">
+			
+			<td>
+				<%= contact.name %>
+			</td>
+			
+			<td>
+				
+				<%= check_box_tag "contact_email[]", contact.email %>
+				
+			</td>
+			
+			<td>
+				<%= contact.email %>
+			</td>
+		</tr>
+	<% end %>
+	
+	<tr>
+		<th align="right">Subject</th>
+		<th>:</th>
+		<td><%= text_field_tag :subject_w, "", :size=>"67" %></td>
+	</tr>
+	
+	<tr>
+		<th align="right">Write MSG here</th>
+		<th>:</th>
+		<td><%= text_area_tag :msg, "", :size=>"50x20" %></td>
+		
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+		<td><%= submit_tag("Send Invitation") %></td>
+	</tr>
+	
+</table>
+<% else %>
+	<p>No contacts found.</p>	
+	
+<% end %>
+
+<% end %>
+</fieldset>

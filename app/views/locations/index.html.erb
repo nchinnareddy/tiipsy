@@ -1,0 +1,14 @@
+<h1>All Createded location's on SIPPOD</h1>
+
+<br />
+
+<div id="map">
+	<div id="map_details">
+		<p class="details"><%= @description %></p>
+	</div>
+	<div id="map_google">
+		<%= gmaps4rails(@json) %>
+	</div>
+</div>
+
+<%= link_to 'Back', servicelistings_path , :class => 'links'%>

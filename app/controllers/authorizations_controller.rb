@@ -3,11 +3,12 @@ class AuthorizationsController < ApplicationController
   
   def create
     omniauth = request.env['omniauth.auth']    
-    @auth = Authorization.find_from_hash(omniauth)    
-    if current_user
-      flash[:notice] = "Successfully added #{omniauth['provider']} authentication"
-      current_user.authorizations.create(:provider => omniauth['provider'], :uid => omniauth['uid'])   
-    elsif @auth
+    @auth = Authorization.find_from_hash(omniauth) 
+    @provider = params[:provider]
+    #raise @provider.inspect
+    #raise @auth.inspect
+    
+   if @auth
       flash[:notice] = "Welcome back #{omniauth['provider']} user"
       UserSession.create(@auth.user, true)
       #update token and secret
@@ -19,7 +20,7 @@ class AuthorizationsController < ApplicationController
       UserSession.create(@auth.user, true)
     end
     
-    redirect_to user_path(@auth.user.id)
+    redirect_to user_path(:id=>@auth.user.id,:provider=>@provider)
   end
     
   def failure

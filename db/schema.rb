@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110610082650) do
+ActiveRecord::Schema.define(:version => 20110709042330) do
 
   create_table "authorizations", :force => true do |t|
     t.integer  "user_id"
@@ -29,6 +29,24 @@ ActiveRecord::Schema.define(:version => 20110610082650) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "ckeditor_assets", :force => true do |t|
+    t.string   "data_file_name",                                 :null => false
+    t.string   "data_content_type"
+    t.integer  "data_file_size"
+    t.integer  "assetable_id"
+    t.string   "assetable_type",    :limit => 30
+    t.string   "type",              :limit => 25
+    t.string   "guid",              :limit => 10
+    t.integer  "locale",            :limit => 1,  :default => 0
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "ckeditor_assets", ["assetable_type", "assetable_id"], :name => "fk_assetable"
+  add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], :name => "idx_assetable_type"
+  add_index "ckeditor_assets", ["user_id"], :name => "fk_user"
 
   create_table "contacts", :force => true do |t|
     t.integer  "user_id",    :null => false
@@ -61,6 +79,15 @@ ActiveRecord::Schema.define(:version => 20110610082650) do
     t.datetime "updated_at"
   end
 
+  create_table "locations", :force => true do |t|
+    t.string   "name"
+    t.string   "address"
+    t.float    "longitude"
+    t.float    "latitude"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "order_transactions", :force => true do |t|
     t.integer  "amount"
     t.boolean  "success"
@@ -78,6 +105,8 @@ ActiveRecord::Schema.define(:version => 20110610082650) do
     t.string   "description"
     t.integer  "amount"
     t.string   "state"
+    t.string   "express_token"
+    t.string   "express_payer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -127,6 +156,7 @@ ActiveRecord::Schema.define(:version => 20110610082650) do
   create_table "users", :force => true do |t|
     t.string   "login"
     t.string   "email"
+    t.float    "topay"
     t.string   "crypted_password"
     t.string   "password_salt"
     t.string   "persistence_token"

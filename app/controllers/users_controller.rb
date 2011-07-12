@@ -1,5 +1,6 @@
 class UsersController < ApplicationController  
   before_filter :require_user, :only => [:show, :edit, :update] 
+  skip_before_filter :require_user_with_mailid, :only => [:edit, :update]
   
   def index
     @users = User.all
@@ -30,7 +31,7 @@ class UsersController < ApplicationController
   end
   
   def show
-    @user = User.find(params[:id])  
+    @user = User.find(params[:id])   
   end
 
   def edit
@@ -48,7 +49,7 @@ class UsersController < ApplicationController
         render :action => :edit
       end
     else
-      @user.email = params[:user][:email]     
+      @user.email = params[:user][:email]
       if @user.save        
         flash[:notice] = "User details updated!"
         redirect_to user_path(@user.id)

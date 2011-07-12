@@ -2,7 +2,7 @@ require 'facebook'
 
 class User < ActiveRecord::Base
   
-  attr_accessible :login, :email, :password, :password_confirmation, :admin
+  attr_accessible :login, :email, :password, :password_confirmation, :admin, :topay
   
   has_one :authorization, :dependent => :destroy
   
@@ -15,6 +15,8 @@ class User < ActiveRecord::Base
   has_many :contacts
   
   has_many :bids
+  
+  has_many :orders
   
   has_many :transactions
   
@@ -96,5 +98,9 @@ class User < ActiveRecord::Base
     end
     @twitter_user
 end
-  
+
+  def pendingpay
+    @pp = topay
+  end
+    
 end
