@@ -39,8 +39,6 @@ Socialstock::Application.routes.draw do
     end
   end
   
-  resources :transactions
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -53,6 +51,7 @@ Socialstock::Application.routes.draw do
   # This route can be invoked with purchase_url(:id => product.id)
   match '/activate_account/:activation_code' => 'activations#create', :as => :activate
   match 'admin' => "admin#index"
+  match 'admin/:action' => 'admin#orderindex'
   #match 'admin/delete' => "user/delete", :as => :remove
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):

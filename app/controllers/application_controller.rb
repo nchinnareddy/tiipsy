@@ -35,15 +35,15 @@ class ApplicationController < ActionController::Base
     end
   end
   
-  def require_no_user
+def require_no_user
     if current_user
       store_location
       flash[:notice] = "You must be logged out to access this page"
       redirect_to root_path
     end
-  end
+end
   
-  def require_bid_authorized
+def require_bid_authorized
     if current_user
        if current_user.bid_authorized == false
          redirect_to :controller => 'bid_auths', :action => 'authorize'
@@ -52,18 +52,25 @@ class ApplicationController < ActionController::Base
     # if user has enough balance to bid please check here
   #   render "checkout.html.erb"
   # render :text => "please authorize your paypal account to bid"  
+end
+
+def require_admin
+  unless isadmin?
+    redirect_to root_path   
   end
+end
+
     
-  def store_location
+def store_location
     session[:return_to] = request.request_uri
-  end
+end
     
-  def redirect_back_or_default(default)
+def redirect_back_or_default(default)
     redirect_to(session[:return_to] || default)
     session[:return_to] = nil
-  end
+end
   
-  def require_user_with_mailid    
+def require_user_with_mailid    
     if current_user && current_user.email.nil?      
       flash[:error] = "You must update your email to access this page"
       redirect_to edit_user_path(current_user)

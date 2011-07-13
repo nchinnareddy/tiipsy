@@ -4,17 +4,16 @@ class OrdersController < ApplicationController
 def create
   @order = Order.create(params[:order])
   @order.amount = params[:order][:amount]
-    
-  if @order.express_token.blank?
-        options = standard_purchase_options
-   else 
-        options = express_purchase_options
-      end
+  @order.servicelisting_id = params[:order][:servicelisting_id]
+  @order.user_id = current_user.id
+  @order.ip_address = request.remote_ip
+  @order.description = "Buynow"
+
   if @order.save
     if !credit_card.valid?
        render :text => "card is not valid"
     else
-      if @order.purchase(options)
+      if @order.purchase()
         current_user.bid_authorized = true
         current_user.save
         current_user.create_credit_card(:card_type          => @order.card_type,
@@ -29,38 +28,16 @@ def create
                                         :country            => @order.country,
                                         :zip                => @order.zip
                                         )              
-        render :action => "success"
+       render :action => "success"
      else
-      render :action => "failure"
+       render :action => "failure"
     end
     end 
   else
     render :action => 'new'
   end
 end
-
-def standard_purchase_options
-    {
-        :ip => request.remote_ip,
-        :billing_address => {
-        :name     => @order.first_name + @order.last_name,
-        :address1 => @order.address,
-        :city     => @order.city,
-        :state    => @order.state_name,
-        :country  => @order.country,
-        :zip      => @order.zip
-       }
-     }
-end
-
-def express_purchase_options
-  {
-    :ip => request.remote_ip,
-    :token => @order.express_token,
-    :payer_id => @order.express_payer_id
-  }
-end
-
+ 
 def credit_card
     @credit_card ||= ActiveMerchant::Billing::CreditCard.new(
       :type               => @order.card_type,
