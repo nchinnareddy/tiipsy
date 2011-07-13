@@ -16,16 +16,7 @@ Socialstock::Application.routes.draw do
 
   resources :credit_cards
 
-  get "payments/index"
-  get "payments/buynow"
-  
   get "orders/create"
-  
-  get "payments/confirm"
-
-  post "payments/complete"
-  
-  get "payments/checkout"
   
   resources :orders do
     collection do
@@ -51,7 +42,7 @@ Socialstock::Application.routes.draw do
   # This route can be invoked with purchase_url(:id => product.id)
   match '/activate_account/:activation_code' => 'activations#create', :as => :activate
   match 'admin' => "admin#index"
-  match 'admin/:action' => 'admin#orderindex'
+  match 'admin/:action' => 'admin#action'
   #match 'admin/delete' => "user/delete", :as => :remove
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
