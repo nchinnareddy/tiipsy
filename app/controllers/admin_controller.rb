@@ -2,51 +2,44 @@ class AdminController < ApplicationController
   
   before_filter :require_admin
   
- def index
+def index
     @users = User.all
-    render "admin/index"
- end
+    @bidfee = Admin.find(1)
+end
   
- def orderindex
+def orderindex
    @orders = Order.all
-   render "admin/orderindex"
  end
  
- def new_bidfee
+def newbidfee
    @bidfee = Admin.new
- end
- 
-  def create
-    @bidfee = Admin.new(params[:admin])
+end
+  
+def create
+   @bidfee = Admin.new(params[:admin])
 
-    respond_to do |format|
-      if @admin.save
-        format.html { redirect_to(@admin, :notice => 'Admin was successfully created.') }
-        format.xml  { render :xml => @admin, :status => :created, :location => @admin }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @admin.errors, :status => :unprocessable_entity }
+      if @bidfee.save
+       flash[:notice] = "bidding fee was successfully created"
       end
-    end
-  end
- 
-  def create
-    
-    @servicelisting = Servicelisting.find(params[:servicelisting_id])
-    @bid = @servicelisting.bids.new(params[:bid])
-    @bid.user_id = current_user.id
-    if @bid.bidprice > @servicelisting.highestbid
-      @bid.save
-      @servicelisting.highestbid = @bid.bidprice
-      @servicelisting.save
-    else
-      flash[:notice] = "You must bid up. your bid failed"
-    end
-    
-    redirect_to servicelistings_path
-    
-  end
- 
- 
- 
+    render 'admin/index'
+end
+
+def show
+    @bidfee = Admin.find(1)
+     render @bidfee
+end
+
+def edit
+    @bidfee = Admin.find(1)
+end
+  
+def update
+    @bidfee = Admin.find(1)
+
+    @bidfee.update_attributes(params[:admin])
+    render 'show'
+end
+  
+  
+  
 end
