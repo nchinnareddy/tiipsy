@@ -12,7 +12,7 @@ def create
       end
   if @order.save
     if !credit_card.valid?
-       render :text => "card is not valid"
+       render :action => "failure"
     else
       if @order.purchase(options)
         current_user.bid_authorized = true
@@ -72,5 +72,9 @@ def credit_card
       :last_name          => @order.last_name
     )
   end
-
+  
+  def success
+    
+  end
+ 
 end

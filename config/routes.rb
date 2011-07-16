@@ -21,6 +21,8 @@ Socialstock::Application.routes.draw do
   
   get "orders/create"
   
+  get "orders/success"
+  
   get "payments/confirm"
 
   post "payments/complete"

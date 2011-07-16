@@ -21,7 +21,6 @@
 	<p class="picture"><%= image_tag @servicelisting.photo.url, :size => "320x320" %></p>
 	<p class="address">Address:</p>
 	<p class="address_fet"><%= @servicelisting.location %></p>
-	<p class="description"><%= @servicelisting.description %></p>
 	<p class="bid"><%= link_to 'Bid', new_servicelisting_bid_path(@servicelisting), :class=>"links"  %></p>
 	<p class="buy"><%= link_to 'Buy',  buynow_buynow_index_path(:id => @servicelisting), :class=>"links"  %></p>
 	<p class="current_value">Current Value:</p>
@@ -31,7 +30,10 @@
 	<p class="total_active_bidders">Total Active Bidders:</p>
 	<p class="total_active_bidders_fet"><%= @servicelisting.no_of_guests %></p>
 </div>
-
+</br>
+<div id="servicelisting_description">
+	<%= @servicelisting.description %>
+</div>
 <!--
 <table width="800" border="0" style="border:1px #993300 solid "  align="center">
   <tr>

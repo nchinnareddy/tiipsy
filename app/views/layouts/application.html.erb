@@ -14,32 +14,6 @@
 <div id="wrapper">
 	
 	
-	
-	<!--   header -->
-	<div id="header-wrapper">
-	  <div id="header">
-		
-		<div id="logo">
-			<h1>Sippod</h1>
-			<div style="font-size:16px;margin-left: 120px;">Get your bottle service now</div>
-		</div>
-
-		<!-- Search Start -->
-		<div id="search">
-			<form method="get" action="">
-				<fieldset>
-				<input type="text" name="s" id="search-text" size="15" value="enter keywords here..." />
-				<input type="submit" id="search-submit" value="GO" />
-				</fieldset>
-			</form>
-		</div>	
-		<!-- Search End -->
-
-	  </div>
-	</div>
-	<!-- end #header -->
-	
-	
 	<!-- Start of Menu Part -->
 	<div id="menu">
 		<ul>
@@ -58,36 +32,60 @@
 	</div>
 	<!-- end #menu -->
 	
+	<div id="search">
+		<form method="get" action="">
+		<fieldset>
+			<input type="text" name="s" id="search-text" size="15" value="enter keywords here..." />
+			<input type="submit" id="search-submit" value="GO" />
+		</fieldset>
+		</form>
+	</div> 
+	
+	<!--   header -->
+	<div id="header-wrapper">
+	  <div id="header">
+		
+		<div id="logo">
+			<h1>Sippod</h1>
+			<div style="font-size:16px;margin-left: 120px;">Get your bottle service now</div>
+		</div>
+	  </div>
+	</div>
+	<!-- end #header -->
 	
 	<!--- Containt -->
 	<div id="page">
+		<% flash.each do |name, msg| %>
+    		<%= content_tag :div, msg, :id => "flash_#{name}" %>
+    	<% end %>
 	  <%= yield %>
 	  <%= yield :scripts %>
+	
+	</br>
+	<!-- Start of footer Part-->	
+	<div id="footer">
+		<nav>
+			<ul>	
+				<li><%= link_to "Home", root_path %></li> |
+				<li><%= link_to "About Us", root_path %></li> |
+				<li><%= link_to "Contact Us", root_path %></li>
+			</ul>	
+		</nav>
+		<div id="copy_right">
+			Copyright © 2011 by Unedollar. All Rights Reserved.
+		</div>
+		<div id="social_network">
+			<%= render :partial => "layouts/social_buttons"%>
+		</div>
+	 </div>	    	
+    <!-- end #footer -->
+
+	
+	  
 	</div>
 	<!--- End of Containt -->
 	
-	<!-- Start of footer Part-->	
-	<div id="footer-wrapper">
-		<div id="footer">
-			<nav class="round">
-			 <ul>	
-				<li><%= link_to "Home", root_path %></li> |
-				<li><%= link_to "About Us", root_path %></li> |
-				<li><%= link_to "Contact Us", root_path %></li> |
-				<li><%= link_to 'Register You Bottle Service'%></li>
-			 </ul>	
-			</nav>
-			</br>
-				<div style="font-size:12px;text-align: center; color:#fff">Copyright © 2011 by Unedollar. All Rights Reserved.</div>
-				<div style="float:right;">
-					<%= render :partial => "layouts/social_buttons"%>
-				</div>
-		</div>
-	</div>	
-    <!-- end #footer -->
-
-
-
+	
 </div>
 <!-- End of Body Part -->
 </body>

@@ -11,7 +11,7 @@
 
 
 
-<h1>Servicelistings</h1>
+<h1>Today's Auctions</h1>
 
 <div id="servicelisting_index">
 	
@@ -80,9 +80,10 @@
 	</br>	
 	<% end %>
 </div>		
+<%= will_paginate @servicelistings %>
+
 
 <br />
-
 <% if isadmin? %>
 <%= link_to 'New Servicelisting', new_servicelisting_path, :class=>"links"  %>
 <%end%>

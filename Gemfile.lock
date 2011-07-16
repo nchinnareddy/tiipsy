@@ -191,6 +191,7 @@ GEM
     whenever (0.6.8)
       aaronh-chronic (>= 0.3.9)
       activesupport (>= 2.3.4)
+    will_paginate (3.0.pre)
 
 PLATFORMS
   ruby
@@ -215,3 +216,4 @@ DEPENDENCIES
   rake (= 0.9.2)
   twitter
   whenever
+  will_paginate (= 3.0.pre)

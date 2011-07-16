@@ -1,9 +1,29 @@
+<div id="success">
+	
+<table width="100%" border="0">
+  <tr>
+    	<td colspan="3" align="center"><%= image_tag "auth/success1.jpg", :size => "300x200" %></td>
+  </tr>
+  <tr>
+  	<td colspan="3"><h3 align="center" style="color:#48B9E9"> Invite your Friends to the party</h3></td>
+  </tr>
+  <tr>
+    <td colspan="3" align="center">
+    	<% ["facebook"].each do |provider| %>
+  			<%= link_to image_tag("auth/#{provider}_64.png"), "/auth/#{provider}" %>
+		<% end %>
+		<%= link_to image_tag("auth/google_64.png"), :controller =>'contacts', :action => 'new' %>
+    </td>
+  </tr>
+</table>	
+	
+	
+<!--	
 <font color="#009900">Your Order is Complited. "Get ready to party" </font></br>
 Send invitation to your friend's
 <% ["facebook"].each do |provider| %>
   <%= link_to image_tag("auth/#{provider}_64.png"), "/auth/#{provider}" %>
 <% end %>
-<!--
-<%= link_to image_tag("auth/linked_in_64.png"), :controller =>'auth_linkedin', :action => 'index' %>
--->
 <%= link_to image_tag("auth/google_64.png"), :controller =>'contacts', :action => 'new' %>
+-->
+</div>

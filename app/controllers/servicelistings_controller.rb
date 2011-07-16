@@ -10,8 +10,9 @@ class ServicelistingsController < ApplicationController
   # GET /servicelistings
   # GET /servicelistings.xml
   def index
-    @servicelistings = Servicelisting.all
-  
+    #@servicelistings = Servicelisting.all
+    @servicelistings=Servicelisting.paginate :page=>params[:page], :order=>'updated_at', :per_page=>'3'
+    #@products = Product.paginate(:per_page => 10, :page => params[:page])
           
     respond_to do |format|
       format.html # index.html.erb

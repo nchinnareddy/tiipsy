@@ -25,4 +25,11 @@ class Notifier < ActionMailer::Base
     mail(:to => user.email,
          :subject => "Bidding for service closed")
   end
+  
+  def invite_friend(all_email,msg_w,subject_w)
+    mail(:to => all_email,
+         :subject => subject_w,
+         :body => msg_w)
+  end
+  
 end

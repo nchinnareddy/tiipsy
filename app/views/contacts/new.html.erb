@@ -1,4 +1,16 @@
 
-<p style="color:#FF0000">Sorry, We can't send mail.You have not selected any Email.</p>
+ <div id="failure">
+	
+<table width="100%" border="0">
+  <tr>
+    <td colspan="3"><h3 align="center" style="color:#48B9E9"> Sorry - We can't send mail.You have not selected any Email Id.</h3></td>
+  </tr>
+  <tr>
+    <td colspan="3" align="center"><%= image_tag "auth/failure.jpg", :size => "300x250" %></td>
+  </tr>
+  <tr>
+    <td colspan="3" align="center"><%= link_to_function "Go back", "history.back()" , :class => "links" %></td>
+  </tr>
+</table>
 
- 
+</div>

@@ -1,3 +1,4 @@
+<div id="checkout_site">
 <%= form_for(@credit_card) do |f| %>
   <% if @credit_card.errors.any? %>
     <div id="error_explanation">
@@ -43,3 +44,4 @@
     <%= f.submit %>
   </div>
 <% end %>
+</div>
