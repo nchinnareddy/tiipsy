@@ -4,4 +4,14 @@
 
 <%= link_to 'Servicelistings', servicelistings_path, :class=>"links" %><br/>
 <%= link_to 'users', users_path, :class=>"links" %>
+
  </div>
+
+<%= link_to 'orders', :controlloer => 'admin', :action => 'orderindex'%><br/>
+<% if @bidfee.nil?%>
+<%= link_to 'set bidding fee', :controller => 'admin', :action => 'newbidfee'%>
+<% else%>
+<%= link_to 'edit bidding fee', :controller => 'admin', :action => 'edit'%>
+<%end%>
+ 
+

@@ -36,15 +36,31 @@ class Order < ActiveRecord::Base
   end
 
 
-def purchase(options= {})
+def authorize_payment
+  #  options[:order_id] = number
+     transaction do
+      authorization = OrderTransaction.authorize(amount, credit_card, standard_purchase_options)
+      transactions.push(authorization)
+     if authorization.success?
+      payment_authorized!
+      return true
+     else
+      transaction_declined!
+      return false
+     end
+      authorization
+    end
+end
+
+def purchase
 
   logger.debug "PURCHASE IS INVOKED IN ORDER MODEL"
   transaction do
        
        if express_token.blank?
-         purchase_result = OrderTransaction.purchase(price_in_cents, credit_card, options)
+         purchase_result = OrderTransaction.purchase(price_in_cents, credit_card, standard_purchase_options)
        else
-         purchase_result = OrderTransaction.xpresspurchase(price_in_cents, options)
+         purchase_result = OrderTransaction.xpresspurchase(price_in_cents, express_purchase_options)
        end
        transactions.push(purchase_result)
      if purchase_result.success?
@@ -67,7 +83,6 @@ def express_token=(token)
   end
 end
 
-private
 
 def validate_card
   if express_token.blank? && !credit_card.valid?
@@ -75,20 +90,6 @@ def validate_card
       errors.add_to_base message
     end
   end
-end
-
-def authorize_payment(credit_card, options = {})
-    options[:order_id] = number
-     transaction do
-      authorization = OrderTransaction.authorize(amount, credit_card, options)
-      transactions.push(authorization)
-     if authorization.success?
-      payment_authorized!
-     else
-      transaction_declined!
-     end
-      authorization
-    end
 end
 
 def authorization_reference
@@ -102,10 +103,10 @@ def number
 end
 
 
-def capture_payment(options = {})
+def capture_payment
     
   transaction do
-    capture = OrderTransaction.capture(amount, authorization_reference, options)
+    capture = OrderTransaction.capture(amount, authorization_reference, standard_purchase_options)
     transactions.push(capture)
     if capture.success?
       payment_captured!
@@ -114,6 +115,28 @@ def capture_payment(options = {})
     end
       capture
     end
+end
+  
+def standard_purchase_options
+    {
+        :ip => ip_address,
+        :billing_address => {
+        :name     => first_name + last_name,
+        :address1 => address,
+        :city     => city,
+        :state    => state_name,
+        :country  => country,
+        :zip      => zip
+       }
+     }
+end
+
+def express_purchase_options
+  {
+    :ip => ip_address,
+    :token => @order.express_token,
+    :payer_id => @order.express_payer_id
+  }
 end
   
 def credit_card
@@ -126,11 +149,10 @@ def credit_card
       :first_name         => first_name,
       :last_name          => last_name
     )
-  end
- 
+end
 
-  def price_in_cents
-    (amount * 100).round
-  end
+def price_in_cents
+   (amount * 100).round
+end
   
 end

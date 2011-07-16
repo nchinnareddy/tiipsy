@@ -1,0 +1,10 @@
+<%= form_for @bidfee, :url => { :controller => 'admin', :action => 'update' } do |f| %>
+ 
+  <div class="field">
+    <%= f.label :bidding_fee %><br />
+    <%= f.text_field :bidding_fee %>
+  </div>
+  <div class="actions">
+    <%= f.submit "submit" %>
+  </div>
+<% end %>

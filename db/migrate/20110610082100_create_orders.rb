@@ -2,7 +2,9 @@ class CreateOrders < ActiveRecord::Migration
   def self.up
     create_table :orders do |t|
       t.references :user
+      t.references :servicelisting
       t.string  :description
+      t.string  :ip_address
       t.integer :amount
       t.string  :state
       t.string  :express_token

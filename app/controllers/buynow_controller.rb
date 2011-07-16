@@ -58,6 +58,7 @@ end
 def checkoutcc
   @service = Servicelisting.find(params[:id])
   @amount = @service.buynow_price
+  @serviceid = @service.id
     
   @order = Order.new
   render 'orders/checkoutcc'

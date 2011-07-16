@@ -82,6 +82,7 @@
 				<% form_for @order do |f| %>
   <%= f.error_messages %>
   <%= f.hidden_field :amount, :value => @amount %>
+  <%= f.hidden_field :servicelisting_id, :value => @serviceid %>
   <p>
     <%= f.label :first_name %><br />
     <%= f.text_field :first_name %>

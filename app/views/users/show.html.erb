@@ -56,8 +56,6 @@
 <% end -%>
 
 
-
-
 <p>
   <b>Login:</b>
   <%= @user.login %>
@@ -66,6 +64,11 @@
 <p>
   <b>Email:</b>
   <%= @user.email %>
+</p>
+<p>
+<% if isadmin? %>
+<%= link_to 'Administration', :controller => 'admin', :action => 'index' %>
+<%end%>
 </p>
 
 <%= link_to 'Edit', edit_user_path %>

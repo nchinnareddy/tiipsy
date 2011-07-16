@@ -16,33 +16,13 @@ Socialstock::Application.routes.draw do
 
   resources :credit_cards
 
-  get "payments/index"
-  get "payments/buynow"
-  
-  get "orders/create"
-  
-  get "orders/success"
-  
-  get "payments/confirm"
-
-  post "payments/complete"
-  
-  get "payments/checkout"
-  
   resources :orders do
     collection do
+    get 'success'
     get 'express'
     end
   end
   
-  resources :orders do
-    collection do
-    get 'success'
-    end
-  end
-  
-  resources :transactions
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -54,7 +34,16 @@ Socialstock::Application.routes.draw do
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
   # This route can be invoked with purchase_url(:id => product.id)
   match '/activate_account/:activation_code' => 'activations#create', :as => :activate
-  match 'admin' => "admin#index"
+  
+  get 'admin/index'
+  get 'admin/orderindex'
+  get 'admin/newbidfee'
+  post 'admin/create'
+  put 'admin/update'
+  get 'admin/edit'
+#  match 'admin' => "admin#index"
+#  match 'admin/:action' => 'admin#action'
+#  get "admin/newbidfee"
   #match 'admin/delete' => "user/delete", :as => :remove
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):

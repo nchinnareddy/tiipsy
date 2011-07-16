@@ -1,7 +1,63 @@
+<%= form_for(@credit_card) do |f| %>
+  <% if @credit_card.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@credit_card.errors.count, "error") %> prohibited this credit_card from being saved:</h2>
 
+      <ul>
+      <% @credit_card.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-<h1>New credit_card</h1>
+  <div class="field">
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name %>
+  </div>
+  <div class="field">
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name %>
+  </div>
+<p>
+    <%= f.label :card_type %><br />
+    <%= f.select :card_type, [["Visa", "visa"], ["MasterCard", "master"], ["Discover", "discover"], ["American Express", "american_express"]] %>
+  </p>
+  <div class="field">
+    <%= f.label :card_number %><br />
+    <%= f.text_field :card_number %>
+  </div>
+  <div class="field">
+    <%= f.label :card_verification %><br />
+    <%= f.text_field :card_verification %>
+  </div>
+  <p>
+    <%= f.label :card_expires_on %><br />
+    <%= f.date_select :card_expires_on, :discard_day => true, :start_year => Date.today.year, :end_year => (Date.today.year+10), :add_month_numbers => true %>
+  </p>
+    <p>
+    <%= f.label :address %><br />
+    <%= f.text_field :address %>
+  </p>
+  
+  <p>
+    <%= f.label :city %><br />
+    <%= f.text_field :city %>
+  </p>
+   <p>
+    <%= f.label :state_name %><br />
+    <%= f.text_field :state_name %>
+  </p>
+    <p>
+    <%= f.label :country %><br />
+    <%= f.text_field :country %>
+  </p>
+  <p>
+    <%= f.label :zip %><br />
+    <%= f.text_field :zip %>
+  </p>
 
-<%= render 'form' %>
-
-<%= link_to 'Back', credit_cards_path %>
+  <div class="actions">
+    <%= f.submit "Submit"%>
+  </div>
+<% end %>
