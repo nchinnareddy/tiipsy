@@ -5,8 +5,10 @@ class LocationsController < ApplicationController
      @description = params[:description]
      @title = params[:title]
      @locations = Location.all
-     #@json = Location.all.to_gmaps4rails
-     @json = Location.find(:all, :conditions => [ 'address=?', params[:address] ]).to_gmaps4rails
+     #@la = @locations.latitude
+     #raise @la.inspect 
+     @json = Location.all.to_gmaps4rails
+     #json = Location.find(:all, :conditions => [ 'address=?', params[:address] ]).to_gmaps4rails
 
     respond_to do |format|
       format.html # index.html.erb

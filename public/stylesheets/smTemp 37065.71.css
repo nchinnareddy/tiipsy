@@ -663,7 +663,7 @@ label.error {
     font-size: 17px;
     left: 520px;
     position: absolute;
-    top: 355px;
+    top: 345px;
 }
 
 #servicelisting p.address_fet {
@@ -675,7 +675,7 @@ label.error {
     overflow: auto;
     position: absolute;
     top: 385px;
-    width: 400px;
+    width: 200px;
 }
 
 #servicelisting_description{	
@@ -995,11 +995,11 @@ label.error {
 #map_google {
     border: 1px solid #C43616;
     height: 400px;
-    left: 60px;
+    left: 440px;
     overflow: hidden;
     position: absolute;
     top: 5px;
-    width: 800px;
+    width: 500px;
 }
 
 #map_details {

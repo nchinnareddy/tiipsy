@@ -23,11 +23,11 @@
 	<p class="address_fet"><%= @servicelisting.location %></p>
 	<p class="bid"><%= link_to 'Bid', new_servicelisting_bid_path(@servicelisting), :class=>"links"  %></p>
 	<p class="buy"><%= link_to 'Buy',  buynow_buynow_index_path(:id => @servicelisting), :class=>"links"  %></p>
-	<p class="current_value">Current Value:</p>
+	<p class="current_value">Current Value</p>
 	<p class="current_value_fet">$<%= @servicelisting.highestbid %></p>
 	<p class="time_left">Time left to Bid</p>
 	<table width="100px"><tr><td><div class="jdt" start="<%= tt %>" ></div></td></tr></table>
-	<p class="total_active_bidders">Total Active Bidders:</p>
+	<p class="total_active_bidders">Total Active Bidders</p>
 	<p class="total_active_bidders_fet"><%= @servicelisting.no_of_guests %></p>
 </div>
 </br>

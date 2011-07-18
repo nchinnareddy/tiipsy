@@ -29,7 +29,6 @@
 		<p class="picture"><%= image_tag servicelisting.photo.url, :size => "100x100" %></p>
 		<p class="more"><%= link_to 'More', servicelisting %></p>
 		<p class="map"><%= link_to 'Map', locations_path(:description => servicelisting.description, :address => servicelisting.location, :title => servicelisting.title) %></p>
-		<p class="address">Address:</p>
 		<p class="address_fet"><%= servicelisting.location %></p>
 		<p class="time_left">Time left to Bid</p>
 		<p class="time_left_fet">

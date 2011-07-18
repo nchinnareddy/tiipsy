@@ -22,7 +22,7 @@
 					<li><%= link_to "Sign Up", new_user_path %></li>
 					<li><%= link_to "Sign In", new_user_session_path %></li>
 				<% else %>
-					<li><%= link_to "My Account", user_path(current_user) %></li>
+					<li><%= link_to "My Profile", user_path(current_user) %></li>
 				<% if auth_provider.nil? %>
 					<li><%= link_to "Change Password", change_password_users_path %></li>				
 				<% end%>				

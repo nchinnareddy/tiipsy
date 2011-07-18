@@ -3,11 +3,9 @@
 <br />
 
 <div id="map">
-	<div id="map_details">
-		<p class="details"><%= @description %></p>
-	</div>
 	<div id="map_google">
-		<%= gmaps4rails(@json) %>
+		<%= gmaps("markers" => {"data" => @json},
+     "map_options" => { "zoom" => 5, "provider" => "bing", "auto_adjust" => true,"center_on_user" => true }) %> 
 	</div>
 </div>
 
