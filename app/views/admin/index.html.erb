@@ -8,10 +8,10 @@
  </div>
 
 <%= link_to 'orders', :controlloer => 'admin', :action => 'orderindex'%><br/>
-<% if @bidfee.nil?%>
-<%= link_to 'set bidding fee', :controller => 'admin', :action => 'newbidfee'%>
+<% if @bidfee == nil %>
+<%= link_to 'set bidding authorization amount', :controller => 'admin', :action => 'newbidfee'%>
 <% else%>
-<%= link_to 'edit bidding fee', :controller => 'admin', :action => 'edit'%>
+<%= link_to 'edit bidding authorization amount', :controller => 'admin', :action => 'edit'%>
 <%end%>
  
 
