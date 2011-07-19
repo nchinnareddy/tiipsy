@@ -6,10 +6,11 @@ class CreateServicelistings < ActiveRecord::Migration
   t.string    :location
   t.datetime  :availability
   t.float     :price
-  t.float     :buynow_price  
+  t.float     :buynow_price
   t.integer   :no_of_guests
   t.float     :highestbid, :default => 0.0
   t.string    :status, :default => "inactive"
+  t.integer   :winner_id, :default => false
 
   t.timestamps
     end

@@ -102,7 +102,6 @@ def number
   "#{Time.now.to_i}-#{rand(1_000_000)}"
 end
 
-
 def capture_payment
     
   transaction do

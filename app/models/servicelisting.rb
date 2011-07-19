@@ -51,6 +51,7 @@ def self.checkexpirations
               logger.debug "result value is: #{result}"
               if result == true
                  item.status = "bought"
+                 item.winner_id = highestbid.user_id
                  item.save
                end
              end

@@ -46,6 +46,7 @@ class CreditCardsController < ApplicationController
      if @credit_card.save
          @authorder =  Order.create(:amount => 100,
                         :description => "Authorization",
+                        :ip_address => request.remote_ip,
                         :first_name => @credit_card.first_name,
                         :last_name => @credit_card.last_name,
                         :card_type => @credit_card.card_type,
@@ -58,17 +59,7 @@ class CreditCardsController < ApplicationController
                         :country => @credit_card.country,
                         :zip => @credit_card.zip
                        )  
-       if @authorder.authorize_payment({ :ip => request.remote_ip,
-                          :billing_address => {
-                          :name     => @credit_card.first_name + @credit_card.last_name,
-                          :address1 => @credit_card.address,
-                          :city     => @credit_card.city,
-                          :state    => @credit_card.state_name,
-                          :country  => @credit_card.country,
-                          :zip      => @credit_card.zip
-                          }
-                         }
-                        )
+       if @authorder.authorize_payment
         current_user.bid_authorized = true
         current_user.save
          render :text => "You are authorized to bid now"
