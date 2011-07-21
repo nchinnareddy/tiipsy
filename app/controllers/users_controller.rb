@@ -35,6 +35,12 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])   
   end
 
+  def account_history
+    @user = User.find(params[:id])
+    @listings = Servicelisting.find(:all)
+    
+  end
+  
   def edit
     @user = User.find(params[:id])
     @authorizations = current_user.authorization if current_user

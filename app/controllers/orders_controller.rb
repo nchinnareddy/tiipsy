@@ -8,6 +8,7 @@ def create
   @order.user_id = current_user.id
   @order.ip_address = request.remote_ip
   @order.description = "Buynow"
+  ssl = Servicelisting.find(@order.servicelisting_id)
 
   if @order.save
     if !credit_card.valid?
@@ -16,6 +17,8 @@ def create
       if @order.purchase()
         current_user.bid_authorized = true
         current_user.save
+        ssl.winner_id = @order.user_id
+        ssl.save
         current_user.create_credit_card(:card_type          => @order.card_type,
                                         :card_number        => @order.card_number,
                                         :card_verification  => @order.card_verification,

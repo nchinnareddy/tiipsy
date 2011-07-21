@@ -1,0 +1,43 @@
+
+<p>
+  <b>Login:</b>
+  <%= @user.login %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @user.email %>
+</p>
+
+<table>
+  <tr>
+    <th>Service</th>
+    <th>What you did?</th>
+	<th> Bidding history </th>
+    <th></th>
+  </tr>
+<% @listings.each do |sl| %>
+  <tr>
+  	<% bidstring = "" %>
+	<% sl.bids.each do |bid|%>
+	<% if bid.user_id == current_user.id %>	
+	<% bidstring = bidstring + "$"+bid.bidprice.to_s + "|"%>
+	<%end%>
+	<%end%>
+	
+	<% if sl.winner_id == current_user.id%>
+	<td><%= sl.title %></td>
+	<td><%= "You purchased this service" %></td>
+	<td><%= bidstring %></td>
+	<%elsif bidstring != "" %>
+  	<td><%= sl.title %></td>
+	<%if sl.status == "active" %>
+    <td><%= "You are bidding on this service" %></td>
+	<%else%>
+	<td><%= "You had bid on this service,but did not win" %></td>
+	<%end%>	
+	<td><%= bidstring %></td>
+	<%end%>
+  </tr>
+<% end %>
+</table>
