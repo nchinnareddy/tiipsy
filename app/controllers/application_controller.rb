@@ -49,8 +49,7 @@ def require_bid_authorized
          redirect_to :controller => 'bid_auths', :action => 'authorize'
        end
     end
-    # if user has enough balance to bid please check here
-  #   render "checkout.html.erb"
+    #   render "checkout.html.erb"
   # render :text => "please authorize your paypal account to bid"  
 end
 

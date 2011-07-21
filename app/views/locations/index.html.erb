@@ -1,12 +1,4 @@
-<h1>All Createded location's on SIPPOD</h1>
 
-<br />
-
-<div id="map">
-	<div id="map_google">
-		<%= gmaps("markers" => {"data" => @json},
-     "map_options" => { "zoom" => 5, "provider" => "bing", "auto_adjust" => true,"center_on_user" => true }) %> 
-	</div>
-</div>
-
+<%= gmaps("markers" => {"data" => @json}, "map_options" => {"processing" => "json", "auto_adjust" => true, "auto_zoom" => false, "zoom" => 16}) %>
+  
 <%= link_to 'Back', servicelistings_path , :class => 'links'%>

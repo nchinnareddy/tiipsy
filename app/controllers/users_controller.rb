@@ -8,6 +8,7 @@ class UsersController < ApplicationController
   
   def new
     @user = User.new
+    
   end
   
   def create
@@ -40,9 +41,9 @@ class UsersController < ApplicationController
   end
   
   def update
-    @user = User.find(params[:id])
-    if !@user.social_login
-      if @user.update_attributes(params[:user])
+    @user = User.find(params[:id])    
+    if !@user.social_login      
+      if @user.update_attributes(params[:user])        
         flash[:notice] = "User details updated!"
         redirect_to user_path(@user.id)
       else

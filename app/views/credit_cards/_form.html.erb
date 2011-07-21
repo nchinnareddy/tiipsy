@@ -1,4 +1,4 @@
-<div id="checkout_site">
+<div id="buy_now">
 <%= form_for(@credit_card) do |f| %>
   <% if @credit_card.errors.any? %>
     <div id="error_explanation">
@@ -12,36 +12,73 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name %>
-  </div>
-  <div class="field">
-    <%= f.label :last_name %><br />
-    <%= f.text_field :last_name %>
-  </div>
-  <div class="field">
-    <%= f.label :card_type %><br />
-    <%= f.text_field :card_type %>
-  </div>
-  <div class="field">
-    <%= f.label :card_number %><br />
-    <%= f.text_field :card_number %>
-  </div>
-  <div class="field">
-    <%= f.label :card_verification %><br />
-    <%= f.text_field :card_verification %>
-  </div>
-  <div class="field">
-    <%= f.label :card_expires_on %><br />
-    <%= f.date_select :card_expires_on %>
-  </div>
-  <div class="field">
-    <%= f.label :user %><br />
-    <%= f.text_field :user %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <table width="100%" border="0">	
+  <tr>
+    <td colspan="3"><h3 align="center" style="color:#48B9E9"> You authorize your creditcard to bid OR Buy. Please enter your creditcard details</h3></td>
+  </tr>
+  <tr>
+    <td colspan="3"><h3 align="center" style="color:#48B9EE"> By Authorizing the account you are accepting the <%= link_to '"Terms & Conditions"' %></> </h3></td>
+  </tr>  
+  <tr>
+    <td width="40%"><div align="right" style="color:#FFFFFF">First Name </div></td>
+    <td width="1%"><strong style="color:#48B9E9">:</strong></td>
+    <td width="59%"><%= f.text_field :first_name %></td>
+  </tr>
+  <tr>
+    <td><div align="right" style="color:#FFFFFF">Last Name </div></td>
+    <td width="1%"><strong style="color:#48B9E9">:</strong></td>
+    <td><%= f.text_field :last_name %></td>
+  </tr>
+  <tr>
+    <td><div align="right" style="color:#FFFFFF">Card Type </div></td>
+    <td width="1%"><strong style="color:#48B9E9">:</strong></td>
+    <td><%= f.select :card_type, [["Visa", "visa"], ["MasterCard", "master"], ["Discover", "discover"], ["American Express", "american_express"]] %></td>
+  </tr>
+  <tr>
+    <td><div align="right" style="color:#FFFFFF">Card Number </div></td>
+    <td width="1%"><strong style="color:#48B9E9">:</strong></td>
+    <td><%= f.text_field :card_number %></td>
+  </tr>
+  <tr>
+    <td><div align="right" style="color:#FFFFFF">Card Verification Value(CVV) </div></td>
+    <td width="1%"><strong style="color:#48B9E9">:</strong></td>
+    <td><%= f.text_field :card_verification %></td>
+  </tr>
+  <tr>
+    <td><div align="right" style="color:#FFFFFF">Card Expires On </div></td>
+    <td width="1%"><strong style="color:#48B9E9">:</strong></td>
+    <td><%= f.date_select :card_expires_on, :discard_day => true, :start_year => Date.today.year, :end_year => (Date.today.year+10), :add_month_numbers => true %></td>
+  </tr>
+  <tr>
+    <td><div align="right" style="color:#FFFFFF">Address</div></td>
+    <td width="1%"><strong style="color:#48B9E9">:</strong></td>
+    <td><%= f.text_field :address %></td>
+  </tr>
+  <tr>
+    <td><div align="right" style="color:#FFFFFF">City</div></td>
+    <td width="1%"><strong style="color:#48B9E9">:</strong></td>
+    <td><%= f.text_field :city %></td>
+  </tr>
+  <tr>
+    <td><div align="right" style="color:#FFFFFF">State Name </div></td>
+    <td width="1%"><strong style="color:#48B9E9">:</strong></td>
+    <td><%= f.text_field :state_name %></td>
+  </tr>
+  <tr>
+    <td><div align="right" style="color:#FFFFFF">Country</div></td>
+    <td width="1%"><strong style="color:#48B9E9">:</strong></td>
+    <td><%= f.text_field :country %></td>
+  </tr>
+  <tr>
+    <td><div align="right" style="color:#FFFFFF">Zip</div></td>
+    <td width="1%"><strong style="color:#48B9E9">:</strong></td>
+    <td><%= f.text_field :zip %></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td><%= f.submit "Submit" %></td>
+  </tr>
+</table>
 <% end %>
 </div>

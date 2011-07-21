@@ -3,11 +3,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title><%= content_for?(:title) ? yield(:title) : "Get your bottle service now" %></title>
-    <%= stylesheet_link_tag "style" %>
-    <%= javascript_include_tag :defaults %>	
-    
+    <%= stylesheet_link_tag "style"%>
+    <%= javascript_include_tag :defaults %>
     <%= csrf_meta_tag %>
     <%= yield(:head) %>
+    <%= stylesheet_link_tag "style" %>
 </head>
 <body>
 <!--Start body Part -->	
@@ -22,7 +22,7 @@
 					<li><%= link_to "Sign Up", new_user_path %></li>
 					<li><%= link_to "Sign In", new_user_session_path %></li>
 				<% else %>
-					<li><%= link_to "My Profile", user_path(current_user) %></li>
+					<li><%= link_to "Profile", user_path(current_user) %></li>
 				<% if auth_provider.nil? %>
 					<li><%= link_to "Change Password", change_password_users_path %></li>				
 				<% end%>				
@@ -57,7 +57,7 @@
 	<div id="page">
 		<% flash.each do |name, msg| %>
     		<%= content_tag :div, msg, :id => "flash_#{name}" %>
-    	<% end %>
+    	<% end %>    	
 	  <%= yield %>
 	  <%= yield :scripts %>
 	
@@ -88,5 +88,6 @@
 	
 </div>
 <!-- End of Body Part -->
+
 </body>
 </html>

@@ -32,13 +32,8 @@ class BidsController < ApplicationController
   # GET /bids/new
   # GET /bids/new.xml
   def new
-    
-  @servicelisting = Servicelisting.find(params[:servicelisting_id])
-
- #   respond_to do |format|
- #     format.html # new.html.erb
-  #    format.xml  { render :xml => @bid }
-   # end
+    @servicelisting = Servicelisting.find(params[:servicelisting_id])
+        
   end
 
   # GET /bids/1/edit
