@@ -663,7 +663,7 @@ label.error {
     font-size: 17px;
     left: 520px;
     position: absolute;
-    top: 355px;
+    top: 345px;
 }
 
 #servicelisting p.address_fet {
@@ -675,10 +675,13 @@ label.error {
     overflow: auto;
     position: absolute;
     top: 385px;
-    width: 400px;
+    width: 200px;
 }
 
-#servicelisting_description{
+#servicelisting_description{	
+	-moz-border-radius: 3px 3px 3px;
+    background: -moz-linear-gradient(center top, #232323, #1A1B1B) repeat scroll 0 0 transparent;
+    border: 1px solid #202020;
 	position: relative;
 	width:915px;
 	color: #909099;
@@ -792,7 +795,6 @@ label.error {
 	position: relative;
 	width:928px;
 	overflow: hidden;
-	color:#000;
 }
 
 #failure{
@@ -993,16 +995,16 @@ label.error {
 #map_google {
     border: 1px solid #C43616;
     height: 400px;
-    left: 60px;
+    left: 440px;
     overflow: hidden;
     position: absolute;
     top: 5px;
-    width: 800px;
+    width: 500px;
 }
 
 #map_details {
-    height: 100px;
-    left: 100px;
+    height: 400px;
+    left: 10px;
     position: absolute;
     top: 5px;
     width: 415px;
@@ -1015,8 +1017,4 @@ label.error {
 	font-size:12px;
 	color: #7b7b7b;
 }
-
-
-
-
 

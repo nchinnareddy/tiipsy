@@ -25,11 +25,7 @@ class CreditCardsController < ApplicationController
   # GET /credit_cards/new.xml
   def new
     @credit_card = CreditCard.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @credit_card }
-    end
+    
   end
 
   # GET /credit_cards/1/edit

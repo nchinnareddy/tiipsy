@@ -15,9 +15,10 @@
     <td>$<%= @sl.buynow_price%></td>
   </tr>
   <tr>
-    <td><div align="right" style="color:#FFFFFF">Through gateway</div></td>
-    <td width="1%"><strong style="color:#48B9E9">:</strong></td>
-    <td><%= link_to "PAY AMOUNT", :action => 'checkoutcc', :controller => 'buynow', :class=>"links" , :id => @sl %></td>
+    <td colspan="3">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="3" align="center"><%= link_to image_tag('../images/images.jpg', :size => "600x100"), :action => 'checkoutcc', :controller => 'buynow', :class=>"links" , :id => @sl %></td>
   </tr>
    <tr>
     <td colspan="3">&nbsp;</td>

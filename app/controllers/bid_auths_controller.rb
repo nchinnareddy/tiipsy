@@ -10,7 +10,7 @@ class BidAuthsController < ApplicationController
 
 #   @order = Order.new
     @credit_card = CreditCard.new
-    flash[:notice] = "You authorize your creditcard to bid. Please enter your creditcard details"
+    #flash[:notice] = "You account is not authorized yet. Please authorize your account to start bidding"
     render 'credit_cards/new'
   end
 

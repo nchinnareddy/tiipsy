@@ -1,5 +1,6 @@
-<% javascript('jquery.countdown')%>
-<% stylesheet('jquery.countdown')%>
+ <% stylesheet('jquery.countdown', 'colorbox')%>
+<% javascript('jquery.countdown', 'jquery.colorbox-min')%>
+
 <!--
 <style type="text/css">
 	.countdown_amount {
@@ -8,8 +9,6 @@
 	}
 </style>
 -->
-
-
 
 <h1>Today's Auctions</h1>
 
@@ -21,7 +20,8 @@
 	<% time_now = DateTime.parse(DateTime.now.to_s)%>
 	<% time_until = availability_date - time_now %>
 	<% t = time_until.to_f %>
-	<% tt = t*(86400) %>	
+	<% tt = t*(86400) %></br>
+	<% tt_final = tt-19800 %>	
 	
 	<div id="servicelisting_index_r">
 	
@@ -29,12 +29,11 @@
 		<p class="picture"><%= image_tag servicelisting.photo.url, :size => "100x100" %></p>
 		<p class="more"><%= link_to 'More', servicelisting %></p>
 		<p class="map"><%= link_to 'Map', locations_path(:description => servicelisting.description, :address => servicelisting.location, :title => servicelisting.title) %></p>
-		<p class="address">Address:</p>
 		<p class="address_fet"><%= servicelisting.location %></p>
 		<p class="time_left">Time left to Bid</p>
 		<p class="time_left_fet">
-			<% if tt >= 0 %>
-				<div class="jdt" start="<%= tt %>" ></div>
+			<% if tt_final >= 0 %>
+				<div class="jdt" start="<%= tt_final %>" ></div>
 			<% else %>
 				Closed
 			<% end %>	
@@ -45,7 +44,9 @@
 			<p class="edit"><%= link_to 'Edit', edit_servicelisting_path(servicelisting) %></p>
 			<p class="delete"><%= link_to 'Destroy', servicelisting, :confirm => 'Are you sure?', :method => :delete %></p>
 		<%end%>
-		<p class="bid"><%= link_to 'Bid', new_servicelisting_bid_path(servicelisting), :class=>"links"  %></p>
+		<p class="bid">
+			<%= link_to 'Bid', new_servicelisting_bid_path(servicelisting), :class=>"links"  %>
+		</p>
 		<p class="buy"><%= link_to 'Buy',  buynow_buynow_index_path(:id => servicelisting), :class=>"links"  %></p>
 		<p class="higher">
 			<%@servicelisting = servicelisting %>
@@ -86,9 +87,8 @@
 
 <br />
 <% if isadmin? %>
-<%= link_to 'Administration', :controller => 'admin', :action => 'index' %>
+<%= link_to 'New Servicelisting', new_servicelisting_path, :class=>"links"  %>
 <%end%>
-
 
 <!-- <div class="jdt" start="12182400" product_id="aaaaaa"></div>
 
@@ -110,5 +110,10 @@
 			compact: true
 		});
 	});
+	
+	//for bid popup
+	$('.bid_popup').colorbox();
+	
+	
 </script>
 

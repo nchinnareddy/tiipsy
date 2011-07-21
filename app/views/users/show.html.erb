@@ -1,5 +1,5 @@
+<div id="checkout_site">
 <% title "#{@user.login}'s profile"%>
-
 
 <% if params[:provider] == 'facebook' -%>
   
@@ -56,6 +56,53 @@
 <% end -%>
 
 
+
+
+<table width="100%" border="0">
+  <tr>
+    <td>
+     <div align="right" style="color:#FFFFFF">
+    	<% if isadmin? %>
+			<%= link_to 'Administration', :controller => 'admin', :action => 'index' %>
+		<%end%>
+	 </div>
+	</td>
+    <td width="1%"></td>
+    <td><%= link_to 'Edit', edit_user_path %></td>
+  </tr>
+  <tr>
+    <td colspan="3"><h3 align="center" style="color:#48B9E9"> Your Profile details are given below.</h3></td>
+    </tr>
+  <tr>
+    <td width="40%"><div align="right" style="color:#FFFFFF">Login</div></td>
+    <td width="1%"><strong style="color:#48B9E9">:</strong></td>
+    <td width="59%"><%= @user.login %></td>
+  </tr>
+  <tr>
+    <td><div align="right" style="color:#FFFFFF">Email </div></td>
+    <td width="1%"><strong style="color:#48B9E9">:</strong></td>
+    <td><%= @user.email %></td>
+  </tr>
+  <tr>
+    <td><div align="right" style="color:#FFFFFF">City </div></td>
+    <td width="1%"><strong style="color:#48B9E9">:</strong></td>
+    <td><%= @user.city %></td>
+  </tr>
+  <tr>
+    <td><div align="right" style="color:#FFFFFF">State </div></td>
+    <td width="1%"><strong style="color:#48B9E9">:</strong></td>
+    <td><%= @user.state %></td>
+  </tr>
+  <tr>
+    <td><div align="right" style="color:#FFFFFF">Zip </div></td>
+    <td width="1%"><strong style="color:#48B9E9">:</strong></td>
+    <td><%= @user.zip %></td>
+  </tr>
+  
+</table>
+
+
+<!--
 <p>
   <b>Login:</b>
   <%= @user.login %>
@@ -72,3 +119,5 @@
 </p>
 
 <%= link_to 'Edit', edit_user_path %>
+-->
+</div>

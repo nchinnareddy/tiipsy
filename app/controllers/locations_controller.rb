@@ -1,16 +1,19 @@
 class LocationsController < ApplicationController
   # GET /locations
   # GET /locations.xml
+   layout "location"
+  
   def index
      @description = params[:description]
      @title = params[:title]
      @locations = Location.all
+    
      #@json = Location.all.to_gmaps4rails
      @json = Location.find(:all, :conditions => [ 'address=?', params[:address] ]).to_gmaps4rails
-
+   
     respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @locations }
+      format.html 
+      format.xml  { render :xml => @locations}
     end
   end
 

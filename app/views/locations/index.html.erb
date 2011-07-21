@@ -1,14 +1,4 @@
-<h1>All Createded location's on SIPPOD</h1>
 
-<br />
-
-<div id="map">
-	<div id="map_details">
-		<p class="details"><%= @description %></p>
-	</div>
-	<div id="map_google">
-		<%= gmaps4rails(@json) %>
-	</div>
-</div>
-
+<%= gmaps("markers" => {"data" => @json}, "map_options" => {"processing" => "json", "auto_adjust" => true, "auto_zoom" => false, "zoom" => 16}) %>
+  
 <%= link_to 'Back', servicelistings_path , :class => 'links'%>
