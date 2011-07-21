@@ -61,6 +61,15 @@ a:hover {
     top: 10px;
 }
 
+#search fieldset {
+	margin: 0;
+	padding: 0;
+	border: none;
+	position: absolute;
+        top: 10px;
+	left: 70px;
+}
+
 #menu {
     left: 950px;
     position: absolute;
@@ -92,7 +101,9 @@ a:hover {
     margin-bottom: 10px;
     padding: 10px;
     position:relative;
-}#footer {
+}
+
+#footer {
     background: -moz-linear-gradient(center top , #232323, #1A1B1B) repeat scroll 0 0 transparent;
     border: 1px solid #202020;
     border-radius: 3px 3px 3px 3px;
@@ -155,12 +166,6 @@ a:hover {
 	height: 41px;
 	margin: 0;
 	padding: 10px 0 0 30px;
-}
-
-#search fieldset {
-	margin: 0;
-	padding: 0;
-	border: none;
 }
 
 #search-text {
@@ -554,7 +559,8 @@ label.error {
 }
 
 .odd {
-   background: #e3f9fc;}
+   background: #e3f9fc;
+}
 
 .even {
 	background: #ebe8ff;
@@ -614,7 +620,8 @@ label.error {
     position: absolute;
     top: 80px;
 }
-#servicelisting p.address {
+
+#servicelisting p.address {
     color: #4DBCE9;
     font-family: Georgia,"Times New Roman",Times,serif;
     font-size: 17px;

@@ -32,15 +32,14 @@
 		</ul>
 	</div>
 	<!-- end #menu -->
+
+	  <% form_tag servicelistings_path, :method => 'get' do %>     
+        <%= text_field_tag :search, params[:search] %>
+        <%= submit_tag "Search", :name => nil %>      
+      <% end %>
+ 
+
 	
-	<div id="search">
-		<form method="get" action="">
-		<fieldset>
-			<input type="text" name="s" id="search-text" size="15" value="enter keywords here..." />
-			<input type="submit" id="search-submit" value="GO" />
-		</fieldset>
-		</form>
-	</div> 
 	
 	<!--   header -->
 	<div id="header-wrapper">

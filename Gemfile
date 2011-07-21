@@ -36,7 +36,7 @@ gem "mail", "2.2.15"
  gem 'capistrano'
  gem "linkedin", "~> 0.2.2"
  gem "gmaps4rails", "~> 0.7.7"
- gem 'will_paginate', '3.0.pre'
+ gem 'will_paginate', '3.0.pre2'
 
  #gem "crack", "~> 0.1.8"
 

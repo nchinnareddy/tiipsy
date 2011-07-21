@@ -5,7 +5,15 @@ class Servicelisting < ActiveRecord::Base
   has_many :orders, :dependent => :destroy
   
   has_attached_file :photo  
-    
+  
+def self.search(search)
+  if search
+    find(:all, :conditions => ['description LIKE ?', "%#{search}%"])
+  else
+    find(:all)
+  end
+end
+
 def self.checkexpirations
       logger.debug "entering checkexpirations"
       currenttime = DateTime.now
