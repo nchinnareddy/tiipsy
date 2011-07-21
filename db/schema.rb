@@ -108,7 +108,9 @@ ActiveRecord::Schema.define(:version => 20110719113925) do
 
   create_table "orders", :force => true do |t|
     t.integer  "user_id"
+    t.integer  "servicelisting_id"
     t.string   "description"
+    t.string   "ip_address"
     t.integer  "amount"
     t.string   "state"
     t.string   "express_token"
@@ -138,19 +140,13 @@ ActiveRecord::Schema.define(:version => 20110719113925) do
     t.integer  "no_of_guests"
     t.float    "highestbid",         :default => 0.0
     t.string   "status",             :default => "inactive"
+    t.integer  "winner_id",          :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
-  end
-
-  create_table "transactions", :force => true do |t|
-    t.float    "amount"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "twitter_followers", :force => true do |t|
