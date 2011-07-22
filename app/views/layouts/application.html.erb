@@ -33,14 +33,15 @@
 	</div>
 	<!-- end #menu -->
 
-  <% form_tag servicelistings_path, :method => 'get' do %>
-   <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "Search", :name => nil %>
-    <% end %>
- 
+	<div id="search">
+		
+  			<% form_tag servicelistings_path, :method => 'get' do %>
+   				<%= text_field_tag :search, params[:search] %>
+   				<%= submit_tag "Search", :name => nil %>
+    		<% end %>
+    	
+ 	</div>
 
-	
-	
 	<!--   header -->
 	<div id="header-wrapper">
 	  <div id="header">
