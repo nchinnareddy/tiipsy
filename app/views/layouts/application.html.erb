@@ -17,7 +17,7 @@
 	<!-- Start of Menu Part -->
 	<div id="menu">
 		<ul>
-			<li><%= link_to "Home", root_path %></li>
+			<li>
 				<% if !current_user %>
 					<li><%= link_to "Sign Up", new_user_path %></li>
 					<li><%= link_to "Sign In", new_user_session_path %></li>
@@ -32,7 +32,7 @@
 		</ul>
 	</div>
 	<!-- end #menu -->
-
+	<!--
 	<div id="search">
 		
   			<% form_tag servicelistings_path, :method => 'get' do %>
@@ -41,13 +41,13 @@
     		<% end %>
     	
  	</div>
-
+	-->
 	<!--   header -->
 	<div id="header-wrapper">
 	  <div id="header">
 		
 		<div id="logo">
-			<h1>Sippod</h1>
+			<h1><%= link_to image_tag("auth/logo.jpg", :size=>"300x60"), root_path %></h1>
 			<div style="font-size:16px;margin-left: 120px;">Get your bottle service now</div>
 		</div>
 	  </div>

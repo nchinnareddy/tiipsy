@@ -19,12 +19,11 @@
 
 <div id="servicelisting" >
 	<p class="title"><%= @servicelisting.title %></p>
-	<p class="picture"><%= image_tag @servicelisting.photo.url, :size => "320x320" %></p>
-	<p class="address">Address:</p>
-	<p class="address_fet"><%= @servicelisting.location %></p>
+	<p class="picture"><%= image_tag @servicelisting.photo.url, :size => "320x320", :style =>"border:1px solid #fff;-moz-border-radius:10px;-webkit-border-radius:10px;" %></p>
+	<p class="short_des"><%= @servicelisting.description %></p>
 	<p class="bid"><%= link_to 'Bid', new_servicelisting_bid_path(@servicelisting), :class=>"links"  %></p>
 	<p class="buy"><%= link_to 'Buy',  buynow_buynow_index_path(:id => @servicelisting), :class=>"links"  %></p>
-	<p class="current_value">Current Value</p>
+	<p class="current_value">Current Value:</p>
 	<p class="current_value_fet">$<%= @servicelisting.highestbid %></p>
 	<p class="time_left">Time left to Bid</p>
 	<table width="100px">
@@ -32,19 +31,39 @@
 			<% if tt_final >= 0 %>
 				<div class="jdt" start="<%= tt_final %>" ></div>
 			<% else %>
+			<p class="time_left_fet">
 				Closed
+			</p>
 			<% end %>	
 		</td></tr></table>
-	<p class="total_active_bidders">Total Active Bidders</p>
+	<p class="share">
+		Share Now:
+		<iframe id="facebook" src="http://www.facebook.com/plugins/like.php?href=YOUR_URL" scrolling="no" frameborder="0" style="border:none; width:450px; height:80px"></iframe>
+		
+		</p>	
+	<p class="total_active_bidders">Total Active Bidders:</p>
 	<p class="total_active_bidders_fet"><%= @servicelisting.no_of_guests %></p>
-	<div id="map_details">
-		...
+	</br>
+	<div id="details">
+		<p class="spot">The Spot</p>
+		<p class="maps"><iframe id="map_details" src="http://localhost:3000/locations?address=<%=@servicelisting.location%>"></iframe></p>
+		<p class="address_fet"><%= @servicelisting.location %></p>
+		<p class="info">The Info</p>
+		<p class="description_details"><%= @servicelisting.description %></p>
 	</div>
 </div>
 </br>
-<div id="login">
-	<%= @servicelisting.description %>
+
+<!--
+<div>
+	<iframe id="map_details" src="http://localhost:3000/locations?address=<%=@servicelisting.location%>"></iframe>
 </div>
+-->
+<!--
+<div id="map_details">
+		......
+</div>
+-->
 <!--
 <table width="800" border="0" style="border:1px #993300 solid "  align="center">
   <tr>
@@ -88,10 +107,18 @@
 <%= link_to 'Create Address Location on Siipod Map', new_location_path , :class=>"links" %>
 <% end %>
 
+<%= javascript_tag do%>
+	var sevice_location = "<%= @servicelisting.location%>";
+<% end%>
+
 <script type="text/javascript">
 	$('.jdt').countdown({
 		until:$('.jdt').attr('start'),
 		format:'DHMS',
 		compact: true
 	});	
+	
+	//$("#map_details").load("http://localhost:3000/locations?address="+encodeURI(sevice_location));
+	
+	
 </script>
