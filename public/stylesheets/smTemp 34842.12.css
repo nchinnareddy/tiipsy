@@ -9,7 +9,7 @@ body {
 */
 
 body {
-	background:-moz-linear-gradient(left , #202020, #262626) repeat scroll 0 0 transparent;
+    background: none repeat scroll 0 0 #262626;
     overflow: scroll;
     position: relative;
     color: #787878;
