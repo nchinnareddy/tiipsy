@@ -16,7 +16,14 @@
 	<% t = time_until.to_f %>
 	<% tt = t*(86400) %></br>
 	<% tt_final = tt-19800 %>
-
+<div id="servicelisting_links">
+	<ul>
+		<li><%= link_to "Today Deals", servicelistings_path %></li>
+		<li><%= link_to "All Deals", root_path %></li>
+		<li><%= link_to "More Cities", root_path %></li>		
+		<li><%= link_to "How it Works", root_path %></li>										
+	</ul>
+</div>
 <div id="servicelisting" >
 	<p class="title"><%= @servicelisting.title %></p>
 	<p class="picture"><%= image_tag @servicelisting.photo.url, :size => "320x320", :style =>"border:1px solid #fff;-moz-border-radius:10px;-webkit-border-radius:10px;" %></p>

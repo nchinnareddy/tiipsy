@@ -1,37 +1,14 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head>
-<title><%= content_for?(:title) ? yield(:title) : "Get your bottle service now" %></title>
-    <%= stylesheet_link_tag "style"%>
+  <title><%= content_for?(:title) ? yield(:title) : "Get your bottle service now" %></title>
+    <%= stylesheet_link_tag "style" %>
     <%= javascript_include_tag :defaults %>
     <%= csrf_meta_tag %>
     <%= yield(:head) %>
-    <%= stylesheet_link_tag "style" %>
 </head>
 <body>
-<!--Start body Part -->	
 <div id="wrapper">
-	
-	
-	<!-- Start of Menu Part -->
-	<div id="menu">
-		<ul>
-			<li>
-				<% if !current_user %>
-					<li><%= link_to "Sign Up", new_user_path %></li>
-					<li><%= link_to "Sign In", new_user_session_path %></li>
-				<% else %>
-					<li><%= link_to "Profile", user_path(current_user) %></li>
-					<li><%= link_to "My Account", account_history_users_path(:id => current_user.id) %></li>
-				<% if auth_provider.nil? %>
-					<li><%= link_to "Change Password", change_password_users_path %></li>				
-				<% end%>				
-			<li><%= link_to "Sign out", user_session_path(current_user), :method => :delete, :confirm => "Are you sure you want to signout?" %></li>
-		<% end %>
-		</ul>
-	</div>
-	<!-- end #menu -->
 	<!--
 	<div id="search">
 		
@@ -43,14 +20,28 @@
  	</div>
 	-->
 	<!--   header -->
-	<div id="header-wrapper">
-	  <div id="header">
-		
+	<div id="header">
 		<div id="logo">
 			<h1><%= link_to image_tag("auth/logo.jpg"), root_path %></h1>
 			<div style="font-size:16px;margin-left: 110px;">Get your bottle service now</div>
 		</div>
-	  </div>
+		<!-- Start of Menu Part -->
+		<div id="menu">
+		<ul>
+				<% if !current_user %>
+					<li><%= link_to "Sign Up", new_user_path %></li>
+					<li><%= link_to "Sign In", new_user_session_path %></li>
+				<% else %>
+					<li><%= link_to "Profile", user_path(current_user) %></li>
+					<li><%= link_to "My Account", account_history_users_path(:id => current_user.id) %></li>
+					<% if auth_provider.nil? %>
+						<li><%= link_to "Change Password", change_password_users_path %></li>				
+					<% end%>				
+					<li><%= link_to "Sign out", user_session_path(current_user), :method => :delete, :confirm => "Are you sure you want to signout?" %></li>
+				<% end %>
+		</ul>
+		</div>
+		<!-- end #menu -->
 	</div>
 	<!-- end #header -->
 	
@@ -79,16 +70,11 @@
 			<%= render :partial => "layouts/social_buttons"%>
 		</div>
 	 </div>	    	
-    <!-- end #footer -->
-
-	
-	  
+    <!-- end #footer -->  
 	</div>
 	<!--- End of Containt -->
 	
 	
 </div>
-<!-- End of Body Part -->
-
 </body>
 </html>

@@ -12,8 +12,6 @@ body {
     width: 100%;
     padding: 14px;
     background-color: #000000;
-    left:0px;
-    top:0px;
 }
 
 #menu {
@@ -34,7 +32,7 @@ body {
     overflow: auto;
     padding: 14px;
     position: absolute;
-    top: 60px;
+    top: 100px;
     width: 932px;
 }
 
@@ -645,6 +643,10 @@ label.error {
     padding-top: 10px;
 }
 
+
+
+
+
 #servicelisting_links ul li a {
     background: none repeat scroll 0 0 rgba(255, 255, 255, 0.9);
     border-radius: 3px 3px 3px 3px;
@@ -653,24 +655,28 @@ label.error {
     text-decoration: none;
     width: 200px;
 }
-
 #servicelisting_links ul li a:link {
     color: #1781C1;
 }
-
 #servicelisting_links ul li a:visited {
     color: #1781C1;
 }
-
 #servicelisting_links ul li a:active {
     margin: 0;
 }
-
 #servicelisting_links ul li a:hover, div.nav ul li.selected a {
     background-color: #E9BA26;
     color: #262626;
     font-weight: bold;
 }
+
+
+
+
+
+
+
+
 
 #buy_now{
 	-moz-border-radius: 3px 3px 3px;
@@ -746,6 +752,7 @@ label.error {
 	position: relative;
 	width:928px;
 	overflow: hidden;
+
 }
 
 #checkout_site{
@@ -766,8 +773,10 @@ label.error {
 	overflow: hidden;
 }
 
+
 #servicelisting_index{
 	position: relative;
+
 }
 
 #servicelisting_index_r {
