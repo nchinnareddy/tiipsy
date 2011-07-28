@@ -92,4 +92,9 @@ class CreditCardsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  def term_condiation
+    render :layout=>false
+  end
+  
 end

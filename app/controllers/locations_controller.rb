@@ -9,7 +9,7 @@ class LocationsController < ApplicationController
      @locations = Location.all
     
      #@json = Location.all.to_gmaps4rails
-     @json = Location.find(:all, :conditions => [ 'address=?', params[:address] ]).to_gmaps4rails
+     @json = Location.find(:all, :conditions => [ 'city=?', params[:city] ]).to_gmaps4rails
    
     respond_to do |format|
       format.html 

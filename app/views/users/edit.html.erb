@@ -3,6 +3,40 @@
 
 <%= form_for @user do |f| %>
   <%= f.error_messages %>
+  
+  <table border="0" align="center">
+  <tr>
+    <td colspan="3"><h3 align="center" style="color:#48B9E9"> Modify your details. </h3></td>
+  </tr>
+  <tr>
+    <td><div align="right" style="color:#FFFFFF"><%= f.label :email %></div></td>
+    <td width="7"><strong style="color:#48B9E9">:</strong></td>
+    <td><%= f.text_field :email %></td>
+  </tr>
+  <tr>
+    <td width="40%"><div align="right" style="color:#FFFFFF"><%= f.label :first_name %></div></td>
+    <td width="1%"><strong style="color:#48B9E9">:</strong></td>
+    <td width="59%"><%= f.text_field :first_name %></td>
+  </tr>
+  <tr>
+    <td width="40%"><div align="right" style="color:#FFFFFF"><%= f.label :last_name %></div></td>
+    <td width="1%"><strong style="color:#48B9E9">:</strong></td>
+    <td width="59%"><%= f.text_field :last_name %></td>
+  </tr>
+  <tr>
+    <td><div align="right" style="color:#FFFFFF"><%= f.label :city %></div></td>
+    <td width="7"><strong style="color:#48B9E9">:</strong></td>
+    <td><%= f.text_field :city %></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td width="7"></td>
+	<td><%= f.submit "Update" %></td>
+  </tr>
+</table>
+  
+  
+  <!--
   <p>
   	<%= f.label :login, "Username" %><br />
 	<%= f.text_field :login, :readonly => true %>
@@ -14,18 +48,12 @@
   <p>
 	<%= f.label :city %><br />
 	<%= f.text_field :city %>
-  </p>
-  <p>
-	<%= f.label :state %><br />
-	<%= f.text_field :state %>
-  </p>
-  <p>
-	<%= f.label :zip %><br />
-	<%= f.text_field :zip %>
   </p>	
   <p>
   	<%= f.submit "Update" %>
   </p>
+ --> 
+  
 <% end %>
 
 <br /><%= link_to "My Profile", user_path %>

@@ -1,0 +1,57 @@
+<div id="buy_now">
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @bar_bussiness.name %>
+</p>
+
+<p>
+  <b>Person of contact:</b>
+  <%= @bar_bussiness.person_of_contact %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @bar_bussiness.email %>
+</p>
+
+<p>
+  <b>Phone:</b>
+  <%= @bar_bussiness.phone %>
+</p>
+
+<p>
+  <b>Address:</b>
+  <%= @bar_bussiness.address %>
+</p>
+
+<p>
+  <b>Start date:</b>
+  <%= @bar_bussiness.start_date %>
+</p>
+
+<p>
+  <b>End date:</b>
+  <%= @bar_bussiness.end_date %>
+</p>
+
+<p>
+  <b>No of table:</b>
+  <%= @bar_bussiness.no_of_tabel %>
+</p>
+
+<p>
+  <b>Price:</b>
+  <%= @bar_bussiness.price %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @bar_bussiness.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_bar_bussiness_path(@bar_bussiness), :class=> 'links' %> |
+<%= link_to 'Back', bar_bussinesses_path, :class=> 'links' %>
+</div>

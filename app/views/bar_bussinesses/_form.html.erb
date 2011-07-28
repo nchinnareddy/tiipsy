@@ -1,0 +1,100 @@
+<% stylesheet('datePicker')%>
+<% javascript('jquery.datePicker', 'date')%>
+
+<%= form_for(@bar_bussiness) do |f| %>
+  <% if @bar_bussiness.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@bar_bussiness.errors.count, "error") %> prohibited this bar_bussiness from being saved:</h2>
+
+      <ul>
+      <% @bar_bussiness.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <table width="100%" border="0">	
+  <tr>
+    <td colspan="3"><h3 align="center" style="color:#48B9E9">Please enter your business details here.</h3></td>
+  </tr>
+  <tr>
+    <td colspan="3"><h4 align="center" style="color:#48B9E9">Basic Info.</h4></td>
+  </tr>  
+  <tr>
+    <td width="40%"><div align="right" style="color:#FFFFFF">Name </div></td>
+    <td width="1%"><strong style="color:#48B9E9">:</strong></td>
+    <td width="59%"><%= f.text_field :name %></td>
+  </tr>
+  <tr>
+    <td width="40%"><div align="right" style="color:#FFFFFF">Person of Contact</div></td>
+    <td width="1%"><strong style="color:#48B9E9">:</strong></td>
+    <td width="59%"><%= f.text_field :person_of_contact %></td>
+  </tr>
+  <tr>
+    <td width="40%"><div align="right" style="color:#FFFFFF">Email </div></td>
+    <td width="1%"><strong style="color:#48B9E9">:</strong></td>
+    <td width="59%"><%= f.text_field :email %></td>
+  </tr>
+  <tr>
+    <td width="40%"><div align="right" style="color:#FFFFFF">Phone </div></td>
+    <td width="1%"><strong style="color:#48B9E9">:</strong></td>
+    <td width="59%"><%= f.text_field :phone %></td>
+  </tr>
+  <tr>
+    <td width="40%"><div align="right" style="color:#FFFFFF">Address </div></td>
+    <td width="1%"><strong style="color:#48B9E9">:</strong></td>
+    <td width="59%"><%= f.text_area :address, :rows => '3', :cols => '22' %></td>
+  </tr>
+  <tr>
+    <td colspan="3"><h4 align="center" style="color:#48B9E9">Table Details.</h4></td>
+  </tr>
+  <tr>
+    <td width="40%"><div align="right" style="color:#FFFFFF">Start Date </div></td>
+    <td width="1%"><strong style="color:#48B9E9">:</strong></td>
+    <td width="59%"><%= f.text_field :start_date, :class=>"date-pick" %></td>
+  </tr><tr>
+    <td width="40%"><div align="right" style="color:#FFFFFF">End Date </div></td>
+    <td width="1%"><strong style="color:#48B9E9">:</strong></td>
+    <td width="59%"><%= f.text_field :end_date, :class=>"date-pick" %></td>
+  </tr>
+  <tr>
+    <td width="40%"><div align="right" style="color:#FFFFFF">No of table Available </div></td>
+    <td width="1%"><strong style="color:#48B9E9">:</strong></td>
+    <td width="59%">
+    	<%= f.select :no_of_tabel, options_for_select([
+    														["Select", "0"],
+    														["1", "1"],
+    														["2", "2"],
+    														["3", "3"],
+    														["4", "4"],
+    														["5", "5"],
+    														["6", "6"],
+    														["7", "7"],
+    														["8", "8"],
+    														["9", "9"],
+    														["10", "10"]
+    													 ]), :style => "width:197px" %>
+    </td>
+  </tr>
+  <tr>
+    <td width="40%"><div align="right" style="color:#FFFFFF">Price </div></td>
+    <td width="1%"><strong style="color:#48B9E9">:</strong></td>
+    <td width="59%"><%= f.text_field :price %></td>
+  </tr>
+  <tr>
+    <td width="40%"><div align="right" style="color:#FFFFFF">Description </div></td>
+    <td width="1%"><strong style="color:#48B9E9">:</strong></td>
+    <td width="59%"><%= f.text_area :description, :rows => '3', :cols => '22' %></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td><%= f.submit "Submit" %></td>
+  </tr>
+</table>
+<% end %>
+
+<script type="text/javascript">
+	$('.date-pick').datePicker({autoFocusNextInput: true});
+</script>

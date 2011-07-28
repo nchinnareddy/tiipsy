@@ -34,7 +34,7 @@ body {
     overflow: auto;
     padding: 14px;
     position: absolute;
-    top: 80px;
+    top: 70px;
     width: 932px;
 }
 
@@ -68,7 +68,6 @@ ul, ol {
 
 a {
 	text-decoration: none;
-	border: 0 none;
 	color: #B94E0E;
 }
 

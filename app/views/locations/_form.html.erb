@@ -10,17 +10,49 @@
       </ul>
     </div>
   <% end %>
-
+	
+<table width="385" border="0" align="center">
+  <tr>
+    <td colspan="3"><h3 align="center" style="color:#48B9E9"> Please enter MAP details. </h3></td>
+  </tr>
+  <tr>
+    <td width="111"><div align="right" style="color:#000000"><%= f.label :name %></div></td>
+    <td width="7"><strong style="color:#48B9E9">:</strong></td>
+    <td width="253"><%= f.text_field :name %></td>
+  </tr>
+  <tr>
+    <td><div align="right" style="color:#000000"><%= f.label :city %></div></td>
+    <td width="7"><strong style="color:#48B9E9">:</strong></td>
+    <td><%= f.text_field :city %></td>
+  </tr>
+  <tr>
+    <td><div align="right" style="color:#000000"><%= f.label :address %></div></td>
+    <td width="7"><strong style="color:#48B9E9">:</strong></td>
+    <td><%= f.text_field :address %></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td width="7"></td>
+	<td><%= f.submit %></td>
+  </tr>
+</table>	
+	
+<!--	
   <div class="field">
-    <%= f.label :name %><br />
+    <%= f.label :name %>
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :address %><br />
+    <%= f.label :city %>
+    <%= f.text_field :city %>
+  </div>
+  <div class="field">
+    <%= f.label :address %>
     <%= f.text_field :address %>
   </div>
   
   <div class="actions">
     <%= f.submit %>
   </div>
+ --> 
 <% end %>

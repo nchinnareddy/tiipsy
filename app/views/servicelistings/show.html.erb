@@ -1,5 +1,5 @@
-<% javascript('jquery.countdown')%>
-<% stylesheet('jquery.countdown')%>
+<% javascript('jquery.countdown','jquery.colorbox-min')%>
+<% stylesheet('jquery.countdown','colorbox')%>
 <!--
 <style type="text/css">
 	.countdown_amount {
@@ -111,7 +111,7 @@
 
 <%= link_to 'Back', servicelistings_path , :class=>"links" %>
 <% if isadmin? %>
-<%= link_to 'Create Address Location on Siipod Map', new_location_path , :class=>"links" %>
+<%= link_to 'Create Address Location on Siipod Map', new_location_path , :class=>"links create_location_popup"  %>
 <% end %>
 
 <%= javascript_tag do%>
@@ -126,6 +126,7 @@
 	});	
 	
 	//$("#map_details").load("http://localhost:3000/locations?address="+encodeURI(sevice_location));
-	
+	//for create_location popup
+	$('.create_location_popup').colorbox();
 	
 </script>

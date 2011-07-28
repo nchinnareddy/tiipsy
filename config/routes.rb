@@ -1,5 +1,7 @@
 Socialstock::Application.routes.draw do
   
+  resources :bar_bussinesses
+
   resources :locations
 
   resources :contacts
@@ -13,6 +15,8 @@ Socialstock::Application.routes.draw do
   get "auth_linkedin/index"
 
   get "auth_linkedin/callback"
+  
+  get "credit_cards/term_condiation"
 
   resources :credit_cards
 

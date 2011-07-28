@@ -1,3 +1,6 @@
+<% javascript('jquery.colorbox-min') %>
+<% stylesheet('colorbox') %>
+
 <div id="buy_now">
 <%= form_for(@credit_card) do |f| %>
   <% if @credit_card.errors.any? %>
@@ -17,7 +20,7 @@
     <td colspan="3"><h3 align="center" style="color:#48B9E9"> You account is not authorized yet. Please authorize your account to start bidding</h3></td>
   </tr>
   <tr>
-    <td colspan="3"><h3 align="center" style="color:#48B9EE"> By Authorizing the account you are accepting the <%= link_to '"Terms & Conditions"' %></> </h3></td>
+    <td colspan="3"><h3 align="center" style="color:#48B9EE"> By Authorizing the account you are accepting the <%= link_to '"Terms & Conditions"',  credit_cards_term_condiation_path , :class=>'term_condition' %></> </h3></td>
   </tr>
   <tr>
     <td width="40%"><div align="right" style="color:#FFFFFF">First Name </div></td>
@@ -82,3 +85,7 @@
 </table>
 <% end %>
 </div>
+
+<script type='text/javascript'>
+	$('.term_condition').colorbox();
+</script>

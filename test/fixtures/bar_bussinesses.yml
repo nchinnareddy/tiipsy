@@ -1,0 +1,25 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  person_of_contact: 1
+  email: MyString
+  phone: 1
+  address: MyText
+  start_date: 2011-07-27 11:54:59
+  end_date: 2011-07-27 11:54:59
+  no_of_tabel: 1
+  price: 1
+  description: MyString
+
+two:
+  name: MyString
+  person_of_contact: 1
+  email: MyString
+  phone: 1
+  address: MyText
+  start_date: 2011-07-27 11:54:59
+  end_date: 2011-07-27 11:54:59
+  no_of_tabel: 1
+  price: 1
+  description: MyString

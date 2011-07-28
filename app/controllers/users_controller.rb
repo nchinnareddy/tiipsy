@@ -56,8 +56,8 @@ class UsersController < ApplicationController
         render :action => :edit
       end
     else
-      @user.email = params[:user][:email]
-      if @user.save        
+      
+      if @user.update_attributes(params[:user])  
         flash[:notice] = "User details updated!"
         redirect_to user_path(@user.id)
       else
@@ -107,7 +107,7 @@ class UsersController < ApplicationController
   end  
   
   def resend_activation
-        
+     render :layout=>false   
   end 
   
   def resent_activation

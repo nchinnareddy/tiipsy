@@ -3,6 +3,7 @@ class PasswordResetsController < ApplicationController
   before_filter :load_user_using_perishable_token, :only => [ :edit, :update ]
   
   def new
+    render :layout=>false
   end
 
   def create

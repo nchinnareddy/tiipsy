@@ -1,0 +1,43 @@
+<div id="buy_now">
+<h1>Listing bar_bussinesses</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Person of contact</th>
+    <th>Email</th>
+    <th>Phone</th>
+    <th>Address</th>
+    <th>Start date</th>
+    <th>End date</th>
+    <th>No of tabel</th>
+    <th>Price</th>
+    <th>Description</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @bar_bussinesses.each do |bar_bussiness| %>
+  <tr>
+    <td><%= bar_bussiness.name %></td>
+    <td><%= bar_bussiness.person_of_contact %></td>
+    <td><%= bar_bussiness.email %></td>
+    <td><%= bar_bussiness.phone %></td>
+    <td><%= bar_bussiness.address %></td>
+    <td><%= bar_bussiness.start_date %></td>
+    <td><%= bar_bussiness.end_date %></td>
+    <td><%= bar_bussiness.no_of_tabel %></td>
+    <td><%= bar_bussiness.price %></td>
+    <td><%= bar_bussiness.description %></td>
+    <td><%= link_to 'Show', bar_bussiness, :class=> 'links' %></td>
+    <td><%= link_to 'Edit', edit_bar_bussiness_path(bar_bussiness), :class=> 'links' %></td>
+    <td><%= link_to 'Destroy', bar_bussiness, :confirm => 'Are you sure?', :method => :delete, :class=> 'links' %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Bar bussiness', new_bar_bussiness_path, :class=> 'links' %>
+</div>
