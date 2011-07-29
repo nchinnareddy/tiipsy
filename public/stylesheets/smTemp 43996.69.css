@@ -174,16 +174,16 @@ a:hover {
 /* Page */
 
 .links {
-    background: none repeat scroll 0 0 #46A5E5;
-    border-radius: 3px 3px 3px 3px;
-    color: #FFFFFF;
-    display: block;
-    font-size: 10px;
-    margin: 20px 0;
-    padding: 5px;
-    text-align: center;
-    text-transform: uppercase;
-    width: 130px;
+	display: block;
+	width: 130px;
+	margin: 20px 0px;
+	padding: 5px;
+	background: #4DBCE9;
+	text-align: center;
+	text-transform: uppercase;
+	font-size: 10px;
+    color: #ffffff;
+     border-radius: 3px 3px 3px 3px;
 }
 
 
@@ -414,7 +414,7 @@ label.error {
 }
 
 #servicelisting p.title {
-    color: #A1C436;
+    color: #2A2A2A;
     font-family: Times,"Times New Roman",serif;
     font-size: 2em;
     left: 340px;
@@ -478,9 +478,9 @@ label.error {
     top: 170px;
 }
 #servicelisting p.current_value_fet {
-    color: #A1C436;
-    font-family: "arial rounded mt bold",helvetica,arial,sans-serif;
-    font-size: 32px;
+    color: #4DBCE9;
+    font-family: Georgia,"Times New Roman",Times,serif;
+    font-size: 26px;
     left: 470px;
     position: absolute;
     top: 160px;
@@ -498,7 +498,7 @@ label.error {
     color: #4DBCE9;
     font-family: Georgia,"Times New Roman",Times,serif;
     font-size: 20px;
-    left: 410px;
+    left: 440px;
     position: absolute;
     top: 230px;
     width: 160px;
@@ -507,7 +507,7 @@ label.error {
 #servicelisting .jdt{
 	position: absolute;
 	top:230px;
-	left:370px;
+	left:380px;
 	width:200px;
 }
 
@@ -516,7 +516,7 @@ label.error {
     font-size: 18px;
     left: 340px;
     position: absolute;
-    top: 290px;
+    top: 258px;
 }
 
 #facebook{
@@ -536,15 +536,15 @@ label.error {
     font-size: 18px;
     left: 365px;
     position: absolute;
-    top: 260px;
+    top: 290px;
 }
 #servicelisting p.total_active_bidders_fet {
     color: #4DBCE9;
     font-family: Georgia,"Times New Roman",Times,serif;
     font-size: 26px;
-    left: 490px;
+    left: 535px;
     position: absolute;
-    top: 250px;
+    top: 280px;
 }
 
 #details{
