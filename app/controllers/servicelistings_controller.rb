@@ -11,7 +11,9 @@ class ServicelistingsController < ApplicationController
   # GET /servicelistings
   # GET /servicelistings.xml
   def index
-    @servicelistings=Servicelisting.search(params[:search]).paginate :page=>params[:page], :order=>'updated_at', :per_page=>'3'
+    @location = Geokit::Geocoders::IpGeocoder.geocode(request.remote_ip)
+    @city = @location.city
+    @servicelistings=Servicelisting.search(params[:search]).paginate :page=>params[:page], :conditions => [ 'city=?', @city] , :order=>'updated_at', :per_page=>'3'
 
   end
 

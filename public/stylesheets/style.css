@@ -1,10 +1,16 @@
-body {
-	background:none repeat scroll 0 0 #262626;
-    overflow: scroll;
+ body {
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: transparent;
+    background-image: url("http://a3.ak.lscdn.net/imgs/d403b326-7f1d-4643-a208-37a5123497cb/original_q60.jpg");
+    background-origin: padding-box;
+    background-position: 0 0;
+    background-repeat: repeat;
+    background-size: 100% auto;
     color: #787878;
     font-family: Arial,Helvetica,sans-serif;
-    font-size: .8em;
-   
+    font-size: 0.8em;
+    overflow: scroll;
 }
 
 #header {
@@ -34,7 +40,7 @@ body {
     overflow: auto;
     padding: 14px;
     position: absolute;
-    top: 70px;
+    top: 80px;
     width: 940px;
 }
 
