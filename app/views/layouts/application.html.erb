@@ -3,7 +3,8 @@
 <head>
   <title><%= content_for?(:title) ? yield(:title) : "Get your bottle service now" %></title>
     <%= stylesheet_link_tag "style" %>
-    <%= javascript_include_tag :defaults %>
+    <%= javascript_include_tag "jquery" %>
+    <%= javascript_include_tag :defaults, "rails.validations", "rails.validations.custom" %>
     <%= csrf_meta_tag %>
     <%= yield(:head) %>
 </head>
