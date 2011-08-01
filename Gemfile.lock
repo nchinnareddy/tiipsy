@@ -66,6 +66,7 @@ GEM
       httpclient (>= 2.2.0.2)
       rack-oauth2 (>= 0.8.0)
     gdata (1.1.1)
+    geokit (1.6.0)
     gmaps4rails (0.8.8)
       crack
     hashie (1.0.0)
@@ -206,6 +207,7 @@ DEPENDENCIES
   capistrano
   contacts
   fb_graph
+  geokit (~> 1.6.0)
   gmaps4rails (~> 0.8.8)
   hpricot
   linkedin (~> 0.2.2)
