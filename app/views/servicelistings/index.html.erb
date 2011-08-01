@@ -19,6 +19,7 @@
     	<%= select_tag :city, options_for_select([
     														
 [@city, "0"],
+["Agra", "agra"],
 ["Bettiah", "Bettiah"],    														
 ["Aberdeen, SD (ABR)","ABR"],	
 ["Abilene, TX (ABI)","ABI"],	
@@ -861,7 +862,7 @@
 	function process (city) 
 	{
 		alert('Your are going to visit '+city+ ' city servicelisting');
-		window.location = "http://localhost:3000/?city=" + city; 
+		window.location = "http://173.255.195.108:8083/?city=" + city; 
 	} 
 	
 	
