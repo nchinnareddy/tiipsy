@@ -1,7 +1,7 @@
 <% stylesheet('datePicker')%>
 <% javascript('jquery.datePicker', 'date')%>
 
-<%= form_for(@bar_bussiness) do |f| %>
+<%= form_for @bar_bussiness, :validate => true do |f| %>
   <% if @bar_bussiness.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@bar_bussiness.errors.count, "error") %> prohibited this bar_bussiness from being saved:</h2>
@@ -22,7 +22,7 @@
     <td colspan="3"><h4 align="center" style="color:#48B9E9">Basic Info.</h4></td>
   </tr>  
   <tr>
-    <td width="40%"><div align="right" style="color:#FFFFFF">Name </div></td>
+    <td width="40%"><div align="right" style="color:#FFFFFF">Bar Name </div></td>
     <td width="1%"><strong style="color:#48B9E9">:</strong></td>
     <td width="59%"><%= f.text_field :name %></td>
   </tr>
