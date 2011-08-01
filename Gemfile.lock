@@ -49,6 +49,7 @@ GEM
       net-sftp (>= 2.0.0)
       net-ssh (>= 2.0.14)
       net-ssh-gateway (>= 1.1.0)
+    client_side_validations (3.1.0)
     cocaine (0.1.0)
     contacts (1.2.4)
       gdata (= 1.1.1)
@@ -205,6 +206,7 @@ DEPENDENCIES
   activemerchant
   authlogic
   capistrano
+  client_side_validations (~> 3.1.0)
   contacts
   fb_graph
   geokit (~> 1.6.0)

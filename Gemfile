@@ -38,6 +38,7 @@ gem "mail", "2.2.15"
  gem "gmaps4rails", "~> 0.8.8"
  gem 'will_paginate', '3.0.pre2'
  gem "geokit", "~> 1.6.0"
+ gem "client_side_validations", "~> 3.1.0"
  
 
  #gem "crack", "~> 0.1.8"

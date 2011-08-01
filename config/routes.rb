@@ -1,5 +1,7 @@
 Socialstock::Application.routes.draw do
   
+  resources :albums
+
   resources :bar_bussinesses
 
   resources :locations
