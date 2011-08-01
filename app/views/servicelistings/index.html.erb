@@ -10,7 +10,6 @@
 </style>
 -->
 <%= @city %>
-<%= @location %>
 
 <table border="0" align="center">
   <tr>
@@ -18,8 +17,9 @@
     <td>
      <h1 align="center" style="color:#fff"> 
     	<%= select_tag :city, options_for_select([
-    														['servicelisting.city', "0"],
     														
+[@city, "0"],
+["Bettiah", "Bettiah"],    														
 ["Aberdeen, SD (ABR)","ABR"],	
 ["Abilene, TX (ABI)","ABI"],	
 ["Adak Island, AK (ADK)","ADK"],	
@@ -753,7 +753,8 @@
 ["COD","Yellowstone/Cody, WY (COD)",],	
 ["YNG","Youngstown, OH (YNG)",],	
 ["YUM","Yuma, AZ (YUM)",]
- 	]), :style => "width:197px" %>	
+ 	]), :style => "width:197px", :onChange => "process(this.value);"
+ %>	
      </h1>
     </td>
   </tr>
@@ -856,6 +857,12 @@
 	
 	//for bid popup
 	$('.bid_popup').colorbox();
+	
+	function process (city) 
+	{
+		alert('Your are going to visit '+city+ ' city servicelisting');
+		window.location = "http://localhost:3000/?city=" + city; 
+	} 
 	
 	
 </script>
