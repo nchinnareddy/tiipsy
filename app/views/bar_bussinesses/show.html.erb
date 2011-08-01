@@ -1,6 +1,72 @@
 <div id="buy_now">
 <p id="notice"><%= notice %></p>
 
+
+<table width="100%" border="0">	
+  <tr>
+    <td colspan="3"><h3 align="center" style="color:#48B9E9">Your business details are here.</h3></td>
+  </tr>
+  <tr>
+    <td colspan="3"><h4 align="center" style="color:#48B9E9">Basic Info.</h4></td>
+  </tr>  
+  <tr>
+    <td width="40%"><div align="right" style="color:#FFFFFF">Bar Name </div></td>
+    <td width="1%"><strong style="color:#48B9E9">:</strong></td>
+    <td width="59%"><%= @bar_bussiness.name %></td>
+  </tr>
+  <tr>
+    <td width="40%"><div align="right" style="color:#FFFFFF">Person of Contact</div></td>
+    <td width="1%"><strong style="color:#48B9E9">:</strong></td>
+    <td width="59%"><%= @bar_bussiness.person_of_contact %></td>
+  </tr>
+  <tr>
+    <td width="40%"><div align="right" style="color:#FFFFFF">Email </div></td>
+    <td width="1%"><strong style="color:#48B9E9">:</strong></td>
+    <td width="59%"><%= @bar_bussiness.email %></td>
+  </tr>
+  <tr>
+    <td width="40%"><div align="right" style="color:#FFFFFF">Phone </div></td>
+    <td width="1%"><strong style="color:#48B9E9">:</strong></td>
+    <td width="59%"><%= @bar_bussiness.phone %></td>
+  </tr>
+  <tr>
+    <td width="40%"><div align="right" style="color:#FFFFFF">Address </div></td>
+    <td width="1%"><strong style="color:#48B9E9">:</strong></td>
+    <td width="59%"><%= @bar_bussiness.address %></td>
+  </tr>
+  <tr>
+    <td colspan="3"><h4 align="center" style="color:#48B9E9">Table Details.</h4></td>
+  </tr>
+  <tr>
+    <td width="40%"><div align="right" style="color:#FFFFFF">Start Date </div></td>
+    <td width="1%"><strong style="color:#48B9E9">:</strong></td>
+    <td width="59%"><%= @bar_bussiness.start_date %></td>
+  </tr><tr>
+    <td width="40%"><div align="right" style="color:#FFFFFF">End Date </div></td>
+    <td width="1%"><strong style="color:#48B9E9">:</strong></td>
+    <td width="59%"><%= @bar_bussiness.end_date %></td>
+  </tr>
+  <tr>
+    <td width="40%"><div align="right" style="color:#FFFFFF">No of table Available </div></td>
+    <td width="1%"><strong style="color:#48B9E9">:</strong></td>
+    <td width="59%">
+    	<%= @bar_bussiness.no_of_tabel %>
+    </td>
+  </tr>
+  <tr>
+    <td width="40%"><div align="right" style="color:#FFFFFF">Price </div></td>
+    <td width="1%"><strong style="color:#48B9E9">:</strong></td>
+    <td width="59%"><%= @bar_bussiness.price %></td>
+  </tr>
+  <tr>
+    <td width="40%"><div align="right" style="color:#FFFFFF">Description </div></td>
+    <td width="1%"><strong style="color:#48B9E9">:</strong></td>
+    <td width="59%"><%= @bar_bussiness.description %></td>
+  </tr>
+</table>
+
+
+<!--
 <p>
   <b>Name:</b>
   <%= @bar_bussiness.name %>
@@ -50,8 +116,7 @@
   <b>Description:</b>
   <%= @bar_bussiness.description %>
 </p>
-
+-->
 
 <%= link_to 'Edit', edit_bar_bussiness_path(@bar_bussiness), :class=> 'links' %> |
-<%= link_to 'Back', bar_bussinesses_path, :class=> 'links' %>
 </div>

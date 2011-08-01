@@ -41,11 +41,13 @@ class BarBussinessesController < ApplicationController
   # POST /bar_bussinesses.xml
   def create
     @bar_bussiness = BarBussiness.new(params[:bar_bussiness])
-
+    email=@bar_bussiness.email
     respond_to do |format|
       if @bar_bussiness.save
         format.html { redirect_to(@bar_bussiness, :notice => 'Bar bussiness was successfully created.') }
         format.xml  { render :xml => @bar_bussiness, :status => :created, :location => @bar_bussiness }
+        Notifier.bar_onwer_confirmation_mail(email).deliver
+        Notifier.bar_onwer_confirmation_mail_to_admin().deliver
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @bar_bussiness.errors, :status => :unprocessable_entity }
