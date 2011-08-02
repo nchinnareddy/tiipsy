@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110801134038) do
+ActiveRecord::Schema.define(:version => 20110802114858) do
 
   create_table "admins", :force => true do |t|
     t.float    "bidding_fee"
@@ -48,6 +48,12 @@ ActiveRecord::Schema.define(:version => 20110801134038) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "website"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+    t.integer  "status",             :default => 0
   end
 
   create_table "bids", :force => true do |t|

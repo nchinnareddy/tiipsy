@@ -26,7 +26,20 @@
   <tr>
     <td><div align="right" style="color:#FFFFFF"><%= f.label :city %></div></td>
     <td width="7"><strong style="color:#48B9E9">:</strong></td>
-    <td><%= f.text_field :city %></td>
+    <td><%= f.select :city, options_for_select([
+    														[@user.city, "0"],
+    														
+["Austin, TX (AUS)","AUS"],
+["Chicago, IL - All airports (CHI)","CHI"],	
+["Chicago, IL - Midway (MDW)","MDW"],	
+["Chicago, IL - O'Hare (ORD)","ORD"], 
+["Dallas, TX - Love Field (DAL)","DAL"],	
+["Dallas, TX - Dallas/Ft Worth Intl. (DFW)","DFW"],
+["Houston, TX - All airports (HOU)","HOU"],	
+["Houston, TX - Hobby (HOU)","HOU"],	
+["Houston, TX - Intercontinental (IAH)","IAH"],
+["San Antonio, TX (SAT)","SAT"] 														
+ 	]), :style => "width:197px" %></td>
   </tr>
   <tr>
     <td></td>

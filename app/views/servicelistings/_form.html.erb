@@ -25,7 +25,20 @@
   </div>
   <div class="field">
     <%= f.label :city %><br />
-    <%= f.text_field :city %>
+    <%= f.select :city, options_for_select([
+    														[@servicelisting.city, "0"],
+    														
+["Austin, TX (AUS)","AUS"],
+["Chicago, IL - All airports (CHI)","CHI"],	
+["Chicago, IL - Midway (MDW)","MDW"],	
+["Chicago, IL - O'Hare (ORD)","ORD"], 
+["Dallas, TX - Love Field (DAL)","DAL"],	
+["Dallas, TX - Dallas/Ft Worth Intl. (DFW)","DFW"],
+["Houston, TX - All airports (HOU)","HOU"],	
+["Houston, TX - Hobby (HOU)","HOU"],	
+["Houston, TX - Intercontinental (IAH)","IAH"],
+["San Antonio, TX (SAT)","SAT"] 														
+ 	]), :style => "width:197px" %>
   </div>
   <div class="field">
     <%= f.label :availability %><br />

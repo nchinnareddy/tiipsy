@@ -44,7 +44,7 @@ class BarBussinessesController < ApplicationController
     email=@bar_bussiness.email
     respond_to do |format|
       if @bar_bussiness.save
-        format.html { redirect_to(@bar_bussiness, :notice => 'Bar bussiness was successfully created.') }
+        format.html { redirect_to(@bar_bussiness, :notice => '') }
         format.xml  { render :xml => @bar_bussiness, :status => :created, :location => @bar_bussiness }
         Notifier.bar_onwer_confirmation_mail(email).deliver
         Notifier.bar_onwer_confirmation_mail_to_admin().deliver
