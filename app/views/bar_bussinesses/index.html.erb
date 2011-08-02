@@ -1,4 +1,66 @@
 <div id="buy_now">
+<table width="100%"  border="0" align="center" cellpadding="0" cellspacing="0">
+	
+	<tr>
+    <td colspan="6"><h3 align="center" style="color:#48B9E9"><div style="background:#747016;
+    width: 30%;
+    padding:0.3em;
+    font: 0.9em Verdana, Arial, Helvetica, sans-serif;
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    height:26px;"> New Bar Bussinesses Report</div> </h3></td>
+  </tr>	
+	
+          
+			  <tr bgcolor="#000000" class="BoldRED">
+
+                <td width="13%" height="25" bgcolor="#DDDDDD" class="headtext13" style="border-bottom:#666666 1px solid;border-right:#666666 solid 1px;border-left:#666666 1px solid;"><div align="left" class="style22">
+                  <div align="center"><span style="font-size:12px; font-family:Arial, Helvetica, sans-serif;">Sl. No.</span></div>
+                </div></td>
+        
+                <td width="10%" height="25" bgcolor="#DDDDDD" class="headtext13" style="border-bottom:#666666 1px solid;border-right:#666666 solid 1px;"><div align="left" class="style22">
+                  <div align="center"><span style="font-size:12px; font-family:Arial, Helvetica, sans-serif;">Bar Name</span></div>
+                  
+                </div></td>
+                <td width="12%" bgcolor="#DDDDDD" class="headtext13" style="border-bottom:#666666 1px solid;border-right:#666666 solid 1px;"><div align="left" class="style22">
+                  <div align="center"><span style="font-size:12px; font-family:Arial, Helvetica, sans-serif;">Person of Contact </span></div>
+                </div></td>
+                <td width="10%" height="25" bgcolor="#DDDDDD" class="headtext13" style="border-bottom:#666666 1px solid;border-right:#666666 solid 1px;"><div align="left" class="style22">
+                  <div align="center"><span style="font-size:12px; font-family:Arial, Helvetica, sans-serif;">Website </span></div>
+                </div></td>
+			    <td width="10%" height="25" bgcolor="#DDDDDD" class="headtext13" style="border-bottom:#666666 1px solid;border-right:#666666 solid 1px;"><div align="left" class="style22">
+			      <div align="center"><span style="font-size:12px; font-family:Arial, Helvetica, sans-serif;">E- Mail ID </span></div>
+			    </div></td>
+			    <td width="19%" height="25" bgcolor="#DDDDDD" class="headtext13" style="border-bottom:#666666 1px solid;border-right:#666666 solid 1px;"><div align="left" class="style22">
+			      <div align="center"><span style="font-size:12px; font-family:Arial, Helvetica, sans-serif;">Option </span></div>
+			    </div></td>
+<% sl=1 %>
+ <% @bar_bussinesses.each do |bar_bussiness| %>
+
+     <tr bgcolor="#FFFFFF" onMouseOver="this.bgColor='gold';" onMouseOut="this.bgColor='#FFFFFF';" >
+                <td height="25" style="border-bottom:#666666 1px solid;border-left:#666666 1px solid;"><div align="center"><%= sl %><% sl+=1 %></div></td>
+    
+                <td style="border-bottom:#666666 1px solid"><div align="center"><%= bar_bussiness.name %></div></td>
+
+                <td style="border-bottom:#666666 1px solid"><div align="center"><%= bar_bussiness.person_of_contact %></div></td>
+                
+                <td  style="border-bottom:#666666 1px solid"><div align="center"><%= bar_bussiness.website %></div></td>
+				  <td style="border-bottom:#666666 1px solid"><div align="center"><%= bar_bussiness.email %></div></td>
+                  
+                 <td style="border-bottom:#666666 1px solid;border-right:#666666 1px solid"><div align="center" ><%= link_to "Add" %></div></td>
+          
+              </tr>
+	
+<% end %>
+
+</table>
+</br>
+</br>
+
+<!--
+
+
+
 <h1>Listing bar_bussinesses</h1>
 
 <table>
@@ -40,4 +102,5 @@
 <br />
 
 <%= link_to 'New Bar bussiness', new_bar_bussiness_path, :class=> 'links' %>
+-->
 </div>
