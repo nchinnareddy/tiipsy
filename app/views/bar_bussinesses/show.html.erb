@@ -4,10 +4,7 @@
 
 <table width="100%" border="0">	
   <tr>
-    <td colspan="3"><h3 align="center" style="color:#48B9E9">Your business details are here.</h3></td>
-  </tr>
-  <tr>
-    <td colspan="3"><h4 align="center" style="color:#48B9E9">Basic Info.</h4></td>
+    <td colspan="3"><h3 align="center" style="color:#48B9E9">Bar bussiness was successfully registerd, Check your mail</h3></td>
   </tr>  
   <tr>
     <td width="40%"><div align="right" style="color:#FFFFFF">Bar Name </div></td>
@@ -34,6 +31,17 @@
     <td width="1%"><strong style="color:#48B9E9">:</strong></td>
     <td width="59%"><%= @bar_bussiness.address %></td>
   </tr>
+  <tr>
+    <td width="40%"><div align="right" style="color:#FFFFFF">WebSite </div></td>
+    <td width="1%"><strong style="color:#48B9E9">:</strong></td>
+    <td width="59%"><%= @bar_bussiness.website %></td>
+  </tr>
+  <tr>
+    <td width="40%"><div align="right" style="color:#FFFFFF">Image </div></td>
+    <td width="1%"><strong style="color:#48B9E9">:</strong></td>
+    <td width="59%"><%= image_tag @bar_bussiness.photo.url, :size => "320x320", :style =>"border:1px solid #fff;-moz-border-radius:10px;-webkit-border-radius:10px;" %></td>
+  </tr>
+  <!--
   <tr>
     <td colspan="3"><h4 align="center" style="color:#48B9E9">Table Details.</h4></td>
   </tr>
@@ -63,6 +71,7 @@
     <td width="1%"><strong style="color:#48B9E9">:</strong></td>
     <td width="59%"><%= @bar_bussiness.description %></td>
   </tr>
+  -->
 </table>
 
 

@@ -1,11 +1,6 @@
 class Album < ActiveRecord::Base
-  has_many :photos
-  validates_presence_of :bussiness_name
   
-  def photo_attributes=(photo_attributes)
-    photo_attributes.each do |attributes|
-      photos.build(attributes)
-    end
-  end
+  has_many :photos
+  accepts_nested_attributes_for :photos, :allow_destroy => true
   
 end
