@@ -17,19 +17,12 @@
      <h1 align="center" style="color:#fff"> 
     	<%= select_tag :city, options_for_select([
     														
-[@city, "0"],
-["Agra", "agra"],
-["Bettiah", "Bettiah"],    														
-["Austin, TX (AUS)","AUS"],
-["Chicago, IL - All airports (CHI)","CHI"],	
-["Chicago, IL - Midway (MDW)","MDW"],	
-["Chicago, IL - O'Hare (ORD)","ORD"], 
-["Dallas, TX - Love Field (DAL)","DAL"],	
-["Dallas, TX - Dallas/Ft Worth Intl. (DFW)","DFW"],
-["Houston, TX - All airports (HOU)","HOU"],	
-["Houston, TX - Hobby (HOU)","HOU"],	
-["Houston, TX - Intercontinental (IAH)","IAH"],
-["San Antonio, TX (SAT)","SAT"]
+[@city, "0"],    														
+["Austin, TX ","Austin, TX "],
+["Chicago, IL","Chicago, IL"],	 
+["Dallas, TX","Dallas, TX"],	
+["Houston, TX","Houston, TX"],	
+["San Antonio, TX","San Antonio, TX"] 
  	]), :style => "width:197px", :onChange => "process(this.value);"
  %>	
      </h1>
@@ -138,7 +131,7 @@
 	function process (city) 
 	{
 		alert('Your are going to visit '+city+ ' city servicelisting');
-		window.location = "http://localhost:3000/?city=" + city; 
+		window.location = "http://173.255.195.108:8083/?city=" + city; 
 	} 
 	
 	
