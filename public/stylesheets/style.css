@@ -744,6 +744,16 @@ label.error {
 	color:#000;
 }
 
+#action{
+	 -moz-border-radius: 3px 3px 3px;
+    background: -moz-linear-gradient(center top, #000, #000) repeat scroll 0 0 transparent;
+    border: 1px solid #202020;
+	position: relative;
+	width:428px;
+	overflow: hidden;
+	color:#000;
+}
+
 #failure{
 	 -moz-border-radius: 3px 3px 3px;
     background: -moz-linear-gradient(center top, #232323, #1A1B1B) repeat scroll 0 0 transparent;

@@ -1,0 +1,17 @@
+
+<div id=action>
+	
+<% bar_name = params[:bar_name]%>
+<table width="428" height="180" border="0" align="center" style="border:1px solid #666666">
+  <tr>
+    <td height="50"><div align="center"><font size="+2" color="#ffffff">Take Relevant Action</font></div></td>
+  </tr>
+  <tr>
+    <td height="55"><div align="center"><%= link_to "Activate",admin_activate_path(:bar_name => bar_name)  ,:class=> 'links' %></div></td>
+  </tr>
+  <tr>
+    <td height="65"><div align="center"><%= link_to "Suspend",admin_suspend_path(:bar_name => bar_name)  ,:class=> 'links' %></div></td>
+  </tr>
+</table>
+
+</div>
