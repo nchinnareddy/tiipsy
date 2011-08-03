@@ -44,8 +44,27 @@ def update
 end
   
  def report
-   
+   @active_bar_bussinesses = BarBussiness.find(:all, :conditions => [' status=?',1])
+   @pending_bar_bussinesses = BarBussiness.find(:all, :conditions => [' status=?',0])
+   @suspended_bar_bussinesses = BarBussiness.find(:all, :conditions => [' status=?',2])
+ end
+ 
+ def action
+   render :layout=>false
+ end
+ 
+ def activate
+   @aa = BarBussiness.where('name=?', params[:bar_name]).first
+   @aa.status = 1
+   @aa.save
+   redirect_to :action => 'report'
+ end
+ 
+ def suspend
+   @ss = BarBussiness.where('name=?', params[:bar_name]).first
+   @ss.status = 2
+   @ss.save
+   redirect_to :action => 'report'
  end 
-  
   
 end
