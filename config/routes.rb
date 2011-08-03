@@ -1,5 +1,7 @@
 Socialstock::Application.routes.draw do
   
+  resources :albums
+
   resources :bar_bussinesses
 
   resources :locations
@@ -40,6 +42,7 @@ Socialstock::Application.routes.draw do
   match '/activate_account/:activation_code' => 'activations#create', :as => :activate
   
   get 'admin/index'
+  get 'admin/report'
   get 'admin/orderindex'
   get 'admin/newbidfee'
   post 'admin/create'

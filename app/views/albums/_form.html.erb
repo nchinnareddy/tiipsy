@@ -1,0 +1,22 @@
+<%= f.error_messages %>
+ 
+<p>
+  <%= f.label :bussiness_name %><br />
+  <%= f.text_field :bussiness_name %>
+</p>
+<p>
+  <%= f.label :description %><br />
+  <%= f.text_area :description %>
+</p>
+ 
+<div class="album_photos">
+  <%= render :partial => 'album_photo', :collection => @album.photos %>
+</div>
+ 
+<div id="photos">
+  <%= render :partial => 'photo', :collection => @album.photos %>
+</div>
+ 
+<%= link_to_function "Add Photo" do |page|
+  page.insert_html :bottom, :photos, :partial => 'photo', :object => Photo.new
+end 

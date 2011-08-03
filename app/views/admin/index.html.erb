@@ -1,11 +1,61 @@
-<div id="admin_index">
+<div id="admin">
 <% title 'Logged in as administator'%>
 
+</br>
+</br>
 
-<%= link_to 'Servicelistings', servicelistings_path, :class=>"links" %><br/>
-<%= link_to 'users', users_path, :class=>"links" %>
+<table width="37%" height="295" border="0" align="center">
+	
+  <tr>
+    <td colspan="3"><h3 align="center" style="color:#48B9E9"><div style="background:#747016;
+    width: 80%;
+    padding:0.3em;
+    font: 0.9em Verdana, Arial, Helvetica, sans-serif;
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    height:26px;"> Admin Control Panel</div> </h3></td>
+  </tr>	
+	
+  <tr>
+    <td width="197" height="136" valign="top">
+            <div align="center" style="border:#226455 solid 2px;background-color:#F9FAE0;" >
+              <p><%= link_to image_tag("auth/file.gif", :height => '43', :width => '46'), servicelistings_path %></p>
+              <p align="center" class="style1"><%= link_to 'Servicelistings', servicelistings_path, :class=>"links" %></p>
+          </div></td>
+    
+    
+    <td width="197" height="87" valign="top">  <a href="agent_reg_form.php" style="text-decoration:none; border:none"></a><span style="font-size: 16px">            </span>
+       <div align="center" style="border:#226455 solid 2px;background-color:#F9FAE0;" >
+         <p><%= link_to image_tag("auth/contact an agent.png", :height => '43', :width => '46'), users_path %></p>
+         <p align="center" class="style1"><%= link_to 'New Bar Bussiness', admin_report_path, :class=>"links" %></p>
+       </div></td> 
+          
+          
+    
+  </tr>
+  <tr>
+    <td width="197" height="87" valign="top">  <a href="agent_reg_form.php" style="text-decoration:none; border:none"></a><span style="font-size: 16px">            </span>
+       <div align="center" style="border:#226455 solid 2px;background-color:#F9FAE0;" >
+         <p><%= link_to image_tag("auth/updte.png", :height => '43', :width => '46'), users_path %></p>
+         <p align="center" class="style1"><%= link_to 'New Bottle Service', new_servicelisting_path, :class=>"links" %></p>
+       </div></td> 
+          
+          
+          
+          
+    <td width="197" height="87" valign="top">  <a href="agent_reg_form.php" style="text-decoration:none; border:none"></a><span style="font-size: 16px">            </span>
+       <div align="center" style="border:#226455 solid 2px;background-color:#F9FAE0;" >
+         <p><%= link_to image_tag("auth/index.jpg", :height => '43', :width => '46'), users_path %></p>
+         <p align="center" class="style1"><%= link_to 'users', users_path, :class=>"links" %></p>
+       </div></td>  
+  </tr>
+</table>
+</br>
+</br>
+</br>
+</br>
 
- </div>
+</div> 
 
 <%= link_to 'orders', :controlloer => 'admin', :action => 'orderindex'%><br/>
 <% if @bidfee == nil %>

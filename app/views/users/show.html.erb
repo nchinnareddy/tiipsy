@@ -93,12 +93,18 @@
     <td width="1%"><strong style="color:#48B9E9">:</strong></td>
     <td><%= @user.city %></td>
   </tr>
+  <tr>
+    <td colspan="3"><h3 align="center" style="color:#48B9E9">Connections:</h3></td>
+  </tr>
+  <tr>
+    <td colspan="3"  align="center">
+    	<% ["twitter","facebook", "linked_in"].each do |provider| %>
+  			<%= link_to image_tag("auth/#{provider}_64.png"), "/auth/#{provider}" %>
+		<% end %>
+		<%= link_to image_tag("auth/google_64.png"), "/auth/open_id?openid_url=https://www.google.com/accounts/o8/id" %>
+	</td>
+  </tr>
 </table>
-<h1>Connections:</h1>
-<%= link_to image_tag("auth/facebook1.jpg", :size=>"150x75" , :style =>"border:1px solid #fff;-moz-border-radius:10px;-webkit-border-radius:10px;") %>
-<%= link_to image_tag("auth/twitter1.jpg", :size=>"150x75" , :style =>"border:1px solid #fff;-moz-border-radius:10px;-webkit-border-radius:10px;") %>
-<%= link_to image_tag("auth/linkedin1.jpg", :size=>"150x75" , :style =>"border:1px solid #fff;-moz-border-radius:10px;-webkit-border-radius:10px;") %>
-<%= link_to image_tag("auth/gmail1.jpg", :size=>"150x75" , :style =>"border:1px solid #fff;-moz-border-radius:10px;-webkit-border-radius:10px;") %>
 <!--
 <p>
   <b>Login:</b>

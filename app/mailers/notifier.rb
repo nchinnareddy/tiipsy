@@ -32,4 +32,16 @@ class Notifier < ActionMailer::Base
          :body => msg_w)
   end
   
+  def bar_onwer_confirmation_mail(email)
+    mail(:to => email,
+         :subject => "Welcome to SocialCheers",
+         :body => "we recieved your request and will process with in 24 hrs")
+  end
+  
+  def bar_onwer_confirmation_mail_to_admin
+    mail(:to => 'pravinmishra88@gmail.com',
+         :subject => "new bar owner registered",
+         :body => "new bar owner registered")
+  end
+  
 end

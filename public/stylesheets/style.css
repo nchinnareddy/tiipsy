@@ -107,7 +107,8 @@ a:hover {
     margin-bottom: 10px;
     padding: 10px;
     position:relative;
-}
+}
+
 #logo h1, #logo p {
 	margin: 0;
 	padding: 0;
@@ -391,7 +392,8 @@ label.error {
 }
 
 .odd {
-   background: #e3f9fc;}
+   background: #e3f9fc;
+}
 
 .even {
 	background: #ebe8ff;
@@ -644,14 +646,16 @@ label.error {
     position: absolute;
     top: 43px;
     width: 200px;
-}
+}
+
 #servicelisting_links ul{
     font-family: "arial rounded mt bold",helvetica,arial,sans-serif;
     font-size: 16px;
     list-style: none outside none;
     margin: 0;
     padding: 0;
-}
+}
+
 #servicelisting_links li{
     display: block;
     margin: 0 0 5px;
@@ -723,6 +727,16 @@ label.error {
 #signup{
 	 -moz-border-radius: 3px 3px 3px;
     background: -moz-linear-gradient(center top, #232323, #1A1B1B) repeat scroll 0 0 transparent;
+    border: 1px solid #202020;
+	position: relative;
+	width:928px;
+	overflow: hidden;
+	color:#000;
+}
+
+#admin{
+	 -moz-border-radius: 3px 3px 3px;
+    background: -moz-linear-gradient(center top, #000, #000) repeat scroll 0 0 transparent;
     border: 1px solid #202020;
 	position: relative;
 	width:928px;
