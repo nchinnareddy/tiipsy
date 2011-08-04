@@ -44,4 +44,16 @@ class Notifier < ActionMailer::Base
          :body => "new bar owner registered")
   end
   
+  def bar_onwer_confirmation_mail_bussiness_activated(email,code)
+    mail(:to => email,
+         :subject => "Congratulation",
+         :body => "Congratulation, Your bar bussiness had beed activared and Yr password is #{ code}")
+  end
+  
+  def bar_onwer_confirmation_mail_bussiness_suspended(email)
+    mail(:to => email,
+         :subject => "Sorry",
+         :body => "Sorry , Your bar bussiness had beed suspended for some time, We will gat back to you soon")
+  end
+  
 end

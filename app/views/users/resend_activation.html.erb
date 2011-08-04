@@ -1,12 +1,12 @@
-
+<div id=action>
 <% title 'Resend Activation'%>
 
-<p>Enter your email address to get activation mail.</p>
+<p align=center><font size="+1" color="#ffffff">Enter your email address to get activation mail.</font></p>
 <%= form_tag resent_activation_users_path, :method => :post do%>
 	<p >
-		<%= label_tag :email%>
+		<font size="+1" color="#ffffff"><%= label_tag :email%></font>
 		<%= text_field_tag :email%>
 		<%= submit_tag "Send Activation" %>
 	</p>
 <% end%>
-
+</div>

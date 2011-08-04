@@ -11,25 +11,25 @@
   
 <table border="0" align="center">
   <tr>
-    <td colspan="3"><h3 align="center" style="color:#48B9E9"> Sign in with your SIPPOD Account</h3></td>
+    <td colspan="3"><h3 align="center" style="color:#48B9E9"> Sign in</h3></td>
   </tr>
   <tr>
-    <td width="358"><div align="right" style="color:#FFFFFF">Username OR Email </div></td>
-    <td width="7"><strong style="color:#48B9E9">:</strong></td>
+    <td width="358"><div align="right" style="color:#FFFFFF">Email </div></td>
+    <td width="7"></td>
     <td width="371"><%= f.text_field :login %></td>
   </tr>
   <tr>
     <td><div align="right" style="color:#FFFFFF">Password </div></td>
-    <td width="7"><strong style="color:#48B9E9">:</strong></td>
+    <td width="7"></td>
     <td><%= f.password_field :password %></td>
   </tr>
   <tr>
     <td><div align="right"><%= f.check_box :remember_me %></div></td>
-    <td width="7"><strong style="color:#48B9E9">:</strong></td>
+    <td width="7"></td>
 	<td><div align="left" style="color:#FFFFFF">Remember Me</div></td>
-  </tr>
+  </tr> 
    <tr>
-    <td><div align="right"><%= f.submit "Sign In" %></div></td>
+    <td><div align="right"><%= f.submit "Sign In", :class=>"links" %></div></td>
     <td width="7"></td>
 	<td><%= link_to "Reset Password", new_password_reset_path , :class=>"links reset_password_popup" %></td>
   </tr>

@@ -12,6 +12,12 @@ class BarBussiness < ActiveRecord::Base
   
   validates :email, :email_format => true
   
+  def new_random_password
+    self.password= Digest::SHA1.hexdigest("--#{Time.now.to_s}--#{email}--")[0,6]
+    return password
+    #self.password_confirmation = self.password
+  end
+  
   
    
 end
