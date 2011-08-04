@@ -1,8 +1,8 @@
+<div id=admin>
 <h1>users</h1>
 
 <table>
   <tr>
-    <th>login</th>
     <th>email</th>  
     <th></th>
     <th></th>
@@ -12,8 +12,7 @@
 <% @users.each do |user| %>
   <tr>
   	<% if user.admin == false %>
-  	<td><%= user.login %></td>
-    <td><%= user.email %></td>
+    <td><font style="color:#FFFFFF"><%= user.email %></font></td>
     <td><%= link_to 'Show', user %></td>	
     <td><%= link_to 'Edit', edit_user_path(user) %></td>
     <td><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>
@@ -21,3 +20,4 @@
 	<%end%>
   </tr>
 </table>
+</div>

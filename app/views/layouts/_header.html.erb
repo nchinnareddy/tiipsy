@@ -6,8 +6,8 @@
 	<div id="navigation-links">
 		<%= link_to "Home", root_path %> |
 		<% if !current_user %>
-			<%= link_to "Sign Up", new_user_path %> |
-			<%= link_to "Sign In", new_user_session_path %>
+			<%= link_to "Sign Up", user_signup_path %> |
+			<%= link_to "Sign In", user_signin_path %>
 		<% else %>
 			<%= link_to "My Profile", user_path(current_user) %> |
 			<% if auth_provider.nil? %>

@@ -21,6 +21,7 @@ class User < ActiveRecord::Base
   acts_as_authentic do |c|
     c.merge_validates_length_of_password_field_options({:minimum => 6})
     c.ignore_blank_passwords = true
+    c.validate_login_field = false
   end
   
   #here we add required validations for a new record and pre-existing record
