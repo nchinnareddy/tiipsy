@@ -3,6 +3,8 @@ Socialstock::Application.routes.draw do
   resources :albums
 
   resources :bar_bussinesses
+  
+  get 'bar_bussinesses/bar_bussiness_control_panel'
 
   resources :locations
 

@@ -82,4 +82,9 @@ class BarBussinessesController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  def bar_bussiness_control_panel
+    
+  end
+  
 end
