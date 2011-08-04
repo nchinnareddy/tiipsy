@@ -55,15 +55,21 @@ end
  
  def activate
    @aa = BarBussiness.where('name=?', params[:bar_name]).first
+   email = @aa.email
    @aa.status = 1
+   @aa.password = @aa.new_random_password()
+   code = @aa.password 
    @aa.save
+   Notifier.bar_onwer_confirmation_mail_bussiness_activated(email,code).deliver
    redirect_to :action => 'report'
  end
  
  def suspend
    @ss = BarBussiness.where('name=?', params[:bar_name]).first
+   email = @ss.email
    @ss.status = 2
    @ss.save
+   Notifier.bar_onwer_confirmation_mail_bussiness_suspended(email).deliver
    redirect_to :action => 'report'
  end 
   

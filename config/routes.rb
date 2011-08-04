@@ -61,6 +61,12 @@ Socialstock::Application.routes.draw do
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
   resources :user_sessions
+  match 'user/signup' => 'users#new', :as => "user_signup"
+  
+  match 'user/signin' => 'user_sessions#new', :as => "user_signin"
+  
+  match 'bar/register' => 'bar_bussinesses#new', :as => "bar_register"
+  
   resources :users do
     resources :bids
     collection do 

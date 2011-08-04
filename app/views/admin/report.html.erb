@@ -112,7 +112,7 @@
                 <td  style="border-bottom:#666666 1px solid"><div align="center"><%= bar_bussiness.website %></div></td>
 				  <td style="border-bottom:#666666 1px solid"><div align="center"><%= bar_bussiness.email %></div></td>
                   
-                 <td style="border-bottom:#666666 1px solid;border-right:#666666 1px solid"><div align="center" ><%= link_to "Action", admin_action_path(:bar_name => bar_bussiness.name), :class => "action_popup" %></div></td>
+                 <td style="border-bottom:#666666 1px solid;border-right:#666666 1px solid"><div align="center" ><%= link_to "Action", admin_action_path(:bar_name => bar_bussiness.name, :status => bar_bussiness.status), :class => "action_popup" %></div></td>
           
               </tr>
 	
@@ -171,7 +171,7 @@
                 <td  style="border-bottom:#666666 1px solid"><div align="center"><%= bar_bussiness.website %></div></td>
 				  <td style="border-bottom:#666666 1px solid"><div align="center"><%= bar_bussiness.email %></div></td>
                   
-                 <td style="border-bottom:#666666 1px solid;border-right:#666666 1px solid"><div align="center" ><%= link_to "Action", admin_action_path(:bar_name => bar_bussiness.name) ,:class => "action_popup" %></div></td>
+                 <td style="border-bottom:#666666 1px solid;border-right:#666666 1px solid"><div align="center" ><%= link_to "Action", admin_action_path(:bar_name => bar_bussiness.name, :status => bar_bussiness.status) ,:class => "action_popup" %></div></td>
           
               </tr>
 	
