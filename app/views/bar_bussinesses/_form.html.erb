@@ -17,40 +17,40 @@
   <table width="100%" border="0">	
   <tr>
     <td colspan="3"><h3 align="center" style="color:#48B9E9">Bar Business Registration</h3></td>
+  </tr>
+  <tr>
+    <td width="40%"><div align="right" style="color:#FFFFFF">Email </div></td>
+    <td width="1%"></td>
+    <td width="59%"><%= f.text_field :email %></td>
   </tr> 
   <tr>
     <td width="40%"><div align="right" style="color:#FFFFFF">Bar Name </div></td>
-    <td width="1%"><strong style="color:#48B9E9">:</strong></td>
+    <td width="1%"></td>
     <td width="59%"><%= f.text_field :name %></td>
   </tr>
   <tr>
     <td width="40%"><div align="right" style="color:#FFFFFF">Person of Contact</div></td>
-    <td width="1%"><strong style="color:#48B9E9">:</strong></td>
+    <td width="1%"></td>
     <td width="59%"><%= f.text_field :person_of_contact %></td>
   </tr>
   <tr>
-    <td width="40%"><div align="right" style="color:#FFFFFF">Email </div></td>
-    <td width="1%"><strong style="color:#48B9E9">:</strong></td>
-    <td width="59%"><%= f.text_field :email %></td>
-  </tr>
-  <tr>
     <td width="40%"><div align="right" style="color:#FFFFFF">Phone </div></td>
-    <td width="1%"><strong style="color:#48B9E9">:</strong></td>
+    <td width="1%"></td>
     <td width="59%"><%= f.text_field :phone %></td>
   </tr>
   <tr>
     <td width="40%"><div align="right" style="color:#FFFFFF">Address </div></td>
-    <td width="1%"><strong style="color:#48B9E9">:</strong></td>
+    <td width="1%"></td>
     <td width="59%"><%= f.text_area :address, :rows => '3', :cols => '22' %></td>
   </tr>
   <tr>
     <td width="40%"><div align="right" style="color:#FFFFFF">WebSite </div></td>
-    <td width="1%"><strong style="color:#48B9E9">:</strong></td>
+    <td width="1%"></td>
     <td width="59%"><%= f.text_field :website %></td>
   </tr>
   <tr>
     <td width="40%"><div align="right" style="color:#FFFFFF">Upload Image </div></td>
-    <td width="1%"><strong style="color:#48B9E9">:</strong></td>
+    <td width="1%"></td>
     <td width="59%"><%= f.file_field :photo %></td>
   </tr>
   
@@ -60,16 +60,16 @@
   </tr>
   <tr>
     <td width="40%"><div align="right" style="color:#FFFFFF">Start Date </div></td>
-    <td width="1%"><strong style="color:#48B9E9">:</strong></td>
+    <td width="1%"></td>
     <td width="59%"><%= f.text_field :start_date, :class=>"date-pick" %></td>
   </tr><tr>
     <td width="40%"><div align="right" style="color:#FFFFFF">End Date </div></td>
-    <td width="1%"><strong style="color:#48B9E9">:</strong></td>
+    <td width="1%"></td>
     <td width="59%"><%= f.text_field :end_date, :class=>"date-pick" %></td>
   </tr>
   <tr>
     <td width="40%"><div align="right" style="color:#FFFFFF">No of table Available </div></td>
-    <td width="1%"><strong style="color:#48B9E9">:</strong></td>
+    <td width="1%"></td>
     <td width="59%">
     	<%= f.select :no_of_tabel, options_for_select([
     														["Select", "0"],
@@ -88,12 +88,12 @@
   </tr>
   <tr>
     <td width="40%"><div align="right" style="color:#FFFFFF">Price </div></td>
-    <td width="1%"><strong style="color:#48B9E9">:</strong></td>
+    <td width="1%"></td>
     <td width="59%"><%= f.text_field :price %></td>
   </tr>
   <tr>
     <td width="40%"><div align="right" style="color:#FFFFFF">Description </div></td>
-    <td width="1%"><strong style="color:#48B9E9">:</strong></td>
+    <td width="1%"></td>
     <td width="59%"><%= f.text_area :description, :rows => '3', :cols => '22' %></td>
   </tr>
   -->

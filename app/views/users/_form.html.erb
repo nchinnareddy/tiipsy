@@ -22,19 +22,15 @@
     <td><div align="right" style="color:#FFFFFF"><%= form.label :city %> </div></td>
     <td width="0"></td>
     <td>
-    	
-    	
     	<%= form.select :city, options_for_select([
-    														["Select", "0"],
-    														
-["Austin, TX ","Austin, TX "],
-["Chicago, IL","Chicago, IL"],	 
-["Dallas, TX","Dallas, TX"],	
-["Houston, TX","Houston, TX"],	
-["San Antonio, TX","San Antonio, TX"] 														
- 	]), :style => "width:197px" %>
-    	
-    	
+    							["Select", "0"],							
+								["Austin, TX ","Austin, TX "],
+								["Chicago, IL","Chicago, IL"],	 
+								["Dallas, TX","Dallas, TX"],	
+								["Houston, TX","Houston, TX"],	
+								["San Antonio, TX","San Antonio, TX"] 														
+ 							]), :style => "width:197px" 
+ 		%>
     </td>
   </tr>
   <tr>

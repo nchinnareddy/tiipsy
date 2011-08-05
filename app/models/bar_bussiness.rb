@@ -1,5 +1,6 @@
 class BarBussiness < ActiveRecord::Base
   
+
   has_attached_file :photo
   
   validates_presence_of :name, :message => "Please enter bar Name"
