@@ -54,22 +54,26 @@ end
  end
  
  def activate
-   @aa = BarBussiness.where('name=?', params[:bar_name]).first
-   email = @aa.email
-   @aa.status = 1
-   @aa.password = @aa.new_random_password()
-   code = @aa.password 
-   @aa.save
+   @activate_bar_owner = BarBussiness.where('name=?', params[:bar_name]).first
+   email = @activate_bar_owner.email
+   @user = User.where('email=?', email).first
+   @activate_bar_owner.status = 1
+   @activate_bar_owner.password = @activate_bar_owner.new_random_password()
+   @user.password = @activate_bar_owner.password
+   @user.password_confirmation = @activate_bar_owner.password
+   code = @activate_bar_owner.password 
+   @activate_bar_owner.save
+   @user.save!
    Notifier.bar_onwer_confirmation_mail_bussiness_activated(email,code).deliver
    redirect_to :action => 'report'
  end
  
  def suspend
-   @ss = BarBussiness.where('name=?', params[:bar_name]).first
-   email = @ss.email
-   @ss.status = 2
-   @ss.save
-   Notifier.bar_onwer_confirmation_mail_bussiness_suspended(email).deliver
+   @suspend_bar_owner = BarBussiness.where('name=?', params[:bar_name]).first
+   email = @suspend_bar_owner.email
+   @suspend_bar_owner.status = 2
+   @suspend_bar_owner.save
+  activate_bar_ownerotifier.bar_onwer_confirmation_mail_bussiness_suspended(email).deliver
    redirect_to :action => 'report'
  end 
   

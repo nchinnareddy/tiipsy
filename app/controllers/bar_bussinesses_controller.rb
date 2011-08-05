@@ -41,7 +41,12 @@ class BarBussinessesController < ApplicationController
   # POST /bar_bussinesses.xml
   def create
     @bar_bussiness = BarBussiness.new(params[:bar_bussiness])
+    @user = User.new
     email=@bar_bussiness.email
+    @user.email = @bar_bussiness.email
+    #@user.password = @bar_bussiness.password
+    #@user.password_confirmation = @bar_bussiness.password_confirmation
+    @user.save(false)
     respond_to do |format|
       if @bar_bussiness.save
         format.html { redirect_to(@bar_bussiness, :notice => '') }
