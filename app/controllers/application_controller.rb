@@ -22,6 +22,13 @@ class ApplicationController < ActionController::Base
     current_user.admin
   end
   
+  def is_barowner?
+    unless current_user
+       return false
+    end
+    current_user.barowner
+  end
+  
   def auth_provider
     return @auth_provider if defined?(@auth_provider)
     @auth_provider = current_user.authorization
