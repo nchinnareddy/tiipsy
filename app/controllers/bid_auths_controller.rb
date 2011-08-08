@@ -5,7 +5,7 @@ class BidAuthsController < ApplicationController
     if @authamount != nil
     @amount = @authamount.bidding_fee
   else
-    @amount = 500
+    @amount = 100
    end
 
 #   @order = Order.new
