@@ -14,7 +14,7 @@ class CreditCardsController < ApplicationController
   # GET /credit_cards/new
   # GET /credit_cards/new.xml
   def new
-    @credit_card = CreditCard.new    
+      @credit_card = CreditCard.new
   end
 
   # GET /credit_cards/1/edit
@@ -25,15 +25,22 @@ class CreditCardsController < ApplicationController
   # POST /credit_cards
   # POST /credit_cards.xml
   def create
-    mycredit_card = CreditCard.new(params[:credit_card])
-    mycredit_card.user_id = current_user.id
+    @creditcard = CreditCard.new(params[:credit_card])
+    @creditcard.user_id = current_user.id
     
-    if !credit_card(mycredit_card).valid?
+    if !credit_card(@creditcard).valid?
       flash[:error] = "Your card is not valid"   
       redirect_to servicelistings_path
       return
     end
-     if mycredit_card.save
+
+   if @creditcard.save
+     flash[:notice] = "Your credit card details are on file"
+   else
+     flash[:error] = "Your credit card details are not stored"
+   end
+
+     if mycredit_card.save  
          @authorder =  Order.create(:amount => 100,
                         :description => "Authorization",
                         :ip_address => request.remote_ip,

@@ -106,7 +106,11 @@
 		/*
 		alert('Your are going to visit '+city+ ' city servicelisting');
 		*/
-		window.location = "http://173.255.195.108:8083/?city=" + city; 
+		<% if ENV['RAILS_ENV'] == "development" %>
+			window.location = "http://localhost:3000/?city=" + city; 
+		<% else%>
+			window.location = "http://173.255.195.108:8083/?city=" + city; 
+		<% end %>	 
 	}
 </script>
  

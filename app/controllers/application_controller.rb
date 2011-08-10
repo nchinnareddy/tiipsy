@@ -50,6 +50,14 @@ def require_no_user
     end
 end
   
+def require_user_with_creditcard
+  if current_user
+    if !current_user.credit_card
+      flash[:notice] = "You have not added your credit card details. Please enter your credit card details"
+      redirect_to :controller=>'credit_cards', :action => 'new'
+    end
+  end
+end
 def require_bid_authorized
     if current_user
        if current_user.bid_authorized == false

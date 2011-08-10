@@ -1,8 +1,8 @@
 class BuynowController < ApplicationController
   
   before_filter :require_user
+  before_filter :require_user_with_creditcard
 
-  before_filter :require_bid_authorized
 
   def buynow   
     @sl = Servicelisting.find(params[:id])
