@@ -1,15 +1,6 @@
 <% stylesheet('jquery.countdown', 'colorbox')%>
 <% javascript('jquery.countdown', 'jquery.colorbox-min')%>
 
-<!--
-<style type="text/css">
-	.countdown_amount {
-		font-size: 12px;
-		color: red;
-	}
-</style>
--->
-
 <div id="servicelisting_index">
 	
 	<% @servicelistings.each do |servicelisting| %>
@@ -85,18 +76,6 @@
 <%= link_to 'New Servicelisting', new_servicelisting_path, :class=>"links"  %>
 <%end%>
 
-<!-- <div class="jdt" start="12182400" product_id="aaaaaa"></div>
-
-<div class="jdt" start="22222222"></div>
-
-<div class="jdt" start="111111"></div>   -->
-<!--
- <script type="text/javascript">
-  $('.jdt').jqTimer(function(ele,stime){
-    $(ele).html(stime);
-	});
-</script>   -->
-
 <script type="text/javascript">	
 	$('.jdt').each(function(i,jdt){
 		$(jdt).countdown({
@@ -108,9 +87,6 @@
 	
 	//for bid popup
 	$('.bid_popup').colorbox();
-	
-
-	
-	
 </script>
+
 

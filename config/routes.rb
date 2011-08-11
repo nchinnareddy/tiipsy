@@ -93,7 +93,10 @@ Socialstock::Application.routes.draw do
   end
  
   
-  resources :servicelistings do      
+  resources :servicelistings do
+    collection do
+      get 'new_authorization'
+    end
   resources :bids, :new => { :express => :get }
 end
 

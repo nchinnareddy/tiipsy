@@ -58,14 +58,17 @@ def require_user_with_creditcard
     end
   end
 end
-def require_bid_authorized
+
+def require_service_bid_authorized
     if current_user
-       if current_user.bid_authorized == false
-         redirect_to :controller => 'bid_auths', :action => 'authorize'
-       end
-    end
-    #   render "checkout.html.erb"
-  # render :text => "please authorize your paypal account to bid"  
+     authorders =  Order.where("user_id = ? AND servicelisting_id = ? AND state = ? ", current_user.id, params[:servicelisting_id], 'authorized')
+     logger.debug authorders.to_yaml
+        if authorders.empty?
+          flash[:error] = "You are not authorized to bid on this service. Please authorize"
+         redirect_to :controller => 'servicelistings', :action => 'new_authorization', :servicelisting_id => params[:servicelisting_id]
+        end
+     end
+
 end
 
 def require_admin
@@ -89,5 +92,5 @@ def require_user_with_mailid
       flash[:error] = "You must update your email to access this page"
       redirect_to edit_user_path(current_user)
     end
-  end
+end
 end

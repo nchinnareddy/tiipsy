@@ -24,10 +24,16 @@ class ServicelistingsController < ApplicationController
   end
 
   def buynow
-   @servicelisting = Servicelisting.find(params[:servicelisting_id])
-      
+   @servicelisting = Servicelisting.find(params[:servicelisting_id])      
   end
-
+   
+  def new_authorization
+   @servicelisting = Servicelisting.find(params[:servicelisting_id])   
+  end
+ 
+  def authorize
+    
+  end
   # GET /servicelistings/1
   # GET /servicelistings/1.xml
   def show

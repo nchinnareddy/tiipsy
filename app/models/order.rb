@@ -52,6 +52,21 @@ def authorize_payment
     end
 end
 
+
+def capture_payment
+    
+  transaction do
+    capture = OrderTransaction.capture(amount, authorization_reference, standard_purchase_options)
+    transactions.push(capture)
+    if capture.success?
+      payment_captured!
+    else
+      transaction_declined!
+    end
+      capture
+    end
+end
+
 def purchase
 
   logger.debug "PURCHASE IS INVOKED IN ORDER MODEL"
@@ -100,20 +115,6 @@ end
 
 def number
   "#{Time.now.to_i}-#{rand(1_000_000)}"
-end
-
-def capture_payment
-    
-  transaction do
-    capture = OrderTransaction.capture(amount, authorization_reference, standard_purchase_options)
-    transactions.push(capture)
-    if capture.success?
-      payment_captured!
-    else
-      transaction_declined!
-    end
-      capture
-    end
 end
   
 def standard_purchase_options
