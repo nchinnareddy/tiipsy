@@ -1,8 +1,6 @@
 <div id="checkout_site">
 <% title "#{@user.login}'s profile"%>
-
-<% if params[:provider] == 'facebook' -%>
-  
+<% if params[:provider] == 'facebook' -%>  
         <div id="fb-root"></div>
                  <script>
                    window.fbAsyncInit = function() {
@@ -13,15 +11,13 @@
                        xfbml  : true  // parse XFBML
                      });
                    };
-
                   (function() {
                     var e = document.createElement('script');
                     e.src ='http://connect.facebook.net/en_US/all.js';
                     e.async = false;
                     document.getElementById('fb-root').appendChild(e);
                   }());
-                </script>
-        
+                </script>        
            <fb:serverFbml>
     <script type="text/fbml">
         <fb:fbml>
@@ -37,26 +33,13 @@
             </fb:request-form>
         </fb:fbml>
     </script>
-</fb:serverFbml>
-        
+</fb:serverFbml>        
 <% end -%>
-
-
 
 <% if params[:provider] == "twitter" -%>
-
    <h3> What’s happening?</h3><a href="http://twitter.com/share" class="twitter-share-button" data-count="vertical">Tweet</a>
-    <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
-    
-     </br>
-     </br>
-
-
-
+    <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script></br></br>
 <% end -%>
-
-
-
 
 <table width="100%" border="0">
   <tr>
@@ -105,22 +88,4 @@
 	</td>
   </tr>
 </table>
-<!--
-<p>
-  <b>Login:</b>
-  <%= @user.login %>
-</p>
-
-<p>
-  <b>Email:</b>
-  <%= @user.email %>
-</p>
-<p>
-<% if isadmin? %>
-<%= link_to 'Administration', :controller => 'admin', :action => 'index' %>
-<%end%>
-</p>
-
-<%= link_to 'Edit', edit_user_path %>
--->
 </div>

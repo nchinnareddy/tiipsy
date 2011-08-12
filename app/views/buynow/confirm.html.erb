@@ -1,13 +1,13 @@
 <% javascript('jquery.colorbox-min') %>
 <% stylesheet('colorbox') %>
 <div id="buy_now">
-   Your stored creditcard is used for making this purchase.When you submit, you are accepting the
-   <%= link_to '"Terms & Conditions"',credit_cards_term_condition_path, :class=>'term_condition' %></br>
-   </br> Service <%= @sl.title%></br>
-    Price $<%= @sl.buynow_price%>
+ <p style="color:#FFFFFF"> Your stored creditcard is used for making this purchase.When you submit, you are accepting the
+   <%= link_to '"Terms & Conditions"',credit_cards_term_condition_path, :class=>'term_condition' %></p>
+   <p style="color:#FFFFFF"> Service: <%= @sl.title%></p>
+   <p style="color:#FFFFFF"> Price: $<%= @sl.buynow_price%></p>
 	  
 <% form_for @order do |f| %>
-	   <%= f.error_messages %>
+	  <%= f.error_messages %>
 	  <%= f.hidden_field :amount, :value => @amount %>
 	  <%= f.hidden_field :servicelisting_id, :value => @serviceid %>	 
 	<table width="100%" border="0">	

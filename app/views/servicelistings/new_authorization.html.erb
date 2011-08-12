@@ -1,31 +1,7 @@
 
+<p style="color:#FFFFFF" > Please authorize your account for the following amount </p></br> 
+<p style="color:#FFFFFF"> Amount to be authorized:$<%= @servicelisting.buynow_price %></p> </br>
 
 
+<%= link_to "authorize", servicelisting_authorize_path(@servicelisting), :class=>"links"%>
 
-<%= form_for @servicelisting  do |f| %>
-   <div class="field">
-    <%= f.label :buynow_price %><br />
-    <%= f.text_field :buynow_price %>
-  </div>
-  
-  
-  <div class="field">
-    <%= f.label :no_of_guests %><br />
-    <%= f.text_field :no_of_guests %>
-  </div>
-  <div class="field">
-    <%= f.label :photo %><br />
-    <%= f.file_field :photo %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :status %><br />	
-	<%= f.radio_button :status, "active" %>
-	<%= f.label "Active" %><br />
-	<%= f.radio_button :status, "inactive" %>
-	<%= f.label "Inactive" %><br />
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
