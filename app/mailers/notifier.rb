@@ -33,9 +33,11 @@ class Notifier < ActionMailer::Base
   end
   
   def bar_onwer_confirmation_mail(email)
+    @data = User.where("email=?", email).first
+    @perishable_token =  @data.perishable_token
+    @account_activation_url = activate_url(@perishable_token)
     mail(:to => email,
-         :subject => "Welcome to SocialCheers",
-         :body => "we recieved your request and will process with in 24 hrs")
+         :subject => "Welcome to SocialCheers")
   end
   
   def bar_onwer_confirmation_mail_to_admin

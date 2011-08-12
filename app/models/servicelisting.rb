@@ -1,8 +1,8 @@
 require "socket"
 class Servicelisting < ActiveRecord::Base
   
-  has_many :bids, :dependent => :destroy
-  has_many :orders, :dependent => :destroy
+  has_many :bids
+  has_many :orders
   
   has_attached_file :photo  
   

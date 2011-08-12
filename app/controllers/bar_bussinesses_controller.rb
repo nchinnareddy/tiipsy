@@ -52,7 +52,12 @@ class BarBussinessesController < ApplicationController
       if @bar_bussiness.save
         format.html { redirect_to(@bar_bussiness, :notice => '') }
         format.xml  { render :xml => @bar_bussiness, :status => :created, :location => @bar_bussiness }
-        Notifier.bar_onwer_confirmation_mail(email).deliver
+        if ENV['RAILS_ENV'] == "development"
+        activation_mail = Notifier.bar_onwer_confirmation_mail(email).deliver
+          logger.debug activation_mail
+        elsif ENV['RAILS_ENV'] == "production"
+          Notifier.bar_onwer_confirmation_mail(email).deliver      
+        end  
         Notifier.bar_onwer_confirmation_mail_to_admin().deliver
       else
         format.html { render :action => "new" }

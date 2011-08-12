@@ -71,10 +71,6 @@
 </div>		
 <%= will_paginate @servicelistings %>
 
-<br />
-<% if isadmin? %>
-<%= link_to 'New Servicelisting', new_servicelisting_path, :class=>"links"  %>
-<%end%>
 
 <script type="text/javascript">	
 	$('.jdt').each(function(i,jdt){
