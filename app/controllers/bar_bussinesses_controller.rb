@@ -91,5 +91,6 @@ class BarBussinessesController < ApplicationController
   def bar_bussiness_control_panel
     
   end
+
   
 end
