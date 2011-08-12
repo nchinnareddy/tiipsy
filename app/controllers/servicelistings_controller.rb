@@ -32,7 +32,7 @@ class ServicelistingsController < ApplicationController
       end
     else
       @location = Geokit::Geocoders::IpGeocoder.geocode(request.remote_ip)
-      raise @location.inspect
+      
       @city = @location.city
       if @city == nil
         @servicelistings = Servicelisting.paginate :page=>params[:page], :per_page=>'2'
