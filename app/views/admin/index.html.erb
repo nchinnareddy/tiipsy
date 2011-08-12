@@ -64,12 +64,3 @@
 </br>
 
 </div> 
-
-<%= link_to 'orders', :controlloer => 'admin', :action => 'orderindex'%><br/>
-<% if @bidfee == nil %>
-<%= link_to 'set bidding authorization amount', :controller => 'admin', :action => 'newbidfee'%>
-<% else%>
-<%= link_to 'edit bidding authorization amount', :controller => 'admin', :action => 'edit'%>
-<%end%>
- 
-

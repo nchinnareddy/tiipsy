@@ -4,15 +4,12 @@ class BuynowController < ApplicationController
   before_filter :require_user_with_creditcard
 
 
-  def buynow   
-    @sl = Servicelisting.find(params[:id])
-    @amount = @sl.buynow_price
-    @serviceid = @sl.id
-    @order = Order.new
-     if current_user.bid_authorized
-       render 'confirm'
-       return
-     end
+def buynow
+   @sl = Servicelisting.find(params[:id])
+   @amount = @sl.buynow_price
+   @serviceid = @sl.id
+   @order = Order.new
+   render 'confirm'
 end
 
 def express

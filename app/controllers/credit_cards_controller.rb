@@ -35,38 +35,12 @@ class CreditCardsController < ApplicationController
     end
 
    if @creditcard.save
-     flash[:notice] = "Your credit card details are on file"
+     flash[:notice] = "Your credit card details are on file"          
    else
      flash[:error] = "Your credit card details are not stored"
    end
-
-     if mycredit_card.save  
-         @authorder =  Order.create(:amount => 100,
-                        :description => "Authorization",
-                        :ip_address => request.remote_ip,
-                        :first_name => mycredit_card.first_name,
-                        :last_name => mycredit_card.last_name,
-                        :card_type => mycredit_card.card_type,
-                        :card_number => mycredit_card.card_number,
-                        :card_verification => mycredit_card.card_verification,
-                        :card_expires_on => mycredit_card.card_expires_on,
-                        :address => mycredit_card.address,
-                        :city => mycredit_card.city,
-                        :state_name => mycredit_card.state_name,
-                        :country => mycredit_card.country,
-                        :zip => mycredit_card.zip
-                       )
-       if @authorder.authorize_payment
-         current_user.bid_authorized = true
-         current_user.save
-         redirect_to servicelistings_path, :notice => "You are authorized to bid now"
-         return
-       else
-        flash[:error] = "Your card is not authorized. there is some problem"
-        redirect_to servicelistings_path
-       end
-     end   
-  end
+   redirect_to user_path(current_user)
+ end
 
   
 def credit_card(cc)

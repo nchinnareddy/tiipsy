@@ -58,8 +58,36 @@ class ServicelistingsController < ApplicationController
   end
  
   def authorize
-    
-  end
+    @servicelisting = Servicelisting.find(params[:servicelisting_id])
+     ccard = current_user.credit_card
+     @order = Order.create(:first_name => ccard.first_name,
+                           :last_name => ccard.last_name,
+                           :card_type => ccard.card_type,
+                           :card_number => ccard.card_number,
+                           :card_verification => ccard.card_verification,
+                           :card_expires_on => ccard.card_expires_on,
+                           :address => ccard.address,
+                           :city => ccard.city,
+                           :state_name => ccard.state_name,
+                           :country => ccard.country,
+                           :zip => ccard.zip
+                          )                          
+  @order.amount = @servicelisting.buynow_price
+  @order.servicelisting_id = @servicelisting.id
+  @order.user_id = current_user.id
+  @order.ip_address = request.remote_ip
+  @order.description = "Authorization"
+
+  if @order.save
+      if @order.authorize_payment
+        flash[:notice] = "You are authorized to bid on: #{@servicelisting.title}"
+        redirect_to root_path
+      else
+        flash[:notice] = "Your authorization for service: #{@servicelisting.title} failed"
+        redirect_to root_path
+     end
+  end   
+end
   # GET /servicelistings/1
   # GET /servicelistings/1.xml
   def show
