@@ -21,12 +21,34 @@
  	</div>
 	-->
 	<!--   header -->
+	
+	<table border="0" align="center">
+	  <tr>
+	    <td><h1 align="center" style="color:#fff"> Today's Auctions </h1></td>
+	    <td>
+	     <h1 align="center" style="color:#fff"> 
+	     </h1>
+	    </td>
+	  </tr>
+	</table>
+
 	<div id="header">
 		<div id="logo">
 			<h1><%= link_to image_tag("auth/logo1.jpg", :height => '50', :width => '300'), root_path %></h1>
 			<div style="font-size:16px;margin-left: 110px;"></div>
 		</div>
 		<!-- Start of Menu Part -->
+		<div id="city-dropdown" style=" position: relative;left:10px;">
+	    	<%= select_tag :city, options_for_select([[@city, "0"],
+   											          ["Austin, TX", "Austin, TX"],
+													  ["Chicago, IL","Chicago, IL"],	 
+													  ["Dallas, TX","Dallas, TX"],	
+													  ["Houston, TX","Houston, TX"],	
+													  ["San Antonio, TX","San Antonio, TX"] 												  
+	                                                 ], session[:city].to_s), :style => "width:197px", :onChange => "process(this.value);" %>	
+
+		</div>
+		
 		<div id="menu">
 		<ul>
 				<% if !current_user %>
@@ -53,7 +75,7 @@
 	<!--- Containt -->
 	<div id="page">
 		<% flash.each do |name, msg| %>
-    		<%= content_tag :div, msg, :id => "flash_#{name}" %>
+    	 <%= content_tag :div, msg, :id => "flash_#{name}" %>
     	<% end %>    	
 	  <%= yield %>
 	  <%= yield :scripts %>
@@ -66,7 +88,7 @@
 				<li><%= link_to "Home", root_path %></li> |
 				<li><%= link_to "About Us", root_path %></li> |
 				<li><%= link_to "Contact Us", root_path %></li> |
-				<li><%= link_to "Register You Bottle Service",  bar_register_path %></li>
+				<li><%= link_to "Register Your Bottle Service",  bar_register_path %></li>
 			</ul>	
 		</nav>
 		<div id="copy_right">
@@ -80,7 +102,20 @@
 	</div>
 	<!--- End of Containt -->
 	
-	
 </div>
 </body>
+<script type="text/javascript">	
+	function process (city) 
+	{
+		/*
+		alert('Your are going to visit '+city+ ' city servicelisting');
+		*/
+		<% if ENV['RAILS_ENV'] == "development" %>
+			window.location = "http://localhost:3000/?city=" + city; 
+		<% else%>
+			window.location = "http://173.255.195.108:8083/?city=" + city; 
+		<% end %>	 
+	}
+</script>
+ 
 </html>

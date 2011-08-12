@@ -1,51 +1,8 @@
 <% stylesheet('jquery.countdown', 'colorbox')%>
 <% javascript('jquery.countdown', 'jquery.colorbox-min')%>
 
-<!--
-<style type="text/css">
-	.countdown_amount {
-		font-size: 12px;
-		color: red;
-	}
-</style>
--->
-
-<table border="0" align="center">
-  <tr>
-  	<% if isadmin? %>
-     	<td><h1 align="center" style="color:#fff"> Select City </h1></td>
-    	<td>	
-     	<h1 align="center" style="color:#fff"> 
-    	<%= select_tag :city, options_for_select([   														
-			[@city, "0"],    														
-			["Austin, TX ","Austin, TX "],
-			["Chicago, IL","Chicago, IL"],	 
-			["Dallas, TX","Dallas, TX"],	
-			["Houston, TX","Houston, TX"],	
-			["San Antonio, TX","San Antonio, TX"] 
- 			]), :style => "width:197px", :onChange => "process(this.value);"
- 		%>	
-     	</h1>
-    	</td>
-    <% else %>
-    	<td><h1 align="center" style="color:#fff"> Today's Auctions </h1></td>
-    	<td>	
-     	<h1 align="center" style="color:#fff"> 
-    	<%= select_tag :city, options_for_select([   														
-			[@city, "0"],    														
-			["Austin, TX ","Austin, TX "],
-			["Chicago, IL","Chicago, IL"],	 
-			["Dallas, TX","Dallas, TX"],	
-			["Houston, TX","Houston, TX"],	
-			["San Antonio, TX","San Antonio, TX"] 
- 			]), :style => "width:197px", :onChange => "process(this.value);"
- 		%>	
-     	</h1>
-    	</td>
-    <% end %>
-  </tr>
-</table>
 <div id="servicelisting_index">
+	
 	<% @servicelistings.each do |servicelisting| %>
 
 	<% availability_date = DateTime.parse(servicelisting.availability.to_s)%>
@@ -110,22 +67,14 @@
 			
 	</div>
 	</br>	
-	<% end %>	
+	<% end %>
 </div>		
 <%= will_paginate @servicelistings %>
 
 <br />
-<!-- <div class="jdt" start="12182400" product_id="aaaaaa"></div>
-
-<div class="jdt" start="22222222"></div>
-
-<div class="jdt" start="111111"></div>   -->
-<!--
- <script type="text/javascript">
-  $('.jdt').jqTimer(function(ele,stime){
-    $(ele).html(stime);
-	});
-</script>   -->
+<% if isadmin? %>
+<%= link_to 'New Servicelisting', new_servicelisting_path, :class=>"links"  %>
+<%end%>
 
 <script type="text/javascript">	
 	$('.jdt').each(function(i,jdt){
@@ -138,18 +87,6 @@
 	
 	//for bid popup
 	$('.bid_popup').colorbox();
-	
-	
-	function process (city) 
-	{
-		/*
-		alert('Your are going to visit '+city+ ' city servicelisting');
-		*/
-		window.location = "http://localhost:3000/?city=" + city; 
-	} 
-	
-	
-	
-	
 </script>
+
 

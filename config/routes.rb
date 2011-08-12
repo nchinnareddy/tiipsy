@@ -24,7 +24,7 @@ Socialstock::Application.routes.draw do
 
   get "auth_linkedin/callback"
   
-  get "credit_cards/term_condiation"
+  get "credit_cards/term_condition"
 
   resources :credit_cards
 
@@ -100,7 +100,10 @@ Socialstock::Application.routes.draw do
   end
  
   
-  resources :servicelistings do      
+  resources :servicelistings do
+    collection do
+      get 'new_authorization'
+    end
   resources :bids, :new => { :express => :get }
 end
 

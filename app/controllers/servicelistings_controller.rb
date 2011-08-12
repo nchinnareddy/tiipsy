@@ -18,20 +18,27 @@ class ServicelistingsController < ApplicationController
   def index
     if @city = params[:city]
       @servicelistings=Servicelisting.paginate :page=>params[:page], :per_page=>'2', :conditions => [ 'city=?', @city]
+      session[:city] = params[:city]
     else
       @location = Geokit::Geocoders::IpGeocoder.geocode(request.remote_ip)
       @city = @location.city
       #@city = 'agra'
       #@servicelistings=Servicelisting.search(params[:search]).paginate :page=>params[:page], :conditions => [ 'city=?', @city] , :order=>'updated_at', :per_page=>'3'
       @servicelistings=Servicelisting.paginate :page=>params[:page], :per_page=>'2', :conditions => [ 'city=?', @city]
-    end
+    end    
   end
 
   def buynow
-   @servicelisting = Servicelisting.find(params[:servicelisting_id])
-      
+   @servicelisting = Servicelisting.find(params[:servicelisting_id])      
   end
-
+   
+  def new_authorization
+   @servicelisting = Servicelisting.find(params[:servicelisting_id])   
+  end
+ 
+  def authorize
+    
+  end
   # GET /servicelistings/1
   # GET /servicelistings/1.xml
   def show

@@ -4,10 +4,6 @@ class AdminController < ApplicationController
   
 def index
     @users = User.all
-    @bidfee = Admin.first
-    if @bidfee == nil
-    #flash[:notice] = "BIDDING AUTHORIZATION AMOUNT IS NOT SET"
-    end
 end
   
 def orderindex

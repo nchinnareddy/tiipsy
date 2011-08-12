@@ -2,7 +2,24 @@
 class OrdersController < ApplicationController
   
 def create
-  @order = Order.create(params[:order])
+  
+  if current_user.bid_authorized
+     ccard = current_user.credit_card
+     @order = Order.create(:first_name => ccard.first_name,
+                           :last_name => ccard.last_name,
+                           :card_type => ccard.card_type,
+                           :card_number => ccard.card_number,
+                           :card_verification => ccard.card_verification,
+                           :card_expires_on => ccard.card_expires_on,
+                           :address => ccard.address,
+                           :city => ccard.city,
+                           :state_name => ccard.state_name,
+                           :country => ccard.country,
+                           :zip => ccard.zip
+                          )                          
+  else
+    @order = Order.create(params[:order])
+  end
   @order.amount = params[:order][:amount]
   @order.servicelisting_id = params[:order][:servicelisting_id]
   @order.user_id = current_user.id
@@ -19,6 +36,7 @@ def create
         current_user.save
         ssl.winner_id = @order.user_id
         ssl.save
+        if (!current_user.bid_authorized)
         current_user.create_credit_card(:card_type          => @order.card_type,
                                         :card_number        => @order.card_number,
                                         :card_verification  => @order.card_verification,
@@ -30,7 +48,8 @@ def create
                                         :state_name         => @order.state_name,
                                         :country            => @order.country,
                                         :zip                => @order.zip
-                                        )              
+                                        )   
+       end                                        
        render :action => "success"
      else
        render :action => "failure"
