@@ -1,5 +1,7 @@
 
 class ServicelistingsController < ApplicationController
+ include GeoKit::Geocoders
+ include GeoKit::Mappable
  before_filter :require_admin_barowner, :except => [:index, :show]
   
   def require_admin_barowner
@@ -19,6 +21,7 @@ class ServicelistingsController < ApplicationController
     @city = params[:city]
     if @city
       @servicelistings=Servicelisting.paginate :page=>params[:page], :per_page=>'2', :conditions => [ 'city=?', @city]
+      flash[:notice] = "These all servicelistings are belongs to your city #{ @city}."
       if @servicelistings.empty?
         @servicelistings = Servicelisting.paginate :page=>params[:page], :per_page=>'2'
         flash[:notice] = "Sorry, There is no servicelistings for your city #{ @city}."
@@ -26,13 +29,13 @@ class ServicelistingsController < ApplicationController
       session[:city] = params[:city]
     elsif session[:city]
       @servicelistings=Servicelisting.paginate :page=>params[:page], :per_page=>'2', :conditions => [ 'city=?', session[:city]]
+      flash[:notice] = "These all servicelistings are belongs to your city #{ session[:city]}."
       if @servicelistings.empty?
         @servicelistings = Servicelisting.paginate :page=>params[:page], :per_page=>'2'
         flash[:notice] = "Sorry, There is no servicelistings for your city #{ @city}."
       end
     else
       @location = Geokit::Geocoders::IpGeocoder.geocode(request.remote_ip)
-      
       @city = @location.city
       if @city == nil
         @servicelistings = Servicelisting.paginate :page=>params[:page], :per_page=>'2'
@@ -40,6 +43,7 @@ class ServicelistingsController < ApplicationController
       #@city = 'agra'
       #@servicelistings=Servicelisting.search(params[:search]).paginate :page=>params[:page], :conditions => [ 'city=?', @city] , :order=>'updated_at', :per_page=>'3'
       @servicelistings=Servicelisting.paginate :page=>params[:page], :per_page=>'2', :conditions => [ 'city=?', @city]
+      flash[:notice] = "These all servicelistings are belongs to your city #{ @city}."    
     end
     
     if @servicelistings.empty? && (@city == nil)
