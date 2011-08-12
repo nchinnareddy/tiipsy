@@ -3,10 +3,10 @@
 <head>
   <title><%= content_for?(:title) ? yield(:title) : "Get your bottle service now" %></title>
     <%= stylesheet_link_tag "style" %>
-    <%= javascript_include_tag "jquery" %>
-    <%= javascript_include_tag :defaults, "rails.validations", "rails.validations.custom" %>
-    <%= csrf_meta_tag %>
+    <%= javascript_include_tag :defaults %>
+    <%= javascript_include_tag "rails.validations", "rails.validations.custom" %>    
     <%= yield(:head) %>
+    <%= csrf_meta_tag %>
 </head>
 <body>
 <div id="wrapper">
@@ -33,6 +33,10 @@
 					<li><%= link_to "Sign Up", user_signup_path %></li>
 					<li><%= link_to "Sign In", user_signin_path %></li>
 				<% else %>
+				    <% if isadmin? %>
+				    	<li><%= link_to "Home", admin_index_path %></li>
+				    <% end %>
+				    
 					<li><%= link_to "Profile", user_path(current_user) %></li>
 					<li><%= link_to "My Account", account_history_users_path(:id => current_user.id) %></li>
 					<% if auth_provider.nil? %>

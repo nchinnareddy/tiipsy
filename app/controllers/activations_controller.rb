@@ -9,8 +9,15 @@ class ActivationsController < ApplicationController
       flash[:notice] = "Your account has been activated!"
       UserSession.create(@user, false) # Log user in manually
       @user.devliver_welcome_mail! #TODO welcome mail
-      redirect_to user_path(@user.id)
-    else 
+      if @user.barowner == true
+        redirect_to :controller => 'bar_bussinesses', :action => 'index'
+        return
+       else
+        redirect_to user_path(@user.id)
+        return
+      end
+     
+   else 
       render :action => :new
     end
   end

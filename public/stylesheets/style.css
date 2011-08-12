@@ -461,15 +461,6 @@ label.error {
 
 }
 
-#servicelisting_description{
-	position: relative;
-	width:915px;
-	color: #909099;
-    font-family: Georgia,"Times New Roman",Times,serif;
-    font-size: 15px;
-    padding:7px;
-}
-
 #servicelisting p.bid {
     left: 340px;
     position: absolute;
@@ -737,6 +728,16 @@ label.error {
 #admin{
 	 -moz-border-radius: 3px 3px 3px;
     background: -moz-linear-gradient(center top, #000, #000) repeat scroll 0 0 transparent;
+    border: 1px solid #202020;
+	position: relative;
+	width:928px;
+	overflow: hidden;
+	color:#000;
+}
+
+#list{
+	 -moz-border-radius: 3px 3px 3px;
+    background: -moz-linear-gradient(center top, #ffffff, #ffffff) repeat scroll 0 0 transparent;
     border: 1px solid #202020;
 	position: relative;
 	width:928px;

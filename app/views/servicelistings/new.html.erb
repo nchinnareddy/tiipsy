@@ -1,8 +1,13 @@
+<% stylesheet 'jquery-ui-1.8.15.custom'%>
+<% javascript 'jquery-ui-1.8.15.custom', 'jquery.ui.datetimepicker'%>
 
 <div id="servicelisting_new">
-<h1>New servicelisting</h1>
+<h1 align=center>New servicelisting</h1>
 
 <%= render 'form' %>
-
-<%= link_to 'Back', servicelistings_path , :class=>"links" %>
+<% if isadmin? %>
+	<%= link_to 'Back',  admin_list_path , :class=>"links" %>
+<% else %>
+	<%= link_to 'Back',  bar_bussinesses_path , :class=>"links" %>
+<% end %>
 </div>

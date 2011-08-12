@@ -2,8 +2,14 @@ Socialstock::Application.routes.draw do
   
   resources :albums
 
-  resources :bar_bussinesses
-
+  resources :bar_bussinesses do
+    collection do
+     get "list" 
+     get "servicelist"
+     get "email_validate"   
+    end
+  end
+  
   resources :locations
 
   resources :contacts
@@ -51,6 +57,7 @@ Socialstock::Application.routes.draw do
   post 'admin/create'
   put 'admin/update'
   get 'admin/edit'
+  get 'admin/list'
 #  match 'admin' => "admin#index"
 #  match 'admin/:action' => 'admin#action'
 #  get "admin/newbidfee"

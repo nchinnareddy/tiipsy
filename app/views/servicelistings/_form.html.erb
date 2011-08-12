@@ -1,3 +1,4 @@
+<% @bar_owner = 0 %>
 <%= form_for @servicelisting , :html => { :multipart => true }  do |f| %>
   <% if @servicelisting.errors.any? %>
     <div id="error_explanation">
@@ -10,7 +11,118 @@
       </ul>
     </div>
   <% end %>
+  <table width="100%" border="0">
+   <% unless params[:indicator] %>	
+     <% if isadmin? %>
+   		<tr>
+    		<td width="40%"><div align="right" style="color:#FFFFFF">Bar Name </div></td>
+    		<td width="1%"></td>
+    		<td width="59%"><%= f.collection_select :bar_name,  BarBussiness.find(:all), :name, :name, :prompt => "Select Bar Name" %> </td>
+  			<% @bar_owner = 1 %>
+		</tr>		
+     <% else %>
+   	 <tr>
+    	<td width="40%"><div align="right" style="color:#FFFFFF">Bar Name </div></td>
+    	<td width="1%"></td>
+    	<td width="59%"><%= f.collection_select :bar_name,  BarBussiness.where(["email=?", current_user.email]), :name, :name, :prompt => "Select Bar Name" %><% @bar_owner = 1 %></td>
+  	 </tr>  	 
+   <% end %>
+  <% end %>
+  <% unless @bar_owner == 1 %>
+  <tr>
+    <td width="40%"><div align="right" style="color:#FFFFFF">Bar Name </div></td>
+    <td width="1%"></td>
+    <td width="59%"><%= f.text_field :bar_name %></td>
+  </tr> 
+  <% end %>
+  <tr>
+    <td width="40%"><div align="right" style="color:#FFFFFF">Service Name </div></td>
+    <td width="1%"></td>
+    <td width="59%"><%= f.text_field :title %></td>
+  </tr> 
+  <tr>
+    <td width="40%"><div align="right" style="color:#FFFFFF">Description </div></td>
+    <td width="1%"></td>
+    <td width="59%"><%= f.text_area :description , :rows => '5', :cols => '22' %></td>
+  </tr>
+  <tr>
+    <td width="40%"><div align="right" style="color:#FFFFFF">Availability </div></td>
+    <td width="1%"></td>
+    <td width="59%">
+    	<!--
+    	<%= f.datetime_select :availability, :order => [:month, :day, :year ] %>
+    	-->
+    	<%= f.text_field :availability %>
+    </td>
+  </tr>
+  <tr>
+    <td width="40%"><div align="right" style="color:#FFFFFF">Price </div></td>
+    <td width="1%"></td>
+    <td width="59%"><%= f.text_field :price %></td>
+  </tr>
+  <tr>
+    <td width="40%"><div align="right" style="color:#FFFFFF">No Of Guest </div></td>
+    <td width="1%"></td>
+    <td width="59%"><%= f.select :no_of_guests, options_for_select([
+    				[@servicelisting.no_of_guests, "0"],										
+					["1","1"],
+					["2","2"],
+					["3","3"],
+					["4","4"],
+					["5","5"],
+					["6","6"],
+					["7","7"],
+					["8","8"],
+					["9","9"],
+					["10","10"],
+					["11","11"],
+					["12","12"],
+					["13","13"],
+					["14","14"],
+					["15","15"],
+					["16","16"],
+					["17","17"],
+					["18","18"],
+					["19","19"],
+					["20","20"],	
+					["21","21"],
+					["22","22"],
+					["23","23"],
+					["24","24"],
+					["25","25"],
+					["26","26"],
+					["27","27"],
+					["28","28"],
+					["29","29"],
+					["30","30"]		 											
+ 					], :style => "width:197px")
+ 				 %>
+    </td>
+  </tr>
+  <tr>
+    <td width="40%"><div align="right" style="color:#FFFFFF">Photo </div></td>
+    <td width="1%"></td>
+    <td width="59%"><%= f.file_field :photo %></td>
+  </tr>
+  <tr>
+    <td width="40%"><div align="right" style="color:#FFFFFF">Status </div></td>
+    <td width="1%"></td>
+    <td width="59%"><%= f.radio_button :status, "active" %>
+		<%= f.label "Active" %><br />
+		<%= f.radio_button :status, "inactive" %>
+		<%= f.label "Inactive" %><br /></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td><%= f.submit %></td>
+  </tr>
+  <tr>
+    <td colspan="3"></td>
+  </tr> 
+</table>
 
+<!--
   <div class="field">
     <%= f.label :title %><br />
     <%= f.text_field :title %>
@@ -26,14 +138,13 @@
   <div class="field">
     <%= f.label :city %><br />
     <%= f.select :city, options_for_select([
-    														[@servicelisting.city, "0"],
-    														
-["Austin, TX ","Austin, TX "],
-["Chicago, IL","Chicago, IL"],	 
-["Dallas, TX","Dallas, TX"],	
-["Houston, TX","Houston, TX"],	
-["San Antonio, TX","San Antonio, TX"]  														
- 	]), :style => "width:197px" %>
+    				[@servicelisting.city, "0"],										
+					["Austin, TX ","Austin, TX "],
+					["Chicago, IL","Chicago, IL"],	 
+					["Dallas, TX","Dallas, TX"],	
+					["Houston, TX","Houston, TX"],	
+					["San Antonio, TX","San Antonio, TX"]  														
+ 					]), :style => "width:197px" %>
   </div>
   <div class="field">
     <%= f.label :availability %><br />
@@ -69,4 +180,12 @@
   <div class="actions">
     <%= f.submit %>
   </div>
+ --> 
 <% end %>
+
+<script>
+	 $('#servicelisting_availability').datetimepicker({
+	 	dateFormat: 'yyyy-mm-dd hh:MM TT'
+	 });
+</script>
+

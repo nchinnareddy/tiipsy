@@ -1,0 +1,205 @@
+<% javascript('simple-tabs','jquery.colorbox-min') %>
+<% stylesheet('simple-tabs','colorbox') %>
+</br>
+<div id="admin">
+	<ul class="simple-tabs">
+		<li><%= link_to "All Servicelistings","#tab1" %></li>
+    	<li><%= link_to "Create New Servicelistings", "#tab2" %></li>
+    	<li><%= link_to "Edit and Delete Servicelistings", "#tab3" %></li>
+	</ul>
+	<div class="tab_container">
+		<div id="tab1" class="tab_content">
+        	<table width="100%"  border="0" align="center" cellpadding="0" cellspacing="0">
+				<tr>
+    				<td colspan="6"><h3 align="center" style="color:#48B9E9"><div style="background:#747016;
+    						width: 40%;
+    						padding:0.3em;
+    						font: 0.9em Verdana, Arial, Helvetica, sans-serif;
+    						-moz-border-radius: 15px;
+    						-webkit-border-radius: 15px;
+    						height:26px;">All Servicelistings</div> </h3></td>
+  				</tr>
+  				<tr>
+  					<% stylesheet('jquery.countdown', 'colorbox')%>
+<% javascript('jquery.countdown', 'jquery.colorbox-min')%>
+
+<!--
+<style type="text/css">
+	.countdown_amount {
+		font-size: 12px;
+		color: red;
+	}
+</style>
+-->
+
+<table border="0" align="center">
+  <tr>
+    <td><h1 align="center" style="color:#fff"> Today's Auctions </h1></td>
+    <td>
+     <h1 align="center" style="color:#fff"> 
+    	<%= select_tag :city, options_for_select([
+    														
+[@city, "0"],    														
+["Austin, TX ","Austin, TX "],
+["Chicago, IL","Chicago, IL"],	 
+["Dallas, TX","Dallas, TX"],	
+["Houston, TX","Houston, TX"],	
+["San Antonio, TX","San Antonio, TX"] 
+ 	]), :style => "width:197px", :onChange => "process(this.value);"
+ %>	
+     </h1>
+    </td>
+  </tr>
+</table>
+<div id="servicelisting_index">
+	
+	<% @servicelistings.each do |servicelisting| %>
+
+	<% availability_date = DateTime.parse(servicelisting.availability.to_s)%>
+	<% time_now = DateTime.parse(DateTime.now.to_s)%>
+	<% time_until = availability_date - time_now %>
+	<% t = time_until.to_f %>
+	<% tt = t*(86400) %></br>	
+	
+	<div id="servicelisting_index_r">
+	
+		<p class="title"><%= servicelisting.title %></p>
+		<p class="picture"><%= image_tag servicelisting.photo.url, :size => "100x100" %></p>
+		<p class="more"><%= link_to 'More', servicelisting %></p>
+		<p class="map"><%= link_to 'Map', locations_path(:city => servicelisting.city) %></p>
+		<p class="address_fet"><%= servicelisting.location %></p>
+		<p class="time_left">Time left to Bid</p>
+		<p class="time_left_fet">
+			<% if tt >= 0 %>
+				<div class="jdt" start="<%= tt %>" ></div>
+			<% else %>
+				Closed
+			<% end %>	
+		</p>
+		<p class="current_value">Current Value</p>
+		<p class="current_value_fet">$<%= servicelisting.highestbid %></p>
+		<% if isadmin? %>
+			<p class="edit"><%= link_to 'Edit', edit_servicelisting_path(servicelisting) %></p>
+			<p class="delete"><%= link_to 'Destroy', servicelisting, :confirm => 'Are you sure?', :method => :delete %></p>
+		<%end%>
+		<p class="bid">
+			<%= link_to 'Bid', new_servicelisting_bid_path(servicelisting), :class=>"links"  %>
+		</p>
+		<p class="buy"><%= link_to 'Buy',  buynow_buynow_index_path(:id => servicelisting), :class=>"links"  %></p>
+		<p class="higher">
+			<%@servicelisting = servicelisting %>
+			<% if current_user %>  	
+	        <% @userhighbid = nil %> 
+     		 <% @servicelisting.bids.each do |bid| %>
+	     		<% if bid.user_id == current_user.id %>
+		    	 <% if @userhighbid.nil? %>
+			     <% @userhighbid = bid.bidprice %>
+			     <% next %>
+			   <% end %>
+			 <% if bid.user_id == current_user.id %> 
+			 <% if @userhighbid < bid.bidprice %> 
+			 <% @userhighbid = bid.bidprice %>
+			    <%end %>
+			    <%end %> 
+			    <%end%>
+			    <%end%>     
+			 <% if !@userhighbid.nil? %>   
+			  <% if @userhighbid == @servicelisting.highestbid %>
+			   <%= image_tag "auth/flashstar (1).gif", :size => "15x15" %><font color="#009900">You are the highest bidder</font>
+			   <% else%>
+			  <font color="#FF0000"> You are outbid by <%= @servicelisting.highestbid - @userhighbid %>$ </font>
+			  <%end %>
+			  <%else %>
+			   <font color="#FF0000"> You have not bid on this service </font>
+			   <%end%>  
+			   <% end %>
+		</p>	
+			
+	</div>
+	</br>	
+	<% end %>
+</div>		
+<%= will_paginate @servicelistings %>
+
+<br />
+<% if isadmin? %>
+<%= link_to 'New Servicelisting', new_servicelisting_path, :class=>"links"  %>
+<%end%>
+
+<!-- <div class="jdt" start="12182400" product_id="aaaaaa"></div>
+
+<div class="jdt" start="22222222"></div>
+
+<div class="jdt" start="111111"></div>   -->
+<!--
+ <script type="text/javascript">
+  $('.jdt').jqTimer(function(ele,stime){
+    $(ele).html(stime);
+	});
+</script>   -->
+
+<script type="text/javascript">	
+	$('.jdt').each(function(i,jdt){
+		$(jdt).countdown({
+			until:$(jdt).attr('start'),
+			format:'dHMS',
+			compact: true
+		});
+	});
+	
+	//for bid popup
+	$('.bid_popup').colorbox();
+	
+	function process (city) 
+	{
+		/*
+		alert('Your are going to visit '+city+ ' city servicelisting');
+		*/
+		window.location = "http://localhost:3000/admin/listings?city=" + city; 
+	} 
+	
+	
+</script>
+
+
+  				</tr>			 
+			</table>
+			</br>
+			</br>
+			<%= link_to "Home", admin_index_path, :class => "links" %>
+        </div>
+    	<div id="tab2" class="tab_content">
+       		<table width="100%"  border="0" align="center" cellpadding="0" cellspacing="0">
+				<tr>
+    				<td colspan="6"><h3 align="center" style="color:#48B9E9"><div style="background:#747016;
+    					width: 40%;
+    					padding:0.3em;
+    					font: 0.9em Verdana, Arial, Helvetica, sans-serif;
+    					-moz-border-radius: 15px;
+    					-webkit-border-radius: 15px;
+    					height:26px;">Create New Servicelistings</div> </h3></td>
+  				</tr>
+			</table>
+			</br>
+			</br>
+			<%= link_to "Home", admin_index_path, :class => "links" %>
+    	</div>
+    	<div id="tab3" class="tab_content">
+       		<table width="100%"  border="0" align="center" cellpadding="0" cellspacing="0">
+				<tr>
+    				<td colspan="6"><h3 align="center" style="color:#48B9E9"><div style="background:#747016;
+    					width: 40%;
+    					padding:0.3em;
+    					font: 0.9em Verdana, Arial, Helvetica, sans-serif;
+    					-moz-border-radius: 15px;
+    					-webkit-border-radius: 15px;
+    					height:26px;">Edit and Delete Servicelistings</div> </h3></td>
+  				</tr>				  
+			</table>
+			</br>
+			</br>
+			<%= link_to "Home", admin_index_path, :class => "links" %>
+		</div>	 
+	</div> 
+</div>
+

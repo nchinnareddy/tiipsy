@@ -1,13 +1,18 @@
 
 class ServicelistingsController < ApplicationController
- before_filter :require_admin, :except => [:index, :show]
+ before_filter :require_admin_barowner, :except => [:index, :show]
+  
+  def require_admin_barowner
+   unless isadmin? || is_barowner?
+        redirect_to root_path   
+    end
+  end
   
   def require_admin
    unless isadmin?
         redirect_to root_path   
     end
   end
-  
   # GET /servicelistings
   # GET /servicelistings.xml
   def index
@@ -58,10 +63,19 @@ class ServicelistingsController < ApplicationController
   # POST /servicelistings.xml
   def create
     @servicelisting = Servicelisting.new(params[:servicelisting])
-
+    @bar_name = @servicelisting.bar_name
+    @barbussiness = BarBussiness.find(:first, :conditions => ['name=?',@bar_name])
+    @servicelisting.person_of_contact = @barbussiness.person_of_contact
+    @servicelisting.email = @barbussiness.email
+    @servicelisting.website = @barbussiness.website
+    @servicelisting.location = @barbussiness.address
+    @servicelisting.city = @barbussiness.city
+    @servicelisting.phone = @barbussiness.phone
+    @servicelisting.bar_name = @barbussiness.name
+    
     respond_to do |format|
       if @servicelisting.save        
-        format.html { redirect_to(@servicelisting, :notice => 'Servicelisting was successfully created.') }
+        format.html { redirect_to(@servicelisting, :notice => '') }
         format.xml  { render :xml => @servicelisting, :status => :created, :location => @servicelisting }
       else
         format.html { render :action => "new" }
@@ -91,11 +105,7 @@ class ServicelistingsController < ApplicationController
   def destroy
     @servicelisting = Servicelisting.find(params[:id])
     @servicelisting.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(servicelistings_url) }
-      format.xml  { head :ok }
-    end
+    redirect_to :controller => "admin", :action => "list"
   end
 
   

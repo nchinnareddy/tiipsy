@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110805121725) do
+ActiveRecord::Schema.define(:version => 20110811104237) do
 
   create_table "admins", :force => true do |t|
     t.float    "bidding_fee"
@@ -37,9 +37,9 @@ ActiveRecord::Schema.define(:version => 20110805121725) do
 
   create_table "bar_bussinesses", :force => true do |t|
     t.string   "name"
-    t.integer  "person_of_contact"
+    t.string   "person_of_contact"
     t.string   "email"
-    t.integer  "phone"
+    t.string   "phone"
     t.text     "address"
     t.string   "start_date"
     t.string   "end_date"
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(:version => 20110805121725) do
     t.string   "password"
     t.string   "password_confirmation"
     t.string   "persistence_token"
+    t.string   "city"
   end
 
   create_table "bids", :force => true do |t|
@@ -189,6 +190,11 @@ ActiveRecord::Schema.define(:version => 20110805121725) do
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
     t.string   "city"
+    t.string   "person_of_contact"
+    t.string   "bar_name"
+    t.string   "phone"
+    t.string   "email"
+    t.string   "website"
   end
 
   create_table "transactions", :force => true do |t|

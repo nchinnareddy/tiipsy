@@ -1,4 +1,5 @@
 <div id="buy_now">
+	
 <table width="37%" height="295" border="0" align="center">
 	
   <tr>
@@ -14,15 +15,15 @@
   <tr>
     <td width="197" height="136" valign="top">
             <div align="center" style="border:#226455 solid 2px;background-color:#F9FAE0;" >
-              <p><%= link_to image_tag("auth/file.gif", :height => '43', :width => '46'), servicelistings_path %></p>
-              <p align="center" class="style1"><%= link_to 'Servicelistings', servicelistings_path, :class=>"links" %></p>
+              <p><%= link_to image_tag("auth/file.gif", :height => '43', :width => '46'), servicelist_bar_bussinesses_path %></p>
+              <p align="center" class="style1"><%= link_to 'Servicelistings', servicelist_bar_bussinesses_path, :class=>"links" %></p>
           </div></td>
     
     
     <td width="197" height="87" valign="top">  
        <div align="center" style="border:#226455 solid 2px;background-color:#F9FAE0;" >
-         <p><%= link_to image_tag("auth/contact an agent.png", :height => '43', :width => '46'), admin_report_path %></p>
-         <p align="center" class="style1"><%= link_to 'Invite Guest', admin_report_path, :class=>"links" %></p>
+         <p><%= link_to image_tag("auth/contact an agent.png", :height => '43', :width => '46'), users_path %></p>
+         <p align="center" class="style1"><%= link_to 'Invite Guest', users_path, :class=>"links" %></p>
        </div></td> 
           
           
@@ -32,7 +33,7 @@
     <td width="197" height="87" valign="top">
        <div align="center" style="border:#226455 solid 2px;background-color:#F9FAE0;" >
          <p><%= link_to image_tag("auth/updte.png", :height => '43', :width => '46'), new_servicelisting_path %></p>
-         <p align="center" class="style1"><%= link_to 'New table Service', new_servicelisting_path, :class=>"links" %></p>
+         <p align="center" class="style1"><%= link_to 'New table Service',   new_servicelisting_path , :class=>"links" %></p>
        </div></td> 
           
           

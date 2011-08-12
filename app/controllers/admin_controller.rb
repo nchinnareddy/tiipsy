@@ -61,6 +61,7 @@ end
    @activate_bar_owner.password = @activate_bar_owner.new_random_password()
    @user.password = @activate_bar_owner.password
    @user.password_confirmation = @activate_bar_owner.password
+   @user.barowner = 1
    code = @activate_bar_owner.password 
    @activate_bar_owner.save
    @user.save!
@@ -73,8 +74,24 @@ end
    email = @suspend_bar_owner.email
    @suspend_bar_owner.status = 2
    @suspend_bar_owner.save
-  activate_bar_ownerotifier.bar_onwer_confirmation_mail_bussiness_suspended(email).deliver
+   Notifier.bar_onwer_confirmation_mail_bussiness_suspended(email).deliver
    redirect_to :action => 'report'
  end 
+ 
+ def listings
+   if @city = params[:city]
+      @servicelistings=Servicelisting.paginate :page=>params[:page], :per_page=>'2', :conditions => [ 'city=?', @city]
+    else
+      @location = Geokit::Geocoders::IpGeocoder.geocode(request.remote_ip)
+      @city = @location.city
+      #@city = 'agra'
+      #@servicelistings=Servicelisting.search(params[:search]).paginate :page=>params[:page], :conditions => [ 'city=?', @city] , :order=>'updated_at', :per_page=>'3'
+      @servicelistings=Servicelisting.paginate :page=>params[:page], :per_page=>'2', :conditions => [ 'city=?', @city]
+    end
+ end
+ 
+ def list
+   @servicelistings=Servicelisting.all
+ end
   
 end

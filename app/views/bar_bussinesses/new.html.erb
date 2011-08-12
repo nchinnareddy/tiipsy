@@ -1,5 +1,7 @@
 <div id="buy_now">
 
 <%= render 'form' %>
-
+<% if isadmin? %>
+	<%= link_to 'Back', admin_index_path , :class=>"links" %>
+<% end %>
 </div>
