@@ -1,17 +1,15 @@
 class BuynowController < ApplicationController
   
   before_filter :require_user
+  before_filter :require_user_with_creditcard
 
-  before_filter :require_bid_authorized
 
-  def buynow   
-    @sl = Servicelisting.find(params[:id])
-     
-#  user = User.find(current_user.id)
-#  current_user.topay =  @sl.buynow_price.to_f
-#  user.update_attributes({:topay =>  @sl.buynow_price.to_f})
-#  user.save(false)
-#  user.save
+def buynow
+   @sl = Servicelisting.find(params[:id])
+   @amount = @sl.buynow_price
+   @serviceid = @sl.id
+   @order = Order.new
+   render 'confirm'
 end
 
 def express
@@ -59,10 +57,8 @@ def checkoutcc
   @service = Servicelisting.find(params[:id])
   @amount = @service.buynow_price
   @serviceid = @service.id
-    
   @order = Order.new
-  render 'orders/checkoutcc'
- 
+  render 'orders/checkoutcc' 
 end
   
 end

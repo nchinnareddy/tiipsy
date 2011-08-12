@@ -1,32 +1,97 @@
 
 class ServicelistingsController < ApplicationController
- before_filter :require_admin, :except => [:index, :show]
+ include GeoKit::Geocoders
+ include GeoKit::Mappable
+ before_filter :require_admin_barowner, :except => [:index, :show]
+  
+  def require_admin_barowner
+   unless isadmin? || is_barowner?
+        redirect_to root_path   
+    end
+  end
   
   def require_admin
    unless isadmin?
         redirect_to root_path   
     end
   end
-  
   # GET /servicelistings
   # GET /servicelistings.xml
   def index
-    if @city = params[:city]
+    @city = params[:city]
+    if @city
       @servicelistings=Servicelisting.paginate :page=>params[:page], :per_page=>'2', :conditions => [ 'city=?', @city]
+      flash[:notice] = "These all servicelistings are belongs to your city #{ @city}."
+      if @servicelistings.empty?
+        @servicelistings = Servicelisting.paginate :page=>params[:page], :per_page=>'2'
+        flash[:notice] = "Sorry, There is no servicelistings for your city #{ @city}."
+      end
+      session[:city] = params[:city]
+    elsif session[:city]
+      @servicelistings=Servicelisting.paginate :page=>params[:page], :per_page=>'2', :conditions => [ 'city=?', session[:city]]
+      flash[:notice] = "These all servicelistings are belongs to your city #{ session[:city]}."
+      if @servicelistings.empty?
+        @servicelistings = Servicelisting.paginate :page=>params[:page], :per_page=>'2'
+        flash[:notice] = "Sorry, There is no servicelistings for your city #{ @city}."
+      end
     else
       @location = Geokit::Geocoders::IpGeocoder.geocode(request.remote_ip)
       @city = @location.city
+      if @city == nil
+        @servicelistings = Servicelisting.paginate :page=>params[:page], :per_page=>'2'
+      end
       #@city = 'agra'
       #@servicelistings=Servicelisting.search(params[:search]).paginate :page=>params[:page], :conditions => [ 'city=?', @city] , :order=>'updated_at', :per_page=>'3'
       @servicelistings=Servicelisting.paginate :page=>params[:page], :per_page=>'2', :conditions => [ 'city=?', @city]
+      flash[:notice] = "These all servicelistings are belongs to your city #{ @city}."    
     end
+    
+    if @servicelistings.empty? && (@city == nil)
+      @servicelistings = Servicelisting.paginate :page=>params[:page], :per_page=>'2'
+      "Sorry, There is no servicelistings for your city #{ @city}."
+    end
+    
   end
 
   def buynow
-   @servicelisting = Servicelisting.find(params[:servicelisting_id])
-      
+   @servicelisting = Servicelisting.find(params[:servicelisting_id])      
   end
+   
+  def new_authorization
+   @servicelisting = Servicelisting.find(params[:servicelisting_id])   
+  end
+ 
+  def authorize
+    @servicelisting = Servicelisting.find(params[:servicelisting_id])
+     ccard = current_user.credit_card
+     @order = Order.create(:first_name => ccard.first_name,
+                           :last_name => ccard.last_name,
+                           :card_type => ccard.card_type,
+                           :card_number => ccard.card_number,
+                           :card_verification => ccard.card_verification,
+                           :card_expires_on => ccard.card_expires_on,
+                           :address => ccard.address,
+                           :city => ccard.city,
+                           :state_name => ccard.state_name,
+                           :country => ccard.country,
+                           :zip => ccard.zip
+                          )                          
+  @order.amount = @servicelisting.buynow_price
+  @order.servicelisting_id = @servicelisting.id
+  @order.user_id = current_user.id
+  @order.ip_address = request.remote_ip
+  @order.description = "Authorization"
 
+  if @order.save
+      if @order.authorize_payment
+        flash[:notice] = "You are authorized to bid on: #{@servicelisting.title}"
+        redirect_to root_path
+      else
+        flash[:notice] = "Your authorization for service: #{@servicelisting.title} failed"
+        redirect_to root_path
+     end
+  end   
+end
   # GET /servicelistings/1
   # GET /servicelistings/1.xml
   def show
@@ -58,10 +123,19 @@ class ServicelistingsController < ApplicationController
   # POST /servicelistings.xml
   def create
     @servicelisting = Servicelisting.new(params[:servicelisting])
-
+    @bar_name = @servicelisting.bar_name
+    @barbussiness = BarBussiness.find(:first, :conditions => ['name=?',@bar_name])
+    @servicelisting.person_of_contact = @barbussiness.person_of_contact
+    @servicelisting.email = @barbussiness.email
+    @servicelisting.website = @barbussiness.website
+    @servicelisting.location = @barbussiness.address
+    @servicelisting.city = @barbussiness.city
+    @servicelisting.phone = @barbussiness.phone
+    @servicelisting.bar_name = @barbussiness.name
+    
     respond_to do |format|
       if @servicelisting.save        
-        format.html { redirect_to(@servicelisting, :notice => 'Servicelisting was successfully created.') }
+        format.html { redirect_to(@servicelisting, :notice => '') }
         format.xml  { render :xml => @servicelisting, :status => :created, :location => @servicelisting }
       else
         format.html { render :action => "new" }
@@ -91,11 +165,7 @@ class ServicelistingsController < ApplicationController
   def destroy
     @servicelisting = Servicelisting.find(params[:id])
     @servicelisting.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(servicelistings_url) }
-      format.xml  { head :ok }
-    end
+    redirect_to :controller => "admin", :action => "list"
   end
 
   

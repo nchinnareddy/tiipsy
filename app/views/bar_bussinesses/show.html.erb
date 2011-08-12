@@ -3,8 +3,16 @@
 
 
 <table width="100%" border="0">	
+  	
   <tr>
-    <td colspan="3"><h3 align="center" style="color:#48B9E9">Bar bussiness was successfully registerd, Check your mail</h3></td>
+    <td colspan="3">
+    	<h3 align="center" style="color:#48B9E9">
+    		<% unless params[:indicator] %>
+    		Bar bussiness was successfully registerd, Check your mail
+    		<% end %>
+    		Bar bussiness details
+    	</h3>
+    </td>
   </tr>  
   <tr>
     <td width="40%"><div align="right" style="color:#FFFFFF">Bar Name </div></td>
@@ -126,6 +134,9 @@
   <%= @bar_bussiness.description %>
 </p>
 -->
-
-<%= link_to 'Edit', edit_bar_bussiness_path(@bar_bussiness), :class=> 'links' %> |
+<% if isadmin?%>
+	<%= link_to 'Back', admin_report_path, :class=> 'links' %> 
+<% elsif current_user %>
+	<%= link_to 'Back', list_bar_bussinesses_path, :class=> 'links' %>
+<% end %>	
 </div>

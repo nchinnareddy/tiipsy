@@ -2,45 +2,37 @@
 class OrdersController < ApplicationController
   
 def create
-  @order = Order.create(params[:order])
+   ccard = current_user.credit_card
+   @order = Order.create(:first_name => ccard.first_name,
+                         :last_name => ccard.last_name,
+                         :card_type => ccard.card_type,
+                         :card_number => ccard.card_number,
+                         :card_verification => ccard.card_verification,
+                         :card_expires_on => ccard.card_expires_on,
+                         :address => ccard.address,
+                         :city => ccard.city,
+                         :state_name => ccard.state_name,
+                         :country => ccard.country,
+                         :zip => ccard.zip
+                          )                          
   @order.amount = params[:order][:amount]
   @order.servicelisting_id = params[:order][:servicelisting_id]
   @order.user_id = current_user.id
   @order.ip_address = request.remote_ip
   @order.description = "Buynow"
-  ssl = Servicelisting.find(@order.servicelisting_id)
-
+  @servicelisting = Servicelisting.find(@order.servicelisting_id)
+  
   if @order.save
-    if !credit_card.valid?
+      if @order.purchase
+        @servicelisting.winner_id = @order.user_id
+        @servicelisting.save
+        render :action => "success"
+      else
        render :action => "failure"
-    else
-      if @order.purchase()
-        current_user.bid_authorized = true
-        current_user.save
-        ssl.winner_id = @order.user_id
-        ssl.save
-        current_user.create_credit_card(:card_type          => @order.card_type,
-                                        :card_number        => @order.card_number,
-                                        :card_verification  => @order.card_verification,
-                                        :card_expires_on    => @order.card_expires_on,
-                                        :first_name         => @order.first_name,
-                                        :last_name          => @order.last_name,
-                                        :address            => @order.address,
-                                        :city               => @order.city,
-                                        :state_name         => @order.state_name,
-                                        :country            => @order.country,
-                                        :zip                => @order.zip
-                                        )              
-       render :action => "success"
-     else
-       render :action => "failure"
-    end
-    end 
-  else
-    render :action => 'new'
-  end
+      end
+  end 
 end
- 
+   
 def credit_card
     @credit_card ||= ActiveMerchant::Billing::CreditCard.new(
       :type               => @order.card_type,

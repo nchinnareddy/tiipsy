@@ -4,8 +4,7 @@
 </br>
 </br>
 
-<table width="37%" height="295" border="0" align="center">
-	
+<table width="57%" height="295" border="0" align="center">	
   <tr>
     <td colspan="3"><h3 align="center" style="color:#48B9E9"><div style="background:#747016;
     width: 80%;
@@ -19,35 +18,44 @@
   <tr>
     <td width="197" height="136" valign="top">
             <div align="center" style="border:#226455 solid 2px;background-color:#F9FAE0;" >
-              <p><%= link_to image_tag("auth/file.gif", :height => '43', :width => '46'), servicelistings_path %></p>
-              <p align="center" class="style1"><%= link_to 'Servicelistings', servicelistings_path, :class=>"links" %></p>
-          </div></td>
-    
-    
+              <p><%= link_to image_tag("auth/file.gif", :height => '43', :width => '46'), admin_list_path %></p>
+              <p align="center" class="style1"><%= link_to 'Manage Services', admin_list_path, :class=>"links" %></p>
+          </div>
+    </td>
     <td width="197" height="87" valign="top">  
        <div align="center" style="border:#226455 solid 2px;background-color:#F9FAE0;" >
          <p><%= link_to image_tag("auth/contact an agent.png", :height => '43', :width => '46'), admin_report_path %></p>
          <p align="center" class="style1"><%= link_to 'Manage Registration', admin_report_path, :class=>"links" %></p>
-       </div></td> 
-          
-          
-    
+       </div>
+    </td>
+    <td width="197" height="87" valign="top">  
+       <div align="center" style="border:#226455 solid 2px;background-color:#F9FAE0;" >
+         <p><%= link_to image_tag("auth/createee.jpg", :height => '43', :width => '46'), new_bar_bussiness_path %></p>
+         <p align="center" class="style1"><%= link_to 'New Bar Registration', new_bar_bussiness_path, :class=>"links" %></p>
+       </div>
+    </td>  
   </tr>
+  
   <tr>
     <td width="197" height="87" valign="top">
        <div align="center" style="border:#226455 solid 2px;background-color:#F9FAE0;" >
          <p><%= link_to image_tag("auth/updte.png", :height => '43', :width => '46'), new_servicelisting_path %></p>
-         <p align="center" class="style1"><%= link_to 'New Bottle Service', new_servicelisting_path, :class=>"links" %></p>
-       </div></td> 
-          
-          
-          
-          
+         <p align="center" class="style1"><%= link_to 'New Servicelistings', new_servicelisting_path, :class=>"links" %></p>
+       </div>
+    </td>                
     <td width="197" height="87" valign="top">
        <div align="center" style="border:#226455 solid 2px;background-color:#F9FAE0;" >
          <p><%= link_to image_tag("auth/index.jpg", :height => '43', :width => '46'), users_path %></p>
          <p align="center" class="style1"><%= link_to 'users', users_path, :class=>"links" %></p>
-       </div></td>  
+       </div>
+    </td>
+    <td width="197" height="87" valign="top">  
+       <div align="center" style="border:#226455 solid 2px;background-color:#F9FAE0;" >
+         <p><%= link_to image_tag("auth/manage_bar.jpg", :height => '43', :width => '46'), list_bar_bussinesses_path %></p>
+         <p align="center" class="style1"><%= link_to 'Manage Bar',  list_bar_bussinesses_path, :class=>"links" %></p>
+       </div>
+    </td> 
+      
   </tr>
 </table>
 </br>
@@ -56,12 +64,3 @@
 </br>
 
 </div> 
-
-<%= link_to 'orders', :controlloer => 'admin', :action => 'orderindex'%><br/>
-<% if @bidfee == nil %>
-<%= link_to 'set bidding authorization amount', :controller => 'admin', :action => 'newbidfee'%>
-<% else%>
-<%= link_to 'edit bidding authorization amount', :controller => 'admin', :action => 'edit'%>
-<%end%>
- 
-

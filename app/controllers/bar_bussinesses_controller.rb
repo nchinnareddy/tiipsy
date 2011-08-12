@@ -1,4 +1,5 @@
 class BarBussinessesController < ApplicationController
+  
   # GET /bar_bussinesses
   # GET /bar_bussinesses.xml
   def index
@@ -51,7 +52,12 @@ class BarBussinessesController < ApplicationController
       if @bar_bussiness.save
         format.html { redirect_to(@bar_bussiness, :notice => '') }
         format.xml  { render :xml => @bar_bussiness, :status => :created, :location => @bar_bussiness }
-        Notifier.bar_onwer_confirmation_mail(email).deliver
+        if ENV['RAILS_ENV'] == "development"
+        activation_mail = Notifier.bar_onwer_confirmation_mail(email).deliver
+          logger.debug activation_mail
+        elsif ENV['RAILS_ENV'] == "production"
+          Notifier.bar_onwer_confirmation_mail(email).deliver      
+        end  
         Notifier.bar_onwer_confirmation_mail_to_admin().deliver
       else
         format.html { render :action => "new" }
@@ -80,17 +86,30 @@ class BarBussinessesController < ApplicationController
   # DELETE /bar_bussinesses/1.xml
   def destroy
     @bar_bussiness = BarBussiness.find(params[:id])
+    @user_email = @bar_bussiness.email
+    @user = User.first(:conditions => ["email=?", @user_email])
+    @user.destroy
     @bar_bussiness.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(bar_bussinesses_url) }
-      format.xml  { head :ok }
-    end
+    redirect_to :controller => "admin", :action => "index"
   end
   
-  def bar_bussiness_control_panel
+  #validate Unique Email
+  def email_validate
+    @user = User.where(:email => params[:email]).first    
+  end
+  
+  def list
+    if isadmin?
+      @bar_bussinesses = BarBussiness.all
+    else
+      @bar_owner_email = current_user.email
+      @bar_bussinesses = BarBussiness.find(:all, :conditions => ["email=?", @bar_owner_email])
+    end 
     
   end
 
+  def servicelist
+    @servicelistings=Servicelisting.where("email=?", current_user.email)
+  end
   
 end
