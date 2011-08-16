@@ -12,7 +12,7 @@
   <tr>
     <td><div align="right" style="color:#FFFFFF">Price </div></td>
     <td width="1%"><strong style="color:#48B9E9">:</strong></td>
-    <td>$<%= @sl.buynow_price%></td>
+    <td>$<%= @sl.price%></td>
   </tr>
   <tr>
     <td colspan="3">&nbsp;</td>
@@ -28,21 +28,3 @@
     :action => 'express', :controller => 'buynow', :id => @sl %></td>
   </tr>
 </table>
-	
-<!--	
-<p>Please proceed to check out to finish your payment</p>
-<p> Service:<%= @sl.title%></p> </br> 
-<p>Price: $<%= @sl.buynow_price%> </p>
-<%amount = @sl.buynow_price %>
-<% amount = (amount.to_i) * 100%>
- For express checkout: 
- <p>
-<%= link_to image_tag('https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif'), 
-    :action => 'express', :controller => 'buynow', :id => @sl %>
-</p>
-
-Through gateway: <%= link_to "pay", :action => 'checkoutcc', :controller => 'buynow', :id => @sl %>
-
-</form>
-</br>
--->

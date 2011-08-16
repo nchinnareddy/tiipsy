@@ -58,7 +58,9 @@
 				    <% if isadmin? %>
 				    	<li><%= link_to "Home", admin_index_path %></li>
 				    <% end %>
-				    
+					<% if is_barowner? %>
+				    	<li><%= link_to "Home",  bar_bussinesses_path %></li>
+				    <% end %>
 					<li><%= link_to "Profile", user_path(current_user) %></li>
 					<li><%= link_to "My Account", account_history_users_path(:id => current_user.id) %></li>
 					<% if auth_provider.nil? %>

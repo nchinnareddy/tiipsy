@@ -1,7 +1,5 @@
 
 class ServicelistingsController < ApplicationController
- include GeoKit::Geocoders
- include GeoKit::Mappable
  before_filter :require_admin_barowner, :except => [:index, :show]
   
   def require_admin_barowner
@@ -21,34 +19,26 @@ class ServicelistingsController < ApplicationController
     @city = params[:city]
     if @city
       @servicelistings=Servicelisting.paginate :page=>params[:page], :per_page=>'2', :conditions => [ 'city=?', @city]
-      flash[:notice] = "These all servicelistings are belongs to your city #{ @city}."
-      if @servicelistings.empty?
         @servicelistings = Servicelisting.paginate :page=>params[:page], :per_page=>'2'
-        flash[:notice] = "Sorry, There is no servicelistings for your city #{ @city}."
-      end
-      session[:city] = params[:city]
-    elsif session[:city]
+        session[:city] = params[:city]
+     elsif session[:city]
       @servicelistings=Servicelisting.paginate :page=>params[:page], :per_page=>'2', :conditions => [ 'city=?', session[:city]]
-      flash[:notice] = "These all servicelistings are belongs to your city #{ session[:city]}."
-      if @servicelistings.empty?
         @servicelistings = Servicelisting.paginate :page=>params[:page], :per_page=>'2'
-        flash[:notice] = "Sorry, There is no servicelistings for your city #{ @city}."
-      end
-    else
-      @location = Geokit::Geocoders::IpGeocoder.geocode(request.remote_ip)
+     else
+      @location = Geokit::Geocoders::IpGeocoder.geocode(request.remote_ip)    
       @city = @location.city
       if @city == nil
         @servicelistings = Servicelisting.paginate :page=>params[:page], :per_page=>'2'
       end
-      #@city = 'agra'
       #@servicelistings=Servicelisting.search(params[:search]).paginate :page=>params[:page], :conditions => [ 'city=?', @city] , :order=>'updated_at', :per_page=>'3'
       @servicelistings=Servicelisting.paginate :page=>params[:page], :per_page=>'2', :conditions => [ 'city=?', @city]
-      flash[:notice] = "These all servicelistings are belongs to your city #{ @city}."    
     end
-    
-    if @servicelistings.empty? && (@city == nil)
+    # && 
+    if @servicelistings.empty?
       @servicelistings = Servicelisting.paginate :page=>params[:page], :per_page=>'2'
+      if @city != nil
       "Sorry, There is no servicelistings for your city #{ @city}."
+      end
     end
     
   end
@@ -76,7 +66,7 @@ class ServicelistingsController < ApplicationController
                            :country => ccard.country,
                            :zip => ccard.zip
                           )                          
-  @order.amount = @servicelisting.buynow_price
+  @order.amount = @servicelisting.price
   @order.servicelisting_id = @servicelisting.id
   @order.user_id = current_user.id
   @order.ip_address = request.remote_ip
@@ -87,7 +77,7 @@ class ServicelistingsController < ApplicationController
         flash[:notice] = "You are authorized to bid on: #{@servicelisting.title}"
         redirect_to root_path
       else
-        flash[:notice] = "Your authorization for service: #{@servicelisting.title} failed"
+        flash[:error] = "Your authorization for service: #{@servicelisting.title} failed"
         redirect_to root_path
      end
   end   

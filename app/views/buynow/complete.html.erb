@@ -4,11 +4,11 @@
     ...
   <% else %>
 	  <%= f.hidden_field :express_token %>
-	  <%= f.hidden_field :amount, :value => @service.buynow_price %>
+	  <%= f.hidden_field :amount, :value => @service.price %>
 	  <b>Your order details</b></br>	 
 	  <p>Service: <%= @service.title %></p></br>
 	  <p>Available on:<%= @service.availability%></p></br>
-	  <p>Amount: $<%= @service.buynow_price %></p></br>
+	  <p>Amount: $<%= @service.price %></p></br>
 	    
   <% end %>
       <p><%= f.submit "Complete Order" %></p>

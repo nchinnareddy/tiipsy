@@ -141,6 +141,8 @@
 	$('.date-pick').datePicker({autoFocusNextInput: true});
 	
 	$('#bar_bussiness_email').blur(function() {
+		// force cross-site scripting (as of jQuery 1.5)
+		jQuery.support.cors = true;
 		console.log($(this).val());
 		$.get('/bar_bussinesses/email_validate', 
 			{email:$(this).val()},
