@@ -18,6 +18,12 @@ class OrderTransaction < ActiveRecord::Base
     end
   end
 
+  def void(authorization, options = {})
+    process('void') do |gw|
+    gw.void(authorization, options)
+    end
+  end
+  
  def purchase(amount_in_cents, credit_card, options = { })
     process('purchase', amount_in_cents) do |gw|
       gw.purchase(amount_in_cents, credit_card, options)

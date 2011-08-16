@@ -4,7 +4,7 @@
  <p style="color:#FFFFFF"> Your stored creditcard is used for making this purchase.When you submit, you are accepting the
    <%= link_to '"Terms & Conditions"',credit_cards_term_condition_path, :class=>'term_condition' %></p>
    <p style="color:#FFFFFF"> Service: <%= @sl.title%></p>
-   <p style="color:#FFFFFF"> Price: $<%= @sl.buynow_price%></p>
+   <p style="color:#FFFFFF"> Price: $<%= @sl.price%></p>
 	  
 <% form_for @order do |f| %>
 	  <%= f.error_messages %>

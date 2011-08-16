@@ -53,11 +53,8 @@ def self.checkexpirations
 #                 users.add(user)
 #                 Notifier.bid_expired_email(user).deliver  
                  end # do end
-              logger.debug "before calling capturemoney"
-              result = self.capturemoney(highestbid, item.id)
-              logger.debug "after calling capturemoney"
-              logger.debug "result value is: #{result}"
-              if result == true
+              capture_result = self.capturemoney(highestbid, item.id)
+              if capture_result == true
                  item.status = "bought"
                  item.winner_id = highestbid.user_id
                  item.save
@@ -70,30 +67,46 @@ end
 def self.capturemoney(highestbid, service_id)
   logger.debug "entering capturemoney"
   user = User.find_by_id(highestbid.user_id)
- # service = self.find_by_id(id)
+  authorized_order =  Order.where("user_id = ? AND servicelisting_id = ? AND state = ? ", highestbid.user_id, service_id, 'authorized')
+  athorizationlimit = ((authorization.amount) * 100) + ((15/(authorization.amount))* 100)
   ccard = user.credit_card
   local_ip = UDPSocket.open {|s| s.connect("64.233.187.99", 1); s.addr.last}
   
-  exp_bid_order = Order.create( :amount => highestbid.bidprice,
-                                :description => "Bidding",
-                                :user_id => exp_bid_order.user_id,
-                                :servicelisting_id => service_id,
-                                :ip_address => local_ip,
-                                :first_name => ccard.first_name,
-                                :last_name => ccard.last_name,
-                                :card_type => ccard.card_type,
-                                :card_number => ccard.card_number,
-                                :card_verification => ccard.card_verification,
-                                :card_expires_on => ccard.card_expires_on,
-                                :address => ccard.address,
-                                :city => ccard.city,
-                                :state_name => ccard.state_name,
-                                :country => ccard.country,
-                                :zip => ccard.zip
-                               )                                         
-  result = exp_bid_order.purchase()
-  
-end
-
-
+   if ((highestbid.bidprice) * 100) <= athorizationlimit
+     capture_result = authorized_order.capture_payment
+   else
+     void_result = authorized_order.void
+   end
+   
+     if void_result.success?           
+       exp_bid_order = Order.create( :amount => highestbid.bidprice,
+                                     :description => "Bidding",
+                                     :user_id => exp_bid_order.user_id,
+                                     :servicelisting_id => service_id,
+                                     :ip_address => local_ip,
+                                     :first_name => ccard.first_name,
+                                     :last_name => ccard.last_name,
+                                     :card_type => ccard.card_type,
+                                     :card_number => ccard.card_number,
+                                     :card_verification => ccard.card_verification,
+                                     :card_expires_on => ccard.card_expires_on,
+                                     :address => ccard.address,
+                                     :city => ccard.city,
+                                     :state_name => ccard.state_name,
+                                     :country => ccard.country,
+                                     :zip => ccard.zip
+                                   )  
+          
+       capture_result = exp_bid_order.purchase
+   end
+   
+   if capture_result.success?
+     return true
+   else
+     return false
+   end
+ 
+end                                   
+                              
+                               
 end
