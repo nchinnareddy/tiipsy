@@ -1,5 +1,12 @@
 class BarBussiness < ActiveRecord::Base
   
+  acts_as_gmappable
+      def gmaps4rails_address
+          address
+      end
+       def gmaps4rails_infowindow
+         "<h4>#{name}</h4>" << "<h4>#{address}</h4>"
+  end
 
   has_attached_file :photo
   
@@ -10,6 +17,7 @@ class BarBussiness < ActiveRecord::Base
   validates_presence_of :address, :message => "Please enter address of Bar" 
   
   validates_uniqueness_of :name , :message => "This bar name is already registerd"
+  validates_uniqueness_of :email
   
   validates :email, :email_format => true
   

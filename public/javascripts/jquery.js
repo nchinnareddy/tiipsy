@@ -7245,6 +7245,7 @@ jQuery.support.ajax = !!testXHR;
 // Does this browser support crossDomain XHR requests
 jQuery.support.cors = testXHR && ( "withCredentials" in testXHR );
 
+
 // No need for the temporary xhr anymore
 testXHR = undefined;
 

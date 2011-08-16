@@ -47,9 +47,9 @@ class BarBussinessesController < ApplicationController
     @user.email = @bar_bussiness.email
     #@user.password = @bar_bussiness.password
     #@user.password_confirmation = @bar_bussiness.password_confirmation
-    @user.save(false)
     respond_to do |format|
       if @bar_bussiness.save
+        @user.save(false)
         format.html { redirect_to(@bar_bussiness, :notice => '') }
         format.xml  { render :xml => @bar_bussiness, :status => :created, :location => @bar_bussiness }
         if ENV['RAILS_ENV'] == "development"
@@ -110,6 +110,11 @@ class BarBussinessesController < ApplicationController
 
   def servicelist
     @servicelistings=Servicelisting.where("email=?", current_user.email)
+  end
+  
+  def map
+    @json = BarBussiness.find(:all, :conditions => [ 'city=?', params[:city] ]).to_gmaps4rails
+    render :layout => 'location'
   end
   
 end
