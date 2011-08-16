@@ -79,7 +79,8 @@ Socialstock::Application.routes.draw do
     collection do
      get "list" 
      get "servicelist"
-     get "email_validate"   
+     get "email_validate"
+     get "map"
     end
   end
   

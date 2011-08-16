@@ -112,4 +112,9 @@ class BarBussinessesController < ApplicationController
     @servicelistings=Servicelisting.where("email=?", current_user.email)
   end
   
+  def map
+    @json = BarBussiness.find(:all, :conditions => [ 'city=?', params[:city] ]).to_gmaps4rails
+    render :layout => 'location'
+  end
+  
 end
