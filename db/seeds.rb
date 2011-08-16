@@ -10,7 +10,7 @@ users.each do |user|
   User.create(user)  
 end
 
-owners = [ { :name =>'admin', :person_of_contact => 'admin', :address => "Austin", :email => 'nchinnareddy@gmail.com' }]
+owners = [ { :name =>'admin', :person_of_contact => 'admin', :address => 'Austin', :email => 'nchinnareddy@gmail.com' }]
 
 owners.each do |owner|  
   BarBussiness.create(owner)
