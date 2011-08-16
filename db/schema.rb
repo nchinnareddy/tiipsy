@@ -185,7 +185,7 @@ ActiveRecord::Schema.define(:version => 20110816112157) do
     t.string   "location"
     t.datetime "availability"
     t.float    "price"
-    t.float    "buynow_price",       :default => 0.0
+    t.float    "buynow_price"
     t.integer  "no_of_guests"
     t.float    "highestbid",         :default => 0.0
     t.string   "status",             :default => "active"

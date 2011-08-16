@@ -45,11 +45,13 @@ class BarBussinessesController < ApplicationController
     @user = User.new
     email=@bar_bussiness.email
     @user.email = @bar_bussiness.email
+    @user.password = @bar_bussiness.password
+    @user.password_confirmation = @bar_bussiness.password_confirmation
     #@user.password = @bar_bussiness.password
     #@user.password_confirmation = @bar_bussiness.password_confirmation
     respond_to do |format|
       if @bar_bussiness.save
-        @user.save(false)
+        @user.save!
         format.html { redirect_to(@bar_bussiness, :notice => '') }
         format.xml  { render :xml => @bar_bussiness, :status => :created, :location => @bar_bussiness }
         if ENV['RAILS_ENV'] == "development"

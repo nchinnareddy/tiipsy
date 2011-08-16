@@ -29,6 +29,16 @@
   </tr> 
   <% end %>
   <tr>
+    <td><div align="right" style="color:#FFFFFF">Password</div></td>
+    <td width="0"></td>
+    <td><%= f.password_field :password %></td>
+  </tr>
+  <tr>
+    <td><div align="right" style="color:#FFFFFF">Confirm Password</div></td>
+    <td width="0"></td>
+    <td><%= f.password_field :password_confirmation %></td>
+  </tr>
+  <tr>
     <td width="40%"><div align="right" style="color:#FFFFFF">Bar Name </div></td>
     <td width="1%"></td>
     <td width="59%"><%= f.text_field :name %></td>

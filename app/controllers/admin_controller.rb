@@ -54,14 +54,14 @@ end
    email = @activate_bar_owner.email
    @user = User.where('email=?', email).first
    @activate_bar_owner.status = 1
-   @activate_bar_owner.password = @activate_bar_owner.new_random_password()
-   @user.password = @activate_bar_owner.password
-   @user.password_confirmation = @activate_bar_owner.password
+   #@activate_bar_owner.password = @activate_bar_owner.new_random_password()
+   #@user.password = @activate_bar_owner.password
+   #@user.password_confirmation = @activate_bar_owner.password
    @user.barowner = 1
-   code = @activate_bar_owner.password 
+   #code = @activate_bar_owner.password 
    @activate_bar_owner.save
    @user.save!
-   Notifier.bar_onwer_confirmation_mail_bussiness_activated(email,code).deliver
+   Notifier.bar_onwer_confirmation_mail_bussiness_activated(email).deliver
    redirect_to :action => 'report'
  end
  
