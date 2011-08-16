@@ -10,7 +10,7 @@ class AddFieldsToServicelistings < ActiveRecord::Migration
 
   def self.down
     remove_column :servicelistings , :bar_name
-    remove_column :servicelistings , :person_of_contacts
+    remove_column :servicelistings , :person_of_contact
     remove_column :servicelistings , :phone
     remove_column :servicelistings , :email 
     remove_column :servicelistings , :website 

@@ -9,6 +9,13 @@ users = [{:login => 'admin', :email => 'nchinnareddy@gmail.com', :admin => 'true
 users.each do |user|  
   User.create(user)  
 end
+
+owners = [ { :name =>'admin', :person_of_contact => 'admin', :address => 'Austin, USA', :email => 'nchinnareddy@gmail.com' }]
+
+owners.each do |owner|  
+  BarBussiness.create(owner)
+end
+
 puts "Admin created"
 
 #roles = [ { :name => 'Super Admin', :identifier => 'superadmin' },

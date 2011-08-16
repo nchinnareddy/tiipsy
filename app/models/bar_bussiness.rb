@@ -10,6 +10,7 @@ class BarBussiness < ActiveRecord::Base
   validates_presence_of :address, :message => "Please enter address of Bar" 
   
   validates_uniqueness_of :name , :message => "This bar name is already registerd"
+  validates_uniqueness_of :email
   
   validates :email, :email_format => true
   
