@@ -6,6 +6,7 @@ class Order < ActiveRecord::Base
   state :authorized
   state :paid
   state :payment_declined
+  state :void
   
   event :payment_authorized do
     transitions :from => :pending,
@@ -19,6 +20,11 @@ class Order < ActiveRecord::Base
                 :to   => :paid
     transitions :from => :pending,
                 :to   => :paid            
+    end
+    
+    event :payment_voided do
+    transitions :from => :authorized,
+                :to   => :void
     end
   
   event :payment_purchased do
@@ -64,6 +70,19 @@ def capture_payment
       transaction_declined!
     end
       capture
+    end
+end
+
+def void
+   transaction do
+    vooid = OrderTransaction.void(authorization_reference, standard_purchase_options)
+    transactions.push(vooid)
+    if vooid.success?
+      payment_voided!
+    else
+      transaction_declined!
+    end
+      vooid
     end
 end
 
