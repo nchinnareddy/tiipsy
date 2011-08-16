@@ -30,7 +30,6 @@ class ServicelistingsController < ApplicationController
       if @city == nil
         @servicelistings = Servicelisting.paginate :page=>params[:page], :per_page=>'2'
       end
-      #@city = 'agra'
       #@servicelistings=Servicelisting.search(params[:search]).paginate :page=>params[:page], :conditions => [ 'city=?', @city] , :order=>'updated_at', :per_page=>'3'
       @servicelistings=Servicelisting.paginate :page=>params[:page], :per_page=>'2', :conditions => [ 'city=?', @city]
     end
@@ -67,7 +66,7 @@ class ServicelistingsController < ApplicationController
                            :country => ccard.country,
                            :zip => ccard.zip
                           )                          
-  @order.amount = @servicelisting.buynow_price
+  @order.amount = @servicelisting.price
   @order.servicelisting_id = @servicelisting.id
   @order.user_id = current_user.id
   @order.ip_address = request.remote_ip
