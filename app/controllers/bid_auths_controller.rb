@@ -1,4 +1,0 @@
-class BidAuthsController < ApplicationController
-  
-
-end
