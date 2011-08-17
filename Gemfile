@@ -39,6 +39,7 @@ gem "mail", "2.2.15"
  gem 'will_paginate', '3.0.pre2'
  gem "geokit", "~> 1.6.0"
  gem "client_side_validations", "~> 3.1.0"
+ gem "geokit-rails", "~> 1.1.4"
  
 
  #gem "crack", "~> 0.1.8"
