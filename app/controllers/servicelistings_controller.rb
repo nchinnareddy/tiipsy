@@ -23,6 +23,7 @@ class ServicelistingsController < ApplicationController
      elsif session[:city]
         @servicelistings=Servicelisting.paginate :page=>params[:page], :per_page=>'2', :conditions => [ 'city=?', session[:city]]
      else
+      raise request.remote_ip.inspect 
       @location = Geokit::Geocoders::IpGeocoder.geocode(request.remote_ip)    
       @city = @location.city
       #@servicelistings=Servicelisting.search(params[:search]).paginate :page=>params[:page], :conditions => [ 'city=?', @city] , :order=>'updated_at', :per_page=>'3'
