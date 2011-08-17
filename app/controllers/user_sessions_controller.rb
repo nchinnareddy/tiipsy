@@ -16,7 +16,7 @@ class UserSessionsController < ApplicationController
         if isadmin?
           redirect_to :controller => :admin, :action => :index
         elsif is_barowner?
-          redirect_to :controller => :bar_bussinesses, :action => :bar_bussiness_control_panel
+          redirect_to :controller => :bar_bussinesses, :action => :index
         else
           #redirect_back_or_default user_path(current_user)
           redirect_to :controller => :servicelistings, :action => :index
