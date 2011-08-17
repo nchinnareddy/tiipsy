@@ -111,9 +111,6 @@
 
 
 <%= link_to 'Back', servicelistings_path , :class=>"links" %>
-<% if isadmin? %>
-<%= link_to 'Create Address Location on Siipod Map', new_location_path , :class=>"links create_location_popup"  %>
-<% end %>
 
 <%= javascript_tag do%>
 	var sevice_location = "<%= @servicelisting.location%>";
