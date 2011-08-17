@@ -33,21 +33,21 @@ class Notifier < ActionMailer::Base
   end
   
   def bar_onwer_confirmation_mail(email)
-    @data = User.where("email=?", email).first
-    @perishable_token =  @data.perishable_token
-    @account_activation_url = activate_url(@perishable_token)
     mail(:to => email,
          :subject => "Welcome to SocialCheers")
   end
   
   def bar_onwer_confirmation_mail_to_admin
-    mail(:to => 'pravinmishra88@gmail.com',
+    mail(:to => 'nchinnareddy@gmail.com',
          :subject => "new bar owner registered",
          :body => "new bar owner registered")
   end
   
   def bar_onwer_confirmation_mail_bussiness_activated(email)
-    @username = email
+    @data = User.where("email=?", email).first
+    @perishable_token =  @data.perishable_token
+    @account_activation_url = activate_url(@perishable_token)
+    #@username = email
     #@password = code
     mail(:to => email,
          :subject => "Congratulation")

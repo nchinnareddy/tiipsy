@@ -18,6 +18,7 @@
 		<p class="more"><%= link_to 'More', servicelisting %></p>
 		<p class="map"><%= link_to 'Map',  map_bar_bussinesses_path(:city => servicelisting.city) %></p>
 		<p class="address_fet"><%= servicelisting.location %></p>
+		<p class="city"><%= servicelisting.city %></p>
 		<p class="time_left">Time left to Bid</p>
 		<p class="time_left_fet">
 			<% if tt >= 0 %>

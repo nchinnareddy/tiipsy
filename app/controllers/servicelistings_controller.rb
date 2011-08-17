@@ -18,27 +18,16 @@ class ServicelistingsController < ApplicationController
   def index
     @city = params[:city]
     if @city
-      @servicelistings=Servicelisting.paginate :page=>params[:page], :per_page=>'2', :conditions => [ 'city=?', @city]
-        @servicelistings = Servicelisting.paginate :page=>params[:page], :per_page=>'2'
-        session[:city] = params[:city]
+        @servicelistings=Servicelisting.paginate :page=>params[:page], :per_page=>'2', :conditions => [ 'city=?', @city]
+        session[:city] = @city
      elsif session[:city]
-      @servicelistings=Servicelisting.paginate :page=>params[:page], :per_page=>'2', :conditions => [ 'city=?', session[:city]]
-        @servicelistings = Servicelisting.paginate :page=>params[:page], :per_page=>'2'
+        @servicelistings=Servicelisting.paginate :page=>params[:page], :per_page=>'2', :conditions => [ 'city=?', session[:city]]
      else
       @location = Geokit::Geocoders::IpGeocoder.geocode(request.remote_ip)    
       @city = @location.city
-      if @city == nil
-        @servicelistings = Servicelisting.paginate :page=>params[:page], :per_page=>'2'
-      end
       #@servicelistings=Servicelisting.search(params[:search]).paginate :page=>params[:page], :conditions => [ 'city=?', @city] , :order=>'updated_at', :per_page=>'3'
       @servicelistings=Servicelisting.paginate :page=>params[:page], :per_page=>'2', :conditions => [ 'city=?', @city]
-    end
-    # && 
-    if @servicelistings.empty?
-      @servicelistings = Servicelisting.paginate :page=>params[:page], :per_page=>'2'
-      if @city != nil
-      "Sorry, There is no servicelistings for your city #{ @city}."
-      end
+      session[:city] = @city
     end
     
   end
