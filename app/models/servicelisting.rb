@@ -2,7 +2,7 @@ require "socket"
 require 'active_record'
 require 'geokit'
 class Servicelisting < ActiveRecord::Base
- acts_as_mappable :default_units => :kms 
+ geocode_ip_address 
   has_many :bids
   has_many :orders
   
