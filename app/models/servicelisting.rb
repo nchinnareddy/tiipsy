@@ -1,6 +1,6 @@
 require "socket"
 class Servicelisting < ActiveRecord::Base
- geocode_ip_address 
+  
   has_many :bids
   has_many :orders
   

@@ -22,8 +22,8 @@ class ServicelistingsController < ApplicationController
         session[:city] = @city
      elsif session[:city]
         @servicelistings=Servicelisting.paginate :page=>params[:page], :per_page=>'2', :conditions => [ 'city=?', session[:city]]
-     else 
-      raise @location = IpGeocoder.geocode('request.remote_ip').inspect    
+     else
+      @location = Geokit::Geocoders::IpGeocoder.geocode(request.remote_ip)    
       @city = @location.city
       #@servicelistings=Servicelisting.search(params[:search]).paginate :page=>params[:page], :conditions => [ 'city=?', @city] , :order=>'updated_at', :per_page=>'3'
       @servicelistings=Servicelisting.paginate :page=>params[:page], :per_page=>'2', :conditions => [ 'city=?', @city]
