@@ -1,6 +1,5 @@
 
 class ServicelistingsController < ApplicationController
-  geocode_ip_address
  before_filter :require_admin_barowner, :except => [:index, :show]
   
   def require_admin_barowner
