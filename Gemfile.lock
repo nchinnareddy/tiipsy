@@ -67,9 +67,10 @@ GEM
       httpclient (>= 2.2.0.2)
       rack-oauth2 (>= 0.8.0)
     gdata (1.1.1)
-    geokit (1.6.0)
-    geokit-rails (1.1.4)
-      geokit (>= 1.5.0)
+    geokit (1.5.0)
+    geokit-rails3 (0.1.3)
+      geokit (~> 1.5.0)
+      rails (~> 3.0.4)
     gmaps4rails (0.8.8)
       crack
     hashie (1.0.0)
@@ -211,8 +212,7 @@ DEPENDENCIES
   client_side_validations (~> 3.1.0)
   contacts
   fb_graph
-  geokit (~> 1.6.0)
-  geokit-rails (~> 1.1.4)
+  geokit-rails3 (~> 0.1.3)
   gmaps4rails (~> 0.8.8)
   hpricot
   linkedin (~> 0.2.2)

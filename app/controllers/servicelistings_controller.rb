@@ -1,7 +1,5 @@
 
 class ServicelistingsController < ApplicationController
-  include GeoKit::Geocoders
-  include GeoKit::Mappable
  before_filter :require_admin_barowner, :except => [:index, :show]
   
   def require_admin_barowner
@@ -25,7 +23,7 @@ class ServicelistingsController < ApplicationController
      elsif session[:city]
         @servicelistings=Servicelisting.paginate :page=>params[:page], :per_page=>'2', :conditions => [ 'city=?', session[:city]]
      else
-      raise @location = IpGeocoder.geocode(request.remote_ip).inspect    
+      @location = Geokit::Geocoders::IpGeocoder.geocode(request.remote_ip).inspect    
       @city = @location.city
       #@servicelistings=Servicelisting.search(params[:search]).paginate :page=>params[:page], :conditions => [ 'city=?', @city] , :order=>'updated_at', :per_page=>'3'
       @servicelistings=Servicelisting.paginate :page=>params[:page], :per_page=>'2', :conditions => [ 'city=?', @city]
