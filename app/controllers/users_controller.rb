@@ -15,7 +15,7 @@ class UsersController < ApplicationController
     params[:user][:social_login] = false
     @user = User.new(params[:user])
     if @user.save_without_session_maintenance
-      flash[:notice] = "User sign up successfully! Please check your mail and follow instructions in that mail."      
+      flash[:notice] = "Signup Successful! Please check your email and follow instructions"      
       #User Activation code      
       @user.devliver_activation_instructions!
       user = {:email => @user.email, :perishable_token => @user.perishable_token}

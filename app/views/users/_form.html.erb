@@ -1,12 +1,11 @@
-
-<table border="0" align="center">
+<table border="0" align="center" width="100%">
   <tr>
     <td colspan="3"><h3 align="center" style="color:#48B9E9"> Signup </h3></td>
   </tr>
   <tr>
-    <td width="191"><div align="right" style="color:#FFFFFF"><%= form.label :email %></div></td>
+    <td width="619"><div align="right" style="color:#FFFFFF"><%= form.label :email %></div></td>
     <td width="0"></td>
-    <td width="75"><%= form.text_field :email %></td>
+    <td width="694"><%= form.text_field :email %></td>
   </tr>
   <tr>
     <td><div align="right" style="color:#FFFFFF"><%= form.label :password, form.object.new_record? ? nil : "Change password" %></div></td>
@@ -39,7 +38,7 @@
 	<td><%= form.submit "Sign Up" , :class => "links" %></td>
   </tr>
   <tr>
-    <td><font style="color:#FFFFFF; font-size:15px">Not received activation mail</font></td>
+    <td align="right"><font style="color:#FFFFFF; font-size:15px">Not received activation mail</font></td>
     <td width="0"></td>
 	<td><%= link_to "Click here", resend_activation_users_path, :class=>"activation_mail_popup"  %></td>
   </tr>

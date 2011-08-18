@@ -83,8 +83,8 @@ end
     end
   end
   
-  def term_condiation
+ def term_condiation
     render :layout=>false
-  end
+ end
   
 end
