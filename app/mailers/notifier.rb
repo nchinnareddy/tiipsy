@@ -50,7 +50,7 @@ class Notifier < ActionMailer::Base
     #@username = email
     #@password = code
     mail(:to => email,
-         :subject => "Congratulation")
+         :subject => "Congratulations - Social Cheers Bar Approval Notice")
   end
   
   def bar_onwer_confirmation_mail_bussiness_suspended(email)
