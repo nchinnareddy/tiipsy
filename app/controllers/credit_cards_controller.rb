@@ -31,30 +31,20 @@ class CreditCardsController < ApplicationController
   def create
      @creditcard = CreditCard.new(params[:credit_card])
      if !(credit_card(@creditcard).valid?)
-      flash[:error] = "Your card is not valid"   
+      flash[:error] = "Your card is not valid"
       redirect_to new_user_credit_card_path(current_user)
       return
      end
-
      if current_user.credit_card
-      if current_user.credit_card.update_attributes(params[:credit_card])
-         flash[:notice] = "Your credit card details are modified"
-      else
-        @creditcard = CreditCard.new(params[:credit_card])
+        current_user.credit_card.update_attributes(params[:credit_card])
+        flash[:notice] = "Your credit card details are modified"        
+     else
         @creditcard.user_id = current_user.id
-    
-  
-   if current_user.credit_card
-    current_user.credit_card = @creditcard
-    current_user.credit_card.save
-    flash[:notice] = "Your credit card details are modified"
-   else
-    @creditcard.save
-    flash[:notice] = "Your credit card details are on file"
-   end
-  
-   redirect_to root_path(current_user)
- end
+        flash[:notice] = "Your credit card details are on file"
+        @creditcard.save        
+     end
+     redirect_to root_path     
+  end
 
   
 def credit_card(cc)
