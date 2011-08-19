@@ -145,5 +145,9 @@ class UsersController < ApplicationController
     
   end
   
+  def term_condiation
+    
+  end
+  
   
 end
