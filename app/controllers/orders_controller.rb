@@ -28,7 +28,8 @@ def create
         @servicelisting.save
         render :action => "success"
       else
-       render :action => "failure"
+        flash[:notice] = "Sorry - The details you entered might be in-corrrect. We are unable to process your transaction"
+       redirect_to edit_user_credit_card_path(current_user, :id => current_user.credit_card)
       end
   end 
 end
