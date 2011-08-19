@@ -15,24 +15,22 @@ class ServicelistingsController < ApplicationController
   end
   # GET /servicelistings
   # GET /servicelistings.xml
-def index
+  def index
     @city = params[:city]
     if @city
-      @servicelistings=Servicelisting.paginate :page=>params[:page], :per_page=>'2', :conditions => [ 'city=?', @city]
-        session[:city] = params[:city]
-    elsif session[:city]
-      @servicelistings=Servicelisting.paginate :page=>params[:page], :per_page=>'2', :conditions => [ 'city=?', session[:city]]
-    else
-      @location = Geokit::Geocoders::IpGeocoder.geocode(request.remote_ip)    
+        @servicelistings=Servicelisting.paginate :page=>params[:page], :per_page=>'2', :conditions => [ 'city=?', @city]
+        session[:city] = @city
+     elsif session[:city]
+        @servicelistings=Servicelisting.paginate :page=>params[:page], :per_page=>'2', :conditions => [ 'city=?', session[:city]]
+     else
+      @location = Geokit::Geocoders::MultiGeocoder.geocode(request.remote_ip)
       @city = @location.city
-      if @city == nil
-        @servicelistings = Servicelisting.paginate :page=>params[:page], :per_page=>'2'
-      end
       #@servicelistings=Servicelisting.search(params[:search]).paginate :page=>params[:page], :conditions => [ 'city=?', @city] , :order=>'updated_at', :per_page=>'3'
       @servicelistings=Servicelisting.paginate :page=>params[:page], :per_page=>'2', :conditions => [ 'city=?', @city]
+      session[:city] = @city
     end
-    # && 
-end
+    
+  end
 
   def buynow
    @servicelisting = Servicelisting.find(params[:servicelisting_id])      
@@ -69,7 +67,7 @@ end
         redirect_to root_path
       else
         flash[:error] = "Your authorization for service: #{@servicelisting.title} failed"
-        redirect_to edit_user_credit_card_path(current_user)
+        redirect_to root_path
      end
   end   
 end

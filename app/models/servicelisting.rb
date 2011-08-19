@@ -1,3 +1,4 @@
+include Geokit::Geocoders
 require "socket"
 class Servicelisting < ActiveRecord::Base
   

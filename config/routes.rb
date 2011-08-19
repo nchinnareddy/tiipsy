@@ -53,6 +53,8 @@ Socialstock::Application.routes.draw do
       get 'resend_activation'
       post 'resent_activation'
       get 'account_history'
+      get 'profile'
+      get 'account'
     end
    resources :bids
    resource :credit_card

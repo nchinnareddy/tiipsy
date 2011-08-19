@@ -15,11 +15,11 @@ class UserSessionsController < ApplicationController
       flash[:notice] = "Login successful!"
         if isadmin?
           redirect_to :controller => :admin, :action => :index
-        elsif
+        elsif is_barowner?
           redirect_to :controller => :bar_bussinesses, :action => :index
         else
           #redirect_back_or_default user_path(current_user)
-          redirect_to :controller => :bar_bussinesses, :action => :bar_bussiness_control_panel
+          redirect_to :controller => :servicelistings, :action => :index
         end
     else
       render :action => :new
@@ -28,7 +28,7 @@ class UserSessionsController < ApplicationController
   
   def destroy
     current_user_session.destroy
-    flash[:notice] = "Logout successful!"
+    flash[:notice] = "log-out successful"
     #redirect_back_or_default new_user_session_url
     redirect_to servicelistings_path
   end

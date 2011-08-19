@@ -53,6 +53,7 @@
 	</br>
 	<div id="details">
 		<p class="spot">The Spot</p>
+		<p class="city"><%= @servicelisting.city %></p>
 		<p class="maps"><div id="map_details"><%= image_tag "http://maps.google.com/maps/api/staticmap?size=400x200&sensor=false&zoom=15&markers=#{@servicelisting.location}" %></div></p>
 		<p class="address_fet"><%= @servicelisting.location %></p>
 		<p class="info">The Info</p>
@@ -110,9 +111,6 @@
 
 
 <%= link_to 'Back', servicelistings_path , :class=>"links" %>
-<% if isadmin? %>
-<%= link_to 'Create Address Location on Siipod Map', new_location_path , :class=>"links create_location_popup"  %>
-<% end %>
 
 <%= javascript_tag do%>
 	var sevice_location = "<%= @servicelisting.location%>";

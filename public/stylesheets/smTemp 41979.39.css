@@ -580,10 +580,10 @@ label.error {
 }
 
 #details p.city {
-    color: #7b7b7b;
+    color: #000;
     font-family: Georgia,"Times New Roman",Times,serif;
     font-size: 15px;
-    left: 135px;
+    left: 130px;
     position: absolute;
     top: 12px;
 }
@@ -644,7 +644,7 @@ label.error {
 #servicelisting_links {
     left: 30px;
     position: absolute;
-    top: px;
+    top: 79px;
     width: 200px;
 }
 

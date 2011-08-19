@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   has_many :contacts
   has_one :credit_card
   has_many :orders
-    
+  validates_confirmation_of :password, :message => "Password and Password confirmation must match"    
   acts_as_authentic do |c|
     c.merge_validates_length_of_password_field_options({:minimum => 6})
     c.ignore_blank_passwords = true
@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
     if user.new_record? #adds validation if it is a new record
       user.errors.add(:password, "is required") if user.password.blank? 
       user.errors.add(:password_confirmation, "is required") if user.password_confirmation.blank?
-      user.errors.add(:password, "Password and confirmation must match") if user.password != user.password_confirmation
+      user.errors.add(:password, "and confirmation must match.") if user.password != user.password_confirmation
     elsif !(!user.new_record? && user.password.blank? && user.password_confirmation.blank?) #adds validation only if password or password_confirmation are modified
       user.errors.add(:password, "is required") if user.password.blank?
       user.errors.add(:password_confirmation, "is required") if user.password_confirmation.blank?
