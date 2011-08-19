@@ -3,7 +3,8 @@ class OrdersController < ApplicationController
   
 def create
    ccard = current_user.credit_card
-   @order = Order.create(:first_name => ccard.first_name,
+   @order = Order.create(:amount => params[:order][:amount],
+                         :first_name => ccard.first_name,
                          :last_name => ccard.last_name,
                          :card_type => ccard.card_type,
                          :card_number => ccard.card_number,
@@ -14,8 +15,7 @@ def create
                          :state_name => ccard.state_name,
                          :country => ccard.country,
                          :zip => ccard.zip
-                          )                          
-  @order.amount = params[:order][:amount]
+                          )
   @order.servicelisting_id = params[:order][:servicelisting_id]
   @order.user_id = current_user.id
   @order.ip_address = request.remote_ip

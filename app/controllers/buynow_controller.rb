@@ -6,7 +6,7 @@ class BuynowController < ApplicationController
 
 def buynow
    @sl = Servicelisting.find(params[:id])
-   @amount = @sl.buynow_price
+   @amount = @sl.price
    @serviceid = @sl.id
    @order = Order.new
    render 'confirm'
