@@ -15,16 +15,14 @@ class ServicelistingsController < ApplicationController
   end
   # GET /servicelistings
   # GET /servicelistings.xml
-  def index
+def index
     @city = params[:city]
     if @city
       @servicelistings=Servicelisting.paginate :page=>params[:page], :per_page=>'2', :conditions => [ 'city=?', @city]
-        @servicelistings = Servicelisting.paginate :page=>params[:page], :per_page=>'2'
         session[:city] = params[:city]
-     elsif session[:city]
+    elsif session[:city]
       @servicelistings=Servicelisting.paginate :page=>params[:page], :per_page=>'2', :conditions => [ 'city=?', session[:city]]
-        @servicelistings = Servicelisting.paginate :page=>params[:page], :per_page=>'2'
-     else
+    else
       @location = Geokit::Geocoders::IpGeocoder.geocode(request.remote_ip)    
       @city = @location.city
       if @city == nil
@@ -34,14 +32,7 @@ class ServicelistingsController < ApplicationController
       @servicelistings=Servicelisting.paginate :page=>params[:page], :per_page=>'2', :conditions => [ 'city=?', @city]
     end
     # && 
-    if @servicelistings.empty?
-      @servicelistings = Servicelisting.paginate :page=>params[:page], :per_page=>'2'
-      if @city != nil
-      "Sorry, There is no servicelistings for your city #{ @city}."
-      end
-    end
-    
-  end
+end
 
   def buynow
    @servicelisting = Servicelisting.find(params[:servicelisting_id])      
@@ -78,7 +69,7 @@ class ServicelistingsController < ApplicationController
         redirect_to root_path
       else
         flash[:error] = "Your authorization for service: #{@servicelisting.title} failed"
-        redirect_to root_path
+        redirect_to edit_user_credit_card_path(current_user)
      end
   end   
 end

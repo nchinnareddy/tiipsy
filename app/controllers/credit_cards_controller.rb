@@ -14,6 +14,10 @@ class CreditCardsController < ApplicationController
   # GET /credit_cards/new
   # GET /credit_cards/new.xml
   def new
+     if current_user.credit_card
+       redirect_to edit_user_credit_card_path(current_user.credit_card)
+       return
+     end
       @credit_card = CreditCard.new
   end
 
@@ -25,21 +29,31 @@ class CreditCardsController < ApplicationController
   # POST /credit_cards
   # POST /credit_cards.xml
   def create
-    @creditcard = CreditCard.new(params[:credit_card])
-    @creditcard.user_id = current_user.id
-    
-    if !credit_card(@creditcard).valid?
+     @creditcard = CreditCard.new(params[:credit_card])
+     if !(credit_card(@creditcard).valid?)
       flash[:error] = "Your card is not valid"   
-      redirect_to servicelistings_path
+      redirect_to new_user_credit_card_path(current_user)
       return
-    end
+     end
 
-   if @creditcard.save
-     flash[:notice] = "Your credit card details are on file"          
+     if current_user.credit_card
+      if current_user.credit_card.update_attributes(params[:credit_card])
+         flash[:notice] = "Your credit card details are modified"
+      else
+        @creditcard = CreditCard.new(params[:credit_card])
+        @creditcard.user_id = current_user.id
+    
+  
+   if current_user.credit_card
+    current_user.credit_card = @creditcard
+    current_user.credit_card.save
+    flash[:notice] = "Your credit card details are modified"
    else
-     flash[:error] = "Your credit card details are not stored"
+    @creditcard.save
+    flash[:notice] = "Your credit card details are on file"
    end
-   redirect_to user_path(current_user)
+  
+   redirect_to root_path(current_user)
  end
 
   

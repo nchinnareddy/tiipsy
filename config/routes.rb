@@ -43,8 +43,6 @@ Socialstock::Application.routes.draw do
   resources :locations
 
   resources :contacts
-  
-  resources :credit_cards
      
   resources :password_resets, :only => [:new, :create, :edit, :update]
 
@@ -57,13 +55,13 @@ Socialstock::Application.routes.draw do
       get 'account_history'
     end
    resources :bids
+   resource :credit_card
  end
  
    resources :servicelistings do
     get 'authorize'
     collection do
-      get 'new_authorization'
-     
+      get 'new_authorization'     
     end
    resources :bids, :new => { :express => :get }
   end

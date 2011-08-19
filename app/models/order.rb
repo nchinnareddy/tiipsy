@@ -45,7 +45,7 @@ class Order < ActiveRecord::Base
 def authorize_payment
   #  options[:order_id] = number
      transaction do
-      authorization = OrderTransaction.authorize(amount, credit_card, standard_purchase_options)
+      authorization = OrderTransaction.authorize(price_in_cents, credit_card, standard_purchase_options)
       transactions.push(authorization)
      if authorization.success?
       payment_authorized!
@@ -62,7 +62,7 @@ end
 def capture_payment
     
   transaction do
-    capture = OrderTransaction.capture(amount, authorization_reference, standard_purchase_options)
+    capture = OrderTransaction.capture(price_in_cents, authorization_reference, standard_purchase_options)
     transactions.push(capture)
     if capture.success?
       payment_captured!
