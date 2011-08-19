@@ -7,13 +7,13 @@
 <% if @contacts %>
 
 
-<h4><i>You have <%= @contacts.length%> friends to send invitation.</i></h4>
+<h3><i>You have <%= @contacts.length%> friends to send invitation.</i></h3>
 
-<table>
+<table border="0" align="center" cellpadding="0" cellspacing="0">
 	<tr>
-		<th>Name</th>
-		<th>Select</th>
-		<th>Email</th>
+		<td><font color="#FFFFFF" style="font-size:14px">Name</font></td>
+		<td><font color="#FFFFFF" style="font-size:14px">Select</font></td>
+		<td><font color="#FFFFFF" style="font-size:14px">Email</font></td>
 	</tr>
 	<% @contacts.each do |contact| %>
 		<tr class="<%= cycle("odd","even") %>">
@@ -35,14 +35,14 @@
 	<% end %>
 	
 	<tr>
-		<th align="right">Subject</th>
-		<th>:</th>
+		<td align="right"><font color="#FFFFFF" style="font-size:14px">Subject</font></td>
+		<td>:</td>
 		<td><%= text_field_tag :subject_w, "", :size=>"67" %></td>
 	</tr>
 	
 	<tr>
-		<th align="right">Write MSG here</th>
-		<th>:</th>
+		<td align="right"><font color="#FFFFFF" style="font-size:14px">Write MSG here</font></td>
+		<td>:</td>
 		<td><%= text_area_tag :msg, "", :size=>"50x20" %></td>
 		
 	</tr>
@@ -53,6 +53,7 @@
 	</tr>
 	
 </table>
+
 <% else %>
 	<p>No contacts found.</p>	
 	

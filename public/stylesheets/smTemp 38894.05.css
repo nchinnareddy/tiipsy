@@ -392,8 +392,7 @@ label.error {
 }
 
 .odd {
-   background: #e3f9fc;
-}
+   background: #e3f9fc;}
 
 .even {
 	background: #ebe8ff;
@@ -414,7 +413,7 @@ label.error {
 }
 
 #heading_style{
-	background-color: #ffc054 ;
+
 }
 
 #servicelisting {
@@ -580,10 +579,10 @@ label.error {
 }
 
 #details p.city {
-    color: #000;
+    color: #7b7b7b;
     font-family: Georgia,"Times New Roman",Times,serif;
     font-size: 15px;
-    left: 130px;
+    left: 135px;
     position: absolute;
     top: 12px;
 }
@@ -644,7 +643,7 @@ label.error {
 #servicelisting_links {
     left: 30px;
     position: absolute;
-    top: 79px;
+    top: px;
     width: 200px;
 }
 
@@ -985,8 +984,10 @@ label.error {
 }
 
 #term_condition{
-	width:500px;
-	height:400px;
+	width:700px;
+	height:500px;
+	float:center;
+	overflow: auto;
 }
 
 

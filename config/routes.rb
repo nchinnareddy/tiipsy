@@ -1,16 +1,18 @@
 Socialstock::Application.routes.draw do
   
+  resources :contacts
+
+  get "contacts/authorize"
+  
   get "contacts/mail"
   
   get "contacts/send_mail"
-  
+   
   match "/contacts/:id" => "contacts#mail"
 
   get "auth_linkedin/index"
 
   get "auth_linkedin/callback"
-  
-  get "credit_cards/term_condition"  
   
   get 'admin/index'
   get 'admin/report'
@@ -42,7 +44,11 @@ Socialstock::Application.routes.draw do
   
   resources :locations
 
-  resources :contacts
+  resources :credit_cards do
+    collection do 
+      get 'term_condition'
+    end    
+  end
      
   resources :password_resets, :only => [:new, :create, :edit, :update]
 
@@ -57,13 +63,13 @@ Socialstock::Application.routes.draw do
       get 'account'
     end
    resources :bids
-   resource :credit_card
  end
  
    resources :servicelistings do
     get 'authorize'
     collection do
-      get 'new_authorization'     
+      get 'new_authorization'
+     
     end
    resources :bids, :new => { :express => :get }
   end

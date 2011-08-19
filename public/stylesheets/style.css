@@ -392,11 +392,10 @@ label.error {
 }
 
 .odd {
-   background: #e3f9fc;
-}
+   background: #E7E9EB;}
 
 .even {
-	background: #ebe8ff;
+	background: #D9DBDF;
 }
 
 .details-claim {
@@ -414,7 +413,7 @@ label.error {
 }
 
 #heading_style{
-	background-color: #ffc054 ;
+
 }
 
 #servicelisting {
@@ -985,8 +984,10 @@ label.error {
 }
 
 #term_condition{
-	width:500px;
-	height:400px;
+	width:700px;
+	height:500px;
+	float:center;
+	overflow: auto;
 }
 
 
