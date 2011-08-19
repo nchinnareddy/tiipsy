@@ -66,8 +66,8 @@ class ServicelistingsController < ApplicationController
         flash[:notice] = "You are authorized to bid on: #{@servicelisting.title}"
         redirect_to root_path
       else
-        flash[:error] = "Your authorization for service: #{@servicelisting.title} failed"
-        redirect_to root_path
+        flash[:notice] = "Sorry - The details you entered might be in-corrrect. We are unable to process your transaction. Re-enter your credit card details"
+        redirect_to new_user_credit_card_path(current_user)
      end
   end   
 end
