@@ -87,8 +87,4 @@ end
     end
   end
   
- def term_condition
-   render :layout => false
- end
-  
 end

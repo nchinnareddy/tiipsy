@@ -6,7 +6,7 @@ class Servicelisting < ActiveRecord::Base
   has_many :orders
   
   has_attached_file :photo  
-  
+   
 def self.search(search)
   if search
     find(:all, :conditions => ['description LIKE ?', "%#{search}%"])

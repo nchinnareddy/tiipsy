@@ -145,9 +145,9 @@ class UsersController < ApplicationController
     
   end
   
-  def term_condiation
-    
-  end
+ def term_condition
+   render :layout => false
+ end
   
   
 end

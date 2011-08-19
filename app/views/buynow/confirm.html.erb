@@ -2,7 +2,7 @@
 <% stylesheet('colorbox') %>
 <div id="buy_now">
  <p style="color:#FFFFFF"> Your stored creditcard is used for making this purchase.When you submit, you are accepting the
-   <%= link_to '"Terms & Conditions"', :term_condition_credit_cards, :class=>'term_condition' %></p>
+   <%= link_to '"Terms & Conditions"', term_condition_users_path, :class=>'term_condition' %></p>
    <p style="color:#FFFFFF"> Service: <%= @sl.title%></p>
    <p style="color:#FFFFFF"> Price: $<%= @sl.price%></p>
 	  
