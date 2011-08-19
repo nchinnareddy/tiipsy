@@ -31,9 +31,9 @@ class CreditCardsController < ApplicationController
   def create
      @creditcard = CreditCard.new(params[:credit_card])
      if !(credit_card(@creditcard).valid?)
-      flash[:error] = "Your card is not valid"   
-      redirect_to new_user_credit_card_path(current_user)
-      return
+        flash[:error] = "Your card is not valid"   
+        redirect_to new_user_credit_card_path(current_user)
+        return
      end
 
      if current_user.credit_card
@@ -54,10 +54,9 @@ class CreditCardsController < ApplicationController
    end
   
    redirect_to root_path(current_user)
- end
-
+  end
   
-def credit_card(cc)
+  def credit_card(cc)
     @credit_card ||= ActiveMerchant::Billing::CreditCard.new(
       :type               => cc.card_type,
       :number             => cc.card_number,
@@ -67,7 +66,7 @@ def credit_card(cc)
       :first_name         => cc.first_name,
       :last_name          => cc.last_name
     )
-end
+  end
 
   # PUT /credit_cards/1
   # PUT /credit_cards/1.xml
@@ -97,8 +96,8 @@ end
     end
   end
   
- def term_condition
-   render :layout => false
- end
-  
+  def term_condition
+   render :layout => "false"
+  end
+ 
 end
