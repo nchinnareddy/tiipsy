@@ -4,7 +4,6 @@
 <div id="admin">
 	<ul class="simple-tabs">
 		<li><%= link_to "Profile Details","#tab1" %></li>
-    	<li><%= link_to "Edit Profile", "#tab2" %></li>
     	<li><%= link_to "Login Details", "#tab3" %></li>
 	</ul>
 	<div class="tab_container">
@@ -12,148 +11,56 @@
 			<table width="100%"  border="0" align="center" cellpadding="0" cellspacing="0">
 				<tr>
     				<td colspan="6">
-    					<h3 align="center" style="color:#48B9E9">
-      					<div style="background:#747016;
-    						width: 40%;
-    						padding:0.3em;
-    						font: 0.9em Verdana, Arial, Helvetica, sans-serif;
-    						-moz-border-radius: 15px;
-    						-webkit-border-radius: 15px;
-    						height:26px;">Profile Details 
+    					<h1 align="center" style="color:#48B9E9">
+      					<div >Personal Information 
 						</div> 
-    					</h3>
+    					</h1>
 					</td>
   				</tr>	
-			  	<tr bgcolor="#000000" class="BoldRED">
-
-                	<td width="13%" height="25" bgcolor="#DDDDDD" class="headtext13" style="border-bottom:#666666 1px solid;border-right:#666666 solid 1px;border-left:#666666 1px solid;"><div align="left" class="style22">
-                  	<div align="center"><span style="font-size:12px; font-family:Arial, Helvetica, sans-serif;">First Name</span></div>
-                	</div></td>
-        
-                	<td width="10%" height="25" bgcolor="#DDDDDD" class="headtext13" style="border-bottom:#666666 1px solid;border-right:#666666 solid 1px;"><div align="left" class="style22">
-                  	<div align="center"><span style="font-size:12px; font-family:Arial, Helvetica, sans-serif;">Last Name</span></div>
-                  
-                	</div></td>
-                	<td width="12%" bgcolor="#DDDDDD" class="headtext13" style="border-bottom:#666666 1px solid;border-right:#666666 solid 1px;"><div align="left" class="style22">
-                  	<div align="center"><span style="font-size:12px; font-family:Arial, Helvetica, sans-serif;">Email</span></div>
-                	</div></td>
-                	<td width="10%" height="25" bgcolor="#DDDDDD" class="headtext13" style="border-bottom:#666666 1px solid;border-right:#666666 solid 1px;"><div align="left" class="style22">
-                  	<div align="center"><span style="font-size:12px; font-family:Arial, Helvetica, sans-serif;">City </span></div>
-                	</div></td>
-			    	<td width="10%" height="25" bgcolor="#DDDDDD" class="headtext13" style="border-bottom:#666666 1px solid;border-right:#666666 solid 1px;"><div align="left" class="style22">
-			      	<div align="center"><span style="font-size:12px; font-family:Arial, Helvetica, sans-serif;">State </span></div>
-			    	</div></td>
-     			<tr bgcolor="#FFFFFF" onMouseOver="this.bgColor='gold';" onMouseOut="this.bgColor='#FFFFFF';" >
-                	<td height="25" style="border-bottom:#666666 1px solid;border-left:#666666 1px solid;"><div align="center"><%= current_user.first_name %></div></td>
-    
-                	<td style="border-bottom:#666666 1px solid"><div align="center"><%= current_user.last_name %></div></td>
-
-                	<td style="border-bottom:#666666 1px solid"><div align="center"><%= current_user.email %></div></td>
-                
-                	<td  style="border-bottom:#666666 1px solid"><div align="center"><%= current_user.city %></div></td>
-					<td style="border-bottom:#666666 1px solid;border-right:#666666 1px solid"><div align="center"><%= current_user.state %></div></td>
-              	</tr>
-			</table>
-		</div>
-		<div class="tab_container">
-			<div id="tab2" class="tab_content">
-				<table width="100%"  border="0" align="center" cellpadding="0" cellspacing="0">
+			  	<tr>
+			  		<td>
+			  			<label>Email</label>
+						<p style="font-size:x-large; color:#1781C1;"><%= current_user.email %></p>
+			  			<label>First Name</label>
+						<p style="font-size:x-large; color:#1781C1;"><%= current_user.first_name %></p>
+						<label>Last Name</label>
+						<p style="font-size:x-large; color:#1781C1;"><%= current_user.last_name %></p>
+						<label>City</label>
+						<p style="font-size:x-large; color:#1781C1;"><%= current_user.city %></p>
+					</td>
+                </tr>
 				<tr>
-    				<td colspan="6">
-    					<h3 align="center" style="color:#48B9E9">
-      					<div style="background:#747016;
-    						width: 40%;
-    						padding:0.3em;
-    						font: 0.9em Verdana, Arial, Helvetica, sans-serif;
-    						-moz-border-radius: 15px;
-    						-webkit-border-radius: 15px;
-    						height:26px;">Profile Edit 
-						</div> 
-    					</h3>
-					</td>
-  				</tr>	
-			  	<tr bgcolor="#000000" class="BoldRED">
-
-                	<td width="13%" height="25" bgcolor="#DDDDDD" class="headtext13" style="border-bottom:#666666 1px solid;border-right:#666666 solid 1px;border-left:#666666 1px solid;"><div align="left" class="style22">
-                  	<div align="center"><span style="font-size:12px; font-family:Arial, Helvetica, sans-serif;">First Name</span></div>
-                	</div></td>
-        
-                	<td width="10%" height="25" bgcolor="#DDDDDD" class="headtext13" style="border-bottom:#666666 1px solid;border-right:#666666 solid 1px;"><div align="left" class="style22">
-                  	<div align="center"><span style="font-size:12px; font-family:Arial, Helvetica, sans-serif;">Last Name</span></div>
-                  
-                	</div></td>
-                	<td width="12%" bgcolor="#DDDDDD" class="headtext13" style="border-bottom:#666666 1px solid;border-right:#666666 solid 1px;"><div align="left" class="style22">
-                  	<div align="center"><span style="font-size:12px; font-family:Arial, Helvetica, sans-serif;">Email</span></div>
-                	</div></td>
-                	<td width="10%" height="25" bgcolor="#DDDDDD" class="headtext13" style="border-bottom:#666666 1px solid;border-right:#666666 solid 1px;"><div align="left" class="style22">
-                  	<div align="center"><span style="font-size:12px; font-family:Arial, Helvetica, sans-serif;">City </span></div>
-                	</div></td>
-			    	<td width="10%" height="25" bgcolor="#DDDDDD" class="headtext13" style="border-bottom:#666666 1px solid;border-right:#666666 solid 1px;"><div align="left" class="style22">
-			      	<div align="center"><span style="font-size:12px; font-family:Arial, Helvetica, sans-serif;">State </span></div>
-			    	</div></td>
-					<td width="10%" height="25" bgcolor="#DDDDDD" class="headtext13" style="border-bottom:#666666 1px solid;border-right:#666666 solid 1px;"><div align="left" class="style22">
-             		<div align="center"><span style="font-size:12px; font-family:Arial, Helvetica, sans-serif;">Options</span></div></div>
-        			</td>
-     			<tr bgcolor="#FFFFFF" onMouseOver="this.bgColor='gold';" onMouseOut="this.bgColor='#FFFFFF';" >
-                	<td height="25" style="border-bottom:#666666 1px solid;border-left:#666666 1px solid;"><div align="center"><%= current_user.first_name %></div></td>
-    
-                	<td style="border-bottom:#666666 1px solid"><div align="center"><%= current_user.last_name %></div></td>
-
-                	<td style="border-bottom:#666666 1px solid"><div align="center"><%= current_user.email %></div></td>
-                
-                	<td  style="border-bottom:#666666 1px solid"><div align="center"><%= current_user.city %></div></td>
-					<td style="border-bottom:#666666 1px solid;border-right:#666666 1px solid"><div align="center"><%= current_user.state %></div></td>
-              		<td style="border-bottom:#666666 1px solid;border-right:#666666 1px solid"><div align="center"><%= link_to "Edit" %> | <%= link_to "Delete", :confirm => 'Are you sure?', :method => :delete %></div></td>
+					<td>
+						<%= link_to "Edit", edit_user_path(current_user) %>
+					</td>	
 				</tr>
-			</table>
-			</div>
+           </table>
 		</div>
 		<div class="tab_container">
 			<div id="tab3" class="tab_content">
 				<table width="100%"  border="0" align="center" cellpadding="0" cellspacing="0">
 				<tr>
     				<td colspan="6">
-    					<h3 align="center" style="color:#48B9E9">
-      					<div style="background:#747016;
-    						width: 40%;
-    						padding:0.3em;
-    						font: 0.9em Verdana, Arial, Helvetica, sans-serif;
-    						-moz-border-radius: 15px;
-    						-webkit-border-radius: 15px;
-    						height:26px;">Login Details
+    					<h1 align="center" style="color:#48B9E9">
+      					<div >Login Details
 						</div> 
-    					</h3>
+    					</h1>
 					</td>
-  				</tr>	
-			  	<tr bgcolor="#000000" class="BoldRED">
-
-                	<td width="13%" height="25" bgcolor="#DDDDDD" class="headtext13" style="border-bottom:#666666 1px solid;border-right:#666666 solid 1px;border-left:#666666 1px solid;"><div align="left" class="style22">
-                  	<div align="center"><span style="font-size:12px; font-family:Arial, Helvetica, sans-serif;">Name</span></div>
-                	</div></td>
-        
-                	<td width="10%" height="25" bgcolor="#DDDDDD" class="headtext13" style="border-bottom:#666666 1px solid;border-right:#666666 solid 1px;"><div align="left" class="style22">
-                  	<div align="center"><span style="font-size:12px; font-family:Arial, Helvetica, sans-serif;">Last Login IP</span></div>
-                  
-                	</div></td>
-                	<td width="12%" bgcolor="#DDDDDD" class="headtext13" style="border-bottom:#666666 1px solid;border-right:#666666 solid 1px;"><div align="left" class="style22">
-                  	<div align="center"><span style="font-size:12px; font-family:Arial, Helvetica, sans-serif;">Last Login Time</span></div>
-                	</div></td>
-                	<td width="10%" height="25" bgcolor="#DDDDDD" class="headtext13" style="border-bottom:#666666 1px solid;border-right:#666666 solid 1px;"><div align="left" class="style22">
-                  	<div align="center"><span style="font-size:12px; font-family:Arial, Helvetica, sans-serif;">No of times login </span></div>
-                	</div></td>
-			    	<td width="10%" height="25" bgcolor="#DDDDDD" class="headtext13" style="border-bottom:#666666 1px solid;border-right:#666666 solid 1px;"><div align="left" class="style22">
-			      	<div align="center"><span style="font-size:12px; font-family:Arial, Helvetica, sans-serif;">Last Update </span></div>
-			    	</div></td>
-     			<tr bgcolor="#FFFFFF" onMouseOver="this.bgColor='gold';" onMouseOut="this.bgColor='#FFFFFF';" >
-                	<td height="25" style="border-bottom:#666666 1px solid;border-left:#666666 1px solid;"><div align="center"><%= current_user.first_name %></div></td>
-    
-                	<td style="border-bottom:#666666 1px solid"><div align="center"><%= current_user.last_login_ip %></div></td>
-
-                	<td style="border-bottom:#666666 1px solid"><div align="center"><%= current_user.last_login_at %></div></td>
-                
-                	<td  style="border-bottom:#666666 1px solid"><div align="center"><%= current_user.login_count %></div></td>
-					<td style="border-bottom:#666666 1px solid;border-right:#666666 1px solid"><div align="center"><%= current_user.updated_at %></div></td>
-              	</tr>
+  				</tr>
+				<tr>
+			  		<td>
+			  			<label>Email</label>
+						<p style="font-size:x-large; color:#1781C1;"><%= current_user.email %></p>
+			  			<label>Last Login Ip</label>
+						<p style="font-size:x-large; color:#1781C1;"><%= current_user.last_login_ip %></p>
+						<label>Last Login Time</label>
+						<p style="font-size:x-large; color:#1781C1;"><%= current_user.last_login_at %></p>
+						<label>Last Update</label>
+						<p style="font-size:x-large; color:#1781C1;"><%= current_user.updated_at %></p>
+						<label>No of times Login</label>
+						<p style="font-size:x-large; color:#1781C1;"><%= current_user.login_count %></p>
+					</td>
+                </tr>
 			</table>
 			</div>
 		</div>

@@ -32,13 +32,13 @@
   <tr>
     <td width="40%"><div align="right" style="color:#FFFFFF">Bar Name </div></td>
     <td width="1%"></td>
-    <td width="59%"><%= f.text_field :bar_name %></td>
+    <td width="59%"><%= f.text_field :bar_name , :class => "textfield_effect"%></td>
   </tr> 
   <% end %>
   <tr>
     <td width="40%"><div align="right" style="color:#FFFFFF">Service Name </div></td>
     <td width="1%"></td>
-    <td width="59%"><%= f.text_field :title %></td>
+    <td width="59%"><%= f.text_field :title, :class => "textfield_effect" %></td>
   </tr> 
   <tr>
     <td width="40%"><div align="right" style="color:#FFFFFF">Description </div></td>
@@ -52,13 +52,13 @@
     	<!--
     	<%= f.datetime_select :availability, :order => [:month, :day, :year ] %>
     	-->
-    	<%= f.text_field :availability %>
+    	<%= f.text_field :availability , :class => "textfield_effect"%>
     </td>
   </tr>
   <tr>
     <td width="40%"><div align="right" style="color:#FFFFFF">Price </div></td>
     <td width="1%"></td>
-    <td width="59%"><%= f.text_field :price %></td>
+    <td width="59%"><%= f.text_field :price , :class => "textfield_effect"%></td>
   </tr>
   <tr>
     <td width="40%"><div align="right" style="color:#FFFFFF">No Of Guest </div></td>
@@ -102,7 +102,7 @@
   <tr>
     <td width="40%"><div align="right" style="color:#FFFFFF">Photo </div></td>
     <td width="1%"></td>
-    <td width="59%"><%= f.file_field :photo %></td>
+    <td width="59%"><%= f.file_field :photo , :class => "textfield_effect"%></td>
   </tr>
   <tr>
     <td width="40%"><div align="right" style="color:#FFFFFF">Status </div></td>

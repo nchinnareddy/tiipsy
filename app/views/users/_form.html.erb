@@ -5,17 +5,17 @@
   <tr>
     <td width="619"><div align="right" style="color:#FFFFFF"><%= form.label :email %></div></td>
     <td width="0"></td>
-    <td width="694"><%= form.text_field :email %></td>
+    <td width="694"><%= form.text_field :email, :class => "textfield_effect"  %></td>
   </tr>
   <tr>
-    <td><div align="right" style="color:#FFFFFF"><%= form.label :password, form.object.new_record? ? nil : "Change password" %></div></td>
+    <td><div align="right" style="color:#FFFFFF"><%= form.label :password, form.object.new_record? ? nil : "Change password"  %></div></td>
     <td width="0"></td>
-    <td><%= form.password_field :password %></td>
+    <td><%= form.password_field :password , :class => "textfield_effect" %></td>
   </tr>
   <tr>
     <td><div align="right" style="color:#FFFFFF"><%= form.label :password_confirmation %> </div></td>
     <td width="0"></td>
-    <td><%= form.password_field :password_confirmation %></td>
+    <td><%= form.password_field :password_confirmation, :class => "textfield_effect"  %></td>
   </tr>
   <tr>
     <td><div align="right" style="color:#FFFFFF"><%= form.label :city %> </div></td>

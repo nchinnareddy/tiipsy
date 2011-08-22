@@ -56,6 +56,7 @@ Socialstock::Application.routes.draw do
       get 'profile'
       get 'account'
       get 'term_condition'
+      get 'download'
     end
    resources :credit_cards
    resources :bids

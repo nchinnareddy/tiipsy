@@ -1,7 +1,7 @@
 class Notifier < ActionMailer::Base
   default :from => "prasanna548@gmail.com"
   
-  def activation_instructions(user)    
+  def activation_instructions(user)
     @account_activation_url = activate_url(user[:perishable_token])
     mail(:to => user[:email],
          :subject => "Activation Instructions - Social Cheers")
