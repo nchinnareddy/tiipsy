@@ -41,7 +41,7 @@
 		</div>
 		<!-- Start of Menu Part -->
 		<div id="city-dropdown" style=" position: relative;left:10px;">
-			<% unless session[:city] %>
+			<% if @ts == 1 %>
 	    		<%= select_tag :city, options_for_select([[@city, ""],
 	    											  ["Austin, TX", "Austin, TX"],
 													  ["Chicago, IL","Chicago, IL"],	 
