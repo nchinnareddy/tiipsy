@@ -4,7 +4,7 @@ class Notifier < ActionMailer::Base
   def activation_instructions(user)    
     @account_activation_url = activate_url(user[:perishable_token])
     mail(:to => user[:email],
-         :subject => "Activation Instructions #{WEB_SITE}")
+         :subject => "Activation Instructions - Social Cheers")
   end
   
   def welcome_email(user)
@@ -12,7 +12,7 @@ class Notifier < ActionMailer::Base
     @username = user.login
     @website = WEB_SITE
     mail(:to => user.email,
-         :subject => "Welcome to the site! #{WEB_SITE}")
+         :subject => "Welcome to Social Cheers")
   end
   
   def password_reset_instructions(user)
