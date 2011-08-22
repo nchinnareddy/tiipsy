@@ -1,6 +1,6 @@
 
 class ServicelistingsController < ApplicationController
- before_filter :require_admin_barowner, :except => [:index, :show]
+ before_filter :require_admin_barowner, :except => [:index, :show, :buynow, :new_authorization, :authorize]
   
   def require_admin_barowner
    unless isadmin? || is_barowner?
