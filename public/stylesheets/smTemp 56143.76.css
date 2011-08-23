@@ -236,7 +236,7 @@ nav {
 	text-align: center; 
 	color:#fff;
 	float: none;
-    left: 255px;
+    left: 300px;
     position: absolute;
     top: 30px;
 }
@@ -990,14 +990,6 @@ label.error {
 	overflow: auto;
 }
 
-#about_us{
-	width:900px;
-	height:450px;
-	float:center;
-	overflow: auto;
-	margin:10px;
-}
-
 select {
     -moz-border-radius: 4px;
     -moz-box-shadow: 1px 1px 5px #cfcfcf inset;
@@ -1052,6 +1044,7 @@ textarea {
 	overflow: hidden;
 	color:#000;
 }
+
 
 
 

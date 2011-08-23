@@ -1,20 +1,28 @@
 <% javascript('jquery.colorbox-min') %>
 <% stylesheet('colorbox') %>
 <div id="buy_now">
- <p style="color:#FFFFFF"> Your stored creditcard is used for making this purchase.When you submit, you are accepting the
+ <br><br>	
+ <p style="color:#FFFFFF" align="center"> Submitting this transaction, you are accepting all
    <%= link_to '"Terms & Conditions"', term_condition_users_path, :class=>'term_condition' %></p>
-   <p style="color:#FFFFFF"> Service: <%= @sl.title%></p>
-   <p style="color:#FFFFFF"> Price: $<%= @sl.price%></p>
-	  
+   	  
 <% form_for @order do |f| %>
 	  <%= f.error_messages %>
 	  <%= f.hidden_field :amount, :value => @amount %>
 	  <%= f.hidden_field :servicelisting_id, :value => @serviceid %>	 
 	<table width="100%" border="0">	
- 
-    <td><%= f.submit "Submit" %></td>
-  </tr>
-</table>
+      <tr>
+    	<td width="44%" height="69" align="right" style="color:#FFFFFF"> Bottle Service:</td>
+		<td width="56%" align="left" style="color:#48B9E9"> <%= @sl.title%></td>
+	  </tr>
+	  <tr>	
+		<td height="59" align="right" style="color:#FFFFFF">Price:</td>
+		<td align="left" style="color:#48B9E9" >$<%= @sl.price%></td>
+	  </tr>
+	  <tr>	
+		<td height="65" align="right"></td>
+    	<td align="left"><%= f.submit "Submit" %></td>
+     </tr>
+   </table>
 <% end %>
 
 </div>

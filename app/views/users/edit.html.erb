@@ -11,17 +11,17 @@
   <tr>
     <td><div align="right" style="color:#FFFFFF"><%= f.label :email %></div></td>
     <td width="7"><strong style="color:#48B9E9">:</strong></td>
-    <td><%= f.text_field :email %></td>
+    <td><%= f.text_field :email, :class => "textfield_effect" %></td>
   </tr>
   <tr>
     <td width="40%"><div align="right" style="color:#FFFFFF"><%= f.label :first_name %></div></td>
     <td width="1%"><strong style="color:#48B9E9">:</strong></td>
-    <td width="59%"><%= f.text_field :first_name %></td>
+    <td width="59%"><%= f.text_field :first_name, :class => "textfield_effect" %></td>
   </tr>
   <tr>
     <td width="40%"><div align="right" style="color:#FFFFFF"><%= f.label :last_name %></div></td>
     <td width="1%"><strong style="color:#48B9E9">:</strong></td>
-    <td width="59%"><%= f.text_field :last_name %></td>
+    <td width="59%"><%= f.text_field :last_name, :class => "textfield_effect" %></td>
   </tr>
   <tr>
     <td><div align="right" style="color:#FFFFFF"><%= f.label :city %></div></td>
@@ -64,5 +64,4 @@
   
 <% end %>
 
-<br /><%= link_to "My Profile", user_path %>
 </div>

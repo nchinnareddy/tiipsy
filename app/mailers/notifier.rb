@@ -1,7 +1,7 @@
 class Notifier < ActionMailer::Base
   default :from => "prasanna548@gmail.com"
   
-  def activation_instructions(user)    
+  def activation_instructions(user)
     @account_activation_url = activate_url(user[:perishable_token])
     mail(:to => user[:email],
          :subject => "Activation Instructions - Social Cheers")
@@ -58,5 +58,31 @@ class Notifier < ActionMailer::Base
          :subject => "Sorry",
          :body => "Sorry , Your bar bussiness had beed suspended for some time, We will gat back to you soon")
   end
+  
+  def send_mail_to_user_after_buy(email,product,cost,desc)
+    @cost = cost
+    @product = product
+    @desc = desc
+    mail(:to => email,
+          :subject => "You Purchase: SocialCheers - #{ product}")
+  end
+  
+  def send_mail_to_user_after_bid(email,bidprice,product,desc)
+    @bidprice = bidprice
+    @product = product
+    @desc = desc
+    mail(:to => email,
+         :subject => "Your Bid: SocialCheers - #{ product}")
+  end
+  
+  def send_mail_to_user_outbid(email,outbid_price,bidprice,product,desc)
+    @outbid_price = outbid_price
+    @product = product
+    @desc = desc
+    @bidprice = bidprice
+    mail(:to => email,
+         :subject => "Your Bid: SocialCheers - #{ product} - someone outbid you.")
+  end
+
   
 end

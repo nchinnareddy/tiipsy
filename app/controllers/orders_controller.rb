@@ -21,11 +21,14 @@ def create
   @order.ip_address = request.remote_ip
   @order.description = "Buynow"
   @servicelisting = Servicelisting.find(@order.servicelisting_id)
-  
+  @product = @servicelisting.title
+  @cost = @servicelisting.price
+  @desc = @servicelisting.description
   if @order.save
       if @order.purchase
         @servicelisting.winner_id = @order.user_id
         @servicelisting.save
+        Notifier.send_mail_to_user_after_buy(current_user.email,@product,@cost,@desc).deliver
         render :action => "success"
       else
         flash[:notice] = "Sorry - The details you entered might be in-corrrect. We are unable to process your transaction.  Re-enter your credit card details"

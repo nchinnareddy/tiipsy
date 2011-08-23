@@ -16,6 +16,7 @@ class ServicelistingsController < ApplicationController
   # GET /servicelistings
   # GET /servicelistings.xml
   def index
+    @ts = 0
     @city = params[:city]
     if @city
         @servicelistings=Servicelisting.paginate :page=>params[:page], :per_page=>'2', :conditions => [ 'city=?', @city]
@@ -28,6 +29,7 @@ class ServicelistingsController < ApplicationController
       #@servicelistings=Servicelisting.search(params[:search]).paginate :page=>params[:page], :conditions => [ 'city=?', @city] , :order=>'updated_at', :per_page=>'3'
       @servicelistings=Servicelisting.paginate :page=>params[:page], :per_page=>'2', :conditions => [ 'city=?', @city]
       session[:city] = @city
+      @ts = 1
     end
     
   end

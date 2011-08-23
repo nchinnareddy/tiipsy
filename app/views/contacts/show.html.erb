@@ -1,19 +1,18 @@
-<div id="signup">
-<fieldset>
-   <legend><h2><i><div id="heading_style">Invite Friends</div></i></h2></legend>
+<div id="send_mail">
 
 <% form_tag(:action => 'mail') do %>
 
 <% if @contacts %>
 
 
-<h3><i>You have <%= @contacts.length%> friends to send invitation.</i></h3>
-
+<h3 style="color:#000000;"><i>You have <%= @contacts.length%> friends to send invitation.</i></h3>
+<fieldset>
+   <legend><h2 style="color:#000000;"><i><div id="heading_style">Invite Friends</div></i></h2></legend>
 <table border="0" align="center" cellpadding="0" cellspacing="0">
 	<tr>
-		<td><font color="#FFFFFF" style="font-size:14px">Name</font></td>
-		<td><font color="#FFFFFF" style="font-size:14px">Select</font></td>
-		<td><font color="#FFFFFF" style="font-size:14px">Email</font></td>
+		<td><font color="#000000" style="font-size:14px">Name</font></td>
+		<td><font color="#000000" style="font-size:14px">Select</font></td>
+		<td><font color="#000000" style="font-size:14px">Email</font></td>
 	</tr>
 	<% @contacts.each do |contact| %>
 		<tr class="<%= cycle("odd","even") %>">
@@ -35,15 +34,15 @@
 	<% end %>
 	
 	<tr>
-		<td align="right"><font color="#FFFFFF" style="font-size:14px">Subject</font></td>
+		<td align="right"><font color="#000000" style="font-size:14px">Subject</font></td>
 		<td>:</td>
-		<td><%= text_field_tag :subject_w, "", :size=>"67" %></td>
+		<td><%= text_field_tag :subject_w, "", :class=>"textfield_effect" %></td>
 	</tr>
 	
 	<tr>
-		<td align="right"><font color="#FFFFFF" style="font-size:14px">Write MSG here</font></td>
+		<td align="right"><font color="#000000" style="font-size:14px">Write MSG here</font></td>
 		<td>:</td>
-		<td><%= text_area_tag :msg, "", :size=>"50x20" %></td>
+		<td><%= text_area_tag :msg, "" %></td>
 		
 	</tr>
 	<tr>

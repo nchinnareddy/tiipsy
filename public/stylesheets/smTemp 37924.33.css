@@ -991,11 +991,10 @@ label.error {
 }
 
 #about_us{
-	width:900px;
-	height:450px;
+	width:700px;
+	height:500px;
 	float:center;
 	overflow: auto;
-	margin:10px;
 }
 
 select {

@@ -20,7 +20,7 @@ class UsersController < ApplicationController
       @user.devliver_activation_instructions!
       user = {:email => @user.email, :perishable_token => @user.perishable_token}
       if ENV['RAILS_ENV'] == "development"        
-        activation_mail = Notifier.activation_instructions(user)
+        activation_mail = Notifier.activation_instructions(user).deliver
         logger.debug activation_mail
       elsif ENV['RAILS_ENV'] == "production"
         Notifier.activation_instructions(user).deliver      
@@ -148,6 +148,13 @@ class UsersController < ApplicationController
  def term_condition
    render :layout => false
  end
+ 
+ def download
+    send_file "#{RAILS_ROOT}/public/data/#{params[:file_name]}", :type=>"application/zip" 
+ end
   
+ def about_us
+   
+ end
   
 end

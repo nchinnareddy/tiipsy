@@ -9,8 +9,8 @@ class CreateCreditCards < ActiveRecord::Migration
       t.date   :card_expires_on
       t.string :address
       t.string :city
-      t.string :state_name
-      t.string :country, :default => "US"
+      t.string :state_name 
+      t.string :country , :default =>"US"
       t.string :zip
       t.references :user
 
