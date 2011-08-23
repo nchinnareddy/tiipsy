@@ -53,6 +53,10 @@
     <td><%= f.date_select :card_expires_on, :discard_day => true, :start_year => Date.today.year, :end_year => (Date.today.year+10), :add_month_numbers => true %></td>
   </tr>
   <tr>
+    <td> Billing address</p></td>  	
+  </tr>
+
+  <tr>
     <td><div align="right" style="color:#FFFFFF">Address</div></td>
     <td width="1%"><strong style="color:#48B9E9">:</strong></td>
     <td><%= f.text_field :address %></td>
@@ -66,11 +70,6 @@
     <td><div align="right" style="color:#FFFFFF">State Name </div></td>
     <td width="1%"><strong style="color:#48B9E9">:</strong></td>
     <td><%= f.text_field :state_name %></td>
-  </tr>
-  <tr>
-    <td><div align="right" style="color:#FFFFFF">Country</div></td>
-    <td width="1%"><strong style="color:#48B9E9">:</strong></td>
-    <td><%= f.text_field :country %></td>
   </tr>
   <tr>
     <td><div align="right" style="color:#FFFFFF">Zip</div></td>

@@ -10,7 +10,7 @@ class CreateCreditCards < ActiveRecord::Migration
       t.string :address
       t.string :city
       t.string :state_name
-      t.string :country
+      t.string :country, :default => "US"
       t.string :zip
       t.references :user
 
