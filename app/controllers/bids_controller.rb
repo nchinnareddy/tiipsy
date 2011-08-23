@@ -52,15 +52,19 @@ class BidsController < ApplicationController
     @bid = @servicelisting.bids.new(params[:bid])
     @servicelisting_id = @servicelisting.id
     @second_lowest_bid_details = Bid.where("servicelisting_id=?",@servicelisting_id).last
-    @second_lowest_bid_bidprice = @second_lowest_bid_details.bidprice
-    @outbid_price = @bid.bidprice - @second_lowest_bid_bidprice
-    @second_lowest_bid_userid = @second_lowest_bid_details.user_id
-    @email_details = User.where("id=?",@second_lowest_bid_userid).first
-    @email = @email_details.email
+    unless @second_lowest_bid_details.nil?
+      @second_lowest_bid_bidprice = @second_lowest_bid_details.bidprice
+      @outbid_price = @bid.bidprice - @second_lowest_bid_bidprice
+      @second_lowest_bid_userid = @second_lowest_bid_details.user_id
+      @email_details = User.where("id=?",@second_lowest_bid_userid).first
+      @email = @email_details.email
+    end
     @bid.user_id = current_user.id
     if @bid.bidprice > @servicelisting.highestbid
       @bid.save
-      Notifier.send_mail_to_user_outbid(@email,@outbid_price,@bid.bidprice,@product,@desc).deliver
+      unless @second_lowest_bid_details.nil?
+        Notifier.send_mail_to_user_outbid(@email,@outbid_price,@bid.bidprice,@product,@desc).deliver
+      end
       Notifier.send_mail_to_user_after_bid(current_user.email,@bid.bidprice,@product,@desc).deliver
       @servicelisting.highestbid = @bid.bidprice
       @servicelisting.save

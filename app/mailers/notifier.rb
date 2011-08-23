@@ -59,9 +59,10 @@ class Notifier < ActionMailer::Base
          :body => "Sorry , Your bar bussiness had beed suspended for some time, We will gat back to you soon")
   end
   
-  def send_mail_to_user_after_buy(email,product,cost)
+  def send_mail_to_user_after_buy(email,product,cost,desc)
     @cost = cost
     @product = product
+    @desc = desc
     mail(:to => email,
           :subject => "You Purchase: SocialCheers - #{ product}")
   end
