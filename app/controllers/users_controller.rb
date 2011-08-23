@@ -151,6 +151,10 @@ class UsersController < ApplicationController
  
  def download
     send_file "#{RAILS_ROOT}/public/data/#{params[:file_name]}", :type=>"application/zip" 
-  end
+ end
+  
+ def about_us
+   
+ end
   
 end

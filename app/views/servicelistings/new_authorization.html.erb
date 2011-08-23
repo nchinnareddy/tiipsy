@@ -1,6 +1,8 @@
 <div id="admin">
-<p style="color:#FFFFFF" align="center" > Please authorize your account for the following amount </p></br> 
-<p style="color:#FFFFFF" align="center"> Amount to be authorized:$<%= @servicelisting.price %></p> </br>
+	</br>
+	</br>
+<p style="color:#4DBCE9; font-size:18px;" align="center" > Please authorize your account for the following amount </p></br> 
+<p style="color:#FFFFFF" align="center"> Amount to be authorized:<font style="color:#4DBCE9">$<%= @servicelisting.price %></font></p> </br>
 
 
 <p align="center"><%= link_to "authorize", servicelisting_authorize_path(@servicelisting), :class=>"links"%></p>

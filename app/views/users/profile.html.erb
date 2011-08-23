@@ -3,16 +3,19 @@
 
 <div id="admin">
 	<ul class="simple-tabs">
-		<li><%= link_to "Profile Details","#tab1" %></li>
-    	<li><%= link_to "Login Details", "#tab3" %></li>
+		<li><%= link_to "Profile","#tab1" %></li>
+		<!--
+    		<li><%= link_to "Login Details", "#tab2" %></li>
+			<li><%= link_to "Change Password","#tab3" %></li>
+		-->	
 	</ul>
 	<div class="tab_container">
 		<div id="tab1" class="tab_content">
-			<table width="100%"  border="0" align="center" cellpadding="0" cellspacing="0">
+			<table width="75%"  border="0" align="center" cellpadding="0" cellspacing="0" style="margin:75px;">
 				<tr>
     				<td colspan="6">
     					<h1 align="center" style="color:#48B9E9">
-      					<div >Personal Information 
+      					<div >Profile 
 						</div> 
     					</h1>
 					</td>
@@ -31,13 +34,14 @@
                 </tr>
 				<tr>
 					<td>
-						<%= link_to "Edit", edit_user_path(current_user) %>
+						<%= link_to "Edit Profile", edit_user_path(current_user), :class => "links" %>
 					</td>	
 				</tr>
            </table>
 		</div>
+		<!--
 		<div class="tab_container">
-			<div id="tab3" class="tab_content">
+			<div id="tab2" class="tab_content">
 				<table width="100%"  border="0" align="center" cellpadding="0" cellspacing="0">
 				<tr>
     				<td colspan="6">
@@ -64,5 +68,53 @@
 			</table>
 			</div>
 		</div>
+		
+		
+		<div id="tab3" class="tab_content">
+			<table width="75%"  border="0" align="center" cellpadding="0" cellspacing="0" style="margin:75px;">
+				<tr>
+    				<td colspan="6">
+    					<h2 align="center" style="color:#48B9E9">
+      					<div >Please enter the new password and press "Update Password". 
+						</div> 
+    					</h2>
+					</td>
+  				</tr>	
+			  	<tr>
+			  		<td>
+			  			
+							<% title 'Change password'%> 
+							<%= form_tag password_update_users_path, :method => :post do %>
+							<table border="0" align="center" width="100%">
+  								<tr>
+    								<td width="619"><div align="right" style="color:#000000">Old Password</div></td>
+    								<td width="0"></td>
+    								<td width="694"><%= password_field_tag :old_password %></td>
+  								</tr>
+  								<tr>
+    								<td width="619"><div align="right" style="color:#000000">New Password</div></td>
+    								<td width="0"></td>
+    								<td width="694"><%= password_field_tag :password %></td>
+  								</tr>
+  								<tr>
+    								<td width="619"><div align="right" style="color:#000000">Confirm Password</div></td>
+    								<td width="0"></td>
+    								<td width="694"><%= password_field_tag :password_confirmation %></td>
+  								</tr>
+  								<tr>
+    								<td width="619"><div align="right" style="color:#000000"></div></td>
+    								<td width="0"></td>
+    								<td width="694"><%= submit_tag "Update Password" ,:class => "links"%></td>
+  								</tr>
+							</table>
+							<% end %>
+						
+					</td>
+                </tr>
+				
+           </table>
+		</div>
+		-->
+		
 	</div>		
 </div>
