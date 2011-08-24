@@ -78,9 +78,10 @@ end
   # GET /servicelistings/1.xml
   def show
     @servicelisting = Servicelisting.find(params[:id])
-    servicelisting_id = @servicelisting.id
-    @total_active_bidder = Bid.find_by_sql("select distinct(user_id) from bids where servicelisting_id = servicelisting_id ").count
-    #raise @total_active_bidder = Bid.select("DISTINCT(user_id)", :conditions => ["servicelisting_id=?",servicelisting_id]).count.inspect
+    @servicelisting_id = @servicelisting.id
+    #raise @total_active_bidder = Bid.find_by_sql("select distinct(user_id),servicelisting_id from bids where servicelisting_id = @servicelisting_id ").inspect
+    #@total_active_bidder = Bid.find_by_sql("select distinct(user_id) from bids where servicelisting_id = servicelisting_id ").count
+    @total_active_bidder = Bid.all(:select => "DISTINCT(user_id)", :conditions => ["servicelisting_id=?",@servicelisting_id]).count
     #raise @total_active_bidder = Bid.find(:user_id, :conditions => ["servicelisting_id=?",servicelisting_id]).count.inspect
     respond_to do |format|
       format.html # show.html.erb
