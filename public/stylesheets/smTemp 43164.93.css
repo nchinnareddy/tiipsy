@@ -472,12 +472,12 @@ label.error {
 #servicelisting p.bid {
     left: 340px;
     position: absolute;
-    top: 50px;
+    top: 100px;
 }
 
 #servicelisting p.buy{
 	position:absolute;
-	top:50px;
+	top:100px;
 	left:500px;
 }
 
@@ -490,7 +490,7 @@ label.error {
 #servicelisting p.current_value {
     font-family: Georgia,"Times New Roman",Times,serif;
     font-size: 18px;
-    left: 340px;
+    left: 350px;
     position: absolute;
     top: 170px;
 }
@@ -498,7 +498,7 @@ label.error {
     color: #A1C436;
     font-family: "arial rounded mt bold",helvetica,arial,sans-serif;
     font-size: 32px;
-    left: 490px;
+    left: 470px;
     position: absolute;
     top: 160px;
 }
@@ -506,25 +506,25 @@ label.error {
 #servicelisting p.time_left {
     font-family: Georgia,"Times New Roman",Times,serif;
     font-size: 18px;
-    left: 340px;
+    left: 400px;
     position: absolute;
-    top: 215px;
+    top: 200px;
 }
 
 #servicelisting p.time_left_fet {
     color: #4DBCE9;
     font-family: Georgia,"Times New Roman",Times,serif;
     font-size: 20px;
-    left: 490px;
+    left: 410px;
     position: absolute;
-    top: 215px;
+    top: 230px;
     width: 160px;
 }
 
 #servicelisting .jdt{
 	position: absolute;
-	top:220px;
-	left:490px;
+	top:230px;
+	left:370px;
 	width:200px;
 }
 
@@ -551,7 +551,7 @@ label.error {
 #servicelisting p.total_active_bidders {
     font-family: Georgia,"Times New Roman",Times,serif;
     font-size: 18px;
-    left: 340px;
+    left: 365px;
     position: absolute;
     top: 260px;
 }
@@ -563,29 +563,6 @@ label.error {
     position: absolute;
     top: 250px;
 }
-
-
-
-
-#servicelisting p.max_allowed_guests {
-    font-family: Georgia,"Times New Roman",Times,serif;
-    font-size: 18px;
-    left: 340px;
-    position: absolute;
-    top: 130px;
-}
-#servicelisting p.max_allowed_guests_fet {
-    color: #4DBCE9;
-    font-family: Georgia,"Times New Roman",Times,serif;
-    font-size: 26px;
-    left: 490px;
-    position: absolute;
-    top: 124px;
-}
-
-
-
-
 
 #details{
 		-moz-border-radius: 0px 0px 8px 8px;
@@ -742,7 +719,7 @@ label.error {
     background: -moz-linear-gradient(center top, #232323, #1A1B1B) repeat scroll 0 0 transparent;
     border: 1px solid #202020;
 	position: relative;
-	width:400px;
+	width:928px;
 	overflow: hidden;
 }
 

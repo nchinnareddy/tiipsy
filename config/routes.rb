@@ -1,5 +1,5 @@
 Socialstock::Application.routes.draw do
-  
+   
   resources :contacts
 
   get "contacts/authorize"
@@ -14,6 +14,7 @@ Socialstock::Application.routes.draw do
 
   get "auth_linkedin/callback"
   
+  
   get 'admin/index'
   get 'admin/report'
   get 'admin/action'
@@ -23,6 +24,8 @@ Socialstock::Application.routes.draw do
   post 'admin/create'
   put 'admin/update'
   get 'admin/list'
+  get 'admin/bar_margin'
+  get 'admin/margin_update'
   
   match '/activate_account/:activation_code' => 'activations#create', :as => :activate
   

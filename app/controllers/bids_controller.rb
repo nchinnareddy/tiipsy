@@ -34,7 +34,7 @@ class BidsController < ApplicationController
   # GET /bids/new.xml
   def new
     @servicelisting = Servicelisting.find(params[:servicelisting_id])
-        
+    render :layout => false
   end
 
   # GET /bids/1/edit

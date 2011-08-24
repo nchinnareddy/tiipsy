@@ -4,7 +4,7 @@ class Notifier < ActionMailer::Base
   def activation_instructions(user)
     @account_activation_url = activate_url(user[:perishable_token])
     mail(:to => user[:email],
-         :subject => "Activation Instructions - Social Cheers")
+         :subject => "Activation Instructions - Socialcheers")
   end
   
   def welcome_email(user)
@@ -12,7 +12,7 @@ class Notifier < ActionMailer::Base
     @username = user.login
     @website = WEB_SITE
     mail(:to => user.email,
-         :subject => "Welcome to Social Cheers")
+         :subject => "Welcome to Socialcheers")
   end
   
   def password_reset_instructions(user)
@@ -34,7 +34,7 @@ class Notifier < ActionMailer::Base
   
   def bar_onwer_confirmation_mail(email)
     mail(:to => email,
-         :subject => "Welcome to SocialCheers")
+         :subject => "Welcome to Socialcheers ")
   end
   
   def bar_onwer_confirmation_mail_to_admin
@@ -50,7 +50,7 @@ class Notifier < ActionMailer::Base
     #@username = email
     #@password = code
     mail(:to => email,
-         :subject => "Congratulations - Social Cheers Bar Approval Notice")
+         :subject => "Congratulations - Socialcheers Bar Approval Notice")
   end
   
   def bar_onwer_confirmation_mail_bussiness_suspended(email)
@@ -64,7 +64,7 @@ class Notifier < ActionMailer::Base
     @product = product
     @desc = desc
     mail(:to => email,
-          :subject => "You Purchase: SocialCheers - #{ product}")
+          :subject => "You Purchase: Socialcheers - #{ product}")
   end
   
   def send_mail_to_user_after_bid(email,bidprice,product,desc)
@@ -72,7 +72,7 @@ class Notifier < ActionMailer::Base
     @product = product
     @desc = desc
     mail(:to => email,
-         :subject => "Your Bid: SocialCheers - #{ product}")
+         :subject => "Your Bid: Socialcheers - #{ product}")
   end
   
   def send_mail_to_user_outbid(email,outbid_price,bidprice,product,desc)
@@ -81,7 +81,7 @@ class Notifier < ActionMailer::Base
     @desc = desc
     @bidprice = bidprice
     mail(:to => email,
-         :subject => "Your Bid: SocialCheers - #{ product} - someone outbid you.")
+         :subject => "Your Bid: Socialcheers - #{ product} - someone outbid you.")
   end
 
   

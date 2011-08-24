@@ -34,7 +34,15 @@
 			<p class="delete"><%= link_to 'Destroy', servicelisting, :confirm => 'Are you sure?', :method => :delete %></p>
 		<%end%>
 		<p class="bid">
-			<%= link_to 'Bid', new_servicelisting_bid_path(servicelisting), :class=>"links"  %>
+			<% if isadmin? %>
+				<%= link_to 'Bid', new_servicelisting_bid_path(servicelisting), :class=>"links bid_popup"  %>
+			<% elsif is_barowner? %>
+				<%= link_to 'Bid', new_servicelisting_bid_path(servicelisting), :class=>"links bid_popup"  %>
+			<% elsif current_user %>
+				<%= link_to 'Bid', new_servicelisting_bid_path(servicelisting), :class=>"links bid_popup"  %>
+			<% else %>
+				<%= link_to 'Bid', new_servicelisting_bid_path(servicelisting), :class=>"links"  %>
+			<% end %>
 		</p>
 		<p class="buy"><%= link_to 'Buy',  buynow_buynow_index_path(:id => servicelisting), :class=>"links"  %></p>
 		<p class="higher">

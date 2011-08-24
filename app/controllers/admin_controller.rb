@@ -89,5 +89,21 @@ end
  def list
    @servicelistings=Servicelisting.all
  end
+ 
+ def margin_update
+    @margin = params[:margin]
+    @margin_type = params[:margin_type]
+    @barbussiness = BarBussiness.find(params[:bar_bussiness_id])
+    @barbussiness.margin = @margin
+    @barbussiness.margin_type = @margin_type
+    @barbussiness.save
+    redirect_to list_bar_bussinesses_path
+ end
+ 
+ def bar_margin
+    @bar_bussiness_id = params[:id]
+    @bar_bussiness = BarBussiness.new
+    render :layout =>false
+  end
   
 end

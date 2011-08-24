@@ -1,0 +1,32 @@
+
+<% @bar_bussiness_id %>
+<% form_tag admin_margin_update_path, :method => :get do %>
+<table width="30%" border="0" align="center">	
+  <tr>
+    <td colspan="3"><h3 align="center" style="color:#48B9E9">Update marign value</h3></td>
+  </tr>
+  <tr>
+    <td colspan="3"><%= hidden_field_tag :bar_bussiness_id, @bar_bussiness_id %></td>
+  </tr>
+  <tr>
+    <td width="40%"><div align="right" style="color:#000000">Margin </div></td>
+    <td width="1%"></td>
+    <td width="59%"><%= text_field_tag :margin  %>
+    </td>
+  </tr> 
+  <tr>
+    <td><div align="right" style="color:#000000">Margim Type</div></td>
+    <td width="0"></td>
+    <td><%= select_tag :margin_type, options_for_select([["Percentage(%)", "Percent"],
+													  ["Amount in Dollars ($)", "Dollars"]	 
+													  ]) 												  
+	   %>
+	</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td width="0"></td>
+    <td><div align="left" style="color:#000000"><%= submit_tag "Go To"%></div></td>
+  </tr>
+</table>
+<% end %>

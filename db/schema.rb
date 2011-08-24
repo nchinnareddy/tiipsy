@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110816112157) do
+ActiveRecord::Schema.define(:version => 20110824080848) do
 
   create_table "admins", :force => true do |t|
     t.float    "bidding_fee"
@@ -61,6 +61,8 @@ ActiveRecord::Schema.define(:version => 20110816112157) do
     t.float    "latitude"
     t.float    "longitude"
     t.boolean  "gmaps"
+    t.integer  "margin"
+    t.string   "margin_type"
   end
 
   create_table "bids", :force => true do |t|

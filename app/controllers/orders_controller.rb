@@ -27,6 +27,7 @@ def create
   if @order.save
       if @order.purchase
         @servicelisting.winner_id = @order.user_id
+        @servicelisting.status = "Closed"
         @servicelisting.save
         Notifier.send_mail_to_user_after_buy(current_user.email,@product,@cost,@desc).deliver
         render :action => "success"
