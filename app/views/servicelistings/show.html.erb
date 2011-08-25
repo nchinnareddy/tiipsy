@@ -27,8 +27,28 @@
 <div id="servicelisting" >
 	<p class="title"><%= @servicelisting.title %></p>
 	<p class="picture"><%= image_tag @servicelisting.photo.url, :size => "320x320", :style =>"border:1px solid #fff;-moz-border-radius:10px;-webkit-border-radius:10px;" %></p>
-	<p class="bid"><%= link_to 'Bid', new_servicelisting_bid_path(@servicelisting), :class=>"links"  %></p>
-	<p class="buy"><%= link_to 'Buy',  buynow_buynow_index_path(:id => @servicelisting), :class=>"links"  %></p>
+	<p class="bid">
+		<% if isadmin? %>
+			<%= link_to 'Bid', new_servicelisting_bid_path(@servicelisting), :class=>"links bid_popup"  %>
+		<% elsif is_barowner? %>
+			<%= link_to 'Bid', new_servicelisting_bid_path(@servicelisting), :class=>"links bid_popup"  %>
+		<% elsif current_user %>
+			<%= link_to 'Bid', new_servicelisting_bid_path(@servicelisting), :class=>"links bid_popup"  %>
+		<% else %>
+				<%= link_to 'Bid', new_servicelisting_bid_path(@servicelisting), :class=>"links"  %>
+	    <% end %>
+	</p>
+	<p class="buy">
+		<% if isadmin? %>
+			<%= link_to 'Buy',  buynow_buynow_index_path(:id => @servicelisting), :class=>"links bid_popup"  %>
+		<% elsif is_barowner? %>
+			<%= link_to 'Buy',  buynow_buynow_index_path(:id => @servicelisting), :class=>"links bid_popup"  %>
+		<% elsif current_user %>
+			<%= link_to 'Buy',  buynow_buynow_index_path(:id => @servicelisting), :class=>"links bid_popup"  %>
+		<% else %>
+			<%= link_to 'Buy',  buynow_buynow_index_path(:id => @servicelisting), :class=>"links"  %>
+		<% end %>
+	</p>
 	<p class="current_value">Current Value</p>
 	<p class="current_value_fet">$<%= @servicelisting.highestbid %></p>
 	<p class="time_left">Time Left</p>
@@ -127,5 +147,6 @@
 	//$("#map_details").load("http://localhost:3000/locations?address="+encodeURI(sevice_location));
 	//for create_location popup
 	$('.create_location_popup').colorbox();
+	$('.bid_popup').colorbox();
 	
 </script>

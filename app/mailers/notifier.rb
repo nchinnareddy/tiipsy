@@ -64,7 +64,7 @@ class Notifier < ActionMailer::Base
     @product = product
     @desc = desc
     mail(:to => email,
-          :subject => "You Purchase: Socialcheers - #{ product}")
+          :subject => "Your Purchase: Socialcheers - #{ product}")
   end
   
   def send_mail_to_user_after_bid(email,bidprice,product,desc)

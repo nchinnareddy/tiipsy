@@ -9,14 +9,15 @@ class AuthorizationsController < ApplicationController
     #raise @auth.inspect
     
    if @auth
-      flash[:notice] = "Welcome back #{omniauth['provider']} user"
+      flash[:notice] = "Welcome back"
       UserSession.create(@auth.user, true)
       #update token and secret
       @auth.update_attributes({:token =>(omniauth['credentials']['token'] rescue nil), :secret => (omniauth['credentials']['secret'] rescue nil)})
             
     else  
       @auth = Authorization.create_from_hash(omniauth, current_user)
-      flash[:notice] = "Welcome #{omniauth['provider']} user. Your account has been created."
+      #flash[:notice] = "Welcome #{omniauth['provider']} user. Your account has been created."
+      flash[:notice] = "Welcome!. Your account has been created."
       UserSession.create(@auth.user, true)
     end
     

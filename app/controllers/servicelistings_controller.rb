@@ -153,6 +153,5 @@ end
     @servicelisting.destroy
     redirect_to :controller => "admin", :action => "list"
   end
-
   
 end

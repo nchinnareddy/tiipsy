@@ -429,7 +429,6 @@ label.error {
     background:-moz-linear-gradient(center top , #F8F8F8, #FFFFFF) repeat scroll 0 0 transparent;
     border: 0 solid #202020;
     border-radius: 3px 3px 3px 3px;
-    height: 660px;
     left: 250px;
     overflow: hidden;
     position: relative;
@@ -665,10 +664,9 @@ label.error {
     font-size: 13px;
     left: 340px;
     overflow: hidden;
-    position: absolute;
+    position: relative;
     top: 40px;
     width: 300px;
-    height:260px;
 }
 
 
@@ -1018,6 +1016,13 @@ label.error {
 #term_condition{
 	width:700px;
 	height:500px;
+	float:center;
+	overflow: auto;
+}
+
+#authorization_hold{
+	width:400px;
+	height:300px;
 	float:center;
 	overflow: auto;
 }

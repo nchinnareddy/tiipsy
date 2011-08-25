@@ -1,7 +1,7 @@
 <% javascript('jquery.colorbox-min') %>
 <% stylesheet('colorbox') %>
 
-<div id="buy_now">
+
 <%= form_for @credit_card, :url => {:controller => "credit_cards", :action => "create" } do |f| %>
   <% if @credit_card.errors.any? %>
     <div id="error_explanation">
@@ -133,7 +133,6 @@
   </tr>
 </table>
 <% end %>
-</div>
 
 <script type='text/javascript'>
 	$('.term_condition').colorbox();

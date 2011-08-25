@@ -9,7 +9,7 @@ def buynow
    @amount = @sl.price
    @serviceid = @sl.id
    @order = Order.new
-   render 'confirm'
+   render 'confirm', :layout => false 
 end
 
 def express

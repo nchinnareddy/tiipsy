@@ -15,6 +15,7 @@ class CreditCardsController < ApplicationController
   # GET /credit_cards/new.xml
   def new
       @credit_card = CreditCard.new
+      render :layout => false 
   end
   # POST /credit_cards
   # POST /credit_cards.xml
@@ -30,7 +31,7 @@ class CreditCardsController < ApplicationController
         flash[:notice] = "Your credit card details are modified"        
      else
         @creditcard.user_id = current_user.id
-        flash[:notice] = "Succesfully added your credit card. Please proceed to Bid or Buy"
+        flash[:notice] = "Succesfully  added your credit card. Please proceed to Bid or Buy"
         @creditcard.save        
      end
      redirect_to root_path     
