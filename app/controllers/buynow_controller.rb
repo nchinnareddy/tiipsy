@@ -6,10 +6,17 @@ class BuynowController < ApplicationController
 
 def buynow
    @sl = Servicelisting.find(params[:id])
-   @amount = @sl.price
-   @serviceid = @sl.id
-   @order = Order.new
-   render 'confirm', :layout => false 
+   #if @sl.status == 'active'
+     @amount = @sl.price
+     @serviceid = @sl.id
+     @order = Order.new
+     render 'confirm', :layout => false  
+     #return
+  # else
+    #  flash[:notice] = "Service is inactive, you can not buy"
+    #  redirect_to servicelistings_path   
+   #end
+    
 end
 
 def express
