@@ -22,20 +22,12 @@
 	-->
 	<!--   header -->
 	
-	<table border="0" align="center">
-	  <tr>
-	    <td><h1 align="center" style="color:#fff"> Today's Auctions </h1></td>
-	    <td>
-	     <h1 align="center" style="color:#fff"> 
-	     </h1>
-	    </td>
-	  </tr>
-	</table>
+	
 
 	<div id="header">
 		<div id="logo">
 			<h1>
-				<%= link_to image_tag("auth/aaa.png", :height => '50', :width => '400'), root_path %>
+				<%= link_to image_tag("auth/aaa.png", :height => '70', :width => '400'), root_path %>
 			</h1>
 			<div style="font-size:16px;margin-left: 110px;"></div>
 		</div>
@@ -96,7 +88,10 @@
 	  <%= yield %>
 	  <%= yield :scripts %>
 	
-	</br>
+	</br>  
+	</div>
+	</br>  
+	</br>  
 	<!-- Start of footer Part-->	
 	<div id="footer">
 		<nav>
@@ -112,14 +107,14 @@
 		<div id="copy_right">
 			Copyright © 2011 by Unedollar. All Rights Reserved.
 		</div>
+		<!--
 		<div id="social_network">
 			<%= render :partial => "layouts/social_buttons"%>
 		</div>
+		-->
 	 </div>	    	
-    <!-- end #footer -->  
-	</div>
-	<!--- End of Containt -->
-	
+    <!-- end #footer -->
+	<!--- End of Containt -->	
 </div>
 </body>
 <script type="text/javascript">	

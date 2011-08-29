@@ -1,3 +1,8 @@
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td {
+margin:0;
+padding:0;
+}
+
  body {
     background-attachment: scroll;
     background-clip: border-box;
@@ -13,35 +18,50 @@
     overflow: scroll;
 }
 
-#header {
-    background-color: #262626;
-    padding: 14px;
-    position: absolute;
-    right: 0;
-    top: 0;
+#wrapper {
+    margin: 0 auto;
     width: 100%;
 }
 
-#menu {
-    float: right;  
+
+#header {
+    background: -moz-linear-gradient(71% 75% 90deg, #092647, #092647, #011636 100%) repeat scroll 0 0 transparent;
+    height: 15px;
+    padding: 14px;
+    width: 100%;
+    position: relative;
 }
 
-#logo {
-	float: left;
-	/* height: 240px; */
-	margin: 0;
-	padding: 0px;
-	color: #262626;
-	
-}
-
- #page {
-    margin: 0;
+#page {
     overflow: auto;
     padding: 14px;
-    position: absolute;
-    top: 80px;
+    position: relative;
+    top: 30px;
+    left:-100px;
     width: 940px;
+}
+
+#footer {
+    background: -moz-linear-gradient(71% 75% 90deg, #092647, #092647, #011636 100%) repeat scroll 0 0 transparent;
+    padding: 14px;
+    width: 100%;
+    height: 70px;
+    position: relative;
+}
+
+
+#menu {
+    float: right;
+    margin-top: -40px;
+    position: relative;
+}
+
+
+#logo {
+    color: #262626;
+    float: left;
+    margin: 25px 0 0 0;
+    padding: 0;
 }
 
 h1, h2, h3 {
@@ -81,13 +101,6 @@ a {
 a:hover {
 }
 
-#wrapper {
-    margin: 0 auto;
-    padding: 12px;
-    width: 940px;
-}
-
-
 #search {
     margin: 0 10pt;
     padding: 0;
@@ -96,18 +109,21 @@ a:hover {
     left:300px;
 }
 
-
+/*
 #footer {
     background: -moz-linear-gradient(center top , #232323, #1A1B1B) repeat scroll 0 0 transparent;
     border: 1px solid #202020;
     border-radius: 3px 3px 3px 3px;
     font-family: Arial,Helvetica,sans-serif;
+    position:fixed;
     height: 100px;
-    width: 910px;
+    width: 100%;
     margin-bottom: 10px;
     padding: 10px;
-    position:relative;
+    
 }
+*/
+
 
 #logo h1, #logo p {
 	margin: 0;
@@ -229,6 +245,7 @@ nav {
     left: 235px;
     position: absolute;
     top: 1px;
+    margin-left:25%;
 }
 
 #copy_right{
@@ -239,6 +256,7 @@ nav {
     left: 255px;
     position: absolute;
     top: 30px;
+    margin-left:25%;
 }
 
 #social_network{
@@ -720,8 +738,8 @@ label.error {
 
 
 #servicelisting_links ul li a:hover, div.nav ul li.selected a {
-    background-color: #A1C436;
-    color: #ffffff;
+    background: -moz-linear-gradient(71% 75% 90deg, #092647, #092647, #011636 100%) repeat scroll 0 0 transparent;
+    color: #FFFFFF;
     font-weight: bold;
 }
 
@@ -1088,6 +1106,13 @@ textarea {
 	width:928px;
 	overflow: hidden;
 	color:#000;
+}
+
+#city-dropdown{
+	left: 10px;
+	margin-left: 45%;
+    margin-top: -5px;
+    position: relative;
 }
 
 
