@@ -35,6 +35,9 @@
                   	<div align="center"><span style="font-size:12px; font-family:Arial, Helvetica, sans-serif;">Bid Price</span></div>                  
                 	</div></td>
 					<td width="10%" height="25" bgcolor="#DDDDDD" class="headtext13" style="border-bottom:#666666 1px solid;border-right:#666666 solid 1px;"><div align="left" class="style22">
+                  	<div align="center"><span style="font-size:12px; font-family:Arial, Helvetica, sans-serif;">Current Price</span></div>                  
+                	</div></td>
+					<td width="10%" height="25" bgcolor="#DDDDDD" class="headtext13" style="border-bottom:#666666 1px solid;border-right:#666666 solid 1px;"><div align="left" class="style22">
                   	<div align="center"><span style="font-size:12px; font-family:Arial, Helvetica, sans-serif;">Status</span></div>                  
                 	</div></td>
 			    	<td width="10%" height="25" bgcolor="#DDDDDD" class="headtext13" style="border-bottom:#666666 1px solid;border-right:#666666 solid 1px;"><div align="left" class="style22">
@@ -47,7 +50,8 @@
                 	<td height="25" style="border-bottom:#666666 1px solid;border-left:#666666 1px solid;"><div align="center"><%= sl %><% sl+=1 %></div></td>
                 	<td style="border-bottom:#666666 1px solid"><div align="center"><%= bid.servicelisting.title %></div></td>
                 	<td style="border-bottom:#666666 1px solid"><div align="center"><%= bid.bidprice %></div></td>
-					<td style="border-bottom:#666666 1px solid"><div align="center"><%= bid.servicelisting_id %></div></td>
+					<td style="border-bottom:#666666 1px solid"><div align="center"><%= bid.servicelisting.highestbid %></div></td>
+					<td style="border-bottom:#666666 1px solid"><div align="center"><%= bid.servicelisting.status %></div></td>
 					<td style="border-bottom:#666666 1px solid;border-right:#666666 1px solid"><div align="center"><%= bid.created_at %></div></td>
               	</tr>
 				<% end %>
