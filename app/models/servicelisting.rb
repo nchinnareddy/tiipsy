@@ -43,22 +43,26 @@ def self.checkexpirations
            if item.status == "expired"
               highestbid = nil
               item.bids.each do |bid|
-               if highestbid == nil
-                  highestbid = bid
-                  next
-                  end
-               if bid.bidprice > highestbid.bidprice
-                  highestbid = bid
-                  end
-#                 user = User.find_by_id(bid.user_id)
-#                 users.add(user)
-#                 Notifier.bid_expired_email(user).deliver  
-                 end # do end
+                 if highestbid == nil
+                    highestbid = bid
+                    next
+                 end
+                 if bid.bidprice > highestbid.bidprice
+                    highestbid = bid
+                 end
+#                   user = User.find_by_id(bid.user_id)
+#                   users.add(user)
+#                   Notifier.bid_expired_email(user).deliver  
+                end # do end
               capture_result = self.capturemoney(highestbid, item.id)
               if capture_result == true
                  item.status = "bought"
                  item.winner_id = highestbid.user_id
+                 user = User.find_by_id(highestbid.user_id)
+                 p "&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"
                  item.save
+                 p "&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"
+                 Notifier.send_mail_to_user_after_bid_closed(user.email,highestbid.bidprice,item.title,item.description).deliver if user
                end
              end
           end

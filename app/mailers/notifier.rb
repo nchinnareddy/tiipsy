@@ -83,6 +83,13 @@ class Notifier < ActionMailer::Base
     mail(:to => email,
          :subject => "Your Bid: Socialcheers - #{ product} - someone outbid you.")
   end
-
+  
+  def send_mail_to_user_after_bid_closed(email,bidprice,product,desc)
+    @bidprice = bidprice
+    @product = product
+    @desc = desc
+    mail(:to => email,
+         :subject => "Congratulations!!! You have won the Bid: Socialcheers - #{ product}")
+  end 
   
 end

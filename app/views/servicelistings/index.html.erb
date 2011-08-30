@@ -15,7 +15,7 @@
 	
 		<p class="title"><%= servicelisting.title %></p>
 		<p class="picture"><%= image_tag servicelisting.photo.url, :size => "100x100" %></p>
-		<p class="more"><%= link_to 'Details', servicelisting %></p>
+		<p class="more"><%= link_to 'More', servicelisting %></p>
 		<p class="map"><%= link_to 'Map',  map_bar_bussinesses_path(:city => servicelisting.city) %></p>
 		<p class="address_fet"><%= servicelisting.location %></p>
 		<p class="city"><%= servicelisting.city %></p>
@@ -34,6 +34,7 @@
 			<p class="delete"><%= link_to 'Destroy', servicelisting, :confirm => 'Are you sure?', :method => :delete %></p>
 		<%end%>
 		<p class="bid">
+                     <% if tt > 0 %>
 			<% if isadmin? %>
 				<%= link_to 'Bid', new_servicelisting_bid_path(servicelisting), :class=>"links bid_popup"  %>
 			<% elsif is_barowner? %>
@@ -43,8 +44,13 @@
 			<% else %>
 				<%= link_to 'Bid', new_servicelisting_bid_path(servicelisting), :class=>"links"  %>
 			<% end %>
+                      <% else %>
+                              <%#= link_to 'Bid', 'www.google.com', :class=>"faded_links"  %>
+                              <label class="faded_links">Bid</label>
+                      <% end %>
 		</p>
 		<p class="buy">
+                     <% if tt > 0 %>
 			<% if isadmin? %>
 				<%= link_to 'Buy',  buynow_buynow_index_path(:id => servicelisting), :class=>"links bid_popup"  %>
 			<% elsif is_barowner? %>
@@ -54,6 +60,9 @@
 			<% else %>
 				<%= link_to 'Buy',  buynow_buynow_index_path(:id => servicelisting), :class=>"links"  %>
 			<% end %>
+                      <% else %>
+                              <label class="faded_links">Buy</label>
+                      <% end %>
 		</p>
 		<p class="higher">
 			<%@servicelisting = servicelisting %>
