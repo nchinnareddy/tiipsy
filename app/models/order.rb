@@ -1,5 +1,6 @@
 class Order < ActiveRecord::Base
  has_many  :transactions, :class_name => 'OrderTransaction', :dependent => :destroy
+ belongs_to :servicelisting
   
   acts_as_state_machine :initial => :pending
   state :pending

@@ -142,7 +142,8 @@ class UsersController < ApplicationController
   end
   
   def account
-    
+    @orders = Order.find(:all, :conditions => ["user_id = ?", current_user.id])
+    @bids = Bid.find(:all, :conditions => ["user_id = ?", current_user.id])
   end
   
  def term_condition
