@@ -425,11 +425,8 @@ label.error {
 }
 
 .pagination {
-    font-size: 1.3em;
-    font-weight: bold;
-    margin-top: 5px;
-    padding: 2px 3px;
-    text-align: center;
+	padding: 2px 3px;
+	margin-top: 5px;
 }
 
 .pagination span.current {
@@ -895,17 +892,15 @@ label.error {
 }
 
 #servicelisting_index_r {
-    -moz-border-radius: 3px 3px 3px 3px;
-    background: -moz-linear-gradient(center top , #232323, #1A1B1B) repeat scroll 0 0 transparent;
-    border: 1px solid #2F2F2F;
+    -moz-border-radius: 3px 3px 3px;
+    background: -moz-linear-gradient(center top, #232323, #1A1B1B) repeat scroll 0 0 transparent;
+    border: 1px solid #202020;
     height: 120px;
-    margin-bottom: 10px;
-    opacity: 0.95;
-    overflow: hidden;
-    padding: 10px;
     position: relative;
     width: 906px;
-    z-index: 99;
+    margin-bottom: 10px;
+    padding: 10px;
+    overflow: hidden;
 }
 #servicelisting_index_r p.title {
     color: #FFFFFF;

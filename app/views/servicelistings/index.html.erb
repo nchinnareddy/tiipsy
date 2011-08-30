@@ -15,7 +15,7 @@
 	
 		<p class="title"><%= servicelisting.title %></p>
 		<p class="picture"><%= image_tag servicelisting.photo.url, :size => "100x100" %></p>
-		<p class="more"><%= link_to 'More', servicelisting %></p>
+		<p class="more"><%= link_to 'Details', servicelisting %></p>
 		<p class="map"><%= link_to 'Map',  map_bar_bussinesses_path(:city => servicelisting.city) %></p>
 		<p class="address_fet"><%= servicelisting.location %></p>
 		<p class="city"><%= servicelisting.city %></p>
