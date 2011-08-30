@@ -47,7 +47,7 @@
                 	<td height="25" style="border-bottom:#666666 1px solid;border-left:#666666 1px solid;"><div align="center"><%= sl %><% sl+=1 %></div></td>
                 	<td style="border-bottom:#666666 1px solid"><div align="center"><%= bid.servicelisting.title %></div></td>
                 	<td style="border-bottom:#666666 1px solid"><div align="center"><%= bid.bidprice %></div></td>
-					<td style="border-bottom:#666666 1px solid"><div align="center"><%= current_user.servicelisting_id %></div></td>
+					<td style="border-bottom:#666666 1px solid"><div align="center"><%= bid.servicelisting_id %></div></td>
 					<td style="border-bottom:#666666 1px solid;border-right:#666666 1px solid"><div align="center"><%= bid.created_at %></div></td>
               	</tr>
 				<% end %>
