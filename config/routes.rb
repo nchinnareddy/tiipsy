@@ -14,7 +14,6 @@ Socialstock::Application.routes.draw do
 
   get "auth_linkedin/callback"
   
-  
   get 'admin/index'
   get 'admin/report'
   get 'admin/action'
