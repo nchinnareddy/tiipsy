@@ -48,7 +48,7 @@ Socialstock::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
   
-  config.action_mailer.default_url_options = { :host => '173.255.195.108', :port => 8083  }
+  config.action_mailer.default_url_options = { :host => 'socialcheers.com', :port => 8083  }
   
   
   config.after_initialize do
@@ -57,14 +57,14 @@ Socialstock::Application.configure do
 
   config.to_prepare do
   OrderTransaction.gateway =  ActiveMerchant::Billing::PaypalGateway.new( 
-    :login => 'nchinn_1309774589_biz_api1.gmail.com',
-    :password => '1309774643',
-    :signature => 'A4ZmaZtYP56ugAWbYNAcjqstyYtgAoBxWlcZnfA.iqDK4CgHeuwWpm12' )
+    :login => 'gashaw02_api1.yahoo.com',
+    :password => 'H5F6DNHE63S54WNZ',
+    :signature => 'AFcWxV21C7fd0v3bYYYRCpSSRl31A3iVwYD55DBbNgP13gSWebVQj.za' )
   
   OrderTransaction.xpressgateway =  ActiveMerchant::Billing::PaypalExpressGateway.new( 
-    :login => 'nchinn_1307094132_biz_api1.gmail.com',
-    :password => '1307094143',
-    :signature => 'A3tSrUJhWQkOjSs.LnbMRFOlOFN3AdRRcOCmTIWXkXK8x5Pn4e93CiVB' )
+    :login => 'gashaw02_api1.yahoo.com',
+    :password => 'H5F6DNHE63S54WNZ',
+    :signature => 'AFcWxV21C7fd0v3bYYYRCpSSRl31A3iVwYD55DBbNgP13gSWebVQj.za' )
     ::EXPRESS_GATEWAY = OrderTransaction.xpressgateway
   end
 
@@ -72,13 +72,14 @@ Socialstock::Application.configure do
 
 end
 
-WEB_SITE = "173.255.195.108:8083"
+WEB_SITE = "socialcheers.com"
+TITLE = "Bid on bottles"
 
-TWITTER_CONSUMER_KEY = "4LNa1EYXgxu3ea2UYn0tw"
-TWITTER_CONSUMER_SECRET = "uGWA8D3pipHkN3opHdbDVtT5H6L5SEy4gZRD5lRmjc"
+TWITTER_CONSUMER_KEY = "JuzjaQAFOI1ra50ZdSkg"
+TWITTER_CONSUMER_SECRET = "LrC1raVj6Lk5E5DxbWCZR8yfpJiBptFWYzNVhCbg"
 
-FACEBOOK_APP_ID = "192100847492162"
-FACEBOOK_APP_SECRET = "f500a4d0571ac03f41da2d64d65e25e6"
+FACEBOOK_APP_ID = "262855740409040"
+FACEBOOK_APP_SECRET = "caae85d27878869434207d1e643c18c3"
 
-LINKEDIN_API_KEY = "VptWymcPtE4dpoq3AY_qVpvmlaO4xxljFkh9wIHzDedVMkr364EJMSRV6-9bN_wP"
-LINKEDIN_SECRET_KEY = "WDoXYW-qdFgOEnLPp4i_S1pPBYiYf7ibYKxYCLXjaBmf7bSbLpY_yjV2NWg_mHTx"
+LINKEDIN_API_KEY = "pahe6oqxems2"
+LINKEDIN_SECRET_KEY = "7BxL7M2qnJ9JxLmS"
