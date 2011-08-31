@@ -3,7 +3,7 @@ class ContactsController < ApplicationController
     if ENV['RAILS_ENV'] == "development"
       redirect_to Google::Authorization.build_auth_url("http://localhost:3000/contacts/authorize")
     else
-      redirect_to Google::Authorization.build_auth_url("http://173.255.195.108:8083/contacts/authorize")
+      redirect_to Google::Authorization.build_auth_url("http://socialcheers.com/contacts/authorize")
     end
   end
   
@@ -15,7 +15,7 @@ class ContactsController < ApplicationController
       if ENV['RAILS_ENV'] == "development"
         redirect_to "http://localhost:3000/contacts?token=#{token}"
       else
-        redirect_to "http://173.255.195.108:8083/contacts?token=#{token}"  
+        redirect_to "http://socialcheers.com/contacts?token=#{token}"  
       end 
     else
       flash[:error] = "Something went wrong while authorizing with google."
