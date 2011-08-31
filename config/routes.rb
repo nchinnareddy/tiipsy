@@ -14,7 +14,6 @@ Socialstock::Application.routes.draw do
 
   get "auth_linkedin/callback"
   
-  
   get 'admin/index'
   get 'admin/report'
   get 'admin/action'
@@ -38,7 +37,7 @@ Socialstock::Application.routes.draw do
   match '/auth/:provider/callback' => 'authorizations#create'
   
   match '/auth/failure' => 'authorizations#failure'
-
+  
   resources :authentications
    
   resources :user_sessions
