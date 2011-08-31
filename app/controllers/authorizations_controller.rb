@@ -21,7 +21,7 @@ class AuthorizationsController < ApplicationController
       UserSession.create(@auth.user, true)
     end
     
-    redirect_to user_path(:id=>@auth.user.id,:provider=>@provider)
+    redirect_to user_path(:id=>@auth.user_id,:provider=>@provider)
   end
     
   def failure

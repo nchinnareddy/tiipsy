@@ -38,7 +38,7 @@ Socialstock::Application.routes.draw do
   match '/auth/:provider/callback' => 'authorizations#create'
   
   match '/auth/failure' => 'authorizations#failure'
-
+  
   resources :authentications
    
   resources :user_sessions
