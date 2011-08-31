@@ -1,20 +1,17 @@
+<% title 'Sign Up'%>
 <% stylesheet('jquery.countdown', 'colorbox')%>
 <% javascript('jquery.countdown', 'jquery.colorbox-min')%>
 
 <div id="signup">
-<% title 'Sign Up'%>
-<p align="center">
-	<font style="color:#FFFFFF; font-size:15px">Already registered?</font> <%= link_to "Sign In", new_user_session_path  %> 
-</p>
-<%= form_for @user, :validate => true, :url => users_path do |f| %>
-  <%= render :partial => "form", :object => f %>
-<% end %>
+	<p align="center">
+		<font style="color:#FFFFFF; font-size:15px">Already registered?</font> <%= link_to "Sign In", new_user_session_path  %> 
+	</p>
+	<%= form_for @user, :validate => true, :url => users_path do |f| %>
+		<%= render :partial => "form", :object => f %>
+	<% end %>
 </div>
 
-<script type="text/javascript">	
-
+<script type="text/javascript">
 	//for activation mail
-	$('.activation_mail_popup').colorbox();
-	
-	
+	$('.activation_mail_popup').colorbox();	
 </script>

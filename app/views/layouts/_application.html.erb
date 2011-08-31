@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= content_for?(:title) ? yield(:title) : "Get your bottle service now" %></title>
+    <%= stylesheet_link_tag "style" %>
+    <%= javascript_include_tag :defaults %>
+    <%= javascript_include_tag "rails.validations", "rails.validations.custom" %>    
+    <%= yield(:head) %>
+    <%= csrf_meta_tag %>
+</head>
+<body>
+<div id="wrapper">
+	<!--
+	<div id="search">
+		
+  			<%= form_tag servicelistings_path, :method => 'get' do %>
+   				<%= text_field_tag :search, params[:search] %>
+   				<%= submit_tag "Search", :name => nil %>
+    		<% end %>
+    	
+ 	</div>
+	-->
+	<!--   header -->
+	
+	
+
+	<div id="header">
+		<div id="logo">
+			<h1>
+				<%= link_to image_tag("auth/aaa.png", :height => '70', :width => '400'), root_path %>
+			</h1>
+			<div style="font-size:16px;margin-left: 110px;"></div>
+		</div>
+		<!-- Start of Menu Part -->
+		<div id="city-dropdown" style=" position: relative;left:10px;">
+			<% if @ts == 1 %>
+	    		<%= select_tag :city, options_for_select([[@city, ""],
+	    											  ["Austin, TX", "Austin, TX"],
+													  ["Chicago, IL","Chicago, IL"],	 
+													  ["Dallas, TX","Dallas, TX"],	
+													  ["Houston, TX","Houston, TX"],	
+													  ["San Antonio, TX","San Antonio, TX"] 												  
+	                                                 ], session[:city].to_s), 
+	            :style => "width:197px", :onChange => "process(this.value);" %>
+	        <% else %>
+	        	<%= select_tag :city, options_for_select([["Austin, TX", "Austin, TX"],
+													  ["Chicago, IL","Chicago, IL"],	 
+													  ["Dallas, TX","Dallas, TX"],	
+													  ["Houston, TX","Houston, TX"],	
+													  ["San Antonio, TX","San Antonio, TX"] 												  
+	                                                 ], session[:city].to_s), 
+	            :style => "width:197px", :onChange => "process(this.value);" %>
+	        <% end %>                                         	
+		</div>
+		
+		<div id="menu">
+		<ul>
+				<% if !current_user %>
+					<li><%= link_to "Sign Up", user_signup_path %></li>
+					<li><%= link_to "Sign In", user_signin_path %></li>
+				<% else %>
+				    <% if isadmin? %>
+				    	<li><%= link_to "Home", admin_index_path %></li>
+				    <% end %>
+					<% if is_barowner? %>
+				    	<li><%= link_to "Home",  bar_bussinesses_path %></li>
+				    <% end %>
+					<li><%= link_to "Profile", profile_users_path(current_user) %></li>
+					<li><%= link_to "My Account", account_users_path(:id => current_user.id) %></li>					
+					<% if auth_provider.nil? %>
+						<li><%= link_to "Change Password", change_password_users_path %></li>				
+					<% end%>				
+					<li><%= link_to "Sign out", user_session_path(current_user), :method => :delete, :confirm => "Are you sure you want to signout?" %></li>
+				<% end %>
+		</ul>
+		</div>
+		<!-- end #menu -->
+	</div>
+	<!-- end #header -->
+	
+	<!--- Containt -->
+	<div id="page">
+		<% flash.each do |name, msg| %>
+    	 <%= content_tag :div, msg, :id => "flash_#{name}" %>
+    	<% end %>    	
+	  <%= yield %>
+	  <%= yield :scripts %>
+	
+	</br>  
+	</div>
+	</br>  
+	</br>  
+	<!-- Start of footer Part-->	
+	<div id="footer">
+		<nav>
+			<ul>	
+				<li><%= link_to "Home", root_path %></li> |
+				<li><%= link_to "About Us",  about_us_users_path %></li> |
+				<!--
+					<li><%= link_to "Contact Us", root_path %></li> |
+				-->
+				<li><%= link_to "Register Your Bottle Service",  bar_register_path %></li>
+			</ul>	
+		</nav>
+		<div id="copy_right">
+			Copyright © 2011 by Unedollar. All Rights Reserved.
+		</div>
+		<!--
+		<div id="social_network">
+			<%= render :partial => "layouts/social_buttons"%>
+		</div>
+		-->
+	 </div>	    	
+    <!-- end #footer -->
+	<!--- End of Containt -->	
+</div>
+</body>
+<script type="text/javascript">	
+	function process (city) 
+	{
+		/*
+		alert('Your are going to visit '+city+ ' city servicelisting');
+		*/
+		<% if ENV['RAILS_ENV'] == "development" %>
+			window.location = "http://localhost:3000/?city=" + city; 
+		<% else%>
+			window.location = "http://socialcheers.com/?city=" + city; 
+		<% end %>	 
+	}
+</script>
+ 
+</html>
