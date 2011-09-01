@@ -28,6 +28,7 @@
 	<p class="title"><%= @servicelisting.title %></p>
 	<p class="picture"><%= image_tag @servicelisting.photo.url, :size => "320x320", :style =>"border:1px solid #fff;-moz-border-radius:10px;-webkit-border-radius:10px;" %></p>
 	<p class="bid">
+		  <% if tt > 0 %>
 		<% if isadmin? %>
 			<%= link_to 'Bid', new_servicelisting_bid_path(@servicelisting), :class=>"links bid_popup"  %>
 		<% elsif is_barowner? %>
@@ -37,8 +38,13 @@
 		<% else %>
 				<%= link_to 'Bid', new_servicelisting_bid_path(@servicelisting), :class=>"links"  %>
 	    <% end %>
+		<% else %>
+                              <%#= link_to 'Bid', 'www.google.com', :class=>"faded_links"  %>
+                              <label class="faded_links">Bid</label>
+                      <% end %>
 	</p>
 	<p class="buy">
+		  <% if tt > 0 %>
 		<% if isadmin? %>
 			<%= link_to 'Buy',  buynow_buynow_index_path(:id => @servicelisting), :class=>"links bid_popup"  %>
 		<% elsif is_barowner? %>
@@ -48,6 +54,10 @@
 		<% else %>
 			<%= link_to 'Buy',  buynow_buynow_index_path(:id => @servicelisting), :class=>"links"  %>
 		<% end %>
+		<% else %>
+                              <%#= link_to 'Bid', 'www.google.com', :class=>"faded_links"  %>
+                              <label class="faded_links">Bid</label>
+                      <% end %>
 	</p>
 	<p class="current_value">Current Value</p>
 	<p class="current_value_fet">$<%= @servicelisting.highestbid %></p>
