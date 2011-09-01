@@ -63,7 +63,7 @@ GEM
       rack (>= 1.1.0, < 2)
     faraday_middleware (0.6.5)
       faraday (~> 0.6.0)
-    fb_graph (2.0.1)
+    fb_graph (2.0.2)
       httpclient (>= 2.2.0.2)
       rack-oauth2 (>= 0.8.0)
     gdata (1.1.1)

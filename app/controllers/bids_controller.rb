@@ -47,11 +47,11 @@ class BidsController < ApplicationController
   def create
     
     @servicelisting = Servicelisting.find(params[:servicelisting_id])
-    if @servicelisting.status == 'active'
       @product = @servicelisting.title
       @desc = @servicelisting.description
       @bid = @servicelisting.bids.new(params[:bid])
       @servicelisting_id = @servicelisting.id
+      @barowner_email = @servicelisting.email
       @second_lowest_bid_details = Bid.where("servicelisting_id=?",@servicelisting_id).last
       unless @second_lowest_bid_details.nil?
         @second_lowest_bid_bidprice = @second_lowest_bid_details.bidprice
@@ -67,18 +67,14 @@ class BidsController < ApplicationController
           Notifier.send_mail_to_user_outbid(@email,@outbid_price,@bid.bidprice,@product,@desc).deliver
         end
           Notifier.send_mail_to_user_after_bid(current_user.email,@bid.bidprice,@product,@desc).deliver
+          Notifier.send_mail_to_admin_after_bid(@bid.bidprice,@product,@desc).deliver
+          Notifier.send_mail_to_barowner_after_bid(@barowner_email,@bid.bidprice,@product,@desc).deliver
           @servicelisting.highestbid = @bid.bidprice
           @servicelisting.save
         else
           flash[:notice] = "You must bid up. Your bid failed"
       end
       redirect_to servicelistings_path
-      return
-    else
-      flash[:notice] = "Service is inactive, you can not bid"
-      redirect_to servicelistings_path      
-    end
-  
   end
 
   # PUT /bids/1

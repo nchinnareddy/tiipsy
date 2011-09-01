@@ -67,12 +67,44 @@ class Notifier < ActionMailer::Base
           :subject => "Your Purchase: Socialcheers - #{ product}")
   end
   
+  def send_mail_to_admin_after_buy(product,cost,desc)
+    @cost = cost
+    @product = product
+    @desc = desc
+    mail(:to => 'admin@socialcheers.com',
+          :subject => "Service Sold: Socialcheers - #{ product}")
+  end
+  
+  def send_mail_to_barowner_after_buy(barowner_email,product,cost,desc)
+    @cost = cost
+    @product = product
+    @desc = desc
+    mail(:to => barowner_email,
+          :subject => "Service Sold: Socialcheers - #{ product}")
+  end
+  
   def send_mail_to_user_after_bid(email,bidprice,product,desc)
     @bidprice = bidprice
     @product = product
     @desc = desc
     mail(:to => email,
          :subject => "Your Bid: Socialcheers - #{ product}")
+  end
+  
+  def send_mail_to_admin_after_bid(bidprice,product,desc)
+    @bidprice = bidprice
+    @product = product
+    @desc = desc
+    mail(:to => 'admin@socialcheers.com',
+         :subject => "New Bid: Socialcheers - #{ product}")
+  end
+  
+  def send_mail_to_barowner_after_bid(barowner_email,bidprice,product,desc) 
+    @bidprice = bidprice
+    @product = product
+    @desc = desc
+    mail(:to => barowner_email,
+         :subject => "New Bid: Socialcheers - #{ product}")
   end
   
   def send_mail_to_user_outbid(email,outbid_price,bidprice,product,desc)
