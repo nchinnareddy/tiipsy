@@ -31,7 +31,7 @@ class CreditCardsController < ApplicationController
         flash[:notice] = "Your credit card details are modified"        
      else
         @creditcard.user_id = current_user.id
-        flash[:notice] = "Succesfully  added your credit card. Please proceed to Bid or Buy"
+        flash[:notice] = "Succesful added your credit card. Please proceed to Bid or Buy"
         @creditcard.save        
      end
      redirect_to root_path     

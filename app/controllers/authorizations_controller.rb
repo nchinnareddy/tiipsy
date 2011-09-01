@@ -31,7 +31,7 @@ class AuthorizationsController < ApplicationController
   
   def destroy
     @authorization = current_user.authorizations.find(params[:id])
-    flash[:notice] = "Successfully deleted #{@authorization.provider} authentication."
+    flash[:notice] = "Succesfully deleted #{@authorization.provider} authentication."
     @authorization.destroy
     redirect_to root_url
   end

@@ -43,11 +43,11 @@ module Socialstock
     
     config.action_mailer.delivery_method = :smtp
     config.action_mailer.smtp_settings = {
-      :address              => "smtp.gmail.com",
+      :address              => "smtpout.secureserver.net",
       :port                 => 587,
-      :domain               => 'startupsourcing.com',
-      :user_name            => 'nchinnareddy',
-      :password             => 'chinna123',
+      :domain               => 'socialcheers.com',
+      :user_name            => 'info@socialcheers.com',
+      :password             => 'smumba07',
       :authentication       => 'plain',
       :enable_starttls_auto => true  
     } 

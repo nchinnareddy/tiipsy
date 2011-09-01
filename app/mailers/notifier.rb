@@ -1,5 +1,5 @@
 class Notifier < ActionMailer::Base
-  default :from => "prasanna548@gmail.com"
+  default :from => "info@socialcheers.com"
   
   def activation_instructions(user)
     @account_activation_url = activate_url(user[:perishable_token])
@@ -38,7 +38,7 @@ class Notifier < ActionMailer::Base
   end
   
   def bar_onwer_confirmation_mail_to_admin
-    mail(:to => 'nchinnareddy@gmail.com',
+    mail(:to => 'admin@socialcheers.com',
          :subject => "new bar owner registered",
          :body => "new bar owner registered")
   end

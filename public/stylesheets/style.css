@@ -677,6 +677,7 @@ label.error {
 	left: 1px;
     position: absolute;
     top: 350px;
+	height:310px;
 }
 
 #details p.spot {

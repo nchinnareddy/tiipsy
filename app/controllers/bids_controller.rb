@@ -88,7 +88,7 @@ class BidsController < ApplicationController
 
     respond_to do |format|
       if @bid.update_attributes(params[:bid])
-        format.html { redirect_to(@bid, :notice => 'Bid was successfully updated.') }
+        format.html { redirect_to(@bid, :notice => 'Bid was succesfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
