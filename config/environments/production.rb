@@ -51,9 +51,9 @@ Socialstock::Application.configure do
   config.action_mailer.default_url_options = { :host => 'www.socialcheers.com', :port => 80}
   
   
- # config.after_initialize do
- #    ActiveMerchant::Billing::Base.mode = :test  
- # end
+  config.after_initialize do
+     ActiveMerchant::Billing::Base.mode = :production 
+  end
 
  # config.to_prepare do
  # OrderTransaction.gateway =  ActiveMerchant::Billing::PaypalGateway.new( 
