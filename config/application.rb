@@ -44,8 +44,8 @@ module Socialstock
     config.action_mailer.delivery_method = :smtp
     config.action_mailer.smtp_settings = {
       :address              => "smtpout.secureserver.net",
-      :port                 => 587,
-      :domain               => 'socialcheers.com',
+      :port                 => 80,
+      :domain               => 'www.socialcheers.com',
       :user_name            => 'info@socialcheers.com',
       :password             => 'smumba07',
       :authentication       => 'plain',

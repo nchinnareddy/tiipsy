@@ -88,7 +88,9 @@
 			  <font color="#FF0000"> You are outbid by <%= @servicelisting.highestbid - @userhighbid %>$ </font>
 			  <%end %>
 			  <%else %>
-			   <font color="#FF0000"> You have not bid on this service </font>
+			    <% if tt > 0 %>
+			  	 <font color="#FF0000"> You have not bid on this service </font>
+				<%end%> 
 			   <%end%>  
 			   <% end %>
 		</p>	
