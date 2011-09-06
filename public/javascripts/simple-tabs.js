@@ -11,7 +11,7 @@ $(function(){
 		$(".tab_content:first").show(); //Show first tab content		
 	}	
 	
-	$("ul.simple-tabs li").click(function() {
+	$("ul.simple-tabs li").click(function() {		
 		$("ul.simple-tabs li").removeClass("active"); //Remove any "active" class
 		$(this).addClass("active"); //Add "active" class to selected tab
 		$(".tab_content").hide(); //Hide all tab content

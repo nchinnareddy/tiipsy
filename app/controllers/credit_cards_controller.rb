@@ -22,8 +22,10 @@ class CreditCardsController < ApplicationController
   def create
      @creditcard = CreditCard.new(params[:credit_card])
      if !(credit_card(@creditcard).valid?)
-      flash[:error] = "Your card is not valid"
-      redirect_to new_user_credit_card_path(current_user)
+       msg = credit_card(@creditcard).errors.full_messages.join('. ')
+       flash[:error] = msg  
+      #redirect_to new_user_credit_card_path(current_user)
+      redirect_to root_path
       return
      end
      if current_user.credit_card
@@ -38,7 +40,7 @@ class CreditCardsController < ApplicationController
   end
 
   
-def credit_card(cc)
+  def credit_card(cc)
     @credit_card ||= ActiveMerchant::Billing::CreditCard.new(
       :type               => cc.card_type,
       :number             => cc.card_number,
@@ -48,7 +50,7 @@ def credit_card(cc)
       :first_name         => cc.first_name,
       :last_name          => cc.last_name
     )
-end
+  end
 
   # DELETE /credit_cards/1
   # DELETE /credit_cards/1.xml
@@ -60,6 +62,26 @@ end
       format.html { redirect_to(credit_cards_url) }
       format.xml  { head :ok }
     end
+  end
+  
+  def edit 
+    @credit_card = CreditCard.find(params[:id])
+  end
+  
+  def update
+    @credit_card = CreditCard.find(params[:id])
+    if @credit_card.update_attributes(params[:credit_card])
+      flash[:notice] = "Credit card details updated successful"
+      redirect_to  profile_users_path
+    else
+      flash[:error] = "You have enter worng data"
+    end
+  end
+  
+  def destroy
+    @creditcard = CreditCard.find(params[:id])
+    @creditcard.destroy
+    redirect_to  profile_users_path
   end
   
 end

@@ -138,7 +138,8 @@ class UsersController < ApplicationController
   end
   
   def profile
-    
+    @user_id = current_user.id
+    @cedite_card_details = CreditCard.where("user_id=?",@user_id).first
   end
   
   def account
