@@ -9,14 +9,14 @@ def buynow
    #if @sl.status == 'active'
      @amount = @sl.price
      @serviceid = @sl.id
-     #@highestbid  = @sl.highestbid
-     #if @amount <= @highestbid
-        #@new_cost = @highestbid + 1
-        #@sl.price = @new_cost
-        #@sl.save
-     #else
-      #  @new_cost = @amount
-     #end
+     @highestbid  = @sl.highestbid
+     if @amount <= @highestbid
+        @new_cost = @highestbid + 1
+        @sl.price = @new_cost
+        @sl.save
+     else
+        @new_cost = @amount
+     end
      @order = Order.new
      render 'confirm', :layout => false  
      #return
