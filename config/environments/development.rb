@@ -26,7 +26,7 @@ Socialstock::Application.configure do
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
    
   config.after_initialize do
-     ActiveMerchant::Billing::Base.mode = :test  
+     ActiveMerchant::Billing::Base.mode = :test
   end
  
   config.to_prepare do

@@ -50,7 +50,6 @@ def express
 end
 
 def complete
-
   @order = current_user.orders.new(:express_token => params[:token])
   @service = Servicelisting.find(params[:id])
   details_response = OrderTransaction.xpressgateway.details_for(params[:token])
