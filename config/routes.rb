@@ -61,6 +61,7 @@ Socialstock::Application.routes.draw do
       get 'download'
       get 'about_us'
       get 'authorization_hold'
+      get 'how_it_works'
     end
    resources :credit_cards
    resources :bids

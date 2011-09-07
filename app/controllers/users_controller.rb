@@ -159,6 +159,10 @@ class UsersController < ApplicationController
    
  end
  
+ def how_it_works
+   
+ end
+ 
   def authorization_hold
     render :layout => false
   end

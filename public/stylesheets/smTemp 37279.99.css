@@ -948,17 +948,15 @@ label.error {
     width: auto;
     z-index: 99;
 }
-
 #servicelisting_index_r p.title {
     color: #FFFFFF;
-    font-family: Georgia,"Times New Roman",Times,serif;
-    font-size: 1.7em;
+    font-size: 15px;
     font-weight: bold;
+    top: 2px;
     left: 106px;
     position: relative;
-    top: 2px;
+    font-family: Georgia, "Times New Roman", Times, serif;
 }
-
 
 #servicelisting_index_r p.picture{
 	position: absolute;
@@ -976,12 +974,17 @@ label.error {
 }
 
 #servicelisting_index_r p.more {
+    left: 250px;
+    position: absolute;
+    top: 35px;
+}
+
+#servicelisting_index_r p.more {
     font-size: 1.5em;
     left: 250px;
     position: absolute;
     top: 45px;
 }
-
 
 #servicelisting_index_r p.map {
     left: 340px;
@@ -992,26 +995,26 @@ label.error {
 #servicelisting_index_r p.address_fet {
     color: #909090;
     font-family: Georgia,"Times New Roman",Times,serif;
-    font-size: 1.2em;
+    font-size: 11px;
+    height: 45px;
     left: 110px;
     overflow: hidden;
     position: relative;
-    top: 30px;
+    top: 11px;
     width: 200px;
 }
-
 
 #servicelisting_index_r p.city {
     color: #909090;
     font-family: Georgia,"Times New Roman",Times,serif;
-    font-size: 1.2em;
+    font-size: 11px;
+    height: 20px;
     left: 110px;
     overflow: hidden;
     position: relative;
-    top: 30px;
+    top: 11px;
     width: 200px;
 }
-
 
 #servicelisting_index_r p.time_left {
     color: #FFFFFF;

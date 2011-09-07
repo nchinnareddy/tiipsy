@@ -67,6 +67,14 @@ class Notifier < ActionMailer::Base
           :subject => "Your Purchase: Socialcheers - #{ product}")
   end
   
+  def send_mail_to_each_bidder_after_buy(email,product,cost,desc)
+    @cost = cost
+    @product = product
+    @desc = desc
+    mail(:to => email,
+          :subject => "Service bought: Socialcheers - #{ product}")
+  end
+  
   def send_mail_to_admin_after_buy(product,cost,desc)
     @cost = cost
     @product = product
@@ -123,5 +131,13 @@ class Notifier < ActionMailer::Base
     mail(:to => email,
          :subject => "Congratulations!!! You have won the Bid: Socialcheers - #{ product}")
   end 
+  
+  def send_mail_to_each_bidder_after_bid_closed(email,bidprice,product,desc)
+    @bidprice = bidprice
+    @product = product
+    @desc = desc
+    mail(:to => email,
+         :subject => "Congratulations!!! You have won the Bid: Socialcheers - #{ product}")
+  end
   
 end
