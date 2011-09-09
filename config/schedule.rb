@@ -5,7 +5,7 @@
 
 # Example:
 #
- if ENV['RAILS_ENV'] == 'production'
+ if ENV['RAILS_ENV'] == 'development'
  set :output, "/home/startup/APPS/tiipsy/cron_log.log"
  end
 #

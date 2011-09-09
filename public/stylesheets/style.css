@@ -1,4 +1,4 @@
-/* Yahoo CSS Reset */
+
 body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td { 
 	margin:0;
 	padding:0;
@@ -1018,13 +1018,13 @@ label.error {
     font-size: 18px;
     left: 370px;
     position: absolute;
-    top: 25px;
+    top: 35px;
 }
 
 #servicelisting_index_r p.time_left_fet{
 	position: absolute;
     left: 390px;	
-    top: 60px;
+    top: 70px;
     font-size:22px;
 }
 
@@ -1032,7 +1032,7 @@ label.error {
     background-color: none;
     left: 360px;
     position: absolute;
-    top: 65px;
+    top: 75px;
     width: 200px;
 }
 
@@ -1041,7 +1041,7 @@ label.error {
     font-size: 18px;
     left: 570px;
     position: absolute;
-    top: 25px;
+    top: 35px;
 }
 
 #servicelisting_index_r p.current_value_fet {
@@ -1049,7 +1049,7 @@ label.error {
     font-size: 22px;
     left: 590px;
     position: absolute;
-    top: 60px;
+    top: 70px;
 }
 
 #servicelisting_index_r p.edit {

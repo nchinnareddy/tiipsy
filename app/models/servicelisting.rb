@@ -54,7 +54,10 @@ def self.checkexpirations
 #                   users.add(user)
 #                   Notifier.bid_expired_email(user).deliver  
                 end # do end
-              capture_result = self.capturemoney(highestbid, item.id)
+                 capture_result = false
+                if highestbid != nil
+                  capture_result = self.capturemoney(highestbid, item.id)
+                end
               if capture_result == true
                  item.status = "Closed"
                  item.winner_id = highestbid.user_id
