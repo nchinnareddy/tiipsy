@@ -29,6 +29,7 @@ def create
       if @order.purchase
         @servicelisting.winner_id = @order.user_id
         @servicelisting.status = "Closed"
+        @servicelisting.availability = DateTime.now
         @servicelisting.save
         #all_biders = Bid.find(:all, :conditions => ["servicelisting_id=?",@order.servicelisting_id])
         all_biders = Bid.where("servicelisting_id=?",@order.servicelisting_id)
@@ -38,6 +39,7 @@ def create
           bidder_email = @user_details.email
           Notifier.send_mail_to_each_bidder_after_buy(bidder_email,@product,@cost,@desc).deliver
         end
+        # test code start
         Notifier.send_mail_to_user_after_buy(current_user.email,@product,@cost,@desc).deliver
         Notifier.send_mail_to_admin_after_buy(@product,@cost,@desc).deliver
         Notifier.send_mail_to_barowner_after_buy(@barowner_email,@product,@cost,@desc).deliver
