@@ -56,7 +56,7 @@ def self.checkexpirations
                 end # do end
               capture_result = self.capturemoney(highestbid, item.id)
               if capture_result == true
-                 item.status = "bought"
+                 item.status = "Closed"
                  item.winner_id = highestbid.user_id
                  user = User.find_by_id(highestbid.user_id)
                  p "&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"
@@ -79,8 +79,9 @@ end
 def self.capturemoney(highestbid, service_id)
   logger.debug "entering capturemoney"
   user = User.find_by_id(highestbid.user_id)
-  authorized_order =  Order.where("user_id = ? AND servicelisting_id = ? AND state = ? ", highestbid.user_id, service_id, 'authorized')
-  athorizationlimit = ((authorization.amount) * 100) + ((15/(authorization.amount))* 100)
+  #authorized_order =  Order.where("user_id = ? AND servicelisting_id = ? AND state = ? ", highestbid.user_id, service_id, 'authorized')
+  authorized_order  = Order.find_by_user_id_and_servicelisting_id_and_state(highestbid.user_id,service_id,'authorized')
+  athorizationlimit = ((authorized_order.amount) * 100) + ((15/(authorized_order.amount))* 100)
   ccard = user.credit_card
   local_ip = UDPSocket.open {|s| s.connect("64.233.187.99", 1); s.addr.last}
   
@@ -93,7 +94,7 @@ def self.capturemoney(highestbid, service_id)
      if void_result.success?           
        exp_bid_order = Order.create( :amount => highestbid.bidprice,
                                      :description => "Bidding",
-                                     :user_id => exp_bid_order.user_id,
+                                     :user_id => highestbid.user_id,
                                      :servicelisting_id => service_id,
                                      :ip_address => local_ip,
                                      :first_name => ccard.first_name,
