@@ -4,12 +4,16 @@
 <div id="servicelisting_index">
 	
 	<% @servicelistings.each do |servicelisting| %>
-
-	<% availability_date = DateTime.parse(servicelisting.availability.to_s)%>
+      
+	<%= availability_date = DateTime.parse(servicelisting.availability.to_s)%></br>
+	<!--
 	<% time_now = DateTime.parse(DateTime.now.to_s)%>
-	<% time_until = availability_date - time_now %>
-	<% t = time_until.to_f %>
-	<% tt = t*(86400) %></br>	
+	<%= DateTime.now.in_time_zone %>
+	-->
+	<%= time_now = DateTime.parse(DateTime.now.in_time_zone.to_s) %></br>
+	<%= time_until = availability_date - time_now %></br>
+	<%= t = time_until.to_f %></br>
+	<%= tt = t*(86400) %></br>	
 	
 	<div id="servicelisting_index_r">
 	
