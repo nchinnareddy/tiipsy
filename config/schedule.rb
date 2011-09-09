@@ -23,9 +23,5 @@ every 2.minutes do
    runner "Servicelisting.checkexpirations"
 end
 
-every 1.minutes do 
-   logger.debug "hi"
-end
-
 
 # Learn more: http://github.com/javan/whenever
