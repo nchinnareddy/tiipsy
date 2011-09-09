@@ -6,7 +6,7 @@
 # Example:
 #
  if ENV['RAILS_ENV'] == 'development'
- set :output, "/home/startup/APPS/tiipsy/cron_log.log"
+ set :output, "#{ENV['RAILS_ROOT']}/cron_log.log"
  end
 #
 # every 2.hours do
@@ -19,8 +19,15 @@
 #   runner "AnotherModel.prune_old_records"
 # end
 set :environment, :ENV['RAILS_ENV']
-every 2.minutes do 
-   runner "Servicelisting.checkexpirations"
+every 2.minutes do
+  puts "2 min job is done..."
+  runner "Servicelisting.checkexpirations"
 end
+
+every 1.minutes do 
+   puts "hi"
+   puts "pravin mishra"   
+end
+
 
 # Learn more: http://github.com/javan/whenever
