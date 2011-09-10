@@ -6,7 +6,9 @@
 # Example:
 #
  if ENV['RAILS_ENV'] == 'development'
- set :output, "/home/startup/APPS/tiipsy/cron_log.log"
+   set :output, "/home/startup/APPS/tiipsy/cron_log.log"
+ else
+   set :output, "/home/deployer/tiipsy/current/cron_log.log"
  end
 #
 # every 2.hours do

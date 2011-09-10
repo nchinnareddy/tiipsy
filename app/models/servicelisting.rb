@@ -41,20 +41,22 @@ def self.checkexpirations
               end
             
            if item.status == "expired"
-              highestbid = nil
-              item.bids.each do |bid|
-                 if highestbid == nil
-                    highestbid = bid
-                    next
-                 end
-                 if bid.bidprice > highestbid.bidprice
-                    highestbid = bid
-                 end
+              #highestbid = nil
+              #item.bids.each do |bid|
+              #   if highestbid == nil
+              #      highestbid = bid
+              #      next
+              #   end
+              #   if bid.bidprice > highestbid.bidprice
+              #      highestbid = bid
+              #   end
 #                   user = User.find_by_id(bid.user_id)
 #                   users.add(user)
 #                   Notifier.bid_expired_email(user).deliver  
-                end # do end
-                 capture_result = false
+              #  end # do end
+                capture_result = false
+                highestbid_id = item.bids.maximum(:id,:conditions=>"bidprice") 
+                highestbid = item.bids.find(highestbid_id)
                 if highestbid != nil
                   capture_result = self.capturemoney(highestbid, item.id)
                 end
@@ -62,16 +64,14 @@ def self.checkexpirations
                  item.status = "Closed"
                  item.winner_id = highestbid.user_id
                  user = User.find_by_id(highestbid.user_id)
-                 p "&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"
                  item.save
-                 p "&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"
                  Notifier.send_mail_to_user_after_bid_closed(user.email,highestbid.bidprice,item.title,item.description).deliver if user
-                 all_biders = Bid.where("servicelisting_id=?",item.servicelisting_id)
+                 all_biders = Bid.where("servicelisting_id=?",item.id)
                  all_biders.each do |bidder|
                     logger.debug " #{bidder.user_id}"
                     @user_details = User.where("id = ?", bidder.user_id).first
                     bidder_email = @user_details.email
-                    Notifier.send_mail_to_each_bidder_after_bid_closed(bidder_email,@product,@cost,@desc).deliver
+                    Notifier.send_mail_to_each_bidder_after_bid_closed(bidder_email,highestbid.bidprice,item.title,item.description).deliver
                 end
                end
            end
@@ -92,8 +92,6 @@ def self.capturemoney(highestbid, service_id)
      capture_result = authorized_order.capture_payment
    else
      void_result = authorized_order.void
-   end
-   
      if void_result.success?           
        exp_bid_order = Order.create( :amount => highestbid.bidprice,
                                      :description => "Bidding",
@@ -115,7 +113,7 @@ def self.capturemoney(highestbid, service_id)
           
        capture_result = exp_bid_order.purchase
    end
-   
+  end   
    if capture_result.success?
      return true
    else
