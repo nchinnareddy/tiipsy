@@ -72,7 +72,7 @@ class BidsController < ApplicationController
           @servicelisting.highestbid = @bid.bidprice
           @servicelisting.save
         else
-          flash[:notice] = "You must bid up. Your bid failed"
+          flash[:error] = "You must bid up. Your bid failed"
       end
       redirect_to servicelistings_path
   end

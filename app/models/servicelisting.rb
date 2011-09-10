@@ -68,10 +68,12 @@ def self.checkexpirations
                  Notifier.send_mail_to_user_after_bid_closed(user.email,highestbid.bidprice,item.title,item.description).deliver if user
                  all_biders = Bid.where("servicelisting_id=?",item.id)
                  all_biders.each do |bidder|
-                    logger.debug " #{bidder.user_id}"
-                    @user_details = User.where("id = ?", bidder.user_id).first
-                    bidder_email = @user_details.email
-                    Notifier.send_mail_to_each_bidder_after_bid_closed(bidder_email,highestbid.bidprice,item.title,item.description).deliver
+                    if bidder.user_id != highestbid.user_id
+                      logger.debug " #{bidder.user_id}"
+                      @user_details = User.where("id = ?", bidder.user_id).first
+                      bidder_email = @user_details.email
+                      Notifier.send_mail_to_each_bidder_after_bid_closed(bidder_email,highestbid.bidprice,item.title,item.description).deliver
+                    end
                 end
                end
            end

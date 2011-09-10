@@ -137,7 +137,7 @@ class Notifier < ActionMailer::Base
     @product = product
     @desc = desc
     mail(:to => email,
-         :subject => "Congratulations!!! You have won the Bid: Socialcheers - #{ product}")
+         :subject => "Bid closed: Socialcheers - #{ product}")
   end
   
 end
