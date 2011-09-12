@@ -9,8 +9,6 @@ gem 'rails', '3.0.5'
 gem 'mysql2', '0.2.7'
 gem 'rake', '0.9.2'
 
-gem 'ssl_requirement'
-
 #For authentication 
 gem 'authlogic'
 gem 'omniauth'
@@ -33,6 +31,8 @@ gem "mail", "2.2.15"
 
 # Use unicorn as the web server
 # gem 'unicorn'
+
+gem 'ssl_requirement'
 
 # Deploy with Capistrano
  gem 'capistrano'

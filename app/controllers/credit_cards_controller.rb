@@ -1,5 +1,5 @@
 class CreditCardsController < ApplicationController
-  ssl_required :show, :new, :create, :credit_card, :edit, :update
+  ssl_required :show, :new, :create, :edit, :update
  
   # GET /credit_cards/1
   # GET /credit_cards/1.xml

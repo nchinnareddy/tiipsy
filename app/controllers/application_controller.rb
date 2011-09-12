@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   helper :all
   helper_method :current_user_session, :current_user, :auth_provider, :isadmin?, :require_user_balance, :require_user_with_mailid, :is_barowner?
   before_filter :require_user_with_mailid
+  include SslRequirement
+  
   private
   
   def current_user_session
