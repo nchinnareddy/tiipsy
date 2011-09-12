@@ -9,6 +9,8 @@ gem 'rails', '3.0.5'
 gem 'mysql2', '0.2.7'
 gem 'rake', '0.9.2'
 
+gem 'ssl_requirement'
+
 #For authentication 
 gem 'authlogic'
 gem 'omniauth'
