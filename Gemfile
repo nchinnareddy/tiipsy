@@ -32,6 +32,8 @@ gem "mail", "2.2.15"
 # Use unicorn as the web server
 # gem 'unicorn'
 
+gem 'ssl_requirement'
+
 # Deploy with Capistrano
  gem 'capistrano'
  gem "linkedin", "~> 0.2.2"
