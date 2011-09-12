@@ -84,13 +84,17 @@ Socialstock::Application.routes.draw do
   end
   
    resources :bar_bussinesses do
-    collection do
-     get "list" 
-     get "servicelist"
-     get "email_validate"
-     get "map"
-    end
-  end
+      collection do
+        get "list" 
+        get "servicelist"
+        get "email_validate"
+        get "map"
+      end
+   
+      member do
+        get "bid_details"
+      end
+   end
   
   resources :buynow do
      collection do

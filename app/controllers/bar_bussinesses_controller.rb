@@ -119,4 +119,8 @@ class BarBussinessesController < ApplicationController
     render :layout => 'location'
   end
   
+  def bid_details
+    @bid_details_of_service = Bid.find(:all, :conditions => ["servicelisting_id=?", params[:id]])
+  end
+  
 end
