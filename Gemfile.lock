@@ -183,6 +183,7 @@ GEM
       ruby-openid (>= 2.1.7)
     rubyntlm (0.1.1)
     simple_oauth (0.1.5)
+    ssl_requirement (0.1.0)
     thor (0.14.6)
     treetop (1.4.10)
       polyglot
@@ -223,6 +224,7 @@ DEPENDENCIES
   paperclip
   rails (= 3.0.5)
   rake (= 0.9.2)
+  ssl_requirement
   twitter
   whenever
   will_paginate (= 3.0.pre2)
