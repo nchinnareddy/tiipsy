@@ -52,7 +52,7 @@
                 	<td style="border-bottom:#666666 1px solid"><div align="center"><%= bid.bidprice %></div></td>
 					<td style="border-bottom:#666666 1px solid"><div align="center"><%= bid.servicelisting.highestbid %></div></td>
 					<td style="border-bottom:#666666 1px solid"><div align="center"><%= bid.servicelisting.status %></div></td>
-					<td style="border-bottom:#666666 1px solid;border-right:#666666 1px solid"><div align="center"><%= bid.created_at %></div></td>
+					<td style="border-bottom:#666666 1px solid;border-right:#666666 1px solid"><div align="center"><%= bid.created_at.strftime("%d-%m-%Y") %></div></td>
               	</tr>
 				<% end %>
 			</table>
@@ -99,7 +99,7 @@
                 	<td style="border-bottom:#666666 1px solid"><div align="center"><%= order.servicelisting.title %></div></td>
 					<td style="border-bottom:#666666 1px solid"><div align="center"><%= order.amount %></div></td>
 					<td style="border-bottom:#666666 1px solid"><div align="center"><%= order.servicelisting.status %></div></td>
-					<td style="border-bottom:#666666 1px solid;border-right:#666666 1px solid"><div align="center"><%= order.created_at %></div></td>
+					<td style="border-bottom:#666666 1px solid;border-right:#666666 1px solid"><div align="center"><%= order.created_at.strftime("%d-%m-%Y") %></div></td>
               	</tr>
 				<% end %>
 			</table>

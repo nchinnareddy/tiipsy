@@ -45,7 +45,9 @@
     <td width="1%"></td>
     <td width="59%"><%= f.text_area :description , :rows => '5', :cols => '22' %></td>
   </tr>
-  <tr>
+  
+  <% unless params[:indicator] %>
+  <tr>	
     <td width="40%"><div align="right" style="color:#FFFFFF">Availability </div></td>
     <td width="1%"></td>
     <td width="59%">
@@ -55,6 +57,18 @@
     	<%= f.text_field :availability , :class => "textfield_effect"%>
     </td>
   </tr>
+  <% else %>
+  <tr>	
+    <td width="40%"><div align="right" style="color:#FFFFFF">Availability </div></td>
+    <td width="1%"></td>
+    <td width="59%">
+    	<!--
+    	<%= f.datetime_select :availability, :order => [:month, :day, :year ] %>
+    	-->
+    	<%= f.text_field :availability, :value=>@servicelisting.availability.strftime("%m/%d/%Y %H:%m %p"), :class => "textfield_effect" %>
+    </td>
+  </tr>
+  <% end %>
   <tr>
     <td width="40%"><div align="right" style="color:#FFFFFF">Price </div></td>
     <td width="1%"></td>
@@ -186,7 +200,7 @@
 
 <script>
 	 $('#servicelisting_availability').datetimepicker({
-		isoUtcDateTime: "Central Time (US & Canada):yyyy-mm-dd'T'HH:MM:ss'Z'"
+		isoDateTime: "Central Time (US & Canada):yyyy-mm-dd'T'HH:MM:ss'Z'"
 	 });
 </script>
 
