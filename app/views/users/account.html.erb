@@ -26,7 +26,7 @@
 			  	<tr bgcolor="#000000" class="BoldRED">
 
                 	<td width="5%" height="25" bgcolor="#DDDDDD" class="headtext13" style="border-bottom:#666666 1px solid;border-right:#666666 solid 1px;border-left:#666666 1px solid;"><div align="left" class="style22">
-                  	<div align="center"><span style="font-size:12px; font-family:Arial, Helvetica, sans-serif;">Sl. No.</span></div>
+                  	<div align="center"><span style="font-size:12px; font-family:Arial, Helvetica, sans-serif;">Option</span></div>
                 	</div></td>
 					<td width="13%" height="25" bgcolor="#DDDDDD" class="headtext13" style="border-bottom:#666666 1px solid;border-right:#666666 solid 1px;border-left:#666666 1px solid;"><div align="left" class="style22">
                   	<div align="center"><span style="font-size:12px; font-family:Arial, Helvetica, sans-serif;">Service Name</span></div>
@@ -45,15 +45,23 @@
 			    	</div></td>
 				</tr>
 				<% sl=1 %>
-				<% @bids.each do |bid| %>	
-     			<tr bgcolor="#FFFFFF" onMouseOver="this.bgColor='gold';" onMouseOut="this.bgColor='#FFFFFF';" >
-                	<td height="25" style="border-bottom:#666666 1px solid;border-left:#666666 1px solid;"><div align="center"><%= sl %><% sl+=1 %></div></td>
-                	<td style="border-bottom:#666666 1px solid"><div align="center"><%= bid.servicelisting.title %></div></td>
-                	<td style="border-bottom:#666666 1px solid"><div align="center"><%= bid.bidprice %></div></td>
-					<td style="border-bottom:#666666 1px solid"><div align="center"><%= bid.servicelisting.highestbid %></div></td>
-					<td style="border-bottom:#666666 1px solid"><div align="center"><%= bid.servicelisting.status %></div></td>
-					<td style="border-bottom:#666666 1px solid;border-right:#666666 1px solid"><div align="center"><%= bid.created_at.strftime("%d-%m-%Y") %></div></td>
-              	</tr>
+				<% if @bids.nil? %>
+					<tr>
+						<td colspan="6">
+							<p align="center" style="font-size:x-large; color:#1781C1;">No , Bid details</p>
+						</td>	
+					</tr>
+				<% else%>
+					<% @bids.each do |bid| %>	
+     				<tr bgcolor="#FFFFFF" onMouseOver="this.bgColor='#3399cc';" onMouseOut="this.bgColor='#FFFFFF';" >
+                		<td height="25" style="border-bottom:#666666 1px solid;border-left:#666666 1px solid;"><div align="center"><%= link_to "Details" , servicelisting_path(bid.servicelisting.id) %></div></td>
+                		<td style="border-bottom:#666666 1px solid"><div align="center"><%= bid.servicelisting.title %></div></td>
+                		<td style="border-bottom:#666666 1px solid"><div align="center"><%= bid.bidprice %></div></td>
+						<td style="border-bottom:#666666 1px solid"><div align="center"><%= bid.servicelisting.highestbid %></div></td>
+						<td style="border-bottom:#666666 1px solid"><div align="center"><%= bid.servicelisting.status %></div></td>
+						<td style="border-bottom:#666666 1px solid;border-right:#666666 1px solid"><div align="center"><%= bid.created_at.strftime("%d-%m-%Y") %></div></td>
+              		</tr>
+					<% end %>
 				<% end %>
 			</table>
 		</div>
@@ -77,7 +85,7 @@
 			<tr bgcolor="#000000" class="BoldRED">
 
                	<td width="5%" height="25" bgcolor="#DDDDDD" class="headtext13" style="border-bottom:#666666 1px solid;border-right:#666666 solid 1px;border-left:#666666 1px solid;"><div align="left" class="style22">
-               	<div align="center"><span style="font-size:12px; font-family:Arial, Helvetica, sans-serif;">Sl. No.</span></div>
+               	<div align="center"><span style="font-size:12px; font-family:Arial, Helvetica, sans-serif;">Option</span></div>
                	</div></td>
 				<td width="13%" height="25" bgcolor="#DDDDDD" class="headtext13" style="border-bottom:#666666 1px solid;border-right:#666666 solid 1px;border-left:#666666 1px solid;"><div align="left" class="style22">
                	<div align="center"><span style="font-size:12px; font-family:Arial, Helvetica, sans-serif;">Service Name</span></div>
@@ -93,15 +101,26 @@
 			    </div></td>
 				</tr>
 				<% sl=1 %>
-				<% @orders.each do |order| %>
-     			<tr bgcolor="#FFFFFF" onMouseOver="this.bgColor='gold';" onMouseOut="this.bgColor='#FFFFFF';" >
-                	<td height="25" style="border-bottom:#666666 1px solid;border-left:#666666 1px solid;"><div align="center"><%= sl %><% sl+=1 %></div></td>
-                	<td style="border-bottom:#666666 1px solid"><div align="center"><%= order.servicelisting.title %></div></td>
-					<td style="border-bottom:#666666 1px solid"><div align="center"><%= order.amount %></div></td>
-					<td style="border-bottom:#666666 1px solid"><div align="center"><%= order.servicelisting.status %></div></td>
-					<td style="border-bottom:#666666 1px solid;border-right:#666666 1px solid"><div align="center"><%= order.created_at.strftime("%d-%m-%Y") %></div></td>
-              	</tr>
+				
+				
+				<% if @orders.nil? %>
+					<tr>
+						<td colspan="6">
+							<p align="center" style="font-size:x-large; color:#1781C1;">No, Purchase details</p>
+						</td>	
+					</tr>
+				<% else %>
+					<% @orders.each do |order| %>
+					<tr bgcolor="#FFFFFF" onMouseOver="this.bgColor='#3399cc';" onMouseOut="this.bgColor='#FFFFFF';" >
+                		<td height="25" style="border-bottom:#666666 1px solid;border-left:#666666 1px solid;"><div align="center"><%= link_to "Details" , servicelisting_path(order.servicelisting.id) %></div></td>
+                		<td style="border-bottom:#666666 1px solid"><div align="center"><%= order.servicelisting.title %></div></td>
+						<td style="border-bottom:#666666 1px solid"><div align="center"><%= order.amount %></div></td>
+						<td style="border-bottom:#666666 1px solid"><div align="center"><%= order.servicelisting.status %></div></td>
+						<td style="border-bottom:#666666 1px solid;border-right:#666666 1px solid"><div align="center"><%= order.created_at.strftime("%d-%m-%Y") %></div></td>
+              		</tr>
+					<% end %>
 				<% end %>
+				
 			</table>
 			</div>
 		</div>
