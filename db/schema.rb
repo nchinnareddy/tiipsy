@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110824080848) do
+ActiveRecord::Schema.define(:version => 20110913083258) do
 
   create_table "admins", :force => true do |t|
     t.float    "bidding_fee"
@@ -187,7 +187,7 @@ ActiveRecord::Schema.define(:version => 20110824080848) do
     t.string   "location"
     t.datetime "availability"
     t.float    "price"
-    t.float    "buynow_price"
+    t.float    "buynow_price",       :default => 0.0
     t.integer  "no_of_guests"
     t.float    "highestbid",         :default => 0.0
     t.string   "status",             :default => "active"
@@ -204,6 +204,7 @@ ActiveRecord::Schema.define(:version => 20110824080848) do
     t.string   "phone"
     t.string   "email"
     t.string   "website"
+    t.string   "min_bid"
   end
 
   create_table "twitter_followers", :force => true do |t|
