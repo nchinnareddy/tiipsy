@@ -119,7 +119,13 @@ class BarBussinessesController < ApplicationController
     render :layout => 'location'
   end
   
-  def bid_details
+  #def bid_details
+  #  @bid_details_of_service = Bid.find(:all, :conditions => ["servicelisting_id=?", params[:id]])
+  #  @purchase_details_of_service = Order.find(:all, :conditions => ["servicelisting_id=?",params[:id]]).first
+  #end
+  
+  def purchase_details
+    @purchase_details_of_service = Order.find(:all, :conditions => ["servicelisting_id=?",params[:id]]).first
     @bid_details_of_service = Bid.find(:all, :conditions => ["servicelisting_id=?", params[:id]])
   end
   

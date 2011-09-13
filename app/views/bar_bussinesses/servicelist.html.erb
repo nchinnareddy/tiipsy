@@ -41,7 +41,7 @@
           <td style="border-bottom:#666666 1px solid"><div align="center"><%= servicelisting.bar_name %></div></td>               
           <td style="border-bottom:#666666 1px solid"><div align="center"><%= servicelisting.city %></div></td>
 	      <td style="border-bottom:#666666 1px solid"><div align="center"><%= servicelisting.price %></div></td>
-		  <td style="border-bottom:#666666 1px solid"><div align="center"><%= link_to "Bid",   bid_details_bar_bussiness_path(servicelisting.id) %> | <%= link_to "Purchase", servicelisting, :confirm => 'Are you sure?', :method => :delete %></div></td>
+		  <td style="border-bottom:#666666 1px solid"><div align="center"><%= link_to "Bid / Purchase details",  purchase_details_bar_bussiness_path(servicelisting.id) %></div></td>
     	  <td style="border-bottom:#666666 1px solid;border-right:#666666 1px solid"><div align="center"><%= link_to "Edit",  edit_servicelisting_path(servicelisting.id, :indicator => "ed") %> | <%= link_to "Delete", servicelisting, :confirm => 'Are you sure?', :method => :delete %></div></td>
     </tr>
 	<% end %>

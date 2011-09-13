@@ -93,6 +93,7 @@ Socialstock::Application.routes.draw do
    
       member do
         get "bid_details"
+        get "purchase_details"
       end
    end
   
