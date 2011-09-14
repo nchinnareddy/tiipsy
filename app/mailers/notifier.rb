@@ -55,8 +55,7 @@ class Notifier < ActionMailer::Base
   
   def bar_onwer_confirmation_mail_bussiness_suspended(email)
     mail(:to => email,
-         :subject => "Sorry",
-         :body => "Sorry , Your bar bussiness had beed suspended for some time, We will gat back to you soon")
+         :subject => "Sorry - Socialcheers Bar Suspend Notice")
   end
   
   def send_mail_to_user_after_buy(email,product,cost,desc)

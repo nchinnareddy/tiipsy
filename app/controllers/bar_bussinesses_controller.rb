@@ -125,7 +125,7 @@ class BarBussinessesController < ApplicationController
   #end
   
   def purchase_details
-    @purchase_details_of_service = Order.find(:all, :conditions => ["servicelisting_id=?",params[:id]]).first
+    @purchase_details_of_service = Order.find(:all, :conditions => ["servicelisting_id=?and description = ?",params[:id],"Buynow"]).first
     @bid_details_of_service = Bid.find(:all, :conditions => ["servicelisting_id=?", params[:id]])
   end
   
