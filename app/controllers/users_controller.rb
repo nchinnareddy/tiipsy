@@ -143,7 +143,7 @@ class UsersController < ApplicationController
   end
   
   def account
-    @orders = Order.find(:all, :conditions => ["user_id = ?", current_user.id])
+    @orders = Order.find(:all, :conditions => ["user_id = ? and description = ?", current_user.id, "Buynow"])
     @bids = Bid.find(:all, :conditions => ["user_id = ?", current_user.id])
   end
   

@@ -87,14 +87,18 @@
 			    <%end%>     
 			 <% if !@userhighbid.nil? %>   
 			  <% if @userhighbid == @servicelisting.highestbid %>
-			   <%= image_tag "auth/flashstar (1).gif", :size => "15x15" %><font color="#009900">You are the highest bidder</font>
+			  		<% if tt >0 %>
+			   			<%= image_tag "auth/flashstar (1).gif", :size => "15x15" %><font color="#009900">You are the highest bidder</font>
+			  		<% end %> 
 			   <% else%>
-			  <font color="#FF0000"> You are outbid by <%= @servicelisting.highestbid - @userhighbid %>$ </font>
+			   		<% if tt >0 %>
+			  			<font color="#FF0000"> You are outbid by <%= @servicelisting.highestbid - @userhighbid %>$ </font>
+			  		<% end %>
 			  <%end %>
 			  <%else %>
-			    <% if tt > 0 %>
-			  	 <font color="#FF0000"> You have not bid on this service </font>
-				<%end%> 
+			    	<% if tt > 0 %>
+			  	 		<font color="#FF0000"> You have not bid on this service </font>
+					<%end%> 
 			   <%end%>  
 			   <% end %>
 		</p>	

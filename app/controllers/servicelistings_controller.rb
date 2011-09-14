@@ -1,7 +1,7 @@
 
 class ServicelistingsController < ApplicationController
  before_filter :require_admin_barowner, :except => [:index, :show, :buynow, :new_authorization, :authorize]
-  ssl_required :authorize 
+  #ssl_required :authorize 
   def require_admin_barowner
    unless isadmin? || is_barowner?
         redirect_to root_path   

@@ -3,7 +3,7 @@ class BidsController < ApplicationController
   before_filter :require_user
   before_filter :require_user_with_creditcard
   before_filter :require_service_bid_authorized
-  ssl_required :index, :show, :new, :edit, :create, :update
+  #ssl_required :index, :show, :new, :edit, :create, :update
     
   # GET /bids
   # GET /bids.xml
@@ -46,7 +46,7 @@ class BidsController < ApplicationController
   # POST /bids.xml
   def create
     
-    @servicelisting = Servicelisting.find(params[:servicelisting_id])
+      @servicelisting = Servicelisting.find(params[:servicelisting_id])
       @product = @servicelisting.title
       @desc = @servicelisting.description
       @bid = @servicelisting.bids.new(params[:bid])
