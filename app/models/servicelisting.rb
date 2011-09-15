@@ -94,7 +94,7 @@ def self.capturemoney(highestbid, service_id)
      capture_result = authorized_order.capture_payment
    else
      void_result = authorized_order.void
-     if void_result.success?           
+     if void_result           
        exp_bid_order = Order.create( :amount => highestbid.bidprice,
                                      :description => "Bidding",
                                      :user_id => highestbid.user_id,
