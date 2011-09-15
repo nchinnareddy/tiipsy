@@ -2,6 +2,13 @@
 class ServicelistingsController < ApplicationController
  before_filter :require_admin_barowner, :except => [:index, :show, :buynow, :new_authorization, :authorize]
   #ssl_required :authorize 
+  
+  if ENV['RAILS_ENV'] == "development"
+    #ssl_required :authorize
+  else
+    ssl_required :authorize
+  end
+  
   def require_admin_barowner
    unless isadmin? || is_barowner?
         redirect_to root_path   
