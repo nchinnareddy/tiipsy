@@ -1,8 +1,7 @@
 
 class ServicelistingsController < ApplicationController
- before_filter :require_admin_barowner, :except => [:index, :show, :buynow, :new_authorization, :authorize]
-  #ssl_required :authorize 
-  
+ 
+ before_filter :require_admin_barowner, :except => [:index, :show, :buynow, :new_authorization, :authorize] 
   if ENV['RAILS_ENV'] == "development"
     #ssl_required :authorize
   else
