@@ -65,7 +65,7 @@
     	<!--
     	<%= f.datetime_select :availability, :order => [:month, :day, :year ] %>
     	-->
-    	<%= f.text_field :availability, :value=>@servicelisting.availability.strftime("%m/%d/%Y %H:%m %p"), :class => "textfield_effect" %>
+    	<%= f.text_field :availability, :value=>@servicelisting.availability.strftime("%Y/%m/%d %H:%m %p"), :class => "textfield_effect" %>
     </td>
   </tr>
   <% end %>
