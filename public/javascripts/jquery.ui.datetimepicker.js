@@ -112,7 +112,8 @@
             dayNamesShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'], // For formatting
             dayNamesMin: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'], // Column headings for days starting at Sunday
             weekHeader: 'Wk', // Column header for week of the year
-            dateFormat: 'mm/dd/yyyy hh:MM TT', // See format options on parseDate
+            //dateFormat: 'mm/dd/yyyy hh:MM TT', // See format options on parseDate
+            dateFormat: 'yyyy/mm/dd hh:MM TT', // See format options on parseDate
             /*  format options.
             dd     - Day of the month as digits; leading zero for single-digit days. 
             ddd    - Day of the week as a three-letter abbreviation. 
