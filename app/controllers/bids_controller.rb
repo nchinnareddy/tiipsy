@@ -3,11 +3,7 @@ class BidsController < ApplicationController
   before_filter :require_user
   before_filter :require_user_with_creditcard
   before_filter :require_service_bid_authorized
-  if ENV['RAILS_ENV'] == "development"
-    #ssl_required :index, :show, :new, :edit, :create, :update
-  else
-    ssl_required :index, :show, :new, :edit, :create, :update
-  end
+  ssl_required :index, :show, :new, :edit, :create, :update
     
   # GET /bids
   # GET /bids.xml

@@ -1,11 +1,5 @@
-
 class OrdersController < ApplicationController
-  
-  if ENV['RAILS_ENV'] == "development"
-    #ssl_required :create, :credit_card
-  else
-    ssl_required :create, :credit_card
-  end
+  ssl_required :create, :credit_card
   
 def create
    ccard = current_user.credit_card
