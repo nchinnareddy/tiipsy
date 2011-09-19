@@ -26,8 +26,9 @@ class ServicelistingsController < ApplicationController
     unless @city
       @location = Geokit::Geocoders::MultiGeocoder.geocode(request.remote_ip)
       @city = @location.city
-      if @city = 'Hyderabad'
-        raise "hyderabad"
+      if @city = 'Hyderabad' || @city = 'Austin' || @city = 'Round Rock' || @city = 'Leander' || @city = 'Ceder Park' || @city = 'George Town' || @city = 'San Macros' || @city = 'Kyle, Buda' || @city = 'Plugerville'
+          @city = 'Austin,TX'
+          raise @city
       end
       @ts = 1
     end
