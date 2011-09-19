@@ -29,8 +29,9 @@ class ServicelistingsController < ApplicationController
       @ts = 1
     end
     session[:city] = @city
-    #@servicelistings=Servicelisting.search(params[:search]).paginate :page=>params[:page], :conditions => [ 'city=?', @city] , :order=>'updated_at', :per_page=>'3'
-    @servicelistings=Servicelisting.paginate :page=>params[:page], :per_page=>'2', :conditions => [ 'city=?', @city], :order => 'availability DESC'
+    #@servicelistigs=Servicelisting.search(params[:search]).paginate :page=>params[:page], :conditions => [ 'city=?', @city] , :order=>'updated_at', :per_page=>'3'
+    logger.debug "######### 33"
+    @servicelistings=Servicelisting.paginate :page=>params[:page], :per_page=>'2', :conditions => [ "LOWER(city) LIKE ?", '%' + @city.downcase + '%'], :order => 'availability DESC'
   end
 
   def buynow
