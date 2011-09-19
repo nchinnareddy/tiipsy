@@ -1,6 +1,6 @@
 
 class ServicelistingsController < ApplicationController
- ssl_required :authorize
+ #ssl_required :authorize
  
   def require_admin_barowner
    unless isadmin? || is_barowner?

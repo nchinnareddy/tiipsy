@@ -2,7 +2,7 @@ class BuynowController < ApplicationController
   
   before_filter :require_user
   before_filter :require_user_with_creditcard
-  ssl_required :buynow, :express, :complete, :checkoutcc
+  #ssl_required :buynow, :express, :complete, :checkoutcc
 
 def buynow
    @sl = Servicelisting.find(params[:id])

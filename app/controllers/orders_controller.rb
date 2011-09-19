@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  ssl_required :create, :credit_card
+  #ssl_required :create, :credit_card
   
 def create
    ccard = current_user.credit_card
