@@ -26,12 +26,18 @@ class ServicelistingsController < ApplicationController
     unless @city
       @location = Geokit::Geocoders::MultiGeocoder.geocode(request.remote_ip)
       @city = @location.city
+      if @city = 'Hyderabad'
+        raise "hyderabad"
+      end
       @ts = 1
     end
     session[:city] = @city
     #@servicelistigs=Servicelisting.search(params[:search]).paginate :page=>params[:page], :conditions => [ 'city=?', @city] , :order=>'updated_at', :per_page=>'3'
-    logger.debug "######### 33"
-    @servicelistings=Servicelisting.paginate :page=>params[:page], :per_page=>'2', :conditions => [ "LOWER(city) LIKE ?", '%' + @city.downcase + '%'], :order => 'availability DESC'
+    if @city.nil?
+      @servicelistings=Servicelisting.paginate :page=>params[:page], :per_page=>'2', :conditions => [ "LOWER(city) LIKE ?", @city], :order => 'availability DESC'
+    else
+      @servicelistings=Servicelisting.paginate :page=>params[:page], :per_page=>'2', :conditions => [ "LOWER(city) LIKE ?", '%' + @city.downcase + '%'], :order => 'availability DESC'
+    end 
   end
 
   def buynow
