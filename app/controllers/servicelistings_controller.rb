@@ -1,6 +1,11 @@
 
 class ServicelistingsController < ApplicationController
  #ssl_required :authorize
+ if ENV['RAILS_ENV'] == "development"
+    #ssl_required :authorize
+  else
+    #ssl_required :authorize
+  end
  
   def require_admin_barowner
    unless isadmin? || is_barowner?

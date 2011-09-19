@@ -3,6 +3,11 @@ class BuynowController < ApplicationController
   before_filter :require_user
   before_filter :require_user_with_creditcard
   #ssl_required :buynow, :express, :complete, :checkoutcc
+  if ENV['RAILS_ENV'] == "development"
+    #ssl_required :buynow, :express, :complete, :checkoutcc
+  else
+    #ssl_required :buynow, :express, :complete, :checkoutcc
+  end
 
 def buynow
    @sl = Servicelisting.find(params[:id])
