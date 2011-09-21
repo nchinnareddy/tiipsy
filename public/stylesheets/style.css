@@ -854,7 +854,7 @@ label.error {
 	width: auto;
 	overflow: hidden;
 	color: #000;
-	opacity: 0.73;	
+	opacity: 0.95;	
 }
 
 #gradient {
@@ -976,7 +976,7 @@ label.error {
     border: 1px solid #2F2F2F;
     height: 120px;
     margin-bottom: 10px;
-    opacity: 0.75;
+    opacity: 0.95;
     overflow: hidden;
     padding: 10px;
     position: relative;
