@@ -807,6 +807,11 @@ label.error {
 #buy_now{
 	-moz-border-radius: 3px 3px 3px;
     background: -moz-linear-gradient(center top, #232323, #1A1B1B) repeat scroll 0 0 transparent;
+	background: repeat scroll 0 0 rgba(47, 47, 47, 0.7);
+	/* For Internet Explorer 8 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#202020, endColorstr=#202020)";
+	/* For WebKit (Safari, Google Chrome etc) */
+	background: -webkit-gradient(linear, left top, left bottom, from(#202020), to(#202020));
     border: 1px solid #202020;
 	position: relative;
 	width:928px;
@@ -971,7 +976,7 @@ label.error {
     border: 1px solid #2F2F2F;
     height: 120px;
     margin-bottom: 10px;
-    opacity: 0.95;
+    opacity: 0.75;
     overflow: hidden;
     padding: 10px;
     position: relative;
