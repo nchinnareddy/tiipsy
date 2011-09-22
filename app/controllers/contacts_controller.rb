@@ -1,5 +1,7 @@
 class ContactsController < ApplicationController
   def new
+    #raise params.to_yaml
+     $no_of_guests = params[:no_of_guests]
     if ENV['RAILS_ENV'] == "development"
       redirect_to Google::Authorization.build_auth_url("http://localhost:3000/contacts/authorize")
     else
@@ -37,6 +39,7 @@ class ContactsController < ApplicationController
       Notifier.invite_friend(all_email,msg_w,subject_w).deliver
       #format.html { redirect_to(@user, :notice => 'Mail has delivered successfully.') }  
       #format.xml  { render :xml => @user, :status => :created, :location => @user }
+      
       render 'send_mail'  
      end
    end  

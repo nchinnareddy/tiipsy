@@ -28,6 +28,7 @@ def create
   @servicelisting = Servicelisting.find(@order.servicelisting_id)
   @product = @servicelisting.title
   @cost = @servicelisting.price
+  @no_of_guests = @servicelisting.no_of_guests
   @desc = @servicelisting.description
   @barowner_email = @servicelisting.email
   if @order.save

@@ -3,7 +3,7 @@
 <% form_tag(:action => 'mail') do %>
 
 <% if @contacts %>
-
+<%= $no_of_guests %>
 
 <h3 style="color:#000000;"><i>You have <%= @contacts.length%> friends to send invitation.</i></h3>
 <fieldset>
@@ -52,6 +52,7 @@
 	</tr>
 	
 </table>
+</br>
 
 <% else %>
 	<p>No contacts found.</p>	
@@ -61,3 +62,29 @@
 <% end %>
 </fieldset>
 </div>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		//alert("<%= $no_of_guests %>");
+		var max = <%= $no_of_guests %>;
+		//alert(max);
+		$('#signup > form').submit(function(e){
+			//alert('aaa');
+			//alert($("#contact_email_:checked").size());
+			var s = $("#contact_email_:checked").size();
+			//alert(s);
+			if(s<=max)
+			{
+				return true;
+			}
+			else
+			{
+				alert("The service which you has bought, only "+max+" guest has allowed");
+				return false;
+			}
+			
+		});
+		
+	});
+	
+</script>
