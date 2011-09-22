@@ -7,7 +7,7 @@ class BidsController < ApplicationController
   if ENV['RAILS_ENV'] == "development"
     #ssl_required :index, :show, :new, :edit, :create, :update
   else
-    #ssl_required :index, :show, :new, :edit, :create, :update
+    ssl_required :index, :show, :new, :edit, :create, :update
   end
     
   # GET /bids

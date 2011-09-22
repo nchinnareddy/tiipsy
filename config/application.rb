@@ -47,7 +47,7 @@ module Socialstock
       :address              => "smtpout.secureserver.net",
       :port                 => 80,
       :domain               => 'www.socialcheers.com',
-      :user_name            => 'info@socialcheers.com',
+      :user_name            => 'admin@socialcheers.com',
       :password             => 'smumba07',
       :authentication       => 'plain',
       :enable_starttls_auto => true  

@@ -3,7 +3,7 @@ class CreditCardsController < ApplicationController
   if ENV['RAILS_ENV'] == "development"
     #ssl_required :show, :new, :create, :edit, :update
   else
-    #ssl_required :show, :new, :create, :edit, :update
+    ssl_required :show, :new, :create, :edit, :update
   end
  
   # GET /credit_cards/1

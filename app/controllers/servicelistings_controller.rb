@@ -4,7 +4,7 @@ class ServicelistingsController < ApplicationController
  if ENV['RAILS_ENV'] == "development"
     #ssl_required :authorize
   else
-    #ssl_required :authorize
+    ssl_required :authorize
   end
  
   def require_admin_barowner
@@ -76,7 +76,8 @@ class ServicelistingsController < ApplicationController
         redirect_to root_path
       else
         flash[:notice] = "Sorry - The details you entered might be in-corrrect. We are unable to process your transaction. Re-enter your credit card details"
-        redirect_to new_user_credit_card_path(current_user)
+        #redirect_to new_user_credit_card_path(current_user)
+         redirect_to root_path
      end
   end   
 end
