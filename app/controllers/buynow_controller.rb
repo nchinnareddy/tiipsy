@@ -6,7 +6,7 @@ class BuynowController < ApplicationController
   if ENV['RAILS_ENV'] == "development"
     #ssl_required :buynow, :express, :complete, :checkoutcc
   else
-    #ssl_required :buynow, :express, :complete, :checkoutcc
+    ssl_required :buynow, :express, :complete, :checkoutcc
   end
 
 def buynow

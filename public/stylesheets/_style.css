@@ -928,7 +928,7 @@ label.error {
     -moz-border-radius: 3px 3px 3px 3px;
     background: -moz-linear-gradient(center top , #232323, #1A1B1B) repeat scroll 0 0 transparent;
     border: 1px solid #2F2F2F;
-    height: 120px;
+    height: 140px;
     margin-bottom: 10px;
     opacity: 0.95;
     overflow: hidden;
@@ -1162,7 +1162,8 @@ textarea {
 	overflow: hidden;
 	color:#000;
 }
-#city-dropdown{
+
+#city-dropdown{
 	left: 10px;
 	margin-left: 40%;
     margin-top: -5px;

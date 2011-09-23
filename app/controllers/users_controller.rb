@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   if ENV['RAILS_ENV'] == "development"
     #ssl_required :account, :profile
   else
-    #ssl_required :account, :profile
+    ssl_required :account, :profile
   end
   
   def index

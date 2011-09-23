@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
   if ENV['RAILS_ENV'] == "development"
     #ssl_required :create, :credit_card
   else
-    #ssl_required :create, :credit_card
+    ssl_required :create, :credit_card
   end
   
 def create
@@ -53,7 +53,8 @@ def create
         render :action => "success"
       else
         flash[:notice] = "Sorry - The details you entered might be in-corrrect. We are unable to process your transaction.  Re-enter your credit card details"
-       redirect_to new_user_credit_card_path(current_user)
+       #redirect_to new_user_credit_card_path(current_user)
+       redirect_to root_path
       end
   end 
 end
