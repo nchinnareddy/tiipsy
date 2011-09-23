@@ -1,0 +1,30 @@
+<div id="signup">
+<% debug @guest_list %>
+<% if @guest_list.length > 0 %>
+<table align="center" width="43%">
+	<tr>
+		<td colspan="4">
+			<p align="center" style="color:#0099CC;"> List of all Guests</p>	
+		</td>
+	</tr>
+	<% @guest_list.each do |guest| %>
+	<tr>
+	  <td width="52%"><p align="center" style="color:#ffffff;"><%= guest.email %></p></td>
+	  <td width="17%"><p align="center"><%= link_to 'Add More',  success_orders_path %></p></td>
+	  <!--
+	  <td width="15%"><p align="center"><%= link_to 'Update', contact_path(guest), :method => :put %></p></td>
+	  -->
+	  <td width="16%"><p align="center"><%= link_to "Delete", contact_path(guest), :confirm => 'Are you sure?', :method => :delete %></p></td>
+	</tr>
+	<% end %>
+</table>
+<% else %>
+	<br>
+	<br>
+	<br>
+	<p align="center" style="color:#ffffff">No, Guest List</p>
+	<br>
+	<br>
+	<br>
+<% end %>
+</div>
