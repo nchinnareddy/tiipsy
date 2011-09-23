@@ -30,6 +30,7 @@
 						<p style="font-size:x-large; color:#1781C1;"><%= @purchase_details_of_service.servicelisting.status %></p>
 						<label>Date/Time</label>
 						<p style="font-size:x-large; color:#1781C1;"><%= @purchase_details_of_service.created_at.strftime("%d-%m-%Y %H:%M %p") %></p>
+						<p style="font-size:x-large; color:#1781C1;"><%= link_to 'Guest List', guest_list_users_path(:title => @purchase_details_of_service.servicelisting.title) %></p>
 					</td>
                 </tr>
 				<% else %>

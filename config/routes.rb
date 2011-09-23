@@ -7,6 +7,8 @@ Socialstock::Application.routes.draw do
   get "contacts/mail"
   
   get "contacts/send_mail"
+  
+  get "contacts/destroy"
    
   match "/contacts/:id" => "contacts#mail"
 
@@ -62,6 +64,7 @@ Socialstock::Application.routes.draw do
       get 'about_us'
       get 'authorization_hold'
       get 'how_it_works'
+      get 'guest_list'
     end
    resources :credit_cards
    resources :bids

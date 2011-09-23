@@ -56,7 +56,17 @@ class ContactsController < ApplicationController
       end
       render 'send_mail'  
      end
-   end  
-   
+ end 
+ 
+    def destroy
+      @guest = GuestList.find(params[:id])
+      @guest.destroy
+      redirect_to account_users_path
+  end
+  
+  def update
+    #raise params.to_yaml
+    raise @guest = GuestList.find(params[:id]).inspect
+  end
     
 end

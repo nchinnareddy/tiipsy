@@ -172,6 +172,11 @@ class UsersController < ApplicationController
   def authorization_hold
     render :layout => false
   end
+  
+  def guest_list
+    title = params[:title]
+    @guest_list = GuestList.find(:all, :conditions =>["product = ? ", title])
+  end
 
   
 end
