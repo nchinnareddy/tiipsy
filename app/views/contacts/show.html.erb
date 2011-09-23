@@ -3,7 +3,11 @@
 <% form_tag(:action => 'mail') do %>
 
 <% if @contacts %>
-<%= $no_of_guests %>
+<% $no_of_guests %>
+<% $user_name  %>
+<% $product %>
+<%= hidden_field_tag "buyer_user", $user_name %>
+<%= hidden_field_tag "buyer_product", $product %>
 
 <h3 style="color:#000000;"><i>You have <%= @contacts.length%> friends to send invitation.</i></h3>
 <fieldset>
@@ -18,7 +22,10 @@
 		<tr class="<%= cycle("odd","even") %>">
 			
 			<td>
-				<%= contact.name %>
+				<%= label_tag "username", contact.name %>
+				<!--
+				<%= hidden_field_tag  "contact_email[][username]",contact.name %>
+				-->
 			</td>
 			
 			<td>
@@ -28,7 +35,7 @@
 			</td>
 			
 			<td>
-				<%= contact.email %>
+				<%= label_tag  "email", contact.email %>
 			</td>
 		</tr>
 	<% end %>
@@ -79,7 +86,7 @@
 			}
 			else
 			{
-				alert("The service which you has bought, only "+max+" guest has allowed");
+				alert("your bottle service accomodates only "+max+" guests");
 				return false;
 			}
 			

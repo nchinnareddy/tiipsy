@@ -29,6 +29,7 @@ def create
   @product = @servicelisting.title
   @cost = @servicelisting.price
   @no_of_guests = @servicelisting.no_of_guests
+  @user_name = current_user.id
   @desc = @servicelisting.description
   @barowner_email = @servicelisting.email
   if @order.save

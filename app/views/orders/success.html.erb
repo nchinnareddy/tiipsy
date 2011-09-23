@@ -1,5 +1,7 @@
 <div id="signup">
 <% @no_of_guests %>
+<% @user_name %>
+<% @product %>
 <table width="100%" border="0">
   <tr>
    	<td height="99" colspan="3" align="center"><h3 align="center" style="color:#48B9E9"> Your transaction is completed succesfully.</h3></td>
@@ -12,7 +14,7 @@
     	<% ["facebook"].each do |provider| %>
   			<%= link_to image_tag("auth/#{provider}_64.png"), "/auth/#{provider}" %>
 		<% end %>
-		<%= link_to image_tag("auth/google_64.png"),  new_contact_path(:no_of_guests => @no_of_guests) %>    </td>
+		<%= link_to image_tag("auth/google_64.png"),  new_contact_path(:no_of_guests => @no_of_guests, :user_name=> @user_name, :product => @product) %>    </td>
   </tr>
 </table>	
 	

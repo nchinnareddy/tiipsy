@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110824080848) do
+ActiveRecord::Schema.define(:version => 20110923091500) do
 
   create_table "admins", :force => true do |t|
     t.float    "bidding_fee"
@@ -119,6 +119,16 @@ ActiveRecord::Schema.define(:version => 20110824080848) do
     t.boolean  "deteled",            :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "guest_lists", :force => true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "provider"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+    t.string   "product"
   end
 
   create_table "locations", :force => true do |t|

@@ -2,6 +2,8 @@ class ContactsController < ApplicationController
   def new
     #raise params.to_yaml
      $no_of_guests = params[:no_of_guests]
+     $user_name = params[:user_name]
+     $product = params[:product]
     if ENV['RAILS_ENV'] == "development"
       redirect_to Google::Authorization.build_auth_url("http://localhost:3000/contacts/authorize")
     else
@@ -29,7 +31,13 @@ class ContactsController < ApplicationController
   end
   
   def mail
+    #raise params.to_yaml
+    #raise @contacts = Contact.new(params[:contact]).inspect
     all_email = params[:contact_email]
+    buyer_product = params[:buyer_product]
+    buyer_user = params[:buyer_user]
+    #raise all_name = params[:username].inspect
+    #@total_email = all_email.length
     unless all_email
       render 'new'
     else
@@ -39,7 +47,13 @@ class ContactsController < ApplicationController
       Notifier.invite_friend(all_email,msg_w,subject_w).deliver
       #format.html { redirect_to(@user, :notice => 'Mail has delivered successfully.') }  
       #format.xml  { render :xml => @user, :status => :created, :location => @user }
-      
+      all_email.each do |email|
+        @guestlist = GuestList.new
+        @guestlist.email = email
+        @guestlist.user_id = buyer_user
+        @guestlist.product = buyer_product
+        @guestlist.save
+      end
       render 'send_mail'  
      end
    end  
