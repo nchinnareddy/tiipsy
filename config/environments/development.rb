@@ -25,23 +25,52 @@ Socialstock::Application.configure do
   
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
    
-  config.after_initialize do
-     ActiveMerchant::Billing::Base.mode = :test
-  end
  
-  config.to_prepare do
-  OrderTransaction.gateway =  ActiveMerchant::Billing::PaypalGateway.new( 
-    :login => 'nchinn_1309774589_biz_api1.gmail.com',
-    :password => '1309774643',
-    :signature => 'A4ZmaZtYP56ugAWbYNAcjqstyYtgAoBxWlcZnfA.iqDK4CgHeuwWpm12' )
+ 
+  # config.after_initialize do
+  #   ActiveMerchant::Billing::Base.mode = :test
+  #   
+  #   paypal_options = {
+  #     :login => "pranee_1319398259_biz_api1.gmail.com",
+  #     :password => "1319398283",
+  #     :signature => "As0s4-wM48vMwnJWithwC--cwt2YAt6JLjgPaegBLx-aaPGi04yD-Bnm"
+  #   }
+  #   ::STANDARD_GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(paypal_options)
+  #   ::EXPRESS_GATEWAY = ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
+  # end
   
-  OrderTransaction.xpressgateway =  ActiveMerchant::Billing::PaypalExpressGateway.new( 
-    :login => 'nchinn_1307094132_biz_api1.gmail.com',
-    :password => '1307094143',
-    :signature => 'A3tSrUJhWQkOjSs.LnbMRFOlOFN3AdRRcOCmTIWXkXK8x5Pn4e93CiVB' )
-    ::EXPRESS_GATEWAY = OrderTransaction.xpressgateway
-  end
-
+   config.after_initialize do
+       ActiveMerchant::Billing::Base.mode = :test
+    end
+  
+   config.to_prepare do
+     paypal_options = {
+       :login => "pranee_1319398259_biz_api1.gmail.com",
+       :password => "1319398283",
+       :signature => "As0s4-wM48vMwnJWithwC--cwt2YAt6JLjgPaegBLx-aaPGi04yD-Bnm"
+     }  
+     OrderTransaction.gateway =  ActiveMerchant::Billing::PaypalGateway.new(paypal_options)  
+     OrderTransaction.xpressgateway =  ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
+     ::STANDARD_GATEWAY = OrderTransaction.gateway
+     ::EXPRESS_GATEWAY = OrderTransaction.xpressgateway
+   end
+  
+    # config.after_initialize do
+    #     ActiveMerchant::Billing::Base.mode = :test
+    #  end
+  # config.to_prepare do
+  #   OrderTransaction.gateway =  ActiveMerchant::Billing::PaypalGateway.new( 
+  #     :login => 'nchinn_1309774589_biz_api1.gmail.com',
+  #     :password => '1309774643',
+  #     :signature => 'A4ZmaZtYP56ugAWbYNAcjqstyYtgAoBxWlcZnfA.iqDK4CgHeuwWpm12' )
+  #   
+  #   OrderTransaction.xpressgateway =  ActiveMerchant::Billing::PaypalExpressGateway.new( 
+  #     :login => 'pranee_1319398259_biz_api1.gmail.com',
+  #     :password => '1319398283',
+  #     :signature => 'As0s4-wM48vMwnJWithwC--cwt2YAt6JLjgPaegBLx-aaPGi04yD-Bnm' )
+  #     ::EXPRESS_GATEWAY = OrderTransaction.xpressgateway
+  #   end
+  
 end
 
 WEB_SITE = "localhost:3000"

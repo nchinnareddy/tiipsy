@@ -49,36 +49,40 @@ class ServicelistingsController < ApplicationController
    render :layout => false
   end
  
-  def authorize
+  def authorize  
     @servicelisting = Servicelisting.find(params[:servicelisting_id])
      ccard = current_user.credit_card
-     @order = Order.create(:first_name => ccard.first_name,
-                           :last_name => ccard.last_name,
-                           :card_type => ccard.card_type,
-                           :card_number => ccard.card_number,
-                           :card_verification => ccard.card_verification,
-                           :card_expires_on => ccard.card_expires_on,
-                           :address => ccard.address,
-                           :city => ccard.city,
-                           :state_name => ccard.state_name,
-                           :country => ccard.country,
-                           :zip => ccard.zip
-                          )                          
-  @order.amount = @servicelisting.price
-  @order.servicelisting_id = @servicelisting.id
-  @order.user_id = current_user.id
-  @order.ip_address = request.remote_ip
-  @order.description = "Authorization"
+ #pp change start
+  @order = Order.create(:amount =>  @servicelisting.price,
+                        :first_name => "ccard.first_name",
+                        :last_name => "ccard.last_name",
+                        :card_type => "ccard.card_type",
+                        :card_number => "ccard.card_number",
+                        :card_verification => "ccard.card_verification",
+                        :card_expires_on => "ccard.card_expires_on",
+                        :address => "ccard.address",
+                        :city => "ccard.city",
+                        :state_name => "ccard.state_name",
+                        :country => "ccard.country",
+                        :zip => "ccard.zip"
+                         )
 
+ @order.amount = @servicelisting.price
+ @order.servicelisting_id = @servicelisting.id
+ @order.user_id = current_user.id
+ @order.ip_address = request.remote_ip
+ @order.description = "Authorization"
+ @order.state = "authorized"
   if @order.save
-      if @order.authorize_payment
-        flash[:notice] = "You are authorized to bid on: #{@servicelisting.title}"
-        redirect_to root_path
-      else
-        flash[:notice] = "Sorry - The details you entered might be in-corrrect. We are unable to process your transaction. Re-enter your credit card details"
-        #redirect_to new_user_credit_card_path(current_user)
-         redirect_to root_path
-     end
+    redirect_to :controller => "bids", :action => "express", :servicelisting_id => params[:servicelisting_id]
+     #  if @order.authorize_payment
+     #    flash[:notice] = "You are authorized to bid on: #{@servicelisting.title}"
+     #    redirect_to root_path
+     #  else
+     #    flash[:notice] = "Sorry - The details you entered might be in-corrrect. We are unable to process your transaction. Re-enter your credit card details"
+     #    #redirect_to new_user_credit_card_path(current_user)
+     #     redirect_to root_path
+     # end
   end   
 end
   # GET /servicelistings/1

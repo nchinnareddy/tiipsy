@@ -45,7 +45,21 @@
     <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script></br>
 <% end -%>
 
-<table width="100%" border="0">
+<% stylesheet('simple-tabs','colorbox') %>
+
+<div id="signup">
+	<ul class="simple-tabs">
+		<li><%= link_to "Profile","#tab1" %></li>
+		<!-- Activate credit card tab -->
+		<!-- <li><%= link_to "Credit Cards details","#tab4" %></li> -->
+		<!--
+    		<li><%= link_to "Login Details", "#tab2" %></li>
+			<li><%= link_to "Change Password","#tab3" %></li>
+		-->	
+	</ul>
+	<div class="tab_container">
+		<div id="tab1" class="tab_content">
+<table width="100%" border="0" >
   <tr>
     <td>
      <div align="right" style="color:#FFFFFF">
@@ -57,30 +71,30 @@
     <td width="1%"></td>
   </tr>
   <tr>
-    <td colspan="3"><h3 align="center" style="color:#48B9E9"> Your Profile details are given below.</h3></td>
+    <td colspan="3"><h3 align="center" style="color:#48B9E9">Profile</h3></td>
     </tr>
    <tr>
-    <td><div align="right" style="color:#FFFFFF">Email </div></td>
-    <td width="1%"><strong style="color:#48B9E9">:</strong></td>
-    <td><%= @user.email %></td>
+    <td><div align="right" style="font-size:large; color:#1781C1;">Email </div></td>
+    <td width="1%"><strong style="color:#48B9E9"></strong></td>
+    <td style="font-size:x-large;"><%= @user.email %></td>
   </tr>
   <tr>
-    <td width="40%"><div align="right" style="color:#FFFFFF">First Name</div></td>
-    <td width="1%"><strong style="color:#48B9E9">:</strong></td>
-    <td width="59%"><%= @user.first_name %></td>
+    <td width="40%"><div align="right" style="font-size:large; color:#1781C1;">First Name</div></td>
+    <td width="1%"><strong style="color:#48B9E9"></strong></td>
+    <td style="font-size:x-large;" width="59%"><%= @user.first_name %></td>
   </tr>
   <tr>
-    <td width="40%"><div align="right" style="color:#FFFFFF">Last Name</div></td>
-    <td width="1%"><strong style="color:#48B9E9">:</strong></td>
-    <td width="59%"><%= @user.last_name %></td>
+    <td width="40%"><div align="right" style="font-size:large; color:#1781C1;">Last Name</div></td>
+    <td width="1%"><strong style="color:#48B9E9"></strong></td>
+    <td style="font-size:x-large;" width="59%"><%= @user.last_name %></td>
   </tr>
   <tr>
-    <td><div align="right" style="color:#FFFFFF">City </div></td>
-    <td width="1%"><strong style="color:#48B9E9">:</strong></td>
-    <td><%= @user.city %></td>
+    <td><div align="right" style="font-size:large; color:#1781C1;">City </div></td>
+    <td width="1%"><strong style="color:#48B9E9"></strong></td>
+    <td style="font-size:x-large;"><%= @user.city %></td>
   </tr>
   <tr>
-    <td colspan="3"><h3 align="center" style="color:#48B9E9">Connections:</h3></td>
+    <td colspan="3"><h3 align="center" style="font-size:large; color:#1781C1;">Your Connections</h3></td>
   </tr>
   <tr>
     <td colspan="3"  align="center">
@@ -91,4 +105,7 @@
 	</td>
   </tr>
 </table>
+</div>
+</div>
+</div>
 </div>

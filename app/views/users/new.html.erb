@@ -3,8 +3,8 @@
 <% javascript('jquery.countdown', 'jquery.colorbox-min')%>
 
 <div id="signup">
-	<p align="center">
-		<font style="color:#FFFFFF; font-size:15px">Already registered?</font> <%= link_to "Sign In", new_user_session_path  %> 
+	<p align="center" style="font-size:1.2em;padding:10px">
+		<font style="color:#FFFFFF; ">Already registered?</font> <%= link_to "Sign In", new_user_session_path  %> 
 	</p>
 	<%= form_for @user, :validate => true, :url => users_path do |f| %>
 		<%= render :partial => "form", :object => f %>

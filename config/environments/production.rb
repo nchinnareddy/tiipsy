@@ -72,18 +72,31 @@ Socialstock::Application.configure do
 #  config.after_initialize do
 #     ActiveMerchant::Billing::Base.mode = :production 
 #  end 
- config.to_prepare do
-  OrderTransaction.gateway =  ActiveMerchant::Billing::PaypalGateway.new( 
-    :login => 'gashaw02_api1.yahoo.com',
-    :password => 'H5F6DNHE63S54WNZ',
-    :signature => 'AFcWxV21C7fd0v3bYYYRCpSSRl31A3iVwYD55DBbNgP13gSWebVQj.za' )
-  
-  OrderTransaction.xpressgateway =  ActiveMerchant::Billing::PaypalExpressGateway.new( 
-    :login => 'gashaw02_api1.yahoo.com',
-    :password => 'H5F6DNHE63S54WNZ',
-    :signature => 'AFcWxV21C7fd0v3bYYYRCpSSRl31A3iVwYD55DBbNgP13gSWebVQj.za' )
-    ::EXPRESS_GATEWAY = OrderTransaction.xpressgateway
-  end
+
+config.to_prepare do
+   paypal_options = {
+     :login => "gashaw02_api1.yahoo.com",
+     :password => "H5F6DNHE63S54WNZ",
+     :signature => "AFcWxV21C7fd0v3bYYYRCpSSRl31A3iVwYD55DBbNgP13gSWebVQj.za"
+   }  
+   OrderTransaction.gateway =  ActiveMerchant::Billing::PaypalGateway.new(paypal_options)  
+   OrderTransaction.xpressgateway =  ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
+   ::STANDARD_GATEWAY = OrderTransaction.gateway
+   ::EXPRESS_GATEWAY = OrderTransaction.xpressgateway
+ end
+ 
+ # config.to_prepare do
+ #  OrderTransaction.gateway =  ActiveMerchant::Billing::PaypalGateway.new( 
+ #    :login => 'gashaw02_api1.yahoo.com',
+ #    :password => 'H5F6DNHE63S54WNZ',
+ #    :signature => 'AFcWxV21C7fd0v3bYYYRCpSSRl31A3iVwYD55DBbNgP13gSWebVQj.za' )
+ #  
+ #  OrderTransaction.xpressgateway =  ActiveMerchant::Billing::PaypalExpressGateway.new( 
+ #    :login => 'gashaw02_api1.yahoo.com',
+ #    :password => 'H5F6DNHE63S54WNZ',
+ #    :signature => 'AFcWxV21C7fd0v3bYYYRCpSSRl31A3iVwYD55DBbNgP13gSWebVQj.za' )
+ #    ::EXPRESS_GATEWAY = OrderTransaction.xpressgateway
+ #  end
 
 
 end

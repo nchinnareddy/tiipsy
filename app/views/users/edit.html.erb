@@ -1,4 +1,17 @@
-<div id="checkout_site">
+<% stylesheet('simple-tabs','colorbox') %>
+<div id="signup">
+	<ul class="simple-tabs">
+		<li><%= link_to "Edit Profile","#tab1" %></li>
+		<!-- Activate credit card tab -->
+		<!-- <li><%= link_to "Credit Cards details","#tab4" %></li> -->
+		<!--
+    		<li><%= link_to "Login Details", "#tab2" %></li>
+			<li><%= link_to "Change Password","#tab3" %></li>
+		-->	
+	</ul>
+	<div class="tab_container">
+		<div id="tab1" class="tab_content">
+			
 <% title 'Edit My Account'%>
 
 <%= form_for @user do |f| %>
@@ -6,28 +19,29 @@
   
   <table border="0" align="center">
   <tr>
-    <td colspan="3"><h3 align="center" style="color:#48B9E9"> Modify your details. </h3></td>
+
+    <td align="center" colspan="3"><h3 align="center" style="color:#48B9E9"> Update Your Profile</h3></td>
   </tr>
   <tr>
-    <td><div align="right" style="color:#FFFFFF"><%= f.label :email %></div></td>
-    <td width="7"><strong style="color:#48B9E9">:</strong></td>
+    <td><div align="right" style="font-size:x-large; color:#1781C1;"><%= f.label :email %></div></td>
+    <td width="7"><strong style="color:#48B9E9"></strong></td>
     <td><%= f.text_field :email, :class => "textfield_effect" %></td>
   </tr>
   <tr>
-    <td width="40%"><div align="right" style="color:#FFFFFF"><%= f.label :first_name %></div></td>
-    <td width="1%"><strong style="color:#48B9E9">:</strong></td>
+    <td width="40%"><div align="right" style="font-size:x-large; color:#1781C1;"><%= f.label :first_name %></div></td>
+    <td width="1%"><strong style="color:#48B9E9"></strong></td>
     <td width="59%"><%= f.text_field :first_name, :class => "textfield_effect" %></td>
   </tr>
   <tr>
-    <td width="40%"><div align="right" style="color:#FFFFFF"><%= f.label :last_name %></div></td>
-    <td width="1%"><strong style="color:#48B9E9">:</strong></td>
+    <td width="40%"><div align="right" style="font-size:x-large; color:#1781C1;"><%= f.label :last_name %></div></td>
+    <td width="1%"><strong style="color:#48B9E9"></strong></td>
     <td width="59%"><%= f.text_field :last_name, :class => "textfield_effect" %></td>
   </tr>
   <tr>
-    <td><div align="right" style="color:#FFFFFF"><%= f.label :city %></div></td>
-    <td width="7"><strong style="color:#48B9E9">:</strong></td>
+    <td><div align="right" style="font-size:x-large; color:#1781C1;"><%= f.label :city %></div></td>
+    <td width="7"><strong style="color:#48B9E9"></strong></td>
     <td><%= f.select :city, options_for_select([
-    														[@user.city, "0"],
+    														[@user.city, ""],
     														
 ["Austin, TX ","Austin, TX "],
 ["Chicago, IL","Chicago, IL"],	 
@@ -39,7 +53,7 @@
   <tr>
     <td></td>
     <td width="7"></td>
-	<td><%= f.submit "Update" %></td>
+	<td><%= f.submit "Update" ,:class => "links" %></td>
   </tr>
 </table>
   
@@ -63,5 +77,7 @@
  --> 
   
 <% end %>
+</div>
+</div>
 
 </div>

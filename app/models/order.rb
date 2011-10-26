@@ -47,7 +47,12 @@ class Order < ActiveRecord::Base
 def authorize_payment
   #  options[:order_id] = number
      transaction do
-      authorization = OrderTransaction.authorize(price_in_cents, credit_card, standard_purchase_options)
+      #authorization = OrderTransaction.authorize(price_in_cents, credit_card, standard_purchase_options)
+      if express_token.blank?
+         authorization = OrderTransaction.authorize(price_in_cents, credit_card, standard_purchase_options)
+       else
+         authorization = OrderTransaction.xpressauthorize(price_in_cents, express_purchase_options)
+       end 
       transactions.push(authorization)
      if authorization.success?
       payment_authorized!
@@ -64,7 +69,11 @@ end
 def capture_payment
     
   transaction do
-    capture = OrderTransaction.capture(price_in_cents, authorization_reference, standard_purchase_options)
+   # capture = OrderTransaction.capture(price_in_cents, authorization_reference, standard_purchase_options)
+    capture = OrderTransaction.xpresscapture(price_in_cents, authorization_reference, express_purchase_options)
+    print "----ip_address---"
+    print ip_address
+    print express_token
     transactions.push(capture)
     if capture.success?
       payment_captured!
@@ -88,9 +97,23 @@ def void
     end
 end
 
+def void_authorization
+   transaction do
+    vooid = OrderTransaction.xpressvoid(authorization_reference, express_purchase_options)
+    transactions.push(vooid)
+    if vooid.success?
+      payment_voided!
+    else
+      transaction_declined!
+    end
+      vooid
+    end
+end
+
 def purchase
 
   logger.debug "PURCHASE IS INVOKED IN ORDER MODEL"
+  
   transaction do
        
        if express_token.blank?
@@ -155,8 +178,8 @@ end
 def express_purchase_options
   {
     :ip => ip_address,
-    :token => @order.express_token,
-    :payer_id => @order.express_payer_id
+    :token => express_token,
+    :payer_id => express_payer_id
   }
 end
   

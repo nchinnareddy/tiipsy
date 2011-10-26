@@ -1,14 +1,49 @@
 class BidsController < ApplicationController
   
   before_filter :require_user
-  before_filter :require_user_with_creditcard
-  before_filter :require_service_bid_authorized
+ #pp - change start
+ # before_filter :require_user_with_creditcard
+ #pp - change end
+  before_filter :require_service_bid_authorized, :except => :complete
   #ssl_required :index, :show, :new, :edit, :create, :update
   if ENV['RAILS_ENV'] == "development"
     #ssl_required :index, :show, :new, :edit, :create, :update
   else
     ssl_required :index, :show, :new, :edit, :create, :update
   end
+    
+  def express
+    @service = Servicelisting.find(params[:servicelisting_id])
+    amount = @service.buynow_price
+    amount = amount.to_i
+    amount = amount * 100
+
+      #change - pp start 
+    response = EXPRESS_GATEWAY.setup_authorization(amount,
+        :ip                => request.remote_ip,
+        :return_url        => url_for(:controller => 'bids', :action => 'complete', :id => @service.id),
+        :cancel_return_url => servicelistings_url
+      )
+
+   #  response = EXPRESS_GATEWAY.setup_purchase(amount,
+   #     options = {
+   #     :items => [
+   #     {
+   #       :name => @service.title,
+   #       :quantity => "1",
+   #       :description => @service.description,
+   #       :amount => amount
+   #      }],
+   #     :ip                => request.remote_ip,
+   #     :return_url        => url_for(:controller => 'buynow', :action => 'complete', :id => @service.id),
+   # #   :return_url        => new_order_url,
+   #     :cancel_return_url => servicelistings_url
+   #    } )
+
+     #change - pp end 
+    redirect_to EXPRESS_GATEWAY.redirect_url_for(response.token)
+  end
+    
     
   # GET /bids
   # GET /bids.xml
@@ -109,5 +144,43 @@ class BidsController < ApplicationController
       format.xml  { head :ok }
     end
   end 
+  
+  def complete
+    @order = current_user.orders.new(:express_token => params[:token] , :express_payer_id => params[:PayerID])
+    @service = Servicelisting.find(params[:id])
+    #change - pp  start 
+    details_response = OrderTransaction.xpressgateway.details_for(params[:token])
+    #details_response = EXPRESS_GATEWAY.details_for(params[:token])
+     #change - pp end 
+
+       if details_response.success?
+         @orders = Order.where("user_id = ? AND servicelisting_id = ? AND state = ? ", current_user.id, params[:id], 'authorized')
+         @orders.each do |orderx|
+            orderx.express_token = params[:token]
+            orderx.express_payer_id = params[:PayerID]
+            @servicelisting = Servicelisting.find(params[:id])
+            if orderx.save
+              if orderx.authorize_payment
+                flash[:notice] = "You are authorized to bid on: #{@service.title}"
+                redirect_to root_path
+              else
+                flash[:notice] = "Sorry - The details you entered might be in-corrrect. We are unable to process your transaction. Re-enter your credit card details"
+                #redirect_to new_user_credit_card_path(current_user)
+                redirect_to root_path
+              end
+            end
+          end  
+       else 
+           @message = details_response.message
+           render :text => 'error'
+           return
+       end
+
+    #  @address = details_response.address
+    #  @amount = 111
+    #  @amount = current_user.pendingpay
+    #raise @order.to_yaml
+
+  end
   
 end

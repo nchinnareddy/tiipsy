@@ -6,15 +6,33 @@ class OrderTransaction < ActiveRecord::Base
   
   class << self
     
-  def authorize(amount, credit_card, options = { } ) 
+  def authorize(amount, credit_card, options = { } )
     process('authorization', amount) do |gw|
     gw.authorize(amount, credit_card, options)
+    end
+  end
+        
+  def xpressauthorize(amount, options = { } ) 
+    process('authorization', amount, true) do |gw|
+    gw.authorize(amount, options)
     end 
   end
- 
+    
   def capture(amount, authorization, options = {})
     process('capture', amount) do |gw|
     gw.capture(amount, authorization, options)
+    end
+  end
+  
+  def xpresscapture(amount, authorization, options = {})
+    process('capture', amount,true) do |gw|
+    gw.capture(amount, authorization, options)
+    end
+  end
+
+  def xpressvoid(authorization, options = {})
+    process('void',nil,true) do |gw|
+    gw.void(authorization, options)
     end
   end
 
@@ -51,6 +69,8 @@ private
        end
       
       result.success = response.success?
+      puts "--results--"
+      puts result.success
       result.reference = response.authorization
       result.message  = response.message
       result.params  = response.params

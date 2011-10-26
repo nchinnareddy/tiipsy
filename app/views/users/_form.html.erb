@@ -1,24 +1,24 @@
 <table border="0" align="center" width="100%">
   <tr>
-    <td colspan="3"><h3 align="center" style="color:#48B9E9"> Signup </h3></td>
+    <td colspan="3"><h3 align="center" style="color:#48B9E9;font-size:x-large"> Signup </h3></td>
   </tr>
   <tr>
-    <td width="619"><div align="right" style="color:#FFFFFF"><%= form.label :email %></div></td>
+    <td width="619"><div align="right" style="color:#FFFFFF;padding:7px;font-size:1.2em;"><%= form.label :email %></div></td>
     <td width="0"></td>
     <td width="694"><%= form.text_field :email, :class => "textfield_effect"  %></td>
   </tr>
   <tr>
-    <td><div align="right" style="color:#FFFFFF"><%= form.label :password, form.object.new_record? ? nil : "Change password"  %></div></td>
+    <td><div align="right" style="color:#FFFFFF;padding:7px;font-size:1.2em;"><%= form.label :password, form.object.new_record? ? nil : "Change password"  %></div></td>
     <td width="0"></td>
     <td><%= form.password_field :password , :class => "textfield_effect" %></td>
   </tr>
   <tr>
-    <td><div align="right" style="color:#FFFFFF"><%= form.label :password_confirmation %> </div></td>
+    <td><div align="right" style="color:#FFFFFF; padding:7px;font-size:1.2em;"><%= form.label :password_confirmation %> </div></td>
     <td width="0"></td>
     <td><%= form.password_field :password_confirmation, :class => "textfield_effect"  %></td>
   </tr>
   <tr>
-    <td><div align="right" style="color:#FFFFFF"><%= form.label :city %> </div></td>
+    <td><div align="right" style="color:#FFFFFF; padding:7px;font-size:1.2em;"><%= form.label :city %> </div></td>
     <td width="0"></td>
     <td>
     	<%= form.select :city, options_for_select([
@@ -28,7 +28,7 @@
 								["Dallas, TX","Dallas, TX"],	
 								["Houston, TX","Houston, TX"],	
 								["San Antonio, TX","San Antonio, TX"] 														
- 							]), :style => "width:197px" 
+ 							]), :style => "width:197px; font-size:1.9em;" 
  		%>
     </td>
   </tr>
@@ -38,9 +38,9 @@
 	<td><%= form.submit "Sign Up" , :class => "links" %></td>
   </tr>
   <tr>
-    <td align="right"><font style="color:#FFFFFF; font-size:15px">Not received activation mail</font></td>
+    <td align="right"><font style="color:#FFFFFF; font-size:1.2em;padding:10px">To resend activation mail </font></td>
     <td width="0"></td>
-	<td><%= link_to "Click here", resend_activation_users_path, :class=>"activation_mail_popup"  %></td>
+	<td style="font-size:1.2em;"><%= link_to "Click here", resend_activation_users_path, :class=>"activation_mail_popup"  %></td>
   </tr>
   <tr>
     <td colspan="3"><h3 align="center" style="color:#48B9E9">Sign in with</h3></td>

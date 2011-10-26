@@ -83,6 +83,7 @@ Socialstock::Application.routes.draw do
     collection do
     get 'success'
     get 'express'
+    get 'bids_orders'
     end
   end
   
@@ -107,6 +108,13 @@ Socialstock::Application.routes.draw do
        get 'express'
        get 'checkoutcc'
      end
+  end
+  
+  resources :bids do
+    collection do 
+      get 'express'
+      get 'complete'
+    end 
   end
  
   resources :friends do 

@@ -36,6 +36,7 @@ body {
   font-family: Verdana, Helvetica, Arial;
   font-size: 14px;
   height: 100%;
+  overflow-x: hidden;
 }
 
 a img {
@@ -325,6 +326,7 @@ a:hover {
     text-align: center;
     text-transform: uppercase;
     width: 130px;
+	font-size:1.2em;
 }
 
 .faded_links {
@@ -513,7 +515,7 @@ label.error {
 }
 
 #servicelisting {
-    background: repeat scroll 0 0 rgba(255, 255, 255, 0.7);
+    background: repeat scroll 0 0 rgba(255, 255, 255, 0.9);
 	/* For Internet Explorer 8 */
 	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#FFFFFF, endColorstr=#FFFFFF)";
 	/* For WebKit (Safari, Google Chrome etc) */
@@ -580,7 +582,8 @@ label.error {
 
 #servicelisting p.current_value {
     font-family: Georgia,"Times New Roman",Times,serif;
-    font-size: 18px;
+    font-size: 1.5em;
+	font-weight: bold;
     left: 340px;
     position: absolute;
     top: 170px;
@@ -596,16 +599,17 @@ label.error {
 
 #servicelisting p.time_left {
     font-family: Georgia,"Times New Roman",Times,serif;
-    font-size: 18px;
+    font-size: 1.5em;
+	font-weight: bold;
     left: 340px;
     position: absolute;
     top: 215px;
 }
 
 #servicelisting p.time_left_fet {
-    color: #4DBCE9;
+    color: #F0000F;
     font-family: Georgia,"Times New Roman",Times,serif;
-    font-size: 20px;
+    font-size: 2em;
     left: 490px;
     position: absolute;
     top: 215px;
@@ -618,6 +622,8 @@ label.error {
 	left:490px;
 	width:200px;
 }
+
+
 
 #servicelisting p.share {
     font-family: Georgia,"Times New Roman",Times,serif;
@@ -641,7 +647,8 @@ label.error {
 
 #servicelisting p.total_active_bidders {
     font-family: Georgia,"Times New Roman",Times,serif;
-    font-size: 18px;
+    font-size: 1.5em;
+	font-weight: bold;
     left: 340px;
     position: absolute;
     top: 260px;
@@ -649,15 +656,16 @@ label.error {
 #servicelisting p.total_active_bidders_fet {
     color: #4DBCE9;
     font-family: Georgia,"Times New Roman",Times,serif;
-    font-size: 26px;
-    left: 490px;
+    font-size: 2.5em;
+    left: 517px;
     position: absolute;
-    top: 250px;
+    top: 248px;
 }
 
 #servicelisting p.max_allowed_guests {
     font-family: Georgia,"Times New Roman",Times,serif;
-    font-size: 18px;
+    font-size: 1.5em;
+	font-weight: bold;
     left: 340px;
     position: absolute;
     top: 130px;
@@ -665,10 +673,10 @@ label.error {
 #servicelisting p.max_allowed_guests_fet {
     color: #4DBCE9;
     font-family: Georgia,"Times New Roman",Times,serif;
-    font-size: 26px;
-    left: 490px;
+    font-size: 2.5em;
+    left: 517px;
     position: absolute;
-    top: 124px;
+    top: 120px;
 }
 
 #details{
@@ -860,6 +868,29 @@ label.error {
 	overflow: hidden;
 	color: #000;
 	opacity: 0.95;
+}
+
+#signupnew{
+	margin:0 auto;
+	position:relative;
+	top:50px;
+}
+#signupcontainer {
+		margin: 0px 350px 70px;
+		width: 500px;
+}
+#signupnew label{
+	 padding: 5px;
+	 font-size: 1.2em;
+	color: #fff;
+}
+
+#signupnew input{
+	margin :5px;
+	padding: 5px;
+	font-size: 1.2em;
+	font-weight: lighter;
+	color: #222;
 }
 
 #gradient {
@@ -1170,6 +1201,7 @@ select {
     vertical-align: middle;
     width: 250px;
 	height: 25px;
+	font-size: 1.5em;
 }
 option {
     background-color: #fef5e6;

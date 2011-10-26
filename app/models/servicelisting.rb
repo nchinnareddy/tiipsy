@@ -70,6 +70,8 @@ def self.checkexpirations
                  all_biders.each do |bidder|
                     if bidder.user_id != highestbid.user_id
                       logger.debug " #{bidder.user_id}"
+                      void_result = void_authorization(bidder.user_id,item.id)
+                      print "-----voided-----"
                       @user_details = User.where("id = ?", bidder.user_id).first
                       bidder_email = @user_details.email
                       Notifier.send_mail_to_each_bidder_after_bid_closed(bidder_email,highestbid.bidprice,item.title,item.description).deliver
@@ -91,7 +93,10 @@ def self.capturemoney(highestbid, service_id)
   local_ip = UDPSocket.open {|s| s.connect("64.233.187.99", 1); s.addr.last}
   
    if ((highestbid.bidprice) * 100) <= athorizationlimit
-     capture_result = authorized_order.capture_payment
+     #Adjust Amount on the Order to capture the current bid amount 
+     authorized_order.amount = highestbid.bidprice
+     authorized_order.save
+     capture_result = authorized_order.capture_payment 
    else
      void_result = authorized_order.void
      if void_result           
@@ -122,7 +127,18 @@ def self.capturemoney(highestbid, service_id)
      return false
    end
  
-end                                   
+end         
+
+def self.void_authorization(bid_user_id, service_id)
+  authorized_order  = Order.find_by_user_id_and_servicelisting_id_and_state(bid_user_id,service_id,'authorized')
+  local_ip = UDPSocket.open {|s| s.connect("64.233.187.99", 1); s.addr.last}
+  void_result = authorized_order.void_authorization 
+  if void_result 
+    return true
+  else 
+    return false
+  end
+end                            
                               
                                
 end

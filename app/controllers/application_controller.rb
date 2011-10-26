@@ -64,6 +64,7 @@ end
 def require_service_bid_authorized
     if current_user
      authorders =  Order.where("user_id = ? AND servicelisting_id = ? AND state = ? ", current_user.id, params[:servicelisting_id], 'authorized')
+
      logger.debug authorders.to_yaml
         if authorders.empty?
           flash[:error] = "You are not authorized to bid on this service. Please authorize"
