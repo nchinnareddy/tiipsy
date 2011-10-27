@@ -69,9 +69,9 @@ Socialstock::Application.configure do
   #   ::EXPRESS_GATEWAY = OrderTransaction.xpressgateway
   # end
 
-#  config.after_initialize do
-#     ActiveMerchant::Billing::Base.mode = :production 
-#  end 
+  config.after_initialize do
+      ActiveMerchant::Billing::Base.mode = :production 
+   end 
 
 config.to_prepare do
    paypal_options = {

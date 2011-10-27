@@ -17,7 +17,7 @@ GEM
       rack-mount (~> 0.6.13)
       rack-test (~> 0.5.7)
       tzinfo (~> 0.3.23)
-    activemerchant (1.16.0)
+    activemerchant (1.17.0)
       activesupport (>= 2.3.11)
       braintree (>= 2.0.0)
       builder (>= 2.0.0)
@@ -40,7 +40,7 @@ GEM
     attr_required (0.0.3)
     authlogic (2.1.6)
       activesupport
-    braintree (2.10.2)
+    braintree (2.11.0)
       builder (>= 2.0.0)
     builder (2.1.2)
     capistrano (2.8.0)
@@ -207,7 +207,7 @@ PLATFORMS
 
 DEPENDENCIES
   aasm
-  activemerchant
+  activemerchant (= 1.17.0)
   authlogic
   capistrano
   client_side_validations (~> 3.1.0)

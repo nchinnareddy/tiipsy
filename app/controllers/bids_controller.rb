@@ -9,20 +9,23 @@ class BidsController < ApplicationController
   if ENV['RAILS_ENV'] == "development"
     #ssl_required :index, :show, :new, :edit, :create, :update
   else
-    ssl_required :index, :show, :new, :edit, :create, :update
+    #ssl_required :index, :show, :new, :edit, :create, :update
   end
     
   def express
     @service = Servicelisting.find(params[:servicelisting_id])
-    amount = @service.buynow_price
+    amount = @service.price
     amount = amount.to_i
     amount = amount * 100
 
-      #change - pp start 
-    response = EXPRESS_GATEWAY.setup_authorization(amount,
+    options = {
+        :items => [{ :name => @service.title,:quantity => 1, :description => @service.description, :amount => amount}],
         :ip                => request.remote_ip,
         :return_url        => url_for(:controller => 'bids', :action => 'complete', :id => @service.id),
         :cancel_return_url => servicelistings_url
+    }
+      #change - pp start 
+    response = EXPRESS_GATEWAY.setup_authorization(amount,options
       )
 
    #  response = EXPRESS_GATEWAY.setup_purchase(amount,

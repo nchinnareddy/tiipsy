@@ -17,7 +17,7 @@ gem 'twitter'
 gem 'contacts'
 
 gem 'paperclip'
-gem 'activemerchant'
+gem 'activemerchant', "1.17.0"
 gem 'aasm'
 gem 'whenever', :require => false
 

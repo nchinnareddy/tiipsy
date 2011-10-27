@@ -8,7 +8,7 @@ class BuynowController < ApplicationController
   if ENV['RAILS_ENV'] == "development"
     #ssl_required :buynow, :express, :complete, :checkoutcc
   else
-    ssl_required :buynow, :express, :complete, :checkoutcc
+    #ssl_required :buynow, :express, :complete, :checkoutcc
   end
 
 def buynow
@@ -20,6 +20,7 @@ def buynow
      if @amount <= @highestbid
         @new_cost = @highestbid + 1
         @sl.price = @new_cost
+        @sl.buynow_price = @sl.price
         @sl.save
      else
         @new_cost = @amount
@@ -36,15 +37,25 @@ end
 
 def express
   @service = Servicelisting.find(params[:id])
-  amount = @service.buynow_price
+  amount = @service.price
   amount = amount.to_i
   amount = amount * 100
-  
-    #change - pp start 
-  response = EXPRESS_GATEWAY.setup_purchase(amount,
-      :ip                => request.remote_ip,
-      :return_url        => url_for(:controller => 'buynow', :action => 'complete', :id => @service.id),
-      :cancel_return_url => servicelistings_url
+
+    #change - pp start
+    options = {
+       :items => [{ :name => @service.title,:quantity => 1, :description => @service.description, :amount => amount}],
+        :ip                => request.remote_ip,
+        :return_url        => url_for(:controller => 'buynow', :action => 'complete', :id => @service.id),
+        :cancel_return_url => servicelistings_url
+    } 
+  response = EXPRESS_GATEWAY.setup_purchase(amount,options
+       # :items => [{
+       #   :name => @service.title,
+       #   :quantity => 1,
+       #   :description => @service.description,
+       #   :amount => amount
+       #  }],
+      
     )
   
  #  response = EXPRESS_GATEWAY.setup_purchase(amount,
