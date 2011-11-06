@@ -53,27 +53,27 @@ class ServicelistingsController < ApplicationController
     @servicelisting = Servicelisting.find(params[:servicelisting_id])
      ccard = current_user.credit_card
  #pp change start
-  @order = Order.create(:amount =>  @servicelisting.price,
-                        :first_name => "ccard.first_name",
-                        :last_name => "ccard.last_name",
-                        :card_type => "ccard.card_type",
-                        :card_number => "ccard.card_number",
-                        :card_verification => "ccard.card_verification",
-                        :card_expires_on => "ccard.card_expires_on",
-                        :address => "ccard.address",
-                        :city => "ccard.city",
-                        :state_name => "ccard.state_name",
-                        :country => "ccard.country",
-                        :zip => "ccard.zip"
-                         )
-
- @order.amount = @servicelisting.price
- @order.servicelisting_id = @servicelisting.id
- @order.user_id = current_user.id
- @order.ip_address = request.remote_ip
- @order.description = "Authorization"
- @order.state = "authorized"
-  if @order.save
+  # @order = Order.create(:amount =>  @servicelisting.price,
+  #                        :first_name => "ccard.first_name",
+  #                        :last_name => "ccard.last_name",
+  #                        :card_type => "ccard.card_type",
+  #                        :card_number => "ccard.card_number",
+  #                        :card_verification => "ccard.card_verification",
+  #                        :card_expires_on => "ccard.card_expires_on",
+  #                        :address => "ccard.address",
+  #                        :city => "ccard.city",
+  #                        :state_name => "ccard.state_name",
+  #                        :country => "ccard.country",
+  #                        :zip => "ccard.zip"
+  #                         )
+  # 
+  # @order.amount = @servicelisting.price
+  # @order.servicelisting_id = @servicelisting.id
+  # @order.user_id = current_user.id
+  # @order.ip_address = request.remote_ip
+  # @order.description = "Authorization"
+  # @order.state = "pending"
+ #  if @order.save
     redirect_to :controller => "bids", :action => "express", :servicelisting_id => params[:servicelisting_id]
      #  if @order.authorize_payment
      #    flash[:notice] = "You are authorized to bid on: #{@servicelisting.title}"
@@ -83,7 +83,7 @@ class ServicelistingsController < ApplicationController
      #    #redirect_to new_user_credit_card_path(current_user)
      #     redirect_to root_path
      # end
-  end   
+  #end   
 end
   # GET /servicelistings/1
   # GET /servicelistings/1.xml

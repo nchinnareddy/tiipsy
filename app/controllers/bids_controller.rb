@@ -4,7 +4,7 @@ class BidsController < ApplicationController
  #pp - change start
  # before_filter :require_user_with_creditcard
  #pp - change end
-  before_filter :require_service_bid_authorized, :except => :complete
+  before_filter :require_service_bid_authorized, :except => [:complete, :express]
   #ssl_required :index, :show, :new, :edit, :create, :update
   if ENV['RAILS_ENV'] == "development"
     #ssl_required :index, :show, :new, :edit, :create, :update
@@ -87,8 +87,7 @@ class BidsController < ApplicationController
 
   # POST /bids
   # POST /bids.xml
-  def create
-    
+  def create  
       @servicelisting = Servicelisting.find(params[:servicelisting_id])
       @product = @servicelisting.title
       @desc = @servicelisting.description
@@ -149,21 +148,43 @@ class BidsController < ApplicationController
   end 
   
   def complete
-    @order = current_user.orders.new(:express_token => params[:token] , :express_payer_id => params[:PayerID])
+
     @service = Servicelisting.find(params[:id])
     #change - pp  start 
     details_response = OrderTransaction.xpressgateway.details_for(params[:token])
     #details_response = EXPRESS_GATEWAY.details_for(params[:token])
      #change - pp end 
-
+    #puts "-----details_response.success--"
+    #puts details_response.success
        if details_response.success?
-         @orders = Order.where("user_id = ? AND servicelisting_id = ? AND state = ? ", current_user.id, params[:id], 'authorized')
-         @orders.each do |orderx|
-            orderx.express_token = params[:token]
-            orderx.express_payer_id = params[:PayerID]
-            @servicelisting = Servicelisting.find(params[:id])
-            if orderx.save
-              if orderx.authorize_payment
+          @order = current_user.orders.new(:express_token => params[:token] , :express_payer_id => params[:PayerID],
+                                   :first_name => "ccard.first_name",
+                                   :last_name => "ccard.last_name",
+                                   :card_type => "ccard.card_type",
+                                   :card_number => "ccard.card_number",
+                                   :card_verification => "ccard.card_verification",
+                                   :card_expires_on => "ccard.card_expires_on",
+                                   :address => "ccard.address",
+                                   :city => "ccard.city",
+                                   :state_name => "ccard.state_name",
+                                   :country => "ccard.country",
+                                   :zip => "ccard.zip")
+
+         @order.amount = @service.price
+         @order.servicelisting_id = @service.id
+         @order.user_id = current_user.id
+         @order.ip_address = request.remote_ip
+         @order.description = "Authorization"
+         @order.state = "authorized"
+         
+        # @orders = Order.where("user_id = ? AND servicelisting_id = ? AND state = ? ", current_user.id, params[:id], 'pending')
+        # @orders.each do |orderx|
+        #    orderx.express_token = params[:token]
+        #    orderx.express_payer_id = params[:PayerID]
+        #    orderx.state = 'authorized'
+        #    @servicelisting = Servicelisting.find(params[:id])
+            if @order.save
+              if @order.authorize_payment
                 flash[:notice] = "You are authorized to bid on: #{@service.title}"
                 redirect_to root_path
               else
@@ -172,7 +193,7 @@ class BidsController < ApplicationController
                 redirect_to root_path
               end
             end
-          end  
+        #  end  
        else 
            @message = details_response.message
            render :text => 'error'
