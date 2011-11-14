@@ -74,7 +74,7 @@ class ServicelistingsController < ApplicationController
   # @order.description = "Authorization"
   # @order.state = "pending"
  #  if @order.save
-    redirect_to :controller => "bids", :action => "express", :servicelisting_id => params[:servicelisting_id]
+    redirect_to :controller => "bids", :action => "braintree_authorize_bid", :servicelisting_id => params[:servicelisting_id]
      #  if @order.authorize_payment
      #    flash[:notice] = "You are authorized to bid on: #{@servicelisting.title}"
      #    redirect_to root_path

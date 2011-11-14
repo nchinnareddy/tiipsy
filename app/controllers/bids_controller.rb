@@ -2,15 +2,70 @@ class BidsController < ApplicationController
   
   before_filter :require_user
  #pp - change start
- # before_filter :require_user_with_creditcard
+ before_filter :require_user_with_creditcard
  #pp - change end
-  before_filter :require_service_bid_authorized, :except => [:complete, :express]
+  before_filter :require_service_bid_authorized, :except => [:complete, :express, :braintree_authorize_bid]
   #ssl_required :index, :show, :new, :edit, :create, :update
   if ENV['RAILS_ENV'] == "development"
     #ssl_required :index, :show, :new, :edit, :create, :update
   else
     #ssl_required :index, :show, :new, :edit, :create, :update
   end
+    
+  def braintree_authorize_bid
+    @service = Servicelisting.find(params[:servicelisting_id])
+    #amount = @service.price
+    #amount = amount.to_i
+    # set up initial authorization for $1 
+    p "inside braintree_authorize_bid method"
+    cc = CreditCard.where("user_id =? ", current_user.id).first
+    result = Braintree::Transaction.sale(
+      :amount => "1.00",
+      :customer_id => cc.user_id,
+      :payment_method_token => cc.bttoken
+    )
+    if result.success?
+      puts "success!: #{result.transaction.id}"
+      
+       @order = Order.create(
+                                 :first_name => "ccard.first_name",
+                                 :last_name => "ccard.last_name",
+                                 :card_type => "ccard.card_type",
+                                 :card_number => "ccard.card_number",
+                                 :card_verification => "ccard.card_verification",
+                                 :card_expires_on => "ccard.card_expires_on",
+                                 :address => "ccard.address",
+                                 :city => "ccard.city",
+                                 :state_name => "ccard.state_name",
+                                 :country => "ccard.country",
+                                 :zip => "ccard.zip",
+                                 :bttoken => result.transaction.id,
+                                 :servicelisting_id => @service.id,
+                                 :amount => 1,
+                                 :user_id => current_user.id,
+                                 :ip_address => request.remote_ip,
+                                 :description => "Authorization"
+                                 )
+
+       @order.state = "authorized"
+       if @order.save
+         
+         flash[:notice] = "You are authorized to bid on: #{@service.title}"
+         redirect_to root_path
+       else
+         flash[:notice] = "Sorry - The details you entered might be in-corrrect. We are unable to process your transaction. Re-enter your credit card details"
+         redirect_to root_path
+       end
+   
+    elsif result.transaction
+      puts "Error processing transaction:"
+      puts "  code: #{result.transaction.processor_response_code}"
+      puts "  text: #{result.transaction.processor_response_text}"
+    else
+      p result.errors
+    end
+    
+  end  
     
   def express
     @service = Servicelisting.find(params[:servicelisting_id])

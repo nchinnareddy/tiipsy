@@ -1,8 +1,7 @@
 class BuynowController < ApplicationController
   
   before_filter :require_user
-    #change - pp start
- # before_filter :require_user_with_creditcard
+  before_filter :require_user_with_creditcard
    #change - pp end 
   #ssl_required :buynow, :express, :complete, :checkoutcc
   if ENV['RAILS_ENV'] == "development"
@@ -26,7 +25,7 @@ def buynow
         @new_cost = @amount
      end
      @order = Order.new
-     render 'buynow', :layout => false  
+     render 'confirm', :layout => false  
      #return
   # else
     #  flash[:notice] = "Service is inactive, you can not buy"
@@ -48,6 +47,7 @@ def express
         :return_url        => url_for(:controller => 'buynow', :action => 'complete', :id => @service.id),
         :cancel_return_url => servicelistings_url
     } 
+     
   response = EXPRESS_GATEWAY.setup_purchase(amount,options
        # :items => [{
        #   :name => @service.title,
@@ -177,5 +177,29 @@ def paypal_url(return_url)
 end
 
 
+def braintree_buynow  
+  result = Braintree::Transaction.sale(
+    :amount => "1000.00",
+    :credit_card => {
+      :number => "5105105105105100",
+      :expiration_date => "05/12"
+    }
+  )
+  
+  if result.success?
+    puts "success!: #{result.transaction.id}"
+  elsif result.transaction
+    puts "Error processing transaction:"
+    puts "  code: #{result.transaction.processor_response_code}"
+    puts "  text: #{result.transaction.processor_response_text}"
+  else
+    p result.errors
+  end
+  
+end
+
+def confirm
+   puts "---in confirm buynow---"
+end
   
 end

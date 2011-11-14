@@ -56,7 +56,7 @@ def require_user_with_creditcard
   if current_user
     if !current_user.credit_card
       flash[:notice] = "You have not added your credit card details. Please enter your credit card details"
-      redirect_to new_user_credit_card_path(current_user)
+      redirect_to new_user_credit_card_path(current_user,:servicelisting_id => params[:servicelisting_id] )
     end
   end
 end

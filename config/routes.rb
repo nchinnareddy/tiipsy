@@ -107,6 +107,8 @@ Socialstock::Application.routes.draw do
        get 'complete'
        get 'express'
        get 'checkoutcc'
+       get 'braintree_buynow'
+       get 'confirm'
      end
   end
   
@@ -114,6 +116,7 @@ Socialstock::Application.routes.draw do
     collection do 
       get 'express'
       get 'complete'
+      get 'braintree_authorize_bid'
     end 
   end
  

@@ -54,6 +54,12 @@ Socialstock::Application.configure do
      ::STANDARD_GATEWAY = OrderTransaction.gateway
      ::EXPRESS_GATEWAY = OrderTransaction.xpressgateway
    end
+   
+   
+   Braintree::Configuration.environment = :sandbox
+   Braintree::Configuration.merchant_id = "8ts9zv3qp57qfbpc"
+   Braintree::Configuration.public_key = "m59tm54dnbh3k8bq"
+   Braintree::Configuration.private_key = "8fkctw474knbvyk8"
   
     # config.after_initialize do
     #     ActiveMerchant::Billing::Base.mode = :test
