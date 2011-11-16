@@ -21,7 +21,7 @@ class UsersController < ApplicationController
     params[:user][:social_login] = false
     @user = User.new(params[:user])
     if @user.save_without_session_maintenance
-      flash.now[:notice] = "Signup Succesful! Please check your email and follow instructions"      
+      flash[:notice] = "Signup Successful! Please check your email and follow instructions"      
       #User Activation code      
       @user.devliver_activation_instructions!
       user = {:email => @user.email, :perishable_token => @user.perishable_token}
@@ -31,7 +31,7 @@ class UsersController < ApplicationController
       elsif ENV['RAILS_ENV'] == "production"
         Notifier.activation_instructions(user).deliver      
       end
-      redirect_to root_url
+      redirect_to user_signup_path
     else
       render :action => :new
     end
@@ -134,7 +134,7 @@ class UsersController < ApplicationController
         end
         
         flash[:notice] = "Activation mail sent, Please check your mail and follow instructions in that mail."
-        redirect_to root_path        
+        redirect_to servicelistings_path        
       end      
     else
       flash[:error] = "We're sorry, but we could not locate your account."
@@ -149,7 +149,7 @@ class UsersController < ApplicationController
   end
   
   def account
-    @orders = Order.find(:all, :conditions => ["user_id = ? and description = ?", current_user.id, "Buynow"])
+    @orders = Order.find(:all, :conditions => ["user_id = ? and state = ?", current_user.id, "paid"])
     @bids = Bid.find(:all, :conditions => ["user_id = ?", current_user.id])
   end
   

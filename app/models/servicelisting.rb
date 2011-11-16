@@ -65,7 +65,10 @@ def self.checkexpirations
                  item.winner_id = highestbid.user_id
                  user = User.find_by_id(highestbid.user_id)
                  item.save
+                 #mail to highest bidder 
                  Notifier.send_mail_to_user_after_bid_closed(user.email,highestbid.bidprice,item.title,item.description).deliver if user
+                 Notifier.send_mail_to_barowner_after_bid_closed(item.email,highestbid.bidprice,item.title,item.description).deliver
+                 
                  all_biders = Bid.where("servicelisting_id=?",item.id)
                  all_biders.each do |bidder|
                     if bidder.user_id != highestbid.user_id

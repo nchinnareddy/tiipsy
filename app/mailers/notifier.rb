@@ -1,4 +1,5 @@
 class Notifier < ActionMailer::Base
+  layout 'email'
   default :from => "info@socialcheers.com"
   
   def activation_instructions(user)
@@ -137,6 +138,14 @@ class Notifier < ActionMailer::Base
     @desc = desc
     mail(:to => email,
          :subject => "Bid closed: Socialcheers - #{ product}")
+  end
+  
+  def send_mail_to_barowner_after_bid_closed(email,bidprice,product,desc)
+    @bidprice = bidprice
+    @product = product
+    @desc = desc
+    mail(:to => email,
+         :subject => "Congratulations!!! Bottle Service Sold: Socialcheers - #{ product}")
   end
   
 end

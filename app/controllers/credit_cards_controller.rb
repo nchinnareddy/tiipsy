@@ -44,9 +44,10 @@ class CreditCardsController < ApplicationController
        flash[:notice] = "Successful added your credit card. Please proceed to Bid or Buy"
      else
        p result.errors
-       flash[:error] = result.errors  
+       #flash[:error] = result.errors  
+       flash[:error] = "Your Credit Card details entered are incorrect. Please re-enter"
      end
-     redirect_to root_path   
+     redirect_to servicelistings_path   
      
       
      # if !(credit_card(@creditcard).valid?)

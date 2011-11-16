@@ -51,7 +51,7 @@ class BidsController < ApplicationController
        if @order.save
          
          flash[:notice] = "You are authorized to bid on: #{@service.title}"
-         redirect_to root_path
+         redirect_to servicelistings_path
        else
          flash[:notice] = "Sorry - The details you entered might be in-corrrect. We are unable to process your transaction. Re-enter your credit card details"
          redirect_to root_path
