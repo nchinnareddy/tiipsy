@@ -11,7 +11,7 @@ gem 'rake', '0.9.2'
 
 #For authentication 
 gem 'authlogic'
-gem 'omniauth'
+gem 'omniauth', '0.2.6'
 gem 'fb_graph'
 gem 'twitter'
 gem 'contacts'
@@ -41,10 +41,11 @@ gem 'ssl_requirement'
  gem 'will_paginate', '3.0.pre2'
  gem "client_side_validations", "~> 3.1.0"
  gem "geokit-rails3", "~> 0.1.3" 
- 
+
+#for thin server
+gem 'thin'
 
  #gem "crack", "~> 0.1.8"
-
 
 # To use debugger (ruby-debug for Ruby 1.8.7+, ruby-debug19 for Ruby 1.9.2+)
 # gem 'ruby-debug'
