@@ -40,15 +40,7 @@
   <tr>
     <td><div align="right" style="font-size:x-large; color:#1781C1;"><%= f.label :city %></div></td>
     <td width="7"><strong style="color:#48B9E9"></strong></td>
-    <td><%= f.select :city, options_for_select([
-    														[@user.city, ""],
-    														
-["Austin, TX ","Austin, TX "],
-["Chicago, IL","Chicago, IL"],	 
-["Dallas, TX","Dallas, TX"],	
-["Houston, TX","Houston, TX"],	
-["San Antonio, TX","San Antonio, TX"]  														
- 	]), :style => "width:197px" %></td>
+    <td><%= f.select :city, StaticData.cities, :include_blank => true, :style => "width:197px" %></td>
   </tr>
   <tr>
     <td></td>
