@@ -5,7 +5,10 @@ class Servicelisting < ActiveRecord::Base
   has_many :bids
   has_many :orders
   
-  has_attached_file :photo  
+  has_attached_file :photo,
+                    :styles => {:thumb => "100x100>"},
+                    :default_url => '/images/servicelisting-noimage.jpg'
+
    
 def self.search(search)
   if search
