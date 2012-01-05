@@ -110,7 +110,7 @@ class OrdersController < ApplicationController
            Notifier.send_mail_to_user_after_buy(current_user.email,@product,@cost,@desc).deliver
            Notifier.send_mail_to_admin_after_buy(@product,@cost,@desc).deliver
            Notifier.send_mail_to_barowner_after_buy(@barowner_email,@product,@cost,@desc).deliver
-           render :action => "success"
+           render :action => "order_success"
          end 
       else 
         p settlement_result.errors
@@ -267,6 +267,10 @@ def credit_card
   
   def success
     
+  end
+
+  def order_success
+
   end
  
 end
