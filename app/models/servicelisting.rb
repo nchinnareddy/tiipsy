@@ -6,7 +6,7 @@ class Servicelisting < ActiveRecord::Base
   has_many :orders
   
   has_attached_file :photo,
-                    :styles => {:thumb => "100x100>"},
+                    :styles => {:thumb => "150x150!"},
                     :default_url => '/images/servicelisting-noimage.jpg'
 
    
