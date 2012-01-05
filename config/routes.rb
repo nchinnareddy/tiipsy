@@ -81,9 +81,10 @@ Socialstock::Application.routes.draw do
   
   resources :orders do
     collection do
-    get 'success'
-    get 'express'
-    get 'bids_orders'
+      get 'success'
+      get 'express'
+      get 'bids_orders'
+      get 'order_success'
     end
   end
   
