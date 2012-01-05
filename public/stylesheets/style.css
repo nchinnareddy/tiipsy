@@ -591,10 +591,28 @@ label.error {
 #servicelisting p.current_value_fet {
     color: #A1C436;
     font-family: "arial rounded mt bold",helvetica,arial,sans-serif;
-    font-size: 32px;
+    font-size: 25px;
     left: 490px;
     position: absolute;
     top: 160px;
+}
+
+#servicelisting p.buynow_value {
+    font-family: Georgia,"Times New Roman",Times,serif;
+    font-size: 1.5em;
+	font-weight: bold;
+    left: 340px;
+    position: absolute;
+    top: 195px;
+}
+
+#servicelisting p.buynow_value_fet {
+    color: #A1C436;
+    font-family: "arial rounded mt bold",helvetica,arial,sans-serif;
+    font-size: 25px;
+    left: 490px;
+    position: absolute;
+    top: 185px;
 }
 
 #servicelisting p.time_left {
@@ -603,7 +621,7 @@ label.error {
 	font-weight: bold;
     left: 340px;
     position: absolute;
-    top: 215px;
+    top: 225px;
 }
 
 #servicelisting p.time_left_fet {
@@ -613,7 +631,7 @@ label.error {
     left: 490px;
     position: absolute;
     top: 215px;
-    width: 160px;
+    width: 175px;
 }
 
 #servicelisting .jdt{
@@ -995,12 +1013,12 @@ label.error {
 	overflow: hidden;
 }
 
+/*start home Page servicelisting*/
 #servicelisting_index{
 	position: relative;	
 }
 
-
-#servicelisting_index_r {
+.servicelisting_index_r {
     -moz-border-radius: 3px;
 	border-radius: 3px;
    	background: repeat scroll 0 0 rgba(47, 47, 47, 0.9);
@@ -1010,148 +1028,113 @@ label.error {
 	/* For WebKit (Safari, Google Chrome etc) */
 	background: -webkit-gradient(linear, left top, left bottom, from(#202020), to(#202020));	
     border: 1px solid #2F2F2F;
-    height: 120px;
     margin-bottom: 10px;
     opacity: 0.95;
     overflow: hidden;
     padding: 10px;
-    position: relative;
+    /*position: relative;
+    height: 120px;*/
     width: auto;
     z-index: 99;
 }
 
-#servicelisting_index_r p.title {
+.servicelisting_index_r .picture{
+	min-height: 100px;
+    min-width: 100px;
+    margin-right: 10px;
+    float: left;
+}
+
+.servicelisting_index_r .info {
+    margin-right: 10px;
+    float: left;
+    /*min-width: 150px;*/
+}
+
+.servicelisting_index_r p.title {
     color: #FFFFFF;
     font-family: Georgia,"Times New Roman",Times,serif;
     font-size: 1.7em;
     font-weight: bold;
-    left: 106px;
-    position: relative;
-    top: 2px;
+    width: 200px;
 }
 
-
-#servicelisting_index_r p.picture{
-	position: absolute;
-    left: 3px;	
-    top:1px;
-    padding: 17px 1px 1px;
+.servicelisting_index_r p.address_fet {
+    color: #909090;
+    font-family: Georgia,"Times New Roman",Times,serif;
+    font-size: 1.2em;
+    width: 200px;
 }
 
-#servicelisting_index_r p.address{
-	position: absolute;
-	left:106px;
-	top:35px;
-	font-size:15px;
-	font-family: Georgia, "Times New Roman", Times, serif;
+.servicelisting_index_r p.city {
+    color: #909090;
+    font-family: Georgia,"Times New Roman",Times,serif;
+    font-size: 1.2em;
+    width: 200px;
 }
 
-#servicelisting_index_r p.more {
+.servicelisting_index_r p.more {
     font-size: 1.5em;
-    left: 250px;
-    position: absolute;
-    top: 45px;
 }
 
 
-#servicelisting_index_r p.map {
-    left: 340px;
-    position: absolute;
-    top: 108px;
+.servicelisting_index_r p.map {
+
 }
 
-#servicelisting_index_r p.address_fet {
-    color: #909090;
-    font-family: Georgia,"Times New Roman",Times,serif;
-    font-size: 1.2em;
-    left: 110px;
-    overflow: hidden;
-    position: relative;
-    top: 30px;
-    width: 200px;
-}
-
-
-#servicelisting_index_r p.city {
-    color: #909090;
-    font-family: Georgia,"Times New Roman",Times,serif;
-    font-size: 1.2em;
-    left: 110px;
-    overflow: hidden;
-    position: relative;
-    top: 30px;
-    width: 200px;
-}
-
-
-#servicelisting_index_r p.time_left {
+.servicelisting_index_r p.time_left {
     color: #FFFFFF;
     font-size: 18px;
-    left: 370px;
-    position: absolute;
-    top: 35px;
 }
 
-#servicelisting_index_r p.time_left_fet{
-	position: absolute;
-    left: 390px;	
-    top: 70px;
+.servicelisting_index_r p.time_left_fet{
     font-size:22px;
     color: #F1AF1F;
+    width: 225px;
 }
 
-#servicelisting_index_r .jdt {
-    background-color: none;
-    left: 360px;
-    position: absolute;
-    top: 75px;
+.servicelisting_index_r .jdt {
     width: 200px;
 }
 
-#servicelisting_index_r p.current_value{
+.servicelisting_index_r p.current_value{
 	color: #fff;
     font-size: 18px;
-    left: 570px;
-    position: absolute;
-    top: 35px;
 }
 
-#servicelisting_index_r p.current_value_fet {
+.servicelisting_index_r p.current_value_fet {
     color: #4DBCE9;
     font-size: 22px;
-    left: 590px;
-    position: absolute;
-    top: 70px;
 }
 
-#servicelisting_index_r p.edit {
-    left: 540px;
-    position: absolute;
-    top: 1px;
+.servicelisting_index_r p.buynow_value{
+	color: #fff;
+    font-size: 18px;
 }
 
-#servicelisting_index_r p.delete {
-    left: 660px;
-    position: absolute;
-    top: 1px;
+.servicelisting_index_r p.buynow_value_fet {
+    color: #4DBCE9;
+    font-size: 22px;
 }
 
-#servicelisting_index_r p.bid {
-    left: 740px;
-    position: absolute;
-    top: 1px;
-}
-#servicelisting_index_r p.buy {
-    left: 740px;
-    position: absolute;
-    top: 40px;
+.servicelisting_index_r p.bid {
+
 }
 
-#servicelisting_index_r p.higher {
-    left: 720px;
-    position: absolute;
-    top: 92px;
+.servicelisting_index_r p.buy {
+
 }
+
+.servicelisting_index_r p.higher {
+
+}
+
+.servicelisting_index_r .admin-links {
+    text-align: right;
+}
+
+
+/*end home Page servicelisting*/
 
 #map{
 	-moz-border-radius: 3px 3px 3px;
@@ -1251,3 +1234,48 @@ textarea {
 	overflow: hidden;
 	color:#000;
 }
+
+/* Link Buttons */
+.link_button {
+    -moz-box-shadow:inset 0px 1px 0px 0px #bbdaf7;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #bbdaf7;
+	box-shadow:inset 0px 1px 0px 0px #bbdaf7;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #79bbff), color-stop(1, #378de5) );
+	background:-moz-linear-gradient( center top, #79bbff 5%, #378de5 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#79bbff', endColorstr='#378de5');
+	background-color:#79bbff;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+	border:1px solid #84bbf3;
+	display:inline-block;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:1px 1px 0px #528ecc;
+}
+
+.link_button:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #378de5), color-stop(1, #79bbff) );
+	background:-moz-linear-gradient( center top, #378de5 5%, #79bbff 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#378de5', endColorstr='#79bbff');
+	background-color:#378de5;
+}
+
+.link_button:active {
+	position:relative;
+	top:1px;
+}
+
+/* Orders Controller */
+/* order_success */
+.order_success_message {
+    min-height: 400px;
+    font-size: 36px;
+    text-align: center;
+    vertical-align: middle;
+}
+/* End Orders*/
