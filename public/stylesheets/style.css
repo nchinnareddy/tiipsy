@@ -1013,128 +1013,6 @@ label.error {
 	overflow: hidden;
 }
 
-/*start home Page servicelisting*/
-#servicelisting_index{
-	position: relative;	
-}
-
-.servicelisting_index_r {
-    -moz-border-radius: 3px;
-	border-radius: 3px;
-   	background: repeat scroll 0 0 rgba(47, 47, 47, 0.9);
-	background: repeat scroll 0 0 rgba(47, 47, 47, 0.7);
-	/* For Internet Explorer 8 */
-	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#202020, endColorstr=#202020)";
-	/* For WebKit (Safari, Google Chrome etc) */
-	background: -webkit-gradient(linear, left top, left bottom, from(#202020), to(#202020));	
-    border: 1px solid #2F2F2F;
-    margin-bottom: 10px;
-    opacity: 0.95;
-    overflow: hidden;
-    padding: 10px;
-    /*position: relative;
-    height: 120px;*/
-    width: auto;
-    z-index: 99;
-}
-
-.servicelisting_index_r .picture{
-	min-height: 100px;
-    min-width: 100px;
-    margin-right: 10px;
-    float: left;
-}
-
-.servicelisting_index_r .info {
-    margin-right: 10px;
-    float: left;
-    /*min-width: 150px;*/
-}
-
-.servicelisting_index_r p.title {
-    color: #FFFFFF;
-    font-family: Georgia,"Times New Roman",Times,serif;
-    font-size: 1.7em;
-    font-weight: bold;
-    width: 200px;
-}
-
-.servicelisting_index_r p.address_fet {
-    color: #909090;
-    font-family: Georgia,"Times New Roman",Times,serif;
-    font-size: 1.2em;
-    width: 200px;
-}
-
-.servicelisting_index_r p.city {
-    color: #909090;
-    font-family: Georgia,"Times New Roman",Times,serif;
-    font-size: 1.2em;
-    width: 200px;
-}
-
-.servicelisting_index_r p.more {
-    font-size: 1.5em;
-}
-
-
-.servicelisting_index_r p.map {
-
-}
-
-.servicelisting_index_r p.time_left {
-    color: #FFFFFF;
-    font-size: 18px;
-}
-
-.servicelisting_index_r p.time_left_fet{
-    font-size:22px;
-    color: #F1AF1F;
-    width: 225px;
-}
-
-.servicelisting_index_r .jdt {
-    width: 200px;
-}
-
-.servicelisting_index_r p.current_value{
-	color: #fff;
-    font-size: 18px;
-}
-
-.servicelisting_index_r p.current_value_fet {
-    color: #4DBCE9;
-    font-size: 22px;
-}
-
-.servicelisting_index_r p.buynow_value{
-	color: #fff;
-    font-size: 18px;
-}
-
-.servicelisting_index_r p.buynow_value_fet {
-    color: #4DBCE9;
-    font-size: 22px;
-}
-
-.servicelisting_index_r p.bid {
-
-}
-
-.servicelisting_index_r p.buy {
-
-}
-
-.servicelisting_index_r p.higher {
-
-}
-
-.servicelisting_index_r .admin-links {
-    text-align: right;
-}
-
-
-/*end home Page servicelisting*/
 
 #map{
 	-moz-border-radius: 3px 3px 3px;
@@ -1235,7 +1113,7 @@ textarea {
 	color:#000;
 }
 
-/* Link Buttons */
+/* Link Button */
 .link_button {
     -moz-box-shadow:inset 0px 1px 0px 0px #bbdaf7;
 	-webkit-box-shadow:inset 0px 1px 0px 0px #bbdaf7;
@@ -1269,6 +1147,101 @@ textarea {
 	position:relative;
 	top:1px;
 }
+/* End Link Button */
+
+/* Servicelistings Controller */
+/* index*/
+.service_listings {
+
+}
+
+.service_listing {
+    -moz-border-radius: 3px;
+	border-radius: 3px;
+   	background: repeat scroll 0 0 rgba(47, 47, 47, 0.9);
+	background: repeat scroll 0 0 rgba(47, 47, 47, 0.7);
+	/* For Internet Explorer 8 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#202020, endColorstr=#202020)";
+	/* For WebKit (Safari, Google Chrome etc) */
+	background: -webkit-gradient(linear, left top, left bottom, from(#202020), to(#202020));
+    border: 1px solid #2F2F2F;
+    margin-bottom: 10px;
+    opacity: 0.95;
+    overflow: hidden;
+    padding: 10px;
+    width: auto;
+    z-index: 99;
+}
+
+.service_listing p {
+    line-height: 100%;
+}
+
+.service_listing .info {
+    width: 150px;
+    float: left;
+    margin: 0 10px;
+}
+
+.service_listing .picture {
+    margin-bottom: 5px;
+}
+
+.service_listing .address {
+    color: #FFFFFF;
+    font-size: 14px;
+}
+
+.service_listing .title {
+    color: #FFFFFF;
+    font-size: 30px;
+    cursor: default;
+    margin-bottom: 5px;
+}
+
+.service_listing .description {
+    color: #FFFFFF;
+    font-size: 12px;
+    margin: 5px;
+    padding: 10px 0;
+    text-align: justify;
+    line-height: 15px;
+}
+
+.service_listing .description .more_details {
+    color: #03FB00;
+}
+
+.service_listing .time_left {
+    margin: 10px 0px;
+}
+
+.service_listing .time_closed {
+    margin: 10px 0px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #FF0000;
+
+}
+
+.service_listing .current_value {
+    color: #4DBCE9;
+    font-size: 22px;
+}
+
+.service_listing .buynow_value {
+    color: #4DBCE9;
+    font-size: 22px;
+}
+
+.service_listing .higher {
+    margin: 10px 0;
+}
+
+.service_listing .admin-links {
+    text-align: right;
+}
+/* End Servicelistings*/
 
 /* Orders Controller */
 /* order_success */
