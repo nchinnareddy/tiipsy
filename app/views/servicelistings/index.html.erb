@@ -5,114 +5,131 @@
 </script>
 <script language="JavaScript"> 
 
-	
 </script> -->
 
-
 <div id="servicelisting_index">
-	
-	<% @servicelistings.each do |servicelisting| %>
-      
-	<% availability_date = DateTime.parse(servicelisting.availability.to_s)%>
-	<!--
-	<% time_now = DateTime.parse(DateTime.now.to_s)%>
-	<%= DateTime.now.in_time_zone %>
-	-->
-	<% time_now = DateTime.parse(DateTime.now.in_time_zone.to_s) %>
-	<% time_until = availability_date - time_now %>
-	<% t = time_until.to_f %>
-	<% tt = t*(86400) %></br>	
-	
-	<div id="servicelisting_index_r">
-	
-		<p class="title"><%= servicelisting.title %></p>
-		<p class="picture"><%= image_tag servicelisting.photo.url, :size => "100x100" %></p>
-		<p class="more"><%= link_to 'Details', servicelisting %></p>
-		<p class="map"><%= link_to 'Map',  map_bar_bussinesses_path(:city => servicelisting.city) %></p>
-		<p class="address_fet"><%= servicelisting.location %></p>
-		<p class="city"><%= servicelisting.city %></p>
-		<p class="time_left">Time left to Bid</p>
-		<p class="time_left_fet">
-			<% if tt >= 0 %>
-				<div class="jdt" start="<%= tt %>" ></div>
-			<% else %>
-				Closed
-			<% end %>	
-		</p>
-		<p class="current_value">Current Value</p>
-		<p class="current_value_fet">$<%= servicelisting.highestbid %></p>
-		<% if isadmin? %>
-			<p class="edit"><%= link_to 'Edit', edit_servicelisting_path(servicelisting, :indicator => "ed") %></p>
-			<p class="delete"><%= link_to 'Destroy', servicelisting, :confirm => 'Are you sure?', :method => :delete %></p>
-		<%end%>
-		<p class="bid">
-                     <% if tt > 0 %>
-			<% if isadmin? %>
-				<%= link_to 'Bid', new_servicelisting_bid_path(servicelisting), :class=>"links bid_popup"  %>
-			<% elsif is_barowner? %>
-				<%= link_to 'Bid', new_servicelisting_bid_path(servicelisting), :class=>"links bid_popup"  %>
-			<% elsif current_user %>
-				<%= link_to 'Bid', new_servicelisting_bid_path(servicelisting), :class=>"links bid_popup"  %>
-			<% else %>
-				<%= link_to 'Bid', new_servicelisting_bid_path(servicelisting), :class=>"links"  %>
-			<% end %>
-                      <% else %>
-                              <%#= link_to 'Bid', 'www.google.com', :class=>"faded_links"  %>
-                              <label class="faded_links">Bid</label>
-                      <% end %>
-		</p>
-		<p class="buy">
-                     <% if tt > 0 %>
-			<% if isadmin? %>
-				<%= link_to 'Buy',  buynow_buynow_index_path(:id => servicelisting), :class=>"links bid_popup"  %>
-			<% elsif is_barowner? %>
-				<%= link_to 'Buy',  buynow_buynow_index_path(:id => servicelisting), :class=>"links bid_popup"  %>
-			<% elsif current_user %>
-				<%= link_to 'Buy',  buynow_buynow_index_path(:id => servicelisting), :class=>"links bid_popup"  %>
-			<% else %>
-				<%= link_to 'Buy',  buynow_buynow_index_path(:id => servicelisting), :class=>"links"  %>
-			<% end %>
-                      <% else %>
-                              <label class="faded_links">Buy</label>
-                      <% end %>
-		</p>
-		<p class="higher">
-			<%@servicelisting = servicelisting %>
-			<% if current_user %>  	
-	        <% @userhighbid = nil %> 
-     		 <% @servicelisting.bids.each do |bid| %>
-	     		<% if bid.user_id == current_user.id %>
-		    	 <% if @userhighbid.nil? %>
-			     <% @userhighbid = bid.bidprice %>
-			     <% next %>
-			   <% end %>
-			 <% if bid.user_id == current_user.id %> 
-			 <% if @userhighbid < bid.bidprice %> 
-			 <% @userhighbid = bid.bidprice %>
-			    <%end %>
-			    <%end %> 
-			    <%end%>
-			    <%end%>     
-			 <% if !@userhighbid.nil? %>   
-			  <% if @userhighbid == @servicelisting.highestbid %>
-			  		<% if tt >0 %>
-			   			<%= image_tag "auth/flashstar (1).gif", :size => "15x15" %><font color="#009900">You are the highest bidder</font>
-			  		<% end %> 
-			   <% else%>
-			   		<% if tt >0 %>
-			  			<font color="#FF0000"> You are outbid by <%= @servicelisting.highestbid - @userhighbid %>$ </font>
-			  		<% end %>
-			  <%end %>
-			  <%else %>
-			    	<% if tt > 0 %>
-			  	 		<font color="#FF0000"> You have not bid on this service </font>
-					<%end%> 
-			   <%end%>  
-			   <% end %>
-		</p>	
-			
-	</div>	
-	<% end %>
+    <% @servicelistings.each do |servicelisting| %>
+        <% availability_date = DateTime.parse(servicelisting.availability.to_s)%>
+        <!--
+        <% time_now = DateTime.parse(DateTime.now.to_s)%>
+        <%= DateTime.now.in_time_zone %>
+        -->
+        <% time_now = DateTime.parse(DateTime.now.in_time_zone.to_s) %>
+        <% time_until = availability_date - time_now %>
+        <% t = time_until.to_f %>
+        <% tt = t*(86400) %>
+
+        <div class="servicelisting_index_r">
+            <div class="picture">
+                <%= image_tag servicelisting.photo.url(:thumb), :size => "100x100" %>
+            </div>
+            <div class="info">
+                <p class="title"><%= servicelisting.title %></p>
+                <p class="address_fet"><%= servicelisting.location %></p>
+                <p class="city"><%= servicelisting.city %></p>
+            </div>
+            <div class="info">
+                <p class="more"><%= link_to 'Details', servicelisting %></p>
+                <p>&nbsp;</p>
+                <p class="map"><%= link_to 'Map',  map_bar_bussinesses_path(:city => servicelisting.city) %></p>
+            </div>
+            <div class="info">
+                <p class="time_left">Time left to Bid</p>
+                <p>&nbsp;</p>
+		        <p class="time_left_fet">
+			        <% if tt >= 0 %>
+				        <div class="jdt" start="<%= tt %>" ></div>
+			        <% else %>
+				        Closed
+			        <% end %>
+		        </p>
+            </div>
+            <div class="info">
+                <p class="current_value">Bid</p>
+                <p>&nbsp;</p>
+		        <p class="current_value_fet">$<%= servicelisting.highestbid %></p>
+            </div>
+            <div class="info">
+                <p class="buynow_value">Buy Now</p>
+              <p>&nbsp;</p>
+                <p class="buynow_value_fet">$<%= servicelisting.price %></p>
+            </div>
+            <div class="info" style="float:right;text-align: right;">
+                <p class="bid">
+                    <% if tt > 0 %>
+			            <% if isadmin? %>
+				            <%= link_to 'Bid', new_servicelisting_bid_path(servicelisting), :class=>"links bid_popup"  %>
+			            <% elsif is_barowner? %>
+				            <%= link_to 'Bid', new_servicelisting_bid_path(servicelisting), :class=>"links bid_popup"  %>
+			            <% elsif current_user %>
+				            <%= link_to 'Bid', new_servicelisting_bid_path(servicelisting), :class=>"links bid_popup"  %>
+			            <% else %>
+				            <%= link_to 'Bid', new_servicelisting_bid_path(servicelisting), :class=>"links"  %>
+			            <% end %>
+                    <% else %>
+                        <%#= link_to 'Bid', 'www.google.com', :class=>"faded_links"  %>
+                        <label class="faded_links">Bid</label>
+                    <% end %>
+		        </p>
+                <p class="buy">
+                    <% if tt > 0 %>
+                        <% if isadmin? %>
+                            <%= link_to 'Buy',  buynow_buynow_index_path(:id => servicelisting), :class=>"links bid_popup"  %>
+                        <% elsif is_barowner? %>
+                            <%= link_to 'Buy',  buynow_buynow_index_path(:id => servicelisting), :class=>"links bid_popup"  %>
+                        <% elsif current_user %>
+                            <%= link_to 'Buy',  buynow_buynow_index_path(:id => servicelisting), :class=>"links bid_popup"  %>
+                        <% else %>
+                            <%= link_to 'Buy',  buynow_buynow_index_path(:id => servicelisting), :class=>"links"  %>
+                        <% end %>
+                    <% else %>
+                        <label class="faded_links">Buy</label>
+                    <% end %>
+		        </p>
+                <p class="higher">
+                    <%@servicelisting = servicelisting %>
+                    <% if current_user %>
+                        <% @userhighbid = nil %>
+                        <% @servicelisting.bids.each do |bid| %>
+                            <% if bid.user_id == current_user.id %>
+                                <% if @userhighbid.nil? %>
+                                    <% @userhighbid = bid.bidprice %>
+                                    <% next %>
+                                <% end %>
+                                <% if bid.user_id == current_user.id %>
+                                    <% if @userhighbid < bid.bidprice %>
+                                        <% @userhighbid = bid.bidprice %>
+                                    <%end %>
+                                <%end %>
+                            <%end%>
+                        <%end%>
+                        <% if !@userhighbid.nil? %>
+                            <% if @userhighbid == @servicelisting.highestbid %>
+                                <% if tt >0 %>
+                                    <%= image_tag "auth/flashstar (1).gif", :size => "15x15" %><font color="#009900">You are the highest bidder</font>
+                                <% end %>
+                            <% else%>
+                                <% if tt >0 %>
+                                    <font color="#FF0000"> You are outbid by <%= @servicelisting.highestbid - @userhighbid %>$ </font>
+                                <% end %>
+                            <%end %>
+                        <%else %>
+                            <% if tt > 0 %>
+                                <font color="#FF0000"> You have not bid on this service </font>
+                            <%end%>
+                        <% end %>
+                    <% end%>
+                </p>
+            </div>
+            <div class="clear"></div>
+            <% if isadmin? %>
+                <div class="admin-links">
+                    <span class="edit"><%= link_to 'Edit', edit_servicelisting_path(servicelisting, :indicator => "ed")%></span>&nbsp;|&nbsp;
+                    <span class="delete"><%= link_to 'Destroy', servicelisting, :confirm => 'Are you sure?', :method => :delete %></span>
+                </div>
+		    <%end%>
+        </div>
+    <% end %>
 </div>		
 <%= will_paginate @servicelistings %>
 
