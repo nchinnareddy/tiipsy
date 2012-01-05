@@ -146,6 +146,16 @@ end
   def update
     @servicelisting = Servicelisting.find(params[:id])
 
+    @bar_name = @servicelisting.bar_name
+    @barbussiness = BarBussiness.find(:first, :conditions => ['name=?',@bar_name])
+    @servicelisting.person_of_contact = @barbussiness.person_of_contact
+    @servicelisting.email = @barbussiness.email
+    @servicelisting.website = @barbussiness.website
+    @servicelisting.location = @barbussiness.address
+    @servicelisting.city = @barbussiness.city
+    @servicelisting.phone = @barbussiness.phone
+    @servicelisting.bar_name = @barbussiness.name
+
     respond_to do |format|
       if @servicelisting.update_attributes(params[:servicelisting])
         format.html { redirect_to(@servicelisting, :notice => 'Servicelisting was successfully updated.') }
