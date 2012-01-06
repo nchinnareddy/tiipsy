@@ -1,150 +1,110 @@
 <% javascript('jquery.countdown','jquery.colorbox-min')%>
 <% stylesheet('jquery.countdown','colorbox')%>
-<!--
-<style type="text/css">
-	.countdown_amount {
-		font-size: 15px;
-		color: red;
-	}
-</style>
--->
 
+<% availability_date = DateTime.parse(@servicelisting.availability.to_s)%>
+<% time_now = DateTime.parse(DateTime.now.to_s)%>
+<% time_until = availability_date - time_now %>
+<% t = time_until.to_f %>
+<% tt = t*(86400) %>
 
-	<% availability_date = DateTime.parse(@servicelisting.availability.to_s)%>
-	<% time_now = DateTime.parse(DateTime.now.to_s)%>
-	<% time_until = availability_date - time_now %>
-	<% t = time_until.to_f %>
-	<% tt = t*(86400) %><br/>
-	
-<div id="servicelisting_links">
-	<ul>
-		<li><%= link_to "All Bottle Services", root_path %></li>
-		<li><%= link_to "How it Works", how_it_works_users_path %></li>										
-	</ul>
+<div class="servicelisting_links">
+  <ul>
+    <li><%= link_to "All Bottle Services", root_path %></li>
+    <li><%= link_to "How it Works", how_it_works_users_path %></li>
+  </ul>
 </div>
-<div id="servicelisting" >
-	<p class="title"><%= @servicelisting.title %></p>
-	<p class="picture"><%= image_tag @servicelisting.photo.url, :size => "320x320", :style =>"border:1px solid #fff;-moz-border-radius:10px;-webkit-border-radius:10px;" %></p>
-	<p class="bid">
-		  <% if tt > 0 %>
-		<% if isadmin? %>
-			<%= link_to 'Bid', new_servicelisting_bid_path(@servicelisting), :class=>"links bid_popup"  %>
-		<% elsif is_barowner? %>
-			<%= link_to 'Bid', new_servicelisting_bid_path(@servicelisting), :class=>"links bid_popup"  %>
-		<% elsif current_user %>
-			<%= link_to 'Bid', new_servicelisting_bid_path(@servicelisting), :class=>"links bid_popup"  %>
-		<% else %>
-				<%= link_to 'Bid', new_servicelisting_bid_path(@servicelisting), :class=>"links"  %>
-	    <% end %>
-		<% else %>
-                              <%#= link_to 'Bid', 'www.google.com', :class=>"faded_links"  %>
-                              <label class="faded_links">Buy</label>
-                      <% end %>
-	</p>
-	<p class="buy">
-		  <% if tt > 0 %>
-		<% if isadmin? %>
-			<%= link_to 'Buy',  buynow_buynow_index_path(:id => @servicelisting), :class=>"links bid_popup"  %>
-		<% elsif is_barowner? %>
-			<%= link_to 'Buy',  buynow_buynow_index_path(:id => @servicelisting), :class=>"links bid_popup"  %>
-		<% elsif current_user %>
-			<%= link_to 'Buy',  buynow_buynow_index_path(:id => @servicelisting), :class=>"links bid_popup"  %>
-		<% else %>
-			<%= link_to 'Buy',  buynow_buynow_index_path(:id => @servicelisting), :class=>"links"  %>
-		<% end %>
-		<% else %>
-                              <%#= link_to 'Bid', 'www.google.com', :class=>"faded_links"  %>
-                              <label class="faded_links">Bid</label>
-                      <% end %>
-	</p>
-	<p class="current_value">Current Value</p>
-	<p class="current_value_fet">$<%= @servicelisting.highestbid %></p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p class="buynow_value">Buynow Value</p>
-	<p class="buynow_value_fet">$<%= @servicelisting.price %></p>
-	<p class="time_left">Time Left</p>
-	<table width="100px">
-		<tr>
-			<td>
-			<% if tt >= 0 %>
-				<div class="jdt" start="<%= tt %>" ></div>
-			<% else %>
-			<p class="time_left_fet">
-				Closed
-			</p>
-			<% end %>	
-		</td></tr></table>
-	<p class="share">
-		Share:
-		<iframe id="facebook" src="http://www.facebook.com/plugins/send.php?href=YOUR_URL" scrolling="no" frameborder="0" style="border:none; width:450px; height:80px"></iframe>
-		<iframe id="twitter" allowtransparency="true" frameborder="0" scrolling="no" src="http://platform.twitter.com/widgets/tweet_button.html" style="width:130px; height:50px;"></iframe>
-		</p>	
-	<p class="max_allowed_guests">Allowed Guests</p>
-	<p class="max_allowed_guests_fet"><%= @servicelisting.no_of_guests %></p>
-	<p class="total_active_bidders">Active Bidders</p>
-	<p class="total_active_bidders_fet"><%= @total_active_bidder %></p>
-	</br>
-	<div id="details">
-		<p class="spot">The Spot</p>
-		<p class="city"><%= @servicelisting.city %></p>
-		<p class="maps"><div id="map_details"><%= image_tag "http://maps.google.com/maps/api/staticmap?size=400x200&sensor=false&zoom=15&markers=#{@servicelisting.location}" %></div></p>
-		<p class="address_fet"><%= @servicelisting.location %></p>
-		<p class="info">The Info</p>
-		<p class="description_details"><%= @servicelisting.description %></p>
-	</div>
-</div>
-</br>
 
-<!--
-<div>
-	<iframe id="map_details" src="http://localhost:3000/locations?address=<%=@servicelisting.location%>"></iframe>
+<div class="servicelisting">
+  <div class="picture">
+    <%= image_tag @servicelisting.photo.url, :size => "320x320", :style =>"border:1px solid #fff;-moz-border-radius:10px;-webkit-border-radius:10px;" %>
+  </div>
+  <div class="details">
+    <table>
+      <tr>
+        <td colspan="2"><div class="title"><%= @servicelisting.title %></div></td>
+      </tr>
+      <tr>
+        <td class="bid" align="center">
+          <% if tt > 0 %>
+              <% if isadmin? %>
+                  <%= link_to 'Bid', new_servicelisting_bid_path(@servicelisting), :class=>"link_button bid_popup"  %>
+              <% elsif is_barowner? %>
+                  <%= link_to 'Bid', new_servicelisting_bid_path(@servicelisting), :class=>"link_button bid_popup"  %>
+              <% elsif current_user %>
+                  <%= link_to 'Bid', new_servicelisting_bid_path(@servicelisting), :class=>"link_button bid_popup"  %>
+              <% else %>
+                  <%= link_to 'Bid', new_servicelisting_bid_path(@servicelisting), :class=>"link_button"  %>
+              <% end %>
+          <% else %>
+              <%#= link_to 'Bid', 'www.google.com', :class=>"faded_links"  %>
+              <label class="faded_links">Buy</label>
+          <% end %>
+        </td>
+        <td class="buy" align="center">
+          <% if tt > 0 %>
+              <% if isadmin? %>
+                  <%= link_to 'Buy',  buynow_buynow_index_path(:id => @servicelisting), :class=>"link_button bid_popup"  %>
+              <% elsif is_barowner? %>
+                  <%= link_to 'Buy',  buynow_buynow_index_path(:id => @servicelisting), :class=>"link_button bid_popup"  %>
+              <% elsif current_user %>
+                  <%= link_to 'Buy',  buynow_buynow_index_path(:id => @servicelisting), :class=>"link_button bid_popup"  %>
+              <% else %>
+                  <%= link_to 'Buy',  buynow_buynow_index_path(:id => @servicelisting), :class=>"link_button"  %>
+              <% end %>
+		  <% else %>
+              <%#= link_to 'Bid', 'www.google.com', :class=>"faded_links"  %>
+              <label class="faded_links">Bid</label>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <td class="label">Allowed Guests</td><td class="value" style="color:#4DBCE9;"><%= @servicelisting.no_of_guests %></td>
+      </tr>
+      <tr>
+        <td class="label">Current Value</td><td class="value" style="color: #A1C436">$<%= @servicelisting.highestbid %></td>
+      </tr>
+      <tr>
+        <td class="label">Buynow Value</td><td class="value" style="color: #A1C436">$<%= @servicelisting.price %></td>
+      </tr>
+      <tr>
+        <td class="label">Time Left</td>
+        <td class="value">
+          <% if tt >= 0 %>
+              <div class="jdt time_countdown" start="<%= tt %>" ></div>
+		  <% else %>
+              <p class="time_left_fet">Closed</p>
+		  <% end %>
+        </td>
+      </tr>
+      <tr>
+        <td class="label">Active Bidders</td><td class="value" style="color:#4DBCE9;"><%= @total_active_bidder %></td>
+      </tr>
+    </table>
+    <div style="text-align: right;">
+        <iframe allowtransparency="true" frameborder="0" scrolling="no" src="http://platform.twitter.com/widgets/tweet_button.html" style="width: 150px;height: 50px;"></iframe>
+        <iframe src="http://www.facebook.com/plugins/send.php?href=YOUR_URL" scrolling="no" frameborder="0" style="width: 150px;height: 50px;"></iframe>
+    </div>
+  </div>
+  <div class="clear"></div>
+  <div class="details2">
+    <div class="map">
+      <div style="text-align: center;margin-bottom: 5px;"><label class="spot">The Spot</label>&nbsp;&nbsp;<label class="city"><%= @servicelisting.city %></label></div>
+      <div class="map_img"><%= image_tag "http://maps.google.com/maps/api/staticmap?size=400x200&sensor=false&zoom=15&markers=#{@servicelisting.location}" %></div>
+	  <p class="address"><%= @servicelisting.location %></p>
+    </div>
+    <div class="description">
+      <div style="text-align: center;margin-bottom: 5px;"><label class="info">The Info</label></div>
+      <div class="description_details">
+        <%= @servicelisting.description %>
+      </div>
+    </div>
+    <div class="clear"></div>
+  </div>
 </div>
--->
-<!--
-<div id="map_details">
-		......
+<div class="clear"></div>
+<div style="margin-top: 10px;">
+    <%= link_to 'Back', servicelistings_path , :class=>"link_button" %>
 </div>
--->
-<!--
-<table width="800" border="0" style="border:1px #993300 solid "  align="center">
-  <tr>
-    <td height="36" colspan="3">
-    	<font style="font-size:30px; color:#000000; font-family:Lucida Calligraphy"><%= @servicelisting.title %></font>    </td>
-    <td width="214">
-    	<%= link_to 'Bid', new_servicelisting_bid_path(@servicelisting), :class=>"links"  %>
-    	<%= link_to 'Buy now',  buynow_buynow_index_path(:id => @servicelisting), :class=>"links"  %>    </td>
-  </tr>
-  <tr>
-    <td width="193" rowspan="3">
-    	<p>
-  			<b>Address:</b>
-  			<%= @servicelisting.location %></p>
-    	<p style="font-size:15px">
-  			<%= @servicelisting.description %>		</p>	</td>
-    <td colspan="2" rowspan="3">
-    	<%= image_tag @servicelisting.photo.url, :size => "300x300" %>    </td>
-    <td>	
-    	<div class="jdt" start="<%= tt %>" ></div>	
-    </td>
-  </tr>
-  
-  <tr>
-    <td height="79">
-    	<p style="font-size:17px">
-  			No of guests:
-  			<font style="font-size:14px; color:#FF0000"><%= @servicelisting.no_of_guests %></font>	</p>	</td>
-  </tr>
-  <tr>
-    <td height="74">
-    	<font style="font-size:17px;">HighestBid:</font></b><font style="font-size:14px; color:#FF0000">$<%= @servicelisting.highestbid %></font>
-    </td>
-  </tr>
-</table>
--->
-
-
-<%= link_to 'Back', servicelistings_path , :class=>"links" %>
 
 <%= javascript_tag do%>
 	var sevice_location = "<%= @servicelisting.location%>";
@@ -153,8 +113,7 @@
 <script type="text/javascript">
 	$('.jdt').countdown({
 		until:$('.jdt').attr('start'),
-		format:'DHMS',
-		compact: true
+		layout: '{dn} {dl} {hnn}{sep}{mnn}{sep}{snn}'
 	});	
 	
 	//$("#map_details").load("http://localhost:3000/locations?address="+encodeURI(sevice_location));
