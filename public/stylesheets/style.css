@@ -88,9 +88,9 @@ a {
 #header {  	 
  	 background: repeat scroll 0 0 transparent;
 	 background-color: #0C294A;
-	 padding: 10px 10px;
+	 padding: 10px 0px;
 	 margin-bottom: 10px;
-	 min-height: 30px;
+	 min-height: auto;
 	 width: 100%;	 
 	 border-bottom: 1px solid #3377AA;	 
 	 opacity: 0.98;	 
@@ -126,7 +126,7 @@ a {
 	background: url(../images/auth/img06.jpg) no-repeat right 10px;
 	text-decoration: none;
 	font-family: Arial, Helvetica, sans-serif;
-	font-size: 12px;
+	font-size: 14px;
 	font-weight: normal;
 	color: #FFFFFF;
 	border: none;
@@ -180,7 +180,7 @@ a {
 }
 
 #container {
-	width: 75%;
+
   	margin: 0 auto;  	
   	padding: 20px 40px;  
   	min-height: 100%;  
@@ -191,7 +191,7 @@ a {
 	background: repeat scroll 0 0 transparent;
 	background-color: #242627;
 	margin-top: 20px;
-    padding: 15px;    
+    padding: 0px;    
     min-height: 70px;
 	width: 100%;
     opacity: 0.9;	
@@ -300,7 +300,7 @@ ul, ol {
 a {
 	text-decoration: none;
 	border: 0 none;
-	color: #B94E0E;
+	color: #FF6600;
 }
 
 a:hover {
@@ -333,12 +333,13 @@ a:hover {
     border-radius: 3px 3px 3px 3px;
     color: #FFFFFF;
     display: block;
-    font-size: 10px;
-    margin: 20px 0;
-    padding: 5px;
+    font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+    padding:6px 24px;
     text-align: center;
-    text-transform: uppercase;
-    width: 130px;
+    -moz-border-radius:5px;
+	-webkit-border-radius:5px;
 }
 
 .buttonlinks {
@@ -904,7 +905,7 @@ textarea {
 }
 
 .service_listing .description .more_details {
-    color: #03FB00;
+    color: #FF6600;
 }
 
 .service_listing .time_left {
@@ -914,7 +915,7 @@ textarea {
 
 .service_listing .time_closed {
     margin: 10px 0px;
-    font-size: 30px;
+    font-size: 20px;
     font-weight: bold;
     color: #FF0000;
 

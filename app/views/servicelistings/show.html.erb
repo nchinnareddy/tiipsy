@@ -36,8 +36,9 @@
                   <%= link_to 'Bid', new_servicelisting_bid_path(@servicelisting), :class=>"link_button"  %>
               <% end %>
           <% else %>
-              <%#= link_to 'Bid', 'www.google.com', :class=>"faded_links"  %>
+              <div style="padding: 0px; width: 90px;">
               <label class="faded_links">Buy</label>
+              </div>
           <% end %>
         </td>
         <td class="buy" align="center">
@@ -52,8 +53,9 @@
                   <%= link_to 'Buy',  buynow_buynow_index_path(:id => @servicelisting), :class=>"link_button"  %>
               <% end %>
 		  <% else %>
-              <%#= link_to 'Bid', 'www.google.com', :class=>"faded_links"  %>
+		  	<div style="padding: 0px; width: 90px;">
               <label class="faded_links">Bid</label>
+              </div>
           <% end %>
         </td>
       </tr>
