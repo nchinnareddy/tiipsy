@@ -58,7 +58,7 @@
 					<% if is_barowner? %>
 				    	<li><%= link_to "Home",  bar_bussinesses_path %></li>
 				    <% end %>
-					<li><%= link_to "Profile", profile_users_path(current_user) %></li>
+					<li><%= link_to "Profile", user_path(current_user) %></li>
 					<li><%= link_to "My Account", account_users_path(:id => current_user.id) %></li>					
 					<% if auth_provider.nil? %>
 						<li><%= link_to "Change Password", change_password_users_path %></li>				
