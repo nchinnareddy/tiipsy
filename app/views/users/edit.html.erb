@@ -1,5 +1,5 @@
 <% stylesheet('simple-tabs','colorbox') %>
-<div id="signup">
+<div>
 	<ul class="simple-tabs">
 		<li><%= link_to "Edit Profile","#tab1" %></li>
 		<!-- Activate credit card tab -->
@@ -23,29 +23,29 @@
     <td align="center" colspan="3"><h3 align="center" style="color:#48B9E9"> Update Your Profile</h3></td>
   </tr>
   <tr>
-    <td><div align="right" style="font-size:x-large; color:#1781C1;"><%= f.label :email %></div></td>
+    <td><div class="form-label"><%= f.label :email %></div></td>
     <td width="7"><strong style="color:#48B9E9"></strong></td>
     <td><%= f.text_field :email, :class => "textfield_effect" %></td>
   </tr>
   <tr>
-    <td width="40%"><div align="right" style="font-size:x-large; color:#1781C1;"><%= f.label :first_name %></div></td>
+    <td width="40%"><div class="form-label"><%= f.label :first_name %></div></td>
     <td width="1%"><strong style="color:#48B9E9"></strong></td>
     <td width="59%"><%= f.text_field :first_name, :class => "textfield_effect" %></td>
   </tr>
   <tr>
-    <td width="40%"><div align="right" style="font-size:x-large; color:#1781C1;"><%= f.label :last_name %></div></td>
+    <td width="40%"><div class="form-label"><%= f.label :last_name %></div></td>
     <td width="1%"><strong style="color:#48B9E9"></strong></td>
     <td width="59%"><%= f.text_field :last_name, :class => "textfield_effect" %></td>
   </tr>
   <tr>
-    <td><div align="right" style="font-size:x-large; color:#1781C1;"><%= f.label :city %></div></td>
+    <td><div class="form-label"><%= f.label :city %></div></td>
     <td width="7"><strong style="color:#48B9E9"></strong></td>
     <td><%= f.select :city, StaticData.cities, :include_blank => true, :style => "width:197px" %></td>
   </tr>
   <tr>
     <td></td>
     <td width="7"></td>
-	<td><%= f.submit "Update" ,:class => "links" %></td>
+	<td style="padding: 5px 0;"><%= f.submit "Update" ,:class => "link_button" %></td>
   </tr>
 </table>
   

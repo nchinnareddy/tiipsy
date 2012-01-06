@@ -1,8 +1,20 @@
 <% javascript('jquery.colorbox-min') %>
 <% stylesheet('colorbox') %>
 
+<style type="text/css">
+  .form_credit_card table td {
+      padding: 5px 0;
+  }
 
-<%= form_for @credit_card, :url => {:controller => "credit_cards", :action => "create" } do |f| %>
+  .form_credit_card .form-label {
+       text-align: right;
+       color:#FFFFFF;
+       font-size: 18px;
+  }
+</style>
+
+
+<%= form_for @credit_card, :url => {:controller => "credit_cards", :action => "create" }, :html => {:class => "form_credit_card"} do |f| %>
   <% if @credit_card.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@credit_card.errors.count, "error") %> prohibited this credit_card from being saved:</h2>
@@ -23,48 +35,48 @@
     <td colspan="3"><h3 align="center" style="color:#48B9EE"> By entering the credit card details you are accepting the <%= link_to '"Terms & Conditions"', term_condition_users_path , :class=>'term_condition' %></> </h3></td>
   </tr>  
   <tr>
-    <td width="40%"><div align="right" style="color:#FFFFFF">First Name </div></td>
-    <td width="1%"><strong style="color:#48B9E9">:</strong></td>
+    <td width="40%"><div class="form-label">First Name </div></td>
+    <td width="1%"></td>
     <td width="59%"><%= f.text_field :first_name,  :class => "textfield_effect" %></td>
   </tr>
   <tr>
-    <td><div align="right" style="color:#FFFFFF">Last Name </div></td>
-    <td width="1%"><strong style="color:#48B9E9">:</strong></td>
+    <td><div class="form-label">Last Name </div></td>
+    <td width="1%"></td>
     <td><%= f.text_field :last_name , :class => "textfield_effect"%></td>
   </tr>
   <tr>
-    <td><div align="right" style="color:#FFFFFF">Card Type </div></td>
-    <td width="1%"><strong style="color:#48B9E9">:</strong></td>
+    <td><div class="form-label">Card Type </div></td>
+    <td width="1%"></td>
     <td><%= f.select :card_type, [["Visa", "visa"], ["MasterCard", "master"], ["Discover", "discover"], ["American Express", "american_express"]] %></td>
   </tr>
   <tr>
-    <td><div align="right" style="color:#FFFFFF">Card Number </div></td>
-    <td width="1%"><strong style="color:#48B9E9">:</strong></td>
+    <td><div class="form-label">Card Number </div></td>
+    <td width="1%"></td>
     <td><%= f.text_field :card_number , :class => "textfield_effect"%></td>
   </tr>
   <tr>
-    <td><div align="right" style="color:#FFFFFF">Card Verification Value(CVV) </div></td>
-    <td width="1%"><strong style="color:#48B9E9">:</strong></td>
+    <td><div class="form-label">Card Verification Value(CVV) </div></td>
+    <td width="1%"></td>
     <td><%= f.text_field :card_verification , :class => "textfield_effect"%></td>
   </tr>
   <tr>
-    <td><div align="right" style="color:#FFFFFF">Card Expires On </div></td>
-    <td width="1%"><strong style="color:#48B9E9">:</strong></td>
+    <td><div class="form-label">Card Expires On </div></td>
+    <td width="1%"></td>
     <td><%= f.date_select :card_expires_on, :discard_day => true, :start_year => Date.today.year, :end_year => (Date.today.year+10), :add_month_numbers => true %></td>
   </tr>
   <tr>
-    <td><div align="right" style="color:#FFFFFF">Address</div></td>
-    <td width="1%"><strong style="color:#48B9E9">:</strong></td>
+    <td><div class="form-label">Address</div></td>
+    <td width="1%"></td>
     <td><%= f.text_field :address , :class => "textfield_effect"%></td>
   </tr>
   <tr>
-    <td><div align="right" style="color:#FFFFFF">City</div></td>
-    <td width="1%"><strong style="color:#48B9E9">:</strong></td>
+    <td><div class="form-label">City</div></td>
+    <td width="1%"></td>
     <td><%= f.text_field :city , :class => "textfield_effect"%></td>
   </tr>
   <tr>
-    <td><div align="right" style="color:#FFFFFF">State Name </div></td>
-    <td width="1%"><strong style="color:#48B9E9">:</strong></td>
+    <td><div class="form-label">State Name </div></td>
+    <td width="1%"></td>
     <td>
 		<%= f.select :state_name, options_for_select([
 													  [ "Alabama", "AL" ],
@@ -122,17 +134,24 @@
 	</td>
   </tr>
   <tr>
-    <td><div align="right" style="color:#FFFFFF">Zip</div></td>
-    <td width="1%"><strong style="color:#48B9E9">:</strong></td>
+    <td><div class="form-label">Zip</div></td>
+    <td width="1%"></td>
     <td><%= f.text_field :zip , :class => "textfield_effect"%></td>
   </tr>
   <tr>
     <td></td>
     <td></td>
-    <td><%= f.submit "Submit" %></td>
+    <td><%= f.submit "Submit", :class=>"link_button" %></td>
   </tr>
 </table>
 <% end %>
+
+<div class="cc_images" style="margin: 5px 0;padding: 5px 30px 5px 170px;text-align: center;">
+  <%= image_tag "/images/american_express_curved_64px.png", :style=>"height:40px;"%>&nbsp;
+  <%= image_tag "/images/discover_curved.png", :style=>"height:40px;"%>&nbsp;
+  <%= image_tag "/images/mastercard_curved.png", :style=>"height:40px;"%>&nbsp;
+  <%= image_tag "/images/visa_curved.png", :style=>"height:40px;"%>&nbsp;
+</div>
 
 <script type='text/javascript'>
 	$('.term_condition').colorbox();

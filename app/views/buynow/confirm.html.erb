@@ -1,6 +1,12 @@
 <% javascript('jquery.colorbox-min') %>
 <% stylesheet('colorbox') %>
-<div id="signup">
+
+<style type="text/css">
+
+
+</style>
+
+<div id="signup" style="width: 700px;">
  <br><br>	
  <p style="color:#FFFFFF" align="center"> Submitting this transaction, you are accepting all
    <%= link_to '"Terms & Conditions"', term_condition_users_path, :class=>'term_condition' %></p>
@@ -11,18 +17,17 @@
 	  <%= f.hidden_field :servicelisting_id, :value => @serviceid %>	 
 	<table width="100%" border="0">	
       <tr>
-    	<td width="44%" height="69" align="right" style="color:#FFFFFF"> Bottle Service:</td>
-		<td width="56%" align="left" style="color:#48B9E9"> <%= @sl.title%></td>
+    	<td width="44%" height="69" align="right" style="color:#FFFFFF;font-size: 18px;"> Bottle Service:&nbsp;&nbsp;&nbsp;</td>
+		<td width="56%" align="left" style="color:#48B9E9;font-size: 18px;"> <%= @sl.title%></td>
 	  </tr>
 	  <tr>	
-		<td height="59" align="right" style="color:#FFFFFF">Price:</td>
-		<td align="left" style="color:#48B9E9" >$<%= @new_cost %></td>
+		<td height="10" align="right" style="color:#FFFFFF;font-size: 18px;">Price:&nbsp;&nbsp;&nbsp;</td>
+		<td align="left" style="color:#48B9E9;font-size: 18px;" >$<%= @new_cost %></td>
 	  </tr>
-	  <tr>	
-		<td height="65" align="right"></td>
-    	<td align="left"><%= f.submit "Submit" %></td>
-     </tr>
    </table>
+   <div style="text-align: center;margin: 10px 0;">
+     <%= f.submit "Submit", :class=>"link_button" %>
+   </div>
 <% end %>
 
 </div>

@@ -1113,6 +1113,13 @@ textarea {
 	color:#000;
 }
 
+/*New CSS changes*/
+.form-label {
+    text-align: right;
+    font-size:x-large;
+    color:#1781C1;
+}
+
 /* Link Button */
 .link_button {
     -moz-box-shadow:inset 0px 1px 0px 0px #bbdaf7;
@@ -1152,7 +1159,8 @@ textarea {
 /* Servicelistings Controller */
 /* index*/
 .service_listings {
-
+    width: 900px;
+    margin: 0 auto;
 }
 
 .service_listing {
@@ -1195,13 +1203,15 @@ textarea {
 .service_listing .title {
     color: #FFFFFF;
     font-size: 30px;
+    font-family:  Georgia,"Times New Roman",Times,serif;
     cursor: default;
+
     margin-bottom: 5px;
 }
 
 .service_listing .description {
     color: #FFFFFF;
-    font-size: 12px;
+    font-size: 13px;
     margin: 5px;
     padding: 10px 0;
     text-align: justify;
@@ -1214,6 +1224,7 @@ textarea {
 
 .service_listing .time_left {
     margin: 10px 0px;
+    font-size: 25px;
 }
 
 .service_listing .time_closed {

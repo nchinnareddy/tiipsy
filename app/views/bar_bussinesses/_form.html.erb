@@ -1,7 +1,13 @@
 <% stylesheet('datePicker')%>
 <% javascript('jquery.datePicker', 'date')%>
 
-<%= form_for @bar_bussiness, :validate => true, :html => { :multipart => true } do |f| %>
+<style type="text/css">
+  .form_bar_bussiness table td{
+      padding: 5px 0;
+  }
+</style>
+
+<%= form_for @bar_bussiness, :validate => true, :html => { :multipart => true, :class => "form_bar_bussiness" } do |f| %>
   <!--
   <% if @bar_bussiness.errors.any? %>
     <div id="error_explanation">
@@ -62,14 +68,7 @@
   <tr>
     <td width="40%"><div align="right" style="color:#FFFFFF">City </div></td>
     <td width="1%"></td>
-    <td width="59%"><%= f.select :city, options_for_select([
-    				[@bar_bussiness.city, @bar_bussiness.city],										
-					["Austin, TX ","Austin, TX "],
-					["Chicago, IL","Chicago, IL"],	 
-					["Dallas, TX","Dallas, TX"],	
-					["Houston, TX","Houston, TX"],	
-					["San Antonio, TX","San Antonio, TX"]  														
- 					]), :style => "width:197px" %></td>					
+    <td width="59%"><%= f.select :city, StaticData.cities, :include_blank => true, :style => "width:197px" %></td>
   </tr>
   <tr>
     <td width="40%"><div align="right" style="color:#FFFFFF">Website </div></td>
@@ -91,7 +90,7 @@
   <tr>
     <td width="40%"><div align="right" style="color:#FFFFFF">Upload Image </div></td>
     <td width="1%"></td>
-    <td width="59%"><%= f.file_field :photo, :class => "textfield_effect" %><label style="color:#4DBCE9">Upload Image ( 2MB max)</label></td>
+    <td width="59%"><%= f.file_field :photo, :class => "textfield_effect" %><br><label style="color:#4DBCE9">Upload Image ( 2MB max)</label></td>
   </tr>
   
   <!--

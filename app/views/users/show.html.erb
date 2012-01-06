@@ -1,53 +1,55 @@
-<div id="checkout_site">
-<% title "#{@user.login}'s profile"%>
-<% if params[:provider] == 'facebook' -%>
-  
-        <div id="fb-root"></div>
-                 <script>
-                   window.fbAsyncInit = function() {
-                     FB.init({
-                       appId  : '262855740409040',
-                       status : true, // check login status
-                       cookie : true, // enable cookies to allow the server to access the session
-                       xfbml  : true  // parse XFBML
-                     });
-                   };
+<% title "User Profile"%>
+<% stylesheet('simple-tabs','colorbox') %>
 
-                  (function() {
-                    var e = document.createElement('script');
-                    e.src ='http://connect.facebook.net/en_US/all.js';
-                    e.async = false;
-                    document.getElementById('fb-root').appendChild(e);
-                  }());
-                </script>
+<div id="checkout_site" style="display: none;">
+    <% if params[:provider] == 'facebook' -%>
+        <div id="fb-root"></div>
+        <script>
+            window.fbAsyncInit = function() {
+                FB.init({
+                    appId      : '262855740409040', // App ID
+                    status     : true, // check login status
+                    cookie     : true, // enable cookies to allow the server to access the session
+                    xfbml      : true  // parse XFBML
+                });
+            };
+
+            // Load the SDK Asynchronously
+            (function(d){
+                var js, id = 'facebook-jssdk'; if (d.getElementById(id)) {return;}
+                js = d.createElement('script'); js.id = id; js.async = true;
+                js.src = "//connect.facebook.net/en_US/all.js";
+                d.getElementsByTagName('head')[0].appendChild(js);
+            }(document));
+        </script>
+
+        <fb:serverFbml>
+            <script type="text/fbml">
+                <fb:fbml>
+                    <fb:request-form
+                        action="http://apps.facebook.com/socialcheers/?ref=ts"
+                        target="_top"
+                        method="GET"
+                        invite="true"
+                        type="Get your bottle service now"
+                        content="Invitation! &lt;fb:req-choice url=&quot;http://apps.facebook.com/socialcheers/?ref=ts&quot; label=&quot;Let me check my friends&quot; /&gt;"
+                    >
+                    <fb:multi-friend-selector showborder="false" actiontext="Invite your friends CLICK ON PICTURE TO SELECT" rows="5" cols="5" bypass="cancel" target="_top" />
+                    </fb:request-form>
+                </fb:fbml>
+            </script>
+        </fb:serverFbml>
         
-           <fb:serverFbml>
-    <script type="text/fbml">
-        <fb:fbml>
-            <fb:request-form
-                action="http://apps.facebook.com/socialcheers/?ref=ts"
-                target="_top"
-                method="GET"
-                invite="true"
-                type="Get your bottle service now"
-                content="Invitation! &lt;fb:req-choice url=&quot;http://apps.facebook.com/socialcheers/?ref=ts&quot; label=&quot;Let me check my friends&quot; /&gt;"
-            >
-                <fb:multi-friend-selector showborder="false" actiontext="Invite your friends CLICK ON PICTURE TO SELECT"  rows="5" cols="5"  bypass="cancel" target="_top"  />
-            </fb:request-form>
-        </fb:fbml>
-    </script>
-</fb:serverFbml>
-        
-<% end -%>
+    <% end -%>
 
 <% if params[:provider] == "twitter" -%>
      </br><p align="center"></p><a href="http://twitter.com/share" class="twitter-share-button" data-count="vertical">Tweet</a>
     <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script></br>
 <% end -%>
+</div>
 
-<% stylesheet('simple-tabs','colorbox') %>
 
-<div id="signup">
+<div>
 	<ul class="simple-tabs">
 		<li><%= link_to "Profile","#tab1" %></li>
 		<!-- Activate credit card tab -->
@@ -74,25 +76,32 @@
     <td colspan="3"><h3 align="center" style="color:#48B9E9">Profile</h3></td>
     </tr>
    <tr>
-    <td><div align="right" style="font-size:large; color:#1781C1;">Email </div></td>
+    <td><div class="form-label">Email </div></td>
     <td width="1%"><strong style="color:#48B9E9"></strong></td>
     <td style="font-size:x-large;"><%= @user.email %></td>
   </tr>
   <tr>
-    <td width="40%"><div align="right" style="font-size:large; color:#1781C1;">First Name</div></td>
+    <td width="40%"><div class="form-label">First Name</div></td>
     <td width="1%"><strong style="color:#48B9E9"></strong></td>
     <td style="font-size:x-large;" width="59%"><%= @user.first_name %></td>
   </tr>
   <tr>
-    <td width="40%"><div align="right" style="font-size:large; color:#1781C1;">Last Name</div></td>
+    <td width="40%"><div class="form-label">Last Name</div></td>
     <td width="1%"><strong style="color:#48B9E9"></strong></td>
     <td style="font-size:x-large;" width="59%"><%= @user.last_name %></td>
   </tr>
   <tr>
-    <td><div align="right" style="font-size:large; color:#1781C1;">City </div></td>
+    <td><div class="form-label">City </div></td>
     <td width="1%"><strong style="color:#48B9E9"></strong></td>
     <td style="font-size:x-large;"><%= @user.city %></td>
   </tr>
+  <tr>
+    <td colspan="2"></td>
+    <td style="padding: 5px 0;">
+      <%= link_to "Edit Profile", edit_user_path(current_user), :class => "link_button"  %>
+    </td>
+  </tr>
+  <!--
   <tr>
     <td colspan="3"><h3 align="center" style="font-size:large; color:#1781C1;">Your Connections</h3></td>
   </tr>
@@ -103,9 +112,9 @@
 		<% end %>
 		<%= link_to image_tag("auth/google_64.png"), "/auth/open_id?openid_url=https://www.google.com/accounts/o8/id" %>
 	</td>
-  </tr>
+  </tr>-->
 </table>
 </div>
 </div>
 </div>
-</div>
+
