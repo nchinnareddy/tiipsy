@@ -5,8 +5,7 @@ function remove_field(element, item) {
   element.up(item).remove();
 }
 
-
-
+//for footer
 $(window).bind("load", function() {
 	var footerHeight = 0,
            footerTop = 0,
@@ -34,3 +33,33 @@ $(window).bind("load", function() {
 	//$(window).scroll(positionFooter).resize(positionFooter);		 
  
 });
+
+//email validation
+function trim(str, chars) {
+    return ltrim(rtrim(str, chars), chars);
+}
+
+function ltrim(str, chars) {
+    chars = chars || "\\s";
+    return str.replace(new RegExp("^[" + chars + "]+", "g"), "");
+}
+
+function rtrim(str, chars) {
+    console.log(str);
+    chars = chars || "\\s";
+    return str.replace(new RegExp("[" + chars + "]+$", "g"), "");
+}
+
+//validate email
+function validateEmail(field) {
+    var regex=/^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+    return (regex.test(trim(field))) ? true : false;
+}
+
+function validateMultipleEmailsCommaSeparated(value) {
+    var result = value.split(",");
+    for(var i = 0;i < result.length;i++)
+    if(!validateEmail(result[i]))
+            return false;
+    return true;
+}
