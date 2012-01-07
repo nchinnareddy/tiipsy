@@ -272,5 +272,36 @@ def credit_card
   def order_success
 
   end
+
+  #TODO Send invite by email
+  #Need move this action to respective controller
+  def invite_by_email
+
+    @errors = ''
+    emails = params[:emails].split(',')
+    servicelisting = Servicelisting.find(params[:servicelisting_id])
+    no_of_guests = servicelisting.no_of_guests.to_i
+    invites = GuestList.where(:user_id => current_user.id, :product => params[:order_id])
+
+    if(invites.size + emails.size <= no_of_guests)
+      emails.each do |email|
+        guest_list = GuestList.new({
+            :email => email.strip,
+            :user_id => current_user.id,
+            :product => params[:order_id]
+        })
+
+        if guest_list.save
+          Notifier.invite_friend_party(guest_list.email, params[:subject], params[:message]).deliver
+        end
+      end
+    else
+      @errors = "You can only invite #{no_of_guests} friends."
+    end
+
+    respond_to do |format|
+      format.js
+    end
+  end
  
 end

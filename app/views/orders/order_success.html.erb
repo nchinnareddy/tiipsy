@@ -1,3 +1,76 @@
+<% stylesheet('colorbox')%>
+<% javascript('jquery.colorbox-min')%>
+
+<% @order = Order.first %>
+<% servicelisting = @order.servicelisting %>
+
+<% subject = "You are invited to my party #{servicelisting.title}" %>
+<% message = "You are invited to my rocking party at '#{servicelisting.bar_name}'
+Venue: '#{servicelisting.location}'
+Date/Time: '#{servicelisting.availability.strftime('%m/%d/%Y at %I:%M')}'" %>
+
 <div class="order_success_message">
   Congratulations! Please check your email for your purchase details.
 </div>
+<div class="invites">
+    <%= link_to "Invite Friends by Email", "#", :class=>"invite_by_email" %>&nbsp;|&nbsp;
+    <%= link_to "Invite Gmail Contacts", contacts_path, :class => "invite_gmail_contacts"%>
+</div>
+
+<!-- invite_by_email -->
+<div class="hidden">
+  <div class="invite_by_email_div">
+    <%= form_tag '/orders/invite_by_email', :method => :post, :remote => true, :id => "invite_by_email_form" do -%>
+        <div class="form_box">
+            <%= hidden_field_tag :order_id, @order.id%>
+            <%= hidden_field_tag :servicelisting_id, servicelisting.id%>
+            <div class="form-field">
+              <label>To</label>
+              <%= text_field_tag "emails", '', :style=>"width:450px"%><br>
+              <span style="font-size: xx-small;">Enter emails with comma separated</span>
+            </div>
+            <div class="form-field">
+              <label>Subject</label>
+              <%= text_field_tag "subject", subject, :style=>"width:450px"%>
+            </div>
+            <div class="form-field">
+              <label>Message</label>
+              <%= text_area_tag "message", message, :style=>"width:450px;"%>
+            </div>
+            <div class="form-button">
+              <%= submit_tag "Invite", :class=>"link_button"%>
+            </div>
+        </div>
+    <% end -%>
+  </div>
+</div>
+
+<% javascript_tag do %>
+    var no_of_guests = <%= servicelisting.no_of_guests.to_i%>;
+<% end%>
+<script type="text/javascript">
+
+  $('.invite_by_email').click(function(e){
+      $.colorbox({href:'.invite_by_email_div', inline:true});
+      return false;
+  });
+
+  $('#invite_by_email_form').submit(function(){
+      //validate emails
+      var emails =  $('#emails').val().split(",");
+      if(!emails.length) {
+          alert('Enter email addresses to invite');
+          return false;
+      }
+      if(no_of_guests < emails.length) {
+          alert('Max emails allow is ' + no_of_guests + '. You entered ' + emails.length + ' emails');
+          return false;
+      }
+      for(i=0;i<emails.length;i++) {
+          if(!validateEmail(emails[i])) {
+              alert('Enter invalid email entered (' + emails[i] + ') Please check once');
+              return false;
+          }
+      }
+  });
+</script>

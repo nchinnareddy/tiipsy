@@ -15,6 +15,8 @@ class User < ActiveRecord::Base
   has_many :contacts
   has_one :credit_card
   has_many :orders
+  has_many :guest_lists
+
   validates_confirmation_of :password, :message => "Password and Password confirmation must match"    
   acts_as_authentic do |c|
     c.merge_validates_length_of_password_field_options({:minimum => 6})

@@ -147,5 +147,12 @@ class Notifier < ActionMailer::Base
     mail(:to => email,
          :subject => "Congratulations!!! Bottle Service Sold: Socialcheers - #{ product}")
   end
+
+  #invite friend by email
+  def invite_friend_party(email, subject, message)
+    @subject = subject
+    @message = message
+    mail(:to => email, :subject => subject)
+  end
   
 end

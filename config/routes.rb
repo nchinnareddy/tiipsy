@@ -1,14 +1,10 @@
 Socialstock::Application.routes.draw do
-   
-  resources :contacts
 
-  get "contacts/authorize"
-  
-  get "contacts/mail"
-  
-  get "contacts/send_mail"
-  
-  get "contacts/destroy"
+  resources :contacts do
+    collection do
+      get 'get_contacts'
+    end
+  end
    
   match "/contacts/:id" => "contacts#mail"
 
@@ -85,6 +81,7 @@ Socialstock::Application.routes.draw do
       get 'express'
       get 'bids_orders'
       get 'order_success'
+      post 'invite_by_email'
     end
   end
   
