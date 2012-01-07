@@ -1,0 +1,39 @@
+<% title 'Contacts' %>
+<% javascript("jquery.listnav-2.1")%>
+
+<div class="contacts-index">
+  <h2>Import Contacts</h2>
+  <p class="import_gmail_msg">Import your Gmail contacts to invite.</p>
+  <div style="margin: 10px 0;">
+    <%= link_to "Import Gmail Contacts", new_contact_path, :class=>"link_button"%>
+  </div>
+
+  <div style="border-bottom: 1px solid #000000;margin-bottom: 10px;"></div>
+
+  <h2>Your contacts</h2>
+  <p style="padding: 5px 15px;font-size: 14px;">You have <%= @contacts.size%> contacts</p>
+
+  <div class="contacts">
+    <div id="contacts-list-nav">
+
+    </div>
+    <ul id="contacts-list">
+      <% @contacts.each do |contact| %>
+          <% name = contact.username || contact.email%>
+          <li class="contact">
+            <div>
+              <%= check_box_tag "contact_email"%><label><%= name%></label>
+              <p><%= contact.email%></p>
+            </div>
+          </li>
+      <% end%>
+    </ul>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $('#contacts-list').listnav({
+      initLetter: 'a',
+      includeAll: false
+  });
+</script>
