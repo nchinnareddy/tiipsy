@@ -116,7 +116,7 @@
 					<% @orders.each do |order| %>
 					<tr bgcolor="#FFFFFF" onMouseOver="this.bgColor='#3399cc';" onMouseOut="this.bgColor='#FFFFFF';" >
                 		<td height="25" style="border-bottom:#DDDDDD 1px solid;border-left:#DDDDDD 1px solid;"><div align="center"><%= link_to "Details" , servicelisting_path(order.servicelisting.id) %></div></td>
-                		<td style="border-bottom:#DDDDDD 1px solid"><div align="center"><%= link_to "Guest List" , guest_list_users_path(:title => order.servicelisting.title) %></div></td>
+                		<td style="border-bottom:#DDDDDD 1px solid"><div align="center"><%= link_to "Guest List" , guest_list_users_path(:order_id => order.id) %></div></td>
 						<td style="border-bottom:#DDDDDD 1px solid"><div align="center"><%= order.servicelisting.title %></div></td>
 						<td style="border-bottom:#DDDDDD 1px solid"><div align="center"><%= order.amount.to_i %></div></td>
 						<td style="border-bottom:#DDDDDD 1px solid"><div align="center"><%= "Purchased" %></div></td>
