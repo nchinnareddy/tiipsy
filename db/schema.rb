@@ -92,7 +92,7 @@ ActiveRecord::Schema.define(:version => 20120104093722) do
     t.string   "address"
     t.string   "city"
     t.string   "state_name"
-    t.string   "country"
+    t.string   "country",           :default => "US"
     t.string   "zip"
     t.integer  "user_id"
     t.datetime "created_at"
@@ -158,7 +158,9 @@ ActiveRecord::Schema.define(:version => 20120104093722) do
 
   create_table "orders", :force => true do |t|
     t.integer  "user_id"
+    t.integer  "servicelisting_id"
     t.string   "description"
+    t.string   "ip_address"
     t.integer  "amount"
     t.string   "state"
     t.string   "express_token"
@@ -197,10 +199,11 @@ ActiveRecord::Schema.define(:version => 20120104093722) do
     t.string   "location"
     t.datetime "availability"
     t.float    "price"
-    t.float    "buynow_price"
+    t.float    "buynow_price",       :default => 0.0
     t.integer  "no_of_guests"
     t.float    "highestbid",         :default => 0.0
     t.string   "status",             :default => "active"
+    t.integer  "winner_id",          :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "photo_file_name"
@@ -219,13 +222,6 @@ ActiveRecord::Schema.define(:version => 20120104093722) do
     t.string   "category"
     t.string   "name"
     t.string   "value"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "transactions", :force => true do |t|
-    t.float    "amount"
-    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
