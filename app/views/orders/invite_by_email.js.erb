@@ -1,0 +1,5 @@
+<% if @errors == ''%>
+    $.colorbox.close();
+<% else%>
+    alert('<%= @errors%>');
+<% end%>

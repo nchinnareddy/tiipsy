@@ -174,9 +174,14 @@ class UsersController < ApplicationController
   end
   
   def guest_list
-    title = params[:title]
-    @guest_list = GuestList.find(:all, :conditions =>["product = ? ", title])
+    begin
+      @order = Order.find(params[:order_id])
+      @servicelisting = Servicelisting.find(@order.id)
+      @guest_list = GuestList.where(:user_id => current_user.id, :product => @order.id)
+    rescue
+      flash[:notice] = "Order was not found"
+      redirect_to account_users_path(:id => current_user.id)
+    end
   end
-
   
 end
