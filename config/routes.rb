@@ -82,6 +82,7 @@ Socialstock::Application.routes.draw do
       get 'bids_orders'
       get 'order_success'
       post 'invite_by_email'
+      get 'delete_invite'
     end
   end
   
