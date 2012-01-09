@@ -868,6 +868,50 @@ div.form_box {
 }
 /* End Link Button */
 
+/* Users controller*/
+/* guest_list*/
+.user_guest_list {
+    -moz-border-radius: 5px;
+	border-radius: 5px;
+    background-color: #FFFFFF;
+    border: 1px solid #202020;
+	min-height: 300px;
+    width: 75%;
+    margin: 0 auto;
+    padding: 30px;
+	opacity: 0.95;
+}
+
+.user_guest_list .title {
+    color: #4DBCE9;
+    font-family: Georgia,"Times New Roman",Times,serif;
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.guest_list {
+    margin: 10px 0px;
+    border-collapse: collapse;
+}
+
+.guest_list th {
+    font-size: 18px;
+    text-align: left;
+    text-decoration: underline;
+    padding: 5px;
+}
+
+.guest_list td {
+    padding: 5px;
+    text-align: left;
+    font-size: 14px;
+}
+
+.invite_more {
+    margin: 10px 0;
+}
+/* End Users*/
+
 /* Servicelistings Controller */
 /* index*/
 .service_listings {

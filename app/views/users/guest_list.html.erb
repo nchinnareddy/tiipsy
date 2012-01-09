@@ -1,30 +1,37 @@
-<div id="signup">
-<% debug @guest_list %>
-<% if @guest_list.length > 0 %>
-<table align="center" width="43%">
-	<tr>
-		<td colspan="4">
-			<p align="center" style="color:#0099CC;"> List of all Guests</p>	
-		</td>
-	</tr>
-	<% @guest_list.each do |guest| %>
-	<tr>
-	  <td width="52%"><p align="center" style="color:#ffffff;"><%= guest.email %></p></td>
-	  <td width="17%"><p align="center"><%= link_to 'Add More',  success_orders_path %></p></td>
-	  <!--
-	  <td width="15%"><p align="center"><%= link_to 'Update', contact_path(guest), :method => :put %></p></td>
-	  -->
-	  <td width="16%"><p align="center"><%= link_to "Delete", contact_path(guest), :confirm => 'Are you sure?', :method => :delete %></p></td>
-	</tr>
-	<% end %>
-</table>
-<% else %>
-	<br>
-	<br>
-	<br>
-	<p align="center" style="color:#ffffff">No, Guest List</p>
-	<br>
-	<br>
-	<br>
-<% end %>
+<% title 'Guest List' %>
+
+<div class="user_guest_list">
+  <div class="title"><%= @servicelisting.title%></div>
+  <p>Venue: <%= @servicelisting.location%></p>
+  <p>Date/Time: <%= @servicelisting.availability.strftime('%A - %b, %d %Y at %I:%M') %></p>
+  <p>No of Guests Allowed: <%= @servicelisting.no_of_guests %></p>
+  <p>Total Invites sent : <%= @guest_list.size %></p>
+  <div class="invite_more">
+    <%= link_to "Invite friends", contacts_path(:order_id=>@order.id), :class => "link_button" %>
+  </div>
+  <% if @guest_list.size > 0 %>
+    <table class="guest_list">
+      <tr>
+        <th colspan="3">List of Guests</th>
+      </tr>
+      <% @guest_list.each_with_index do |guest, i| %>
+      <tr>
+        <td><%= i+1 %></td>
+        <td><%= guest.email %></td>
+        <td><%= link_to "Delete", delete_invite_orders_path(:id=>guest.id), :confirm => 'Are you sure?' %></td>
+      </tr>
+      <% end%>
+    </table>
+  <% else %>
+    <div style="text-align: center;">No guests found. Invite to party</div>
+  <% end %>
+  <div class="invite_more">
+    <%= link_to "Invite friends", contacts_path(:order_id=>@order.id), :class => "link_button" %>
+  </div>
 </div>
+
+<% javascript_tag do %>
+    <% if @servicelisting.no_of_guests <= @guest_list.size %>
+        $('.invite_more').hide();
+    <% end %>
+<% end %>
