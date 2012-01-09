@@ -104,6 +104,16 @@ end
     @bar_bussiness_id = params[:id]
     @bar_bussiness = BarBussiness.new
     render :layout =>false
+ end
+
+ def servicelistings_sales
+   @orders = Order.paginate :page=>params[:page], :per_page=>'50'
+ end
+
+  def servicelisting_guests
+    @guests = GuestList.where(:product => params[:order_id])
   end
+
+
   
 end

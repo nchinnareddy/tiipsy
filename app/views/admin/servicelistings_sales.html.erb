@@ -1,0 +1,22 @@
+<div class="page_content servicelistings_sales">
+  <div class="title">Services Listings Sales</div>
+  <table class="guest_list">
+    <tr>
+      <th>Service listing</th>
+      <th>Bar Name</th>
+      <th>Date</th>
+      <th>User/Consumer</th>
+      <th>Guest List</th>
+    </tr>
+    <% @orders.each do |order| %>
+    <tr>
+      <td><%= link_to truncate(order.servicelisting.title, :length => 10),  servicelisting_path(order.servicelisting)%></td>
+      <td><%= order.servicelisting.bar_name%></td>
+      <td><%= order.servicelisting.availability.strftime('%m/%d/%Y')%></td>
+      <td><%= order.user.email%></td>
+      <td><%= link_to "View Guests", admin_servicelisting_guests_path(:order_id => order.id) %></td>
+    </tr>
+    <% end%>
+    <%= will_paginate @orders %>
+  </table>
+</div>

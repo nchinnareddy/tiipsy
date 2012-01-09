@@ -822,7 +822,6 @@ div.form_box {
     min-height: 150px;
 }
 
-
 .form-label {
     text-align: right;
     font-size:x-large;
@@ -832,6 +831,7 @@ div.form_box {
 .hidden {
     display: none;
 }
+
 /* Link Button */
 .link_button {
     -moz-box-shadow:inset 0px 1px 0px 0px #bbdaf7;
@@ -867,6 +867,26 @@ div.form_box {
 	top:1px;
 }
 /* End Link Button */
+
+.page_content {
+    -moz-border-radius: 5px;
+	border-radius: 5px;
+    background-color: #FFFFFF;
+    border: 1px solid #202020;
+	min-height: 300px;
+    width: 75%;
+    margin: 0 auto;
+    padding: 30px;
+	opacity: 0.95;
+}
+
+
+.page_content .title {
+    color: #4DBCE9;
+    font-family: Georgia,"Times New Roman",Times,serif;
+    font-size: 30px;
+    margin-bottom: 10px;
+}
 
 /* Users controller*/
 /* guest_list*/
@@ -911,6 +931,11 @@ div.form_box {
     margin: 10px 0;
 }
 /* End Users*/
+
+/* Admin */
+
+
+/* End Admin*/
 
 /* Servicelistings Controller */
 /* index*/

@@ -23,6 +23,8 @@ Socialstock::Application.routes.draw do
   get 'admin/list'
   get 'admin/bar_margin'
   get 'admin/margin_update'
+  get 'admin/servicelistings_sales'
+  get 'admin/servicelisting_guests'
   
   match '/activate_account/:activation_code' => 'activations#create', :as => :activate
   
