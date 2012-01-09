@@ -303,5 +303,15 @@ def credit_card
       format.js
     end
   end
+
+  def delete_invite
+    begin
+      GuestList.delete(params[:id])
+      flash[:notice] = "Invited deleted successfully."
+    rescue
+      flash[:error] = "Unable to deleted invite."
+    end
+    redirect_to :back
+  end
  
 end
