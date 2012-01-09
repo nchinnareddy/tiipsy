@@ -1,5 +1,6 @@
 <% title 'Contacts' %>
-<% javascript("jquery.listnav-2.1")%>
+<% stylesheet("colorbox")%>
+<% javascript("jquery.listnav-2.1", "jquery.colorbox-min")%>
 
 <div class="contacts-index">
   <h2>Import Contacts</h2>
@@ -17,23 +18,58 @@
     <div id="contacts-list-nav">
 
     </div>
+    <p>&nbsp;</p>
     <ul id="contacts-list">
-      <% @contacts.each do |contact| %>
+      <% @contacts.each_with_index do |contact, i| %>
           <% name = contact.username || contact.email%>
           <li class="contact">
             <div>
-              <%= check_box_tag "contact_email"%><label><%= name%></label>
-              <p><%= contact.email%></p>
+              <%= check_box_tag "contact_email[#{i}][email]", contact.email, false, :class=>"contact_email"%>
+              <label><%= name%></label>
+              <p class="email"><%= contact.email%></p>
             </div>
           </li>
       <% end%>
     </ul>
   </div>
+
+  <div style="margin: 10px 0px;">
+    <%= link_to 'Invite', '#', :class => "invite_by_email link_button"%>
+  </div>
 </div>
+
+<!-- invite_by_email -->
+<div class="hidden">
+    <%= render :partial => 'contacts/party_invite_by_email', :locals => {:order => @order, :servicelisting => @servicelisting} %>
+</div>
+
+<% javascript_tag do %>
+    var sent_invites_count = <%= @sent_invites.size  %>;
+    var no_of_guests = <%= @servicelisting.no_of_guests %>;
+<% end %>
 
 <script type="text/javascript">
   $('#contacts-list').listnav({
       initLetter: 'a',
-      includeAll: false
+      includeAll: false,
+      showCounts: false
+  });
+
+  $('.contact_email').click(function(e){
+      var selected_emails = $('.contact_email:checked').length;
+      if (sent_invites_count + selected_emails > no_of_guests) {
+          alert('You can only invite ' + no_of_guests + ' friends.');
+          return false;
+      }
+  });
+
+  $('.invite_by_email').click(function(e){
+      var to_emails = [];
+      $('.contact_email:checked').each(function(k, v){
+          to_emails[k] = $(v).val();
+      });
+      $('#emails').val(to_emails.join(','));
+      $.colorbox({href:'.invite_by_email_div', inline:true});
+      return false;
   });
 </script>

@@ -2,7 +2,16 @@ class ContactsController < ApplicationController
   before_filter :require_user
 
   def index
-    @contacts = current_user.contacts
+    begin
+      @contacts = current_user.contacts
+      @order = current_user.orders.find(params[:order_id])
+      @servicelisting = Servicelisting.find(@order.servicelisting_id)
+      @sent_invites = current_user.guest_lists.where(:product => params[:order_id])
+
+    rescue
+      flash[:error] = "Order was not found"
+      redirect_to account_users_path(:id => current_user.id)
+    end
   end
 
   def new
