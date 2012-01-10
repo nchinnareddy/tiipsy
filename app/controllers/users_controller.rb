@@ -176,7 +176,7 @@ class UsersController < ApplicationController
   def guest_list
     begin
       @order = Order.find(params[:order_id])
-      @servicelisting = Servicelisting.find(@order.id)
+      @servicelisting = Servicelisting.find(@order.servicelisting_id)
       @guest_list = GuestList.where(:user_id => current_user.id, :product => @order.id)
     rescue
       flash[:notice] = "Order was not found"

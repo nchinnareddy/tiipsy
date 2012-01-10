@@ -11,9 +11,6 @@
     <%= link_to "Invite Gmail Contacts", contacts_path(:order_id => @order.id), :class => "invite_gmail_contacts"%>
 </div>
 
-<% @order = Order.first%>
-<% servicelisting = @order.servicelisting%>
-
 <!-- invite_by_email -->
 <div class="hidden">
     <%= render :partial => 'contacts/party_invite_by_email', :locals => {:order => @order, :servicelisting => servicelisting} %>
