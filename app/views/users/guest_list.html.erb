@@ -1,4 +1,6 @@
 <% title 'Guest List' %>
+<% stylesheet('colorbox')%>
+<% javascript('jquery.colorbox-min')%>
 
 <div class="user_guest_list">
   <div class="title"><%= @servicelisting.title%></div>
@@ -26,8 +28,13 @@
     <div style="text-align: center;">No guests found. Invite to party</div>
   <% end %>
   <div class="invite_more">
-    <%= link_to "Invite friends", contacts_path(:order_id=>@order.id), :class => "link_button" %>
+    <%= link_to "Invite Friends by Email", '#', :class => "invite_by_email link_button" %>
   </div>
+</div>
+
+<!-- invite_by_email -->
+<div class="hidden">
+    <%= render :partial => 'contacts/party_invite_by_email', :locals => {:order => @order, :servicelisting => @servicelisting} %>
 </div>
 
 <% javascript_tag do %>
@@ -35,3 +42,16 @@
         $('.invite_more').hide();
     <% end %>
 <% end %>
+
+<script type="text/javascript">
+  $('.invite_by_email').click(function(e){
+       $.colorbox({
+           href:'.invite_by_email_div',
+           inline:true,
+           onClosed: function() {
+               window.location.reload();
+           }
+       });
+      return false;
+  });
+</script>
