@@ -514,13 +514,6 @@ label.error {
 
 }
 
-
-
-
-
-
-
-
 #buy_now{
 	-moz-border-radius: 3px 3px 3px;
     background: -moz-linear-gradient(center top, #232323, #1A1B1B) repeat scroll 0 0 transparent;
@@ -561,12 +554,12 @@ label.error {
 #signup{
 	-moz-border-radius: 5px;
 	border-radius: 5px;
-    background: repeat scroll 0 0 rgba(47, 47, 47, 0.7);
+  background: repeat scroll 0 0 rgba(47, 47, 47, 0.7);
 	/* For Internet Explorer 8 */
 	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#202020, endColorstr=#202020)";
 	/* For WebKit (Safari, Google Chrome etc) */
 	background: -webkit-gradient(linear, left top, left bottom, from(#202020), to(#202020));
-    border: 1px solid #202020;
+  border: 1px solid #202020;
 	position: relative;
 	width: auto;
 	overflow: hidden;
@@ -869,36 +862,69 @@ div.form_box {
 /* End Link Button */
 
 .page_content {
-    -moz-border-radius: 5px;
+  -moz-border-radius: 5px;
 	border-radius: 5px;
-    background-color: #FFFFFF;
-    border: 1px solid #202020;
+  background-color: #FFFFFF;
+  border: 1px solid #202020;
 	min-height: 300px;
-    width: 75%;
-    margin: 0 auto;
-    padding: 30px;
+  width: 75%;
+  margin: 0 auto;
+  padding: 30px;
 	opacity: 0.95;
 }
 
 
 .page_content .title {
-    color: #4DBCE9;
-    font-family: Georgia,"Times New Roman",Times,serif;
-    font-size: 30px;
-    margin-bottom: 10px;
+  color: #4DBCE9;
+  font-family: Georgia,"Times New Roman",Times,serif;
+  font-size: 30px;
+  margin-bottom: 10px;
 }
 
 /* Users controller*/
+/* My Account*/
+.credit_cards {
+
+}
+
+.credit_cards .title {
+  color: #4DBCE9;
+  font-size: 22px;
+  margin: 5px 0px;
+}
+
+.credit_cards .credit_cards_lists {
+  border-collapse: collapse;
+  margin: 10px 0px;
+}
+
+.credit_cards_lists th {
+  text-align: center;
+  font-size: 16px;
+  text-decoration: underline;
+  padding: 5px;
+  vertical-align: middle;
+}
+
+.credit_cards_lists td {
+  text-align: left;
+  font-size: 14px;
+  padding: 5px;
+  vertical-align: middle;
+}
+
+
+
 /* guest_list*/
 .user_guest_list {
-    -moz-border-radius: 5px;
+  -moz-border-radius: 5px;
 	border-radius: 5px;
-    background-color: #FFFFFF;
-    border: 1px solid #202020;
+  background-color: #FFFFFF;
+  border: 1px solid #202020;
 	min-height: 300px;
-    width: 75%;
-    margin: 0 auto;
-    padding: 30px;
+  width: 75%;
+  margin: 0 auto;
+  padding: 30px;
 	opacity: 0.95;
 }
 
@@ -945,25 +971,24 @@ div.form_box {
 }
 
 .service_listing {
-    -moz-border-radius: 3px;
+  -moz-border-radius: 3px;
 	border-radius: 3px;
-   	background: repeat scroll 0 0 rgba(47, 47, 47, 0.9);
-	background: repeat scroll 0 0 rgba(47, 47, 47, 0.7);
+  background: repeat scroll 0 0 rgba(47, 47, 47, 0.7);
 	/* For Internet Explorer 8 */
 	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#202020, endColorstr=#202020)";
 	/* For WebKit (Safari, Google Chrome etc) */
 	background: -webkit-gradient(linear, left top, left bottom, from(#202020), to(#202020));
-    border: 1px solid #2F2F2F;
-    margin-bottom: 10px;
-    opacity: 0.95;
-    overflow: hidden;
-    padding: 10px;
-    width: auto;
-    z-index: 99;
+  border: 1px solid #2F2F2F;
+  margin-bottom: 10px;
+  opacity: 0.95;
+  overflow: hidden;
+  padding: 10px;
+  width: auto;
+  z-index: 99;
 }
 
 .service_listing p {
-    line-height: 100%;
+  line-height: 100%;
 }
 
 .service_listing .info {
@@ -1234,14 +1259,14 @@ div.form_box {
 /* Contacts controller*/
 /* index*/
 .contacts-index {
-    -moz-border-radius: 5px;
+  -moz-border-radius: 5px;
 	border-radius: 5px;
-    background-color: #FFFFFF;
-    border: 1px solid #202020;
+  background-color: #FFFFFF;
+  border: 1px solid #202020;
 	min-height: 300px;
-    width: 75%;
-    margin: 0 auto;
-    padding: 30px;
+  width: 75%;
+  margin: 0 auto;
+  padding: 30px;
 	opacity: 0.95;
 }
 

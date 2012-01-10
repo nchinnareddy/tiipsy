@@ -1,13 +1,12 @@
 class CreditCardsController < ApplicationController
+
   #ssl_required :show, :new, :create, :edit, :update
   if ENV['RAILS_ENV'] == "development"
     #ssl_required :show, :new, :create, :edit, :update
   else
     #ssl_required :show, :new, :create, :edit, :update
   end
- 
-  # GET /credit_cards/1
-  # GET /credit_cards/1.xml
+
   def show
     @credit_card = CreditCard.find(params[:id])
    
@@ -17,12 +16,13 @@ class CreditCardsController < ApplicationController
     end
   end
 
-  # GET /credit_cards/new
-  # GET /credit_cards/new.xml
   def new
       @credit_card = CreditCard.new
       render :layout => false 
   end
+
+#TODO
+=begin
   # POST /credit_cards
   # POST /credit_cards.xml
   def create
@@ -34,7 +34,7 @@ class CreditCardsController < ApplicationController
      # @yy = Date.new(params["#{credit_card.card_expires_onto_s}(1i)"].to_i,
      #    params["#{field_name.to_s}(2i)"].to_i)
      #      
-  result = braintree_customer_create_with_cc(@creditcard)
+     result = braintree_customer_create_with_cc(@creditcard)
      if result.success?
        @creditcard.bttoken = result.customer.credit_cards[0].token
        @creditcard.user_id = current_user.id
@@ -67,7 +67,109 @@ class CreditCardsController < ApplicationController
      #      end
      #      redirect_to root_path     
   end
+=end
 
+  def create
+
+    @credit_card = current_user.credit_cards.first
+    if @credit_card.nil?
+      @credit_card = CreditCard.new(params[:credit_card])
+
+      result = Braintree::Customer.create(
+                :id => current_user.id,
+                :first_name => @credit_card.first_name,
+                :last_name => @credit_card.last_name,
+                :credit_card => {
+                  :number => @credit_card.card_number,
+                  :expiration_date => @credit_card.card_expires_on.strftime("%m/%y")
+                }
+               )
+
+      if result.success?
+        puts result.customer.id
+        puts result.customer.credit_cards[0].token
+        @credit_card.bttoken = result.customer.credit_cards[0].token
+        @credit_card.user_id = current_user.id
+        @credit_card.save
+        flash[:notice] = "Successful added your credit card. Please proceed to Bid or Buy"
+      else
+        p result.errors
+        flash[:error] = "Your Credit Card details entered are incorrect. Please re-enter"
+      end
+    else
+      @credit_card = CreditCard.new(params[:credit_card])
+      result = Braintree::Customer.update(
+        current_user.id,
+        :first_name => @credit_card.first_name,
+        :last_name => @credit_card.last_name,
+        :credit_card => {
+          :number => @credit_card.card_number,
+          :expiration_date => @credit_card.card_expires_on.strftime("%m/%y")
+        }
+      )
+
+      if result.success?
+        @credit_card.bttoken = result.customer.credit_cards[0].token
+        @credit_card.user_id = current_user.id
+        @credit_card.save
+        flash[:notice] = "Successful added your credit card. Please proceed to Bid or Buy"
+      else
+        p result.errors
+        flash[:error] = "Your Credit Card details entered are incorrect. Please re-enter"
+      end
+    end
+
+    redirect_to servicelistings_path
+  end
+
+  def edit
+    @credit_card = CreditCard.find(params[:id])
+    render :layout => false
+  end
+
+  def update
+    @credit_card = CreditCard.find(params[:id])
+    if @credit_card.update_attributes(params[:credit_card])
+      result = Braintree::Customer.update(
+        current_user.id,
+        :first_name => @credit_card.first_name,
+        :last_name => @credit_card.last_name,
+        :credit_card => {
+          :number => @credit_card.card_number,
+          :expiration_date => @credit_card.card_expires_on.strftime("%m/%y"),
+          :options => {
+             # token of credit card to update
+             :update_existing_token => @credit_card.bttoken
+          }
+        }
+      )
+
+      if result.success?
+        flash[:notice] = "Credit card details updated successful"
+      else
+        p result.errors
+      end
+
+      redirect_to  profile_users_path
+    else
+      flash[:error] = "You have enter wrong data"
+    end
+  end
+
+  def destroy
+    begin
+      @credit_card = CreditCard.find(params[:id])
+      Braintree::CreditCard.delete(@credit_card.bttoken)
+      @credit_card.destroy
+      flash[:notice] = "Deleted credit card details successfully."
+    rescue
+      flash[:error] = "Unable to delete credit card details. Please try again."
+    end
+
+    redirect_to  account_users_path(:anchor => "tab3")
+  end
+
+=begin
   private
    def braintree_customer_create_with_cc(creditcard)
      @creditcard = creditcard
@@ -120,24 +222,14 @@ class CreditCardsController < ApplicationController
     end
   end
   
-  def edit 
-    @credit_card = CreditCard.find(params[:id])
-  end
+
   
-  def update
-    @credit_card = CreditCard.find(params[:id])
-    if @credit_card.update_attributes(params[:credit_card])
-      flash[:notice] = "Credit card details updated successful"
-      redirect_to  profile_users_path
-    else
-      flash[:error] = "You have enter worng data"
-    end
-  end
+
   
   def destroy
     @creditcard = CreditCard.find(params[:id])
     @creditcard.destroy
     redirect_to  profile_users_path
   end
-  
+=end
 end

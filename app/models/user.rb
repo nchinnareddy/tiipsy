@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   has_one :twitter_status
   
   has_many :contacts
-  has_one :credit_card
+  has_many :credit_cards
   has_many :orders
   has_many :guest_lists
 

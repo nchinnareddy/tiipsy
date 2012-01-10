@@ -2,12 +2,13 @@
 <% stylesheet('simple-tabs','colorbox') %>
 
 <div>
-	<ul class="simple-tabs">
-		<li><%= link_to "My Bids","#tab1" %></li>
-    	<li><%= link_to "My Purchases", "#tab2" %></li>
+  <ul class="simple-tabs">
+    <li><%= link_to "My Bids","#tab1" %></li>
+    <li><%= link_to "My Purchases", "#tab2" %></li>
+    <li><%= link_to "My Credit Cards", "#tab3"%></li>
 	</ul>
-	<div class="tab_container">
-		<div id="tab1" class="tab_content">
+  <div class="tab_container">
+    <div id="tab1" class="tab_content">
 			<table width="100%"  border="0" align="center" cellpadding="0" cellspacing="0">
 				<tr>
     				<td colspan="6">
@@ -128,5 +129,45 @@
 			</table>
 			</div>
 		</div>
+    <div id="tab3" class="tab_content">
+      <div class="credit_cards">
+        <div class="title">List of Credit Cards</div>
+        <div class="add_card" style="margin: 5px 0;">
+          <%= link_to "Add Card", new_user_credit_card_path(current_user), :class=>"link_button add_credit_card"%>
+        </div>
+        <table class="credit_cards_lists">
+          <tr>
+            <th>No.</th>
+            <th>Card No</th>
+            <th>Card Type</th>
+            <th>Options</th>
+          </tr>
+          <% @credit_cards.each_with_index do |credit_card, i| %>
+          <tr>
+            <td><%= i+1%></td>
+            <td><%= credit_card.card_number%></td>
+            <td><%= credit_card.card_type%></td>
+            <td>
+              <%= link_to 'Edit', edit_user_credit_card_path(current_user, credit_card), :class=>"edit_credit_card"%>&nbsp;|&nbsp;
+              <%= link_to 'Delete', user_credit_card_path(current_user, credit_card), :confirm => "Are you sure?", :method=>:delete%>
+            </td>
+          </tr>
+          <% end %>
+          <% if @credit_cards.size == 0 %>
+          <tr>
+            <td colspan="3">
+              No Credit Cards
+            </td>
+          </tr>
+          <% end%>
+        </table>
+      </div>
+    </div>
 	</div>		
 </div>
+
+<script type="text/javascript">
+  $('.add_credit_card').colorbox();
+
+  $('.edit_credit_card').colorbox();
+</script>

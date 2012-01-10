@@ -151,6 +151,7 @@ class UsersController < ApplicationController
   def account
     @orders = Order.find(:all, :conditions => ["user_id = ? and state = ?", current_user.id, "paid"])
     @bids = Bid.find(:all, :conditions => ["user_id = ?", current_user.id])
+    @credit_cards = current_user.credit_cards
   end
   
  def term_condition
