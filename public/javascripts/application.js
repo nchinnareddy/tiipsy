@@ -63,3 +63,10 @@ function validateMultipleEmailsCommaSeparated(value) {
             return false;
     return true;
 }
+
+
+//submit disable
+$('form').submit(function(){
+    // On submit disable its submit button
+    $('input[type=submit]', this).attr('disabled', 'disabled');
+});
