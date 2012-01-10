@@ -1,16 +1,17 @@
 <% stylesheet ('colorbox') %>
 <% javascript ('jquery.colorbox-min') %>
 
-<div id="signup">
-	</br>
-	</br>
-<p style="color:#4DBCE9; font-size:18px;" align="center" > Please approve an <%= link_to '"Authorization hold"', authorization_hold_users_path, :class=>'authorization_hold' %> on your account for the following amount </p></br> 
-<p style="color:#FFFFFF; font-size:1.5em; padding: 5px;" align="center"> Amount to be authorized:<font style="color:#4DBCE9">$<%= '1.00' %></font></p> </br>
-
-<p align="center"><%= link_to "Authorization hold", servicelisting_authorize_path(@servicelisting), :class=>"links"%></p>
-
+<div id="new_authorization">
+  <p style="font-size: 18px;text-align: center;margin: 5px 0;">
+    Please approve an <%= link_to '"Authorization hold"', authorization_hold_users_path, :class=>'authorization_hold' %> on your account for the following amount
+  </p>
+  <p style="font-size: 18px;text-align: center;margin: 5px 0;">
+    Amount to be authorized:<span style="color:#4DBCE9;font-weight: bold;">$<%= '1.00' %></span>
+  </p>
+  <div style="text-align: center;margin: 10px 0;">
+    <%= link_to "Authorization hold", servicelisting_authorize_path(@servicelisting), :class=>"link_button"%>
+  </div>
 </div>
-
 
 <script type="text/javascript">
 	$('.authorization_hold').colorbox();

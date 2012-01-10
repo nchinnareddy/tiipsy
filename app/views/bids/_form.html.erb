@@ -1,29 +1,23 @@
 <%= form_for([@servicelisting, @servicelisting.bids.build]) do |f| %>
-  <% if @servicelisting.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@servicelisting.errors.count, "error") %> prohibited this bid from being saved:</h2>
+    <div class="form_box">
+      <% if @servicelisting.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@servicelisting.errors.count, "error") %> prohibited this bid from being saved:</h2>
 
-      <ul>
-      <% @servicelisting.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+          <ul>
+          <% @servicelisting.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
-	
-<table border="0" align="center" width="100%">
-  <tr>
-    <td width="619"><div align="right" style="color:#FFFFFF">Bid Price</div></td>
-    <td width="0"></td>
-    <td width="694"><fo<font style="font-size:20px; color:#ffffff;">$</font><%= f.text_field :bidprice , :class => "textfield_effect"  %></td>
-  </tr>
-  <tr>
-    <td width="619"><div align="right" style="color:#FFFFFF"></div></td>
-    <td width="0"></td>
-    <td width="694"><%= f.submit :class => "links" %></td>
-  </tr>
-</table>
 
-	
-  
+      <div class="form-field">
+        <label>Bid Price</label>
+        <%= f.text_field :bidprice %>
+      </div>
+       <div class="form-button" style="text-align: center;">
+         <%= f.submit :class=>"link_button"%>
+       </div>
+    </div>
 <% end %>
