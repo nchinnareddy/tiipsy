@@ -21,22 +21,25 @@ class ServicelistingsController < ApplicationController
   # GET /servicelistings
   # GET /servicelistings.xml
   def index
-    @ts = 0
+
     @city = params[:city] || session[:city]
     unless @city
       @location = Geokit::Geocoders::MultiGeocoder.geocode(request.remote_ip)
       @city = @location.city
       if @city == 'Austin' || @city == 'Round Rock' || @city == 'Leander' || @city == 'Ceder Park' || @city == 'George Town' || @city == 'San Macros' || @city == 'Kyle' || @city == 'Buda' || @city == 'Plugerville'
-          @city = 'Austin,TX'
+        @city = 'Austin, TX'
       end
-      @ts = 1
     end
-    session[:city] = @city
-    #@servicelistigs=Servicelisting.search(params[:search]).paginate :page=>params[:page], :conditions => [ 'city=?', @city] , :order=>'updated_at', :per_page=>'3'
+
     if @city.nil?
-      @servicelistings=Servicelisting.paginate :page=>params[:page], :per_page=>'2', :conditions => [ "LOWER(city) LIKE ?", @city], :order => 'availability DESC'
+      if current_user.nil?
+        redirect_to coming_soon_path
+      else
+        redirect_to servicelistings_path(:city => "Chicago, IL")
+      end
     else
       @servicelistings=Servicelisting.paginate :page=>params[:page], :per_page=>'2', :conditions => [ "LOWER(city) LIKE ?", '%' + @city.downcase + '%'], :order => 'availability DESC'
+      session[:city] = @city
     end 
   end
 

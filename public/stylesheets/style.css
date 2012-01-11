@@ -873,7 +873,6 @@ div.form_box {
 	opacity: 0.95;
 }
 
-
 .page_content .title {
   color: #4DBCE9;
   font-family: Georgia,"Times New Roman",Times,serif;
@@ -918,7 +917,6 @@ div.form_box {
   line-height: 100%;
   margin-bottom: 3px;
 }
-
 
 /* guest_list*/
 .user_guest_list {
@@ -1240,6 +1238,10 @@ div.form_box {
 
 .servicelisting .description_details {
     text-align: justify;
+}
+
+.coming_soon {
+
 }
 /* End Servicelistings*/
 

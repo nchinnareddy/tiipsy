@@ -1,5 +1,7 @@
 Socialstock::Application.routes.draw do
 
+  match 'coming_soon' => "servicelistings#coming_soon", :as => 'coming_soon'
+
   resources :contacts do
     collection do
       get 'get_contacts'
@@ -76,7 +78,6 @@ Socialstock::Application.routes.draw do
     get 'authorize'
     collection do
       get 'new_authorization'
-     
    end   
    resources :bids, :new => { :express => :get }
   end
