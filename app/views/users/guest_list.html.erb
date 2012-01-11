@@ -37,7 +37,7 @@
     <%= render :partial => 'contacts/party_invite_by_email', :locals => {:order => @order, :servicelisting => @servicelisting} %>
 </div>
 
-<% javascript_tag do %>
+<%= javascript_tag do %>
     <% if @servicelisting.no_of_guests <= @guest_list.size %>
         $('.invite_more').hide();
     <% end %>

@@ -28,9 +28,8 @@ Date/Time: '#{servicelisting.availability.strftime('%m/%d/%Y at %I:%M')}'" %>
     <% end -%>
 </div>
 
-<% javascript_tag do %>
+<%= javascript_tag do %>
     var no_of_guests = <%= servicelisting.no_of_guests.to_i%>;
-    
 <% end%>
 
 <script type="text/javascript">
