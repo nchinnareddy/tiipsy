@@ -3,7 +3,16 @@ class ApplicationController < ActionController::Base
   helper :all
   helper_method :current_user_session, :current_user, :auth_provider, :isadmin?, :require_user_balance, :require_user_with_mailid, :is_barowner?
   before_filter :require_user_with_mailid
+  #after_filter :flash_to_headers
   include SslRequirement
+
+  def flash_to_headers
+    #return unless request.xhr?
+    #response.header['X-Message'] = flash_message unless flash_message.nil?
+    #response.header['X-Message-Type'] = flash_type unless !flash_type.nil?
+
+    #flash.discard
+  end
   
   private
   
@@ -96,4 +105,16 @@ def require_user_with_mailid
       redirect_to edit_user_path(current_user)
     end
 end
+
+  def flash_message
+    [:error, :warning, :notice].each do |type|
+      return flash[type] unless flash[type].blank?
+    end
+  end
+
+  def flash_type
+    [:error, :warning, :notice].each do |type|
+      return type unless flash[type].blank?
+    end
+  end
 end

@@ -45,7 +45,6 @@ function ltrim(str, chars) {
 }
 
 function rtrim(str, chars) {
-    console.log(str);
     chars = chars || "\\s";
     return str.replace(new RegExp("[" + chars + "]+$", "g"), "");
 }
@@ -64,9 +63,15 @@ function validateMultipleEmailsCommaSeparated(value) {
     return true;
 }
 
-
 //submit disable
 $('form').submit(function(){
     // On submit disable its submit button
     $('input[type=submit]', this).attr('disabled', 'disabled');
+});
+
+//ajax flash messages
+$(document).ajaxComplete(function(event, request){
+  var flash_msg = request.getResponseHeader('X-Message');
+  var flash_type = request.getResponseHeader('X-Message-Type');
+  //TODO show ajax messages
 });
