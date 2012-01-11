@@ -138,6 +138,12 @@
     <td><%= f.text_field :zip , :class => "textfield_effect"%></td>
   </tr>
   <tr>
+    <td colspan="2"></td>
+    <td>
+      <%= f.check_box :default_card %>&nbsp;<span style="color: #FFFFFF;">Make this your default credit card</span>
+    </td>
+  </tr>
+  <tr>
     <td></td>
     <td></td>
     <td><%= f.submit credit_card.new_record? ? 'Submit' : 'Update', :class=>"link_button" %></td>

@@ -913,6 +913,11 @@ div.form_box {
   vertical-align: middle;
 }
 
+.credit_cards_lists .card_number {
+  font-size: x-large;
+  line-height: 100%;
+  margin-bottom: 3px;
+}
 
 
 /* guest_list*/

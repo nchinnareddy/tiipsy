@@ -64,7 +64,11 @@ Socialstock::Application.routes.draw do
       get 'how_it_works'
       get 'guest_list'
     end
-   resources :credit_cards
+   resources :credit_cards do
+     collection do
+       get 'make_default'
+     end
+   end
    resources :bids
  end
  

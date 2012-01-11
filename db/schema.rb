@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120104093722) do
+ActiveRecord::Schema.define(:version => 20120111054436) do
 
   create_table "admins", :force => true do |t|
     t.float    "bidding_fee"
@@ -98,6 +98,7 @@ ActiveRecord::Schema.define(:version => 20120104093722) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "bttoken"
+    t.boolean  "default_card"
   end
 
   create_table "facebook_friends", :force => true do |t|

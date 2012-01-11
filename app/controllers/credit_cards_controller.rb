@@ -81,7 +81,10 @@ class CreditCardsController < ApplicationController
                 :last_name => @credit_card.last_name,
                 :credit_card => {
                   :number => @credit_card.card_number,
-                  :expiration_date => @credit_card.card_expires_on.strftime("%m/%y")
+                  :expiration_date => @credit_card.card_expires_on.strftime("%m/%y"),
+                  :options => {
+                    :make_default => true
+                  }
                 }
                )
 
@@ -104,7 +107,10 @@ class CreditCardsController < ApplicationController
         :last_name => @credit_card.last_name,
         :credit_card => {
           :number => @credit_card.card_number,
-          :expiration_date => @credit_card.card_expires_on.strftime("%m/%y")
+          :expiration_date => @credit_card.card_expires_on.strftime("%m/%y"),
+          :options => {
+            :make_default => @credit_card.default_card
+          }
         }
       )
 
@@ -139,21 +145,26 @@ class CreditCardsController < ApplicationController
           :expiration_date => @credit_card.card_expires_on.strftime("%m/%y"),
           :options => {
              # token of credit card to update
-             :update_existing_token => @credit_card.bttoken
+             :update_existing_token => @credit_card.bttoken,
+             :make_default => @credit_card.default_card
           }
         }
       )
 
       if result.success?
+        if @credit_card.default_card
+          reset_default_card(@credit_card.id)
+        end
         flash[:notice] = "Credit card details updated successful"
       else
         p result.errors
       end
 
-      redirect_to  profile_users_path
     else
       flash[:error] = "You have enter wrong data"
     end
+
+    redirect_to  account_users_path(:anchor => "tab3")
   end
 
   def destroy
@@ -161,12 +172,48 @@ class CreditCardsController < ApplicationController
       @credit_card = CreditCard.find(params[:id])
       Braintree::CreditCard.delete(@credit_card.bttoken)
       @credit_card.destroy
+
       flash[:notice] = "Deleted credit card details successfully."
     rescue
       flash[:error] = "Unable to delete credit card details. Please try again."
     end
 
     redirect_to  account_users_path(:anchor => "tab3")
+  end
+
+  def make_default
+    begin
+      @credit_card = CreditCard.find(params[:id])
+      result = Braintree::CreditCard.update(
+        @credit_card.bttoken,
+        :number => @credit_card.card_number,
+        :expiration_date => @credit_card.card_expires_on.strftime("%m/%y"),
+        :options => {
+          :make_default => true
+        }
+      )
+
+      reset_default_card(@credit_card.id)
+
+      if result.success?
+        flash[:notice] = "Updated default card successfully."
+
+      else
+        p result.errors
+      end
+
+    rescue
+      flash[:error] = "Unable to make card as default failed. Please try again."
+    end
+
+    redirect_to  account_users_path(:anchor => "tab3")
+  end
+
+  private
+
+  def reset_default_card(credit_card_id)
+    current_user.credit_cards.update_all(:default_card => 0)
+    current_user.credit_cards.update(credit_card_id, :default_card => 1)
   end
 
 =begin
