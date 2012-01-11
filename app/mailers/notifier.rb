@@ -149,9 +149,10 @@ class Notifier < ActionMailer::Base
   end
 
   #invite friend by email
-  def invite_friend_party(email, subject, message)
+  def invite_friend_party(email, subject, message, sender_email)
     @subject = subject
     @message = message
+    @sender_email = sender_email
     mail(:to => email, :subject => subject)
   end
   

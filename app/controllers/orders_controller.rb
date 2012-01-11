@@ -292,7 +292,7 @@ def credit_card
         })
 
         if guest_list.save
-          Notifier.invite_friend_party(guest_list.email, params[:subject], params[:message]).deliver
+          Notifier.invite_friend_party(guest_list.email, params[:subject], params[:message], current_user.email).deliver
         end
       end
     else
