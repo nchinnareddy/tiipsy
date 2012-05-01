@@ -54,7 +54,7 @@ class ServicelistingsController < ApplicationController
  
   def authorize  
     @servicelisting = Servicelisting.find(params[:servicelisting_id])
-     ccard = current_user.credit_card
+    # ccard = current_user.credit_card
  #pp change start
   # @order = Order.create(:amount =>  @servicelisting.price,
   #                        :first_name => "ccard.first_name",

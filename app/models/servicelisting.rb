@@ -110,16 +110,19 @@ def self.braintree_capture(highestbid, service_id)
   authorized_order  = Order.find_by_user_id_and_servicelisting_id_and_state(highestbid.user_id,service_id,'authorized')
   #athorizationlimit = ((authorized_order.amount) * 100) + ((15/(authorized_order.amount))* 100)
   athorizationlimit = authorized_order.amount
-  ccard = user.credit_card
+  #ccard = user.credit_card
   local_ip = UDPSocket.open {|s| s.connect("64.233.187.99", 1); s.addr.last}
 
 
   # authorized amount is always $1 so we void the transaction and send a new one. 
   #void authorization
     void_result = Braintree::Transaction.void(authorized_order.bttoken)
+    
     if void_result.success? 
       authorized_order.state = 'void'
       authorized_order.save
+    else
+      logger.debug "void failed"
     end
     
    # create new authorization  and settle
